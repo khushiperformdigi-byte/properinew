@@ -173,56 +173,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
         </div>
       </section>
 
-      {/* 4. SECTION: OUR VISION & MISSION */}
-      <section className="w-full bg-white py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto">
-          
-          <div className="text-center mb-10 max-w-3xl mx-auto">
-            <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase mb-2 block">
-              OUR VISION & MISSION
-            </span>
-            <p className="font-medium text-base sm:text-lg text-[#544F66] leading-relaxed">
-              Our Vision and Mission reflect our commitment to building long-term wealth, protecting futures, and enabling growth through transparent and responsible financial solutions.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            
-            {/* Our Vision Card */}
-            <div className="bg-[#FAF6FC] rounded-[28px] p-7 sm:p-9 border border-purple-100/90 shadow-sm relative overflow-hidden flex flex-col justify-between">
-              <div>
-                <span className="text-[#F5A623] bg-[#1E1B2E] text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider mb-4 inline-block">
-                  VISION
-                </span>
-                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#1E1B2E] mb-3">
-                  Our Vision: Where Are We Headed
-                </h3>
-                <p className="font-medium text-sm sm:text-base text-[#544F66] leading-relaxed">
-                  To empower you to build wealth, protect it, and achieve your aspirations with the perfect blend of the right guidance and the right financial solutions.
-                </p>
-              </div>
-              <div className="w-12 h-1 bg-[#7C1FA8] rounded-full mt-6"></div>
-            </div>
-
-            {/* Our Mission Card */}
-            <div className="bg-[#7C1FA8] text-white rounded-[28px] p-7 sm:p-9 shadow-lg relative overflow-hidden flex flex-col justify-between">
-              <div>
-                <span className="text-[#1E1B2E] bg-[#F5A623] text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider mb-4 inline-block">
-                  MISSION
-                </span>
-                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-white mb-3">
-                  Our Mission: What Drives Us Forward
-                </h3>
-                <p className="font-medium text-sm sm:text-base text-purple-100 leading-relaxed">
-                  To make wealth management effortless and trustworthy by combining clear guidance, high-quality products, and dependable execution by enabling individuals to grow, safeguard, and utilise their wealth with confidence.
-                </p>
-              </div>
-              <div className="w-12 h-1 bg-[#F5A623] rounded-full mt-6"></div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* 5. SECTION: OUR PHILOSOPHY */}
       <section className="w-full bg-[#FAF8FC] py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
@@ -297,15 +248,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
           
           {/* Section Breadcrumb & Header */}
           <div className="text-center mb-8 sm:mb-10 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-2 text-xs font-semibold text-[#544F66] mb-2.5">
-              <svg className="w-3.5 h-3.5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              <span>›</span>
-              <span>About Us</span>
-              <span>›</span>
-              <span className="text-[#7C1FA8]">Leadership</span>
-            </div>
+
             <h2 className="font-sans font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#1E1B2E] leading-tight tracking-tight mb-2">
               Our Leadership
             </h2>
