@@ -12,9 +12,11 @@ export default function Navbar({
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
   const [investorsDropdownOpen, setInvestorsDropdownOpen] = useState(false);
+  const [partnerDropdownOpen, setPartnerDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
   const [mobileInvestorsOpen, setMobileInvestorsOpen] = useState(false);
+  const [mobilePartnerOpen, setMobilePartnerOpen] = useState(false);
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const [expertModalOpen, setExpertModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -241,6 +243,15 @@ export default function Navbar({
                 </a>
               </div>
             </div>
+
+            {/* For Partners (Direct Page Link) */}
+            <a
+              href={getPathForPage('partner')}
+              onClick={(e) => { e.preventDefault(); handleNav('partner'); }}
+              className={`whitespace-nowrap transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'partner' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : 'hover:text-[#7C1FA8]'}`}
+            >
+              For Partners
+            </a>
 
             {/* TOOLS DROPDOWN */}
             <div
@@ -471,14 +482,23 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 05 Smart Tools & Calculators (Accordion) */}
+                {/* 05 For Partners */}
+                <button
+                  onClick={() => handleNav('partner')}
+                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'partner' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
+                >
+                  <span className={`font-extrabold text-sm ${currentPage === 'partner' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>05</span>
+                  <span className="font-bold text-sm">For Partners</span>
+                </button>
+
+                {/* 06 Smart Tools & Calculators (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">05</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">06</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Smart Tools & Calculators</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileToolsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -506,21 +526,21 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 06 Blog & Insights */}
+                {/* 07 Blog & Insights */}
                 <button
                   onClick={() => handleNav('blog')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'blog' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>06</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
                   <span className="font-bold text-sm">Blog & Insights</span>
                 </button>
 
-                {/* 07 Careers */}
+                {/* 08 Careers */}
                 <button
                   onClick={() => handleNav('careers')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'careers' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>08</span>
                   <span className="font-bold text-sm">Careers</span>
                 </button>
 
