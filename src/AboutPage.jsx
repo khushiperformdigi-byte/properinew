@@ -59,18 +59,9 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
             <h1 className="font-sans font-extrabold text-[34px] leading-[42px] sm:text-[44px] sm:leading-[52px] lg:text-[50px] lg:leading-[58px] tracking-[-0.03em] text-[#1E1B2E] mb-4">
               Unified Wealth Platform for <span className="text-[#7C1FA8]">Partners & Investors</span>
             </h1>
-            <p className="font-medium text-[15px] sm:text-[16.5px] leading-[25px] sm:leading-[28px] text-[#544F66] mb-7 max-w-[560px]">
+            <p className="font-medium text-[15px] sm:text-[16.5px] leading-[25px] sm:leading-[28px] text-[#544F66] max-w-[560px]">
               PROSPERi5 is a unified wealth platform that helps partners build scalable, multi-product businesses and enables investors to manage their finances better across investments, insurance, and lending.
             </p>
-            <div className="flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => setPartnerModalOpen(true)}
-                className="h-[48px] px-7 rounded-xl bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold text-sm shadow-lg shadow-purple-900/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
-              >
-                <span>Become a Partner</span>
-                <span>➔</span>
-              </button>
-            </div>
           </div>
 
           {/* Right Column: Hero Graphic Visual */}
