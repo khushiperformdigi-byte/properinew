@@ -452,6 +452,125 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
 
       </main>
 
+      {/* PRODUCT SUITE OPTION MODAL POPUP */}
+      {selectedOptionModal && (
+        <div className="fixed inset-0 z-[9999] bg-black/65 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-purple-100 relative overflow-hidden animate-in fade-in zoom-in duration-200 space-y-4">
+            
+            <div className="flex items-center justify-between border-b border-purple-100 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-purple-100 text-[#7C1FA8] flex items-center justify-center font-bold text-sm">
+                  💳
+                </div>
+                <h3 className="font-heading font-extrabold text-base text-[#1E1B2E]">
+                  Financing Request
+                </h3>
+              </div>
+              <button
+                onClick={() => {
+                  setSelectedOptionModal(null);
+                  setModalSubmitted(false);
+                }}
+                className="text-gray-400 hover:text-[#7C1FA8] w-8 h-8 rounded-full bg-gray-100 hover:bg-purple-100 flex items-center justify-center font-extrabold text-sm cursor-pointer transition-colors z-20"
+              >
+                ✕
+              </button>
+            </div>
+
+            {!modalSubmitted ? (
+              <>
+                <div className="space-y-1 pr-6">
+                  <span className="bg-purple-100 text-[#7C1FA8] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                    PROSPERI5 FINANCING
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-[#1E1B2E]">
+                    {selectedOptionModal.title}
+                  </h3>
+                  {selectedOptionModal.subtitle && (
+                    <p className="text-xs text-[#544F66] font-medium leading-relaxed">
+                      {selectedOptionModal.subtitle}
+                    </p>
+                  )}
+                </div>
+
+                {/* Lead Form */}
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setModalSubmitted(true);
+                  }}
+                  className="space-y-3.5 pt-1"
+                >
+                  <div>
+                    <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Your Full Name *</label>
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder="e.g. Rahul Sharma"
+                      className="w-full bg-white border border-gray-300 focus:border-[#7C1FA8] rounded-xl p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Phone Number *</label>
+                    <div className="flex items-center bg-white border border-gray-300 focus-within:border-[#7C1FA8] rounded-xl overflow-hidden">
+                      <select className="bg-white pl-2.5 pr-1 py-2.5 text-xs font-bold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+971">🇦🇪 +971</option>
+                        <option value="+65">🇸🇬 +65</option>
+                      </select>
+                      <input 
+                        type="tel" 
+                        required 
+                        placeholder="e.g. 98765 43210"
+                        className="w-full bg-white p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold py-3 px-6 rounded-xl text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer mt-2"
+                  >
+                    <span>Request Financing Offer</span>
+                    <span>→</span>
+                  </button>
+
+                  <p className="text-[10px] text-center text-gray-400 font-medium">
+                    🔒 100% confidential. Zero spam guaranteed.
+                  </p>
+                </form>
+              </>
+            ) : (
+              /* Success View */
+              <div className="py-6 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                  ✓
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-xl font-extrabold text-[#1E1B2E]">Request Submitted!</h4>
+                  <p className="text-xs text-[#544F66] font-medium max-w-xs mx-auto leading-relaxed">
+                    Thank you! A PROSPERi5 financing specialist will connect with you shortly to assist with your requirement.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    setSelectedOptionModal(null);
+                    setModalSubmitted(false);
+                  }}
+                  className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+
+          </div>
+        </div>
+      )}
+
       {/* PARTNER EMPANELMENT MODAL POPUP */}
       {partnerModalOpen && (
         <div className="fixed inset-0 z-[9999] bg-black/65 backdrop-blur-xs flex items-center justify-center p-4">
@@ -476,96 +595,6 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
                 ✕
               </button>
             </div>
-
-              {!modalSubmitted ? (
-                <>
-                  <div className="space-y-1 pr-6">
-                    <span className="bg-purple-100 text-[#7C1FA8] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
-                      PROSPERI5 FINANCING
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-extrabold text-[#1E1B2E]">
-                      {selectedOptionModal.title}
-                    </h3>
-                    {selectedOptionModal.subtitle && (
-                      <p className="text-xs text-[#544F66] font-medium leading-relaxed">
-                        {selectedOptionModal.subtitle}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Lead Form */}
-                  <form 
-                    onSubmit={(e) => {
-                      e.preventDefault();
-                      setModalSubmitted(true);
-                    }}
-                    className="space-y-3.5 pt-1"
-                  >
-                    <div>
-                      <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Your Full Name *</label>
-                      <input 
-                        type="text" 
-                        required 
-                        placeholder="e.g. Rahul Sharma"
-                        className="w-full bg-white border border-gray-300 focus:border-[#7C1FA8] rounded-xl p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none transition-all"
-                      />
-                    </div>
-
-                    <div>
-                      <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Phone Number *</label>
-                      <div className="flex items-center bg-white border border-gray-300 focus-within:border-[#7C1FA8] rounded-xl overflow-hidden">
-                        <select className="bg-white pl-2.5 pr-1 py-2.5 text-xs font-bold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
-                          <option value="+91">🇮🇳 +91</option>
-                          <option value="+1">🇺🇸 +1</option>
-                          <option value="+44">🇬🇧 +44</option>
-                          <option value="+971">🇦🇪 +971</option>
-                          <option value="+65">🇸🇬 +65</option>
-                        </select>
-                        <input 
-                          type="tel" 
-                          required 
-                          placeholder="e.g. 98765 43210"
-                          className="w-full bg-white p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none"
-                        />
-                      </div>
-                    </div>
-
-                    <button 
-                      type="submit"
-                      className="w-full bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold py-3 px-6 rounded-xl text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer mt-2"
-                    >
-                      <span>Request Financing Offer</span>
-                      <span>→</span>
-                    </button>
-
-                    <p className="text-[10px] text-center text-gray-400 font-medium">
-                      🔒 100% confidential. Zero spam guaranteed.
-                    </p>
-                  </form>
-                </>
-              ) : (
-                /* Success View */
-                <div className="py-6 text-center space-y-4">
-                  <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
-                    ✓
-                  </div>
-                  <div className="space-y-1">
-                    <h4 className="text-xl font-extrabold text-[#1E1B2E]">Request Submitted!</h4>
-                    <p className="text-xs text-[#544F66] font-medium max-w-xs mx-auto leading-relaxed">
-                      Thank you! A PROSPERi5 financing specialist will connect with you shortly to assist with your requirement.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => {
-                      setSelectedOptionModal(null);
-                      setModalSubmitted(false);
-                    }}
-                    className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md cursor-pointer"
-                  >
-                    Close
-                  </button>
-                </div>
-              )}
 
             {!modalSubmitted ? (
               <>
