@@ -207,71 +207,59 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
           </div>
 
           {/* 3 Solution Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-left pt-2">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pt-2">
             
             {/* Card 1: Grow Your Wealth */}
             <div 
               onClick={() => handleNav('investment')}
-              className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-6 space-y-3.5 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-sm hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
             >
-              <div className="space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center font-bold text-lg group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
-                  📈
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
+                  <FiTrendingUp className="w-6 h-6" />
                 </div>
-                <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
                   Grow Your Wealth
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
                   Build long-term wealth with investment solutions tailored to your financial goals.
                 </p>
-              </div>
-              <div className="pt-2 border-t border-purple-100/60 flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs group-hover:translate-x-1 transition-transform">
-                <span>Explore Investment Solutions</span>
-                <span>→</span>
               </div>
             </div>
 
             {/* Card 2: Protect What Matters */}
             <div 
               onClick={() => handleNav('insurance')}
-              className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-6 space-y-3.5 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-sm hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
             >
-              <div className="space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center font-bold text-lg group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
-                  🛡️
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
+                  <FiShield className="w-6 h-6" />
                 </div>
-                <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
                   Protect What Matters
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
                   Comprehensive insurance solutions for you, your family and your assets.
                 </p>
-              </div>
-              <div className="pt-2 border-t border-purple-100/60 flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs group-hover:translate-x-1 transition-transform">
-                <span>Explore Insurance Solutions</span>
-                <span>→</span>
               </div>
             </div>
 
             {/* Card 3: Finance Your Aspirations */}
             <div 
               onClick={() => handleNav('financing')}
-              className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-6 space-y-3.5 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-sm hover:shadow-xl hover:border-purple-300 hover:-translate-y-1 transition-all duration-300 cursor-pointer group flex flex-col justify-between"
             >
-              <div className="space-y-2.5">
-                <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center font-bold text-lg group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
-                  🏦
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-xs group-hover:scale-110 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
+                  <FiCreditCard className="w-6 h-6" />
                 </div>
-                <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
                   Finance Your Aspirations
                 </h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
                   Smart financing solutions for homes, businesses and life's biggest milestones.
                 </p>
-              </div>
-              <div className="pt-2 border-t border-purple-100/60 flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs group-hover:translate-x-1 transition-transform">
-                <span>Explore Financing Solutions</span>
-                <span>→</span>
               </div>
             </div>
 
