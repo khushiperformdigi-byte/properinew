@@ -687,13 +687,15 @@ export default function Navbar({
 
                   <div>
                     <label className="text-xs font-bold text-white block mb-1">Phone Number</label>
-                    <PhoneInput
-                      value={formData.phone}
-                      countryCode={formData.countryCode}
-                      onCountryCodeChange={(code) => setFormData((f) => ({ ...f, countryCode: code }))}
-                      onChange={(val) => setFormData((f) => ({ ...f, phone: val }))}
-                      placeholder="Enter mobile number"
-                    />
+                    <div className="w-full px-3.5 py-1.5 bg-white border border-purple-200 rounded-xl">
+                      <PhoneInput
+                        value={formData.phone}
+                        countryCode={formData.countryCode}
+                        onCountryCodeChange={(code) => setFormData((f) => ({ ...f, countryCode: code }))}
+                        onChange={(val) => setFormData((f) => ({ ...f, phone: val }))}
+                        placeholder="Enter mobile number"
+                      />
+                    </div>
                   </div>
 
                   <div>
