@@ -296,35 +296,65 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Comprehensive Financial Solutions',
                   description: 'From investments and insurance to financing, access every financial solution through one trusted partner.',
                   bg: 'bg-[#FAF6FC]',
-                  icon: <FiLayers className="w-5 h-5 text-white" />
+                  icon: (
+                    <svg className="w-5 h-5 text-white stroke-[2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <rect x="3" y="3" width="7" height="7" rx="1" />
+                      <rect x="3" y="14" width="7" height="7" rx="1" />
+                      <rect x="14" y="14" width="7" height="7" rx="1" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17.5 3L21 6.5L17.5 10L14 6.5Z" />
+                    </svg>
+                  )
                 },
                 {
                   step: '02',
                   title: 'Your Interests Come First',
                   description: 'Every recommendation is guided by what best serves your financial needs.',
                   bg: 'bg-white',
-                  icon: <FiUserCheck className="w-5 h-5 text-white" />
+                  icon: (
+                    <svg className="w-5 h-5 text-white fill-current" viewBox="0 0 24 24">
+                      <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                    </svg>
+                  )
                 },
                 {
                   step: '03',
                   title: 'Solutions Tailored To You',
                   description: 'No two financial journeys are the same. We recommend solutions that match your needs—not a one-size-fits-all approach.',
                   bg: 'bg-[#FAF6FC]',
-                  icon: <FiSliders className="w-5 h-5 text-white" />
+                  icon: (
+                    <svg className="w-5 h-5 text-white stroke-[2.5]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a.5.5 0 00.71 0L21.75 8" />
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8h4.75V12.75" />
+                    </svg>
+                  )
                 },
                 {
                   step: '04',
                   title: 'Long-Term Relationships',
                   description: "We're here to support your financial journey, not just a single transaction.",
                   bg: 'bg-white',
-                  icon: <FiUsers className="w-5 h-5 text-white" />
+                  icon: (
+                    <svg className="w-5 h-5 text-white stroke-[2]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <rect x="5" y="5" width="14" height="14" rx="2" />
+                      <circle cx="5" cy="5" r="2.5" fill="currentColor" />
+                      <circle cx="19" cy="5" r="2.5" fill="currentColor" />
+                      <circle cx="5" cy="19" r="2.5" fill="currentColor" />
+                      <circle cx="19" cy="19" r="2.5" fill="currentColor" />
+                    </svg>
+                  )
                 },
                 {
                   step: '05',
                   title: 'Transparency You Can Count On',
                   description: 'Clear communication, informed decisions and no unnecessary complexity.',
                   bg: 'bg-[#FAF6FC]',
-                  icon: <FiEye className="w-5 h-5 text-white" />
+                  icon: (
+                    <svg className="w-5 h-5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <circle cx="12" cy="12" r="9.5" strokeWidth="1.8" />
+                      <circle cx="12" cy="12" r="7.5" strokeWidth="1" strokeDasharray="1.5 1.5" />
+                      <text x="12" y="15.2" fontSize="9.5" fontWeight="900" textAnchor="middle" fill="currentColor" stroke="none" style={{ fontFamily: "'Inter', sans-serif" }}>₹0</text>
+                    </svg>
+                  )
                 }
               ].map((item, idx) => (
                 <div
