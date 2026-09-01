@@ -189,7 +189,7 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
               One Trusted Partner for Every Financial Need.
             </h2>
 
-            <p className="font-body font-semibold text-xs sm:text-sm text-[#544F66] leading-relaxed max-w-[600px] mx-auto pt-0.5">
+            <p className="font-body font-semibold text-xs sm:text-[15px] text-[#544F66] leading-relaxed max-w-[620px] mx-auto pt-0.5">
               Why manage multiple financial relationships when one trusted partner can do it all? PROSPERi5 brings investments, insurance and financing together thereby making every financial decision simpler, more connected and easier to manage.
             </p>
           </div>
@@ -212,13 +212,13 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
             {/* Card 1: Grow Your Wealth */}
             <div 
               onClick={() => handleNav('investment')}
-              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs cursor-pointer flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-2xs group-hover:scale-105 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
-                  <FiTrendingUp className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-2xl bg-[#FAF6FC] text-[#7C1FA8] border border-purple-100/80 flex items-center justify-center">
+                  <FiTrendingUp className="w-6 h-6 text-[#7C1FA8]" />
                 </div>
-                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] leading-snug">
                   Grow Your Wealth
                 </h3>
                 <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
@@ -230,13 +230,13 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
             {/* Card 2: Protect What Matters */}
             <div 
               onClick={() => handleNav('insurance')}
-              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs cursor-pointer flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-2xs group-hover:scale-105 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
-                  <FiShield className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-2xl bg-[#FAF6FC] text-[#7C1FA8] border border-purple-100/80 flex items-center justify-center">
+                  <FiShield className="w-6 h-6 text-[#7C1FA8]" />
                 </div>
-                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] leading-snug">
                   Protect What Matters
                 </h3>
                 <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
@@ -248,13 +248,13 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
             {/* Card 3: Finance Your Aspirations */}
             <div 
               onClick={() => handleNav('financing')}
-              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs cursor-pointer flex flex-col justify-between"
             >
               <div className="space-y-3">
-                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-2xs group-hover:scale-105 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
-                  <FiCreditCard className="w-6 h-6" />
+                <div className="w-12 h-12 rounded-2xl bg-[#FAF6FC] text-[#7C1FA8] border border-purple-100/80 flex items-center justify-center">
+                  <FiCreditCard className="w-6 h-6 text-[#7C1FA8]" />
                 </div>
-                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] leading-snug">
                   Finance Your Aspirations
                 </h3>
                 <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
