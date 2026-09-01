@@ -208,43 +208,7 @@ export default function Navbar({
               </div>
             </div>
 
-            {/* FOR INVESTORS DROPDOWN */}
-            <div
-              className="relative group py-1"
-              onMouseEnter={() => setInvestorsDropdownOpen(true)}
-              onMouseLeave={() => setInvestorsDropdownOpen(false)}
-            >
-              <button className="whitespace-nowrap hover:text-[#7C1FA8] transition-colors flex items-center gap-1 font-semibold cursor-pointer py-1">
-                For Investors
-                <svg className="w-3.5 h-3.5 text-[#1E1B2E]/80 group-hover:text-[#7C1FA8] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
 
-              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-xl p-1.5 shadow-[0_16px_40px_rgba(30,27,46,0.18)] w-[180px] space-y-0.5 animate-in fade-in slide-in-from-top-1 z-[9999]">
-                <a
-                  href={getPathForPage('grow')}
-                  onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Grow
-                </a>
-                <a
-                  href={getPathForPage('protect')}
-                  onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Protect
-                </a>
-                <a
-                  href={getPathForPage('borrow')}
-                  onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Borrow
-                </a>
-              </div>
-            </div>
 
 
 
@@ -265,147 +229,111 @@ export default function Navbar({
                 </svg>
               </a>
 
-              {/* 2-Column Megamenu (Matching Reference Screenshot) */}
-              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:grid grid-cols-2 bg-white border border-purple-100/90 rounded-[22px] p-5 shadow-[0_20px_50px_rgba(30,27,46,0.16)] w-[540px] gap-4 animate-in fade-in slide-in-from-top-1 z-[9999]">
+              {/* Single-Column Dropdown Box (For Partners on Top without sub-list, For Investors Below) */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-[20px] p-3.5 shadow-[0_20px_50px_rgba(30,27,46,0.16)] w-[260px] space-y-2 animate-in fade-in slide-in-from-top-1 z-[9999]">
                 
-                {/* LEFT COLUMN: For Partners */}
-                <div className="flex flex-col border-r border-purple-50 pr-4">
-                  <a
-                    href={getPathForPage('partner')}
-                    onClick={(e) => { e.preventDefault(); handleNav('partner'); }}
-                    className="flex items-center gap-2.5 mb-2 group/title"
-                  >
-                    <div className="w-7 h-7 rounded-lg bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xs shadow-xs">
-                      ★
-                    </div>
-                    <div>
-                      <h4 className="font-extrabold text-sm text-[#1E1B2E] group-hover/title:text-[#7C1FA8] transition-colors">
-                        For Partners
-                      </h4>
-                      <p className="text-[10px] text-[#8E8A9D] font-medium">
-                        B2B blogs &amp; articles · /knowledge-center/partner
-                      </p>
-                    </div>
-                  </a>
-
-                  <div className="h-px bg-purple-50 my-1.5" />
-
-                  <div className="flex flex-col space-y-1 text-xs font-semibold text-[#1E1B2E]">
-                    <a
-                      href={`${getPathForPage('partner')}#partner-product-offering`}
-                      onClick={(e) => { e.preventDefault(); handleNav('partner', 'partner-product-offering'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
-                    >
-                      Multi Product Distribution
-                    </a>
-                    <a
-                      href={`${getPathForPage('partner')}#why-us`}
-                      onClick={(e) => { e.preventDefault(); handleNav('partner', 'why-us'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
-                    >
-                      Earnings &amp; Commissions
-                    </a>
-                    <a
-                      href={`${getPathForPage('partner')}#partner-product-offering`}
-                      onClick={(e) => { e.preventDefault(); handleNav('partner', 'partner-product-offering'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
-                    >
-                      Products &amp; Compliance
-                    </a>
-                    <a
-                      href={getPathForPage('partner')}
-                      onClick={(e) => { e.preventDefault(); handleNav('partner'); }}
-                      className="px-2.5 py-1.5 rounded-lg text-[#7C1FA8] font-extrabold hover:bg-purple-50 transition-colors flex items-center gap-1 mt-1 block"
-                    >
-                      <span>All partner articles</span>
-                      <span>→</span>
-                    </a>
+                {/* 1. FOR PARTNERS (Above For Investors, single link, no sub-list) */}
+                <a
+                  href={getPathForPage('partner')}
+                  onClick={(e) => { e.preventDefault(); handleNav('partner'); }}
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 transition-colors group/partner cursor-pointer"
+                >
+                  <div className="w-7 h-7 rounded-lg bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+                    ★
                   </div>
-                </div>
+                  <div className="flex flex-col">
+                    <h4 className="font-extrabold text-xs text-[#1E1B2E] group-hover/partner:text-[#7C1FA8] transition-colors leading-tight">
+                      For Partners
+                    </h4>
+                    <p className="text-[10px] text-[#8E8A9D] font-medium leading-tight">
+                      B2B Partner Ecosystem
+                    </p>
+                  </div>
+                </a>
 
-                {/* RIGHT COLUMN: For Investors */}
-                <div className="flex flex-col pl-1">
+                <div className="h-px bg-purple-50 my-0.5" />
+
+                {/* 2. FOR INVESTORS (Below For Partners) */}
+                <div className="flex flex-col">
                   <a
                     href={getPathForPage('knowledge')}
                     onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }}
-                    className="flex items-center gap-2.5 mb-2 group/title"
+                    className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 transition-colors group/investor cursor-pointer mb-1"
                   >
-                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#EA580C] to-[#F59E0B] text-white flex items-center justify-center font-extrabold text-xs shadow-xs">
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#EA580C] to-[#F59E0B] text-white flex items-center justify-center font-extrabold text-xs shadow-xs shrink-0">
                       ₹
                     </div>
-                    <div>
-                      <h4 className="font-extrabold text-sm text-[#1E1B2E] group-hover/title:text-[#7C1FA8] transition-colors">
+                    <div className="flex flex-col">
+                      <h4 className="font-extrabold text-xs text-[#1E1B2E] group-hover/investor:text-[#7C1FA8] transition-colors leading-tight">
                         For Investors
                       </h4>
-                      <p className="text-[10px] text-[#8E8A9D] font-medium">
-                        B2C blogs &amp; articles · by category
+                      <p className="text-[10px] text-[#8E8A9D] font-medium leading-tight">
+                        B2C Articles by Category
                       </p>
                     </div>
                   </a>
 
-                  <div className="h-px bg-purple-50 my-1.5" />
-
-                  <div className="flex flex-col space-y-1 text-xs font-semibold text-[#1E1B2E]">
+                  <div className="flex flex-col space-y-0.5 text-xs font-semibold text-[#1E1B2E] pl-2 border-l-2 border-purple-50 ml-5 my-1">
                     <a
                       href={getPathForPage('grow')}
                       onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Grow
                     </a>
                     <a
                       href={getPathForPage('protect')}
                       onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Protect
                     </a>
                     <a
                       href={getPathForPage('borrow')}
                       onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Borrow
                     </a>
                     <a
                       href={getPathForPage('personal-finance')}
                       onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Personal Finance
                     </a>
                     <a
                       href={getPathForPage('investment')}
                       onClick={(e) => { e.preventDefault(); handleNav('investment'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Investment / Wealth
                     </a>
                     <a
                       href={getPathForPage('insurance')}
                       onClick={(e) => { e.preventDefault(); handleNav('insurance'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Insurance
                     </a>
                     <a
                       href={getPathForPage('loan')}
                       onClick={(e) => { e.preventDefault(); handleNav('loan'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Loan
                     </a>
                     <a
                       href={getPathForPage('tax')}
                       onClick={(e) => { e.preventDefault(); handleNav('tax'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Tax Solutions
                     </a>
                     <a
                       href={getPathForPage('insights')}
                       onClick={(e) => { e.preventDefault(); handleNav('insights'); }}
-                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
                     >
                       Market Insights
                     </a>
@@ -481,14 +409,7 @@ export default function Navbar({
               Blog
             </a>
 
-            {/* Careers */}
-            <a
-              href={getPathForPage('careers')}
-              onClick={(e) => { e.preventDefault(); handleNav('careers'); }}
-              className={`whitespace-nowrap hover:text-[#7C1FA8] transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'careers' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : ''}`}
-            >
-              Careers
-            </a>
+
           </div>
 
           {/* Nav Right (Explore as + CTA Buttons) - Desktop */}
@@ -660,47 +581,14 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 04 For Investors (Accordion) */}
-                <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
-                  <button
-                    onClick={() => setMobileInvestorsOpen(!mobileInvestorsOpen)}
-                    className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
-                  >
-                    <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">04</span>
-                      <span className="font-bold text-sm text-[#1E1B2E]">For Investors</span>
-                    </div>
-                    <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileInvestorsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
-                    </svg>
-                  </button>
-                  {mobileInvestorsOpen && (
-                    <div className="px-3 pb-3 pt-1 border-t border-purple-50 flex flex-col gap-1 bg-purple-50/30">
-                      {[
-                        { label: 'Grow', page: 'grow' },
-                        { label: 'Protect', page: 'protect' },
-                        { label: 'Borrow', page: 'borrow' },
-                      ].map((item, idx) => (
-                        <button
-                          key={idx}
-                          onClick={() => handleNav(item.page)}
-                          className="w-full py-2 px-3 rounded-lg hover:bg-white text-left font-semibold text-xs text-[#1E1B2E] flex items-center cursor-pointer transition-all"
-                        >
-                          <span>{item.label}</span>
-                        </button>
-                      ))}
-                    </div>
-                  )}
-                </div>
-
-                {/* 05 Knowledge Center (Accordion) */}
+                {/* 04 Knowledge Center (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileKnowledgeOpen(!mobileKnowledgeOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">05</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">04</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Knowledge Center</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileKnowledgeOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -709,17 +597,16 @@ export default function Navbar({
                   </button>
                   {mobileKnowledgeOpen && (
                     <div className="px-3 pb-3 pt-1 border-t border-purple-50 flex flex-col gap-1 bg-purple-50/30">
-                      <div className="px-3 pt-1 pb-0.5 text-[10px] font-extrabold uppercase text-[#7C1FA8] tracking-wider">
-                        ★ For Partners
-                      </div>
+                      {/* For Partners Single Link */}
                       <button
                         onClick={() => handleNav('partner')}
-                        className="w-full py-1.5 px-3 rounded-lg hover:bg-white text-left font-semibold text-xs text-[#1E1B2E] flex items-center cursor-pointer transition-all"
+                        className="w-full py-2 px-3 rounded-lg hover:bg-white text-left font-bold text-xs text-[#7C1FA8] flex items-center gap-1.5 cursor-pointer transition-all border-b border-purple-100/50 mb-1"
                       >
-                        <span>Partner Articles &amp; Ecosystem</span>
+                        <span>★ For Partners</span>
+                        <span className="text-[10px] text-gray-500 font-normal">→</span>
                       </button>
 
-                      <div className="px-3 pt-2 pb-0.5 text-[10px] font-extrabold uppercase text-[#EA580C] tracking-wider">
+                      <div className="px-3 pt-1 pb-0.5 text-[10px] font-extrabold uppercase text-[#EA580C] tracking-wider">
                         ₹ For Investors
                       </div>
                       {[
@@ -745,14 +632,14 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 06 Smart Tools & Calculators (Accordion) */}
+                {/* 05 Smart Tools & Calculators (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">06</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">05</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Smart Tools & Calculators</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileToolsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -780,22 +667,13 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 07 Blog & Insights */}
+                {/* 06 Blog & Insights */}
                 <button
                   onClick={() => handleNav('blog')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'blog' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>06</span>
                   <span className="font-bold text-sm">Blog & Insights</span>
-                </button>
-
-                {/* 08 Careers */}
-                <button
-                  onClick={() => handleNav('careers')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'careers' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>08</span>
-                  <span className="font-bold text-sm">Careers</span>
                 </button>
 
               </div>
