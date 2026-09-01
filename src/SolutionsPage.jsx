@@ -111,17 +111,19 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
 
         {/* SECTION 1: WHY MULTI-PRODUCTS? */}
         <section className="w-full space-y-8 py-2">
-          <div className="max-w-4xl mx-auto text-center space-y-6">
+          <div className="max-w-4xl mx-auto text-center space-y-3.5">
             
-            <div className="inline-block bg-[#F5EEFB] border border-purple-200/80 px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-[#7C1FA8]">
-              WHY MULTI-PRODUCTS?
+            <div>
+              <span className="inline-block bg-[#F5EEFB] border border-purple-200/80 px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-[#7C1FA8]">
+                WHY MULTI-PRODUCTS?
+              </span>
             </div>
 
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-[#1E1B2E] tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[36px] leading-tight text-[#1E1B2E] tracking-tight pt-1">
               Multiple Verticals. One Client. <span className="text-[#C81E8C]">Zero Leakage.</span>
             </h2>
 
-            <p className="font-body font-semibold text-base sm:text-lg text-[#544F66] leading-relaxed max-w-3xl mx-auto">
+            <p className="font-body font-semibold text-sm sm:text-[15.5px] text-[#544F66] leading-relaxed max-w-3xl mx-auto pt-0.5">
               You might capture one part of a client's financial life and watch the rest walk out the door. When you hold the Investments, Insurance, and Financing conversation in a single meeting, you become indispensable, unreplaceable.
             </p>
 
@@ -137,12 +139,12 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
                   <div className="w-11 h-11 rounded-2xl bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
                     📈
                   </div>
-                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h4>
-                  <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
+                  <h4 className="font-extrabold text-lg sm:text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h4>
+                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
                     Capture equity, mutual funds, AIFs &amp; fixed income wealth creation with long-term recurring trail payouts.
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs pt-2 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs sm:text-sm pt-2 group-hover:translate-x-1 transition-transform">
                   <span>Explore</span>
                   <FiArrowRight className="w-4 h-4" />
                 </div>
@@ -157,12 +159,12 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
                   <div className="w-11 h-11 rounded-2xl bg-[#C81E8C] text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
                     🛡️
                   </div>
-                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h4>
-                  <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
+                  <h4 className="font-extrabold text-lg sm:text-xl text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h4>
+                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
                     Protect client family &amp; assets with health, term &amp; general policies while unlocking upfront + renewal commission.
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#C81E8C] font-extrabold text-xs pt-2 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-1.5 text-[#C81E8C] font-extrabold text-xs sm:text-sm pt-2 group-hover:translate-x-1 transition-transform">
                   <span>Explore</span>
                   <FiArrowRight className="w-4 h-4" />
                 </div>
@@ -177,12 +179,12 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
                   <div className="w-11 h-11 rounded-2xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
                     💳
                   </div>
-                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h4>
-                  <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
+                  <h4 className="font-extrabold text-lg sm:text-xl text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h4>
+                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
                     Fulfill home loans, business loans &amp; overdraft needs instantly so your clients never consult outside lenders.
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#D49300] font-extrabold text-xs pt-2 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-1.5 text-[#D49300] font-extrabold text-xs sm:text-sm pt-2 group-hover:translate-x-1 transition-transform">
                   <span>Explore</span>
                   <FiArrowRight className="w-4 h-4" />
                 </div>
@@ -210,66 +212,66 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
             
             {/* H3: Investments */}
-            <div className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
+            <div 
+              onClick={() => handleNav('investment')}
+              className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#7C1FA8] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
+            >
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-purple-100 text-[#7C1FA8] flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
                   📈
                 </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E]">Investments</h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed bg-[#FAF6FC] p-4 rounded-xl border border-purple-100">
+                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h3>
+                <p className="text-sm sm:text-[15px] font-extrabold text-[#1E1B2E] leading-relaxed bg-[#FAF6FC] p-4.5 rounded-2xl border border-purple-100">
                   Mutual Funds · Fixed Income · AIF · PMS · Equities · Unlisted Securities · Smallcase
                 </p>
               </div>
 
-              <button
-                onClick={() => handleNav('investment')}
-                className="w-full py-3 px-5 rounded-xl bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
+              <div className="w-full py-3.5 px-5 rounded-xl bg-[#7C1FA8] group-hover:bg-[#68198f] text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
                 <span>Explore More</span>
                 <span>→</span>
-              </button>
+              </div>
             </div>
 
             {/* H3: Insurance */}
-            <div className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
+            <div 
+              onClick={() => handleNav('insurance')}
+              className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#C81E8C] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
+            >
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-pink-100 text-[#C81E8C] flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
                   🛡️
                 </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E]">Insurance</h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed bg-[#FDF2F8] p-4 rounded-xl border border-pink-100">
+                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h3>
+                <p className="text-sm sm:text-[15px] font-extrabold text-[#1E1B2E] leading-relaxed bg-[#FDF2F8] p-4.5 rounded-2xl border border-pink-100">
                   Life · Health · Motor · Travel · Property · More
                 </p>
               </div>
 
-              <button
-                onClick={() => handleNav('insurance')}
-                className="w-full py-3 px-5 rounded-xl bg-[#C81E8C] hover:bg-[#a81674] text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
+              <div className="w-full py-3.5 px-5 rounded-xl bg-[#C81E8C] group-hover:bg-[#a81674] text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
                 <span>Explore More</span>
                 <span>→</span>
-              </button>
+              </div>
             </div>
 
             {/* H3: Financing */}
-            <div className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between space-y-6 group">
+            <div 
+              onClick={() => handleNav('financing')}
+              className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#F5A623] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
+            >
               <div className="space-y-4">
                 <div className="w-12 h-12 rounded-2xl bg-amber-100 text-[#D49300] flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
                   💳
                 </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E]">Financing</h3>
-                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed bg-[#FFFBEB] p-4 rounded-xl border border-amber-100">
+                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h3>
+                <p className="text-sm sm:text-[15px] font-extrabold text-[#1E1B2E] leading-relaxed bg-[#FFFBEB] p-4.5 rounded-2xl border border-amber-100">
                   Home Loan · Personal Loan · Business Loan · Vehicle Loan · LAP · Overdraft
                 </p>
               </div>
 
-              <button
-                onClick={() => handleNav('financing')}
-                className="w-full py-3 px-5 rounded-xl bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2 cursor-pointer"
-              >
+              <div className="w-full py-3.5 px-5 rounded-xl bg-[#F5A623] group-hover:bg-[#D49300] text-[#1E1B2E] font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
                 <span>Explore More</span>
                 <span>→</span>
-              </button>
+              </div>
             </div>
 
           </div>
