@@ -106,10 +106,10 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
   };
 
   return (
-    <div className="min-h-screen bg-[#FDFBFD] font-body text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAF8FC] font-body text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
 
       {/* 3. HERO SECTION (GROW YOUR WEALTH) */}
-      <section className="w-full bg-[#FAF8FC] border-b border-[#EBE8EF]/60 relative overflow-hidden -mt-[76px] lg:-mt-[88px] pt-[116px] sm:pt-[126px] lg:pt-[136px] pb-5 sm:pb-6 lg:pb-7 px-4 sm:px-6 lg:px-8 font-sans">
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] border-b border-[#EBE8EF]/60 relative overflow-hidden -mt-[88px] lg:-mt-[104px] pt-[130px] sm:pt-[145px] lg:pt-[160px] pb-5 sm:pb-6 lg:pb-7 px-4 sm:px-6 lg:px-8 font-sans">
         {/* Soft Ambient Background Glows */}
         <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-purple-200/30 rounded-full filter blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-10 w-[350px] h-[350px] bg-pink-100/30 rounded-full filter blur-[90px] pointer-events-none"></div>
