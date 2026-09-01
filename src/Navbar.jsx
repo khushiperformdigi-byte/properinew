@@ -206,8 +206,8 @@ export default function Navbar({
                 {/* 2. FOR INVESTORS (Below For Partners) */}
                 <div className="flex flex-col">
                   <a
-                    href={getPathForPage('knowledge')}
-                    onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }}
+                    href={getPathForPage('investors')}
+                    onClick={(e) => { e.preventDefault(); handleNav('investors'); }}
                     className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 transition-colors group/investor cursor-pointer mb-1"
                   >
                     <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#EA580C] to-[#F59E0B] text-white flex items-center justify-center font-extrabold text-xs shadow-xs shrink-0">
