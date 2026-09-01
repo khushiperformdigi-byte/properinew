@@ -299,7 +299,7 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
     <div className="w-full bg-[#FAF8FC] font-sans text-[#1E1B2E] antialiased selection:bg-purple-100 selection:text-[#7C1FA8] overflow-x-hidden">
 
       {/* HERO BANNER SECTION */}
-      <section className="w-full overflow-hidden bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] border-b border-[#EBE8EF]/60 pt-6 sm:pt-8 lg:pt-10 pb-8 lg:pb-12">
+      <section className="w-full overflow-hidden bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] border-b border-[#EBE8EF]/60 pt-0 -mt-1 sm:-mt-3 lg:-mt-4 pb-6 lg:pb-8">
         <img
           src="/blog_hero_banner.png"
           alt="Ideas that help you grow, protect and manage your wealth - Insights & Knowledge by PROSPERi5"
