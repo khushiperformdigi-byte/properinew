@@ -6,6 +6,13 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [emailInput, setEmailInput] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  
+  // Interactive Planning Popup Modal States
+  const [planningModalOpen, setPlanningModalOpen] = useState(false);
+  const [modalSubmitted, setModalSubmitted] = useState(false);
+  const [fullName, setFullName] = useState('');
+  const [mobileNumber, setMobileNumber] = useState('');
+  const [financialGoal, setFinancialGoal] = useState('Wealth Creation');
 
   const handleSubscribe = (e) => {
     e.preventDefault();
@@ -53,8 +60,8 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
             <div>
               <button 
                 onClick={() => {
-                  const el = document.getElementById('learn-and-grow');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  setPlanningModalOpen(true);
+                  setModalSubmitted(false);
                 }}
                 className="bg-[#7C1FA8] hover:bg-[#6b1a91] text-white font-extrabold px-6 py-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
               >
@@ -408,8 +415,144 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
         </div>
       </section>
 
+      {/* PERSONAL FINANCIAL PLANNING POPUP MODAL */}
+      {planningModalOpen && (
+        <div className="fixed inset-0 z-[9999] bg-black/65 backdrop-blur-xs flex items-center justify-center p-4">
+          <div className="bg-white rounded-3xl p-6 sm:p-8 max-w-md w-full shadow-2xl border border-purple-100 relative overflow-hidden animate-in fade-in zoom-in duration-200 space-y-4">
+            
+            {/* Modal Header */}
+            <div className="flex items-center justify-between border-b border-purple-100 pb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-8 h-8 rounded-xl bg-purple-100 text-[#7C1FA8] flex items-center justify-center font-extrabold text-xs">
+                  🎯
+                </div>
+                <h3 className="font-heading font-extrabold text-base text-[#1E1B2E]">
+                  Personal Financial Plan
+                </h3>
+              </div>
+              <button
+                onClick={() => {
+                  setPlanningModalOpen(false);
+                  setModalSubmitted(false);
+                }}
+                className="text-gray-400 hover:text-[#7C1FA8] w-8 h-8 rounded-full bg-gray-100 hover:bg-purple-100 flex items-center justify-center font-extrabold text-sm cursor-pointer transition-colors z-20"
+              >
+                ✕
+              </button>
+            </div>
 
+            {!modalSubmitted ? (
+              <>
+                <div className="space-y-1">
+                  <span className="bg-purple-100 text-[#7C1FA8] text-[10px] font-extrabold px-3 py-1 rounded-full uppercase tracking-wider inline-block">
+                    PERSONAL FINANCE
+                  </span>
+                  <h3 className="text-xl sm:text-2xl font-extrabold text-[#1E1B2E]">
+                    Start Your Financial Journey
+                  </h3>
+                  <p className="text-xs text-[#544F66] font-medium leading-relaxed">
+                    Get a personalized financial roadmap tailored to your life goals and budget.
+                  </p>
+                </div>
 
+                <form 
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    setModalSubmitted(true);
+                  }}
+                  className="space-y-3.5 pt-1"
+                >
+                  <div>
+                    <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Your Full Name *</label>
+                    <input 
+                      type="text" 
+                      required 
+                      placeholder="e.g. Rahul Sharma"
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      className="w-full bg-white border border-gray-300 focus:border-[#7C1FA8] rounded-xl p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none transition-all"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Phone Number *</label>
+                    <div className="flex items-center bg-white border border-gray-300 focus-within:border-[#7C1FA8] rounded-xl overflow-hidden">
+                      <select className="bg-white pl-2.5 pr-1 py-2.5 text-xs font-bold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
+                        <option value="+91">🇮🇳 +91</option>
+                        <option value="+1">🇺🇸 +1</option>
+                        <option value="+44">🇬🇧 +44</option>
+                        <option value="+971">🇦🇪 +971</option>
+                      </select>
+                      <input 
+                        type="tel" 
+                        required 
+                        placeholder="e.g. 98765 43210"
+                        value={mobileNumber}
+                        onChange={(e) => setMobileNumber(e.target.value)}
+                        className="w-full bg-white p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none"
+                      />
+                    </div>
+                  </div>
+
+                  <div>
+                    <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Primary Financial Goal</label>
+                    <select
+                      value={financialGoal}
+                      onChange={(e) => setFinancialGoal(e.target.value)}
+                      className="w-full bg-white border border-gray-300 focus:border-[#7C1FA8] rounded-xl p-2.5 text-xs font-bold text-[#1E1B2E] outline-none cursor-pointer"
+                    >
+                      <option value="Wealth Creation">Wealth Creation &amp; Growth</option>
+                      <option value="Retirement Planning">Retirement &amp; Pension</option>
+                      <option value="Buying a Home">Buying Property / Home</option>
+                      <option value="Tax Savings">Tax Saving &amp; Optimization</option>
+                      <option value="Children Education">Children's Future &amp; Education</option>
+                      <option value="Emergency Fund">Building Emergency Reserves</option>
+                    </select>
+                  </div>
+
+                  <button 
+                    type="submit"
+                    className="w-full bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold py-3 px-6 rounded-xl text-xs sm:text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer mt-2 active:scale-95"
+                  >
+                    <span>Get My Free Financial Plan</span>
+                    <span>→</span>
+                  </button>
+
+                  <p className="text-[10px] text-center text-gray-400 font-medium">
+                    🔒 100% confidential. Zero spam guaranteed.
+                  </p>
+                </form>
+              </>
+            ) : (
+              /* Success View */
+              <div className="py-6 text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-emerald-100 text-emerald-600 flex items-center justify-center text-3xl mx-auto shadow-inner">
+                  ✓
+                </div>
+                <div className="space-y-1">
+                  <h4 className="text-xl font-extrabold text-[#1E1B2E]">Request Submitted!</h4>
+                  <p className="text-xs text-[#544F66] font-medium max-w-xs mx-auto leading-relaxed">
+                    Thank you, <span className="font-bold text-[#1E1B2E]">{fullName || 'Valued User'}</span>! Our personal finance advisor will connect with you within 24 hours to help craft your roadmap.
+                  </p>
+                </div>
+                <button
+                  onClick={() => {
+                    setPlanningModalOpen(false);
+                    setModalSubmitted(false);
+                  }}
+                  className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs transition-all shadow-md cursor-pointer"
+                >
+                  Close
+                </button>
+              </div>
+            )}
+
+          </div>
+        </div>
+      )}
+
+      {/* FOOTER */}
+      <Footer onNavigatePage={onNavigatePage} onNavigateHome={onNavigateHome} />
     </div>
   );
 }
