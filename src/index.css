@@ -75,6 +75,48 @@
   h1, h2, h3, h4 {
     font-weight: 600 !important;
   }
+
+  p {
+    font-size: 16px !important;
+    line-height: 1.6;
+  }
+
+  span {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  /* Website Theme Form Dropdown Styling */
+  select {
+    background-color: #FFFFFF !important;
+    color: #1E1B2E !important;
+    border-color: #D1D5DB;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    outline: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  select:focus,
+  select:focus-within {
+    border-color: #7C1FA8 !important;
+    box-shadow: 0 0 0 2px rgba(124, 31, 168, 0.15) !important;
+  }
+
+  select option {
+    background-color: #FFFFFF !important;
+    color: #1E1B2E !important;
+    padding: 10px 14px;
+    font-weight: 500;
+  }
+
+  select option:hover,
+  select option:focus,
+  select option:active,
+  select option:checked {
+    background-color: #FAF4FD !important;
+    color: #7C1FA8 !important;
+  }
 }
 
 /* Lightweight GPU-Accelerated Homepage Scroll Reveal Animations */

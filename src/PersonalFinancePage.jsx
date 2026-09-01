@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
+import { FiPieChart, FiDollarSign, FiTrendingUp, FiShield, FiCreditCard, FiTarget, FiActivity, FiCheckCircle, FiRefreshCw } from 'react-icons/fi';
 
 export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -79,123 +80,111 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
       </section>
 
       {/* 4. SECTION 2: LEARN AND GROW - PERSONAL FINANCE MADE SIMPLE */}
-      <section id="learn-and-grow" className="py-8 lg:py-12 bg-[#E7E2EF] font-sans border-b border-purple-200/60">
+      <section id="learn-and-grow" className="py-8 lg:py-12 bg-[#FAF8FC] font-sans border-b border-purple-200/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           
           <div className="text-center max-w-2xl mx-auto mb-8">
-            <span className="text-[#7C1FA8] text-xs font-extrabold uppercase tracking-widest bg-white/90 px-3.5 py-1 rounded-full border border-purple-200/80 shadow-2xs">
+            <span className="text-[#7C1FA8] text-xs font-extrabold uppercase tracking-widest bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/80">
               LEARN AND GROW
             </span>
-            <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E] mt-3 tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mt-3 tracking-tight">
               Personal finance made simple
             </h2>
-            <p className="text-xs sm:text-sm text-[#4A455A] mt-1.5 font-medium">
+            <p className="text-xs sm:text-sm text-[#544F66] mt-1.5 font-medium">
               Practical guides and tools to help you make better financial decisions.
             </p>
           </div>
 
-          {/* 6 Cards Grid (2-column on mobile, 6 on desktop) */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 sm:gap-3.5">
+          {/* 6 Cards Grid (Matching Investment Solutions card layout) */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             
             {/* Card 1: Budgeting 101 */}
-            <div className="group bg-[#7C1FA8] hover:bg-[#6b1a91] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-purple-400/30 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer space-y-2 flex flex-col justify-between text-white">
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
-                  </svg>
+            <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <div className="space-y-3">
+                <div className="w-11 h-11 rounded-2xl bg-purple-100/60 border border-purple-200/60 text-[#8B1FA8] flex items-center justify-center shadow-2xs">
+                  <FiPieChart className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-white leading-tight">
-                  Budgeting 101
-                </h3>
-                <p className="text-[10.5px] sm:text-[11px] text-purple-100/90 leading-snug font-medium">
-                  Learn how to create a budget that works for you.
-                </p>
+                <div>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Budgeting 101</h3>
+                  <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                    Learn how to create a budget that works for you.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 2: Save Smart */}
-            <div className="group bg-[#7C1FA8] hover:bg-[#6b1a91] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-purple-400/30 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer space-y-2 flex flex-col justify-between text-white">
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
-                  </svg>
+            <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <div className="space-y-3">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-100/60 border border-emerald-200/60 text-emerald-700 flex items-center justify-center shadow-2xs">
+                  <FiDollarSign className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-white leading-tight">
-                  Save Smart
-                </h3>
-                <p className="text-[10.5px] sm:text-[11px] text-purple-100/90 leading-snug font-medium">
-                  Simple ways to save more money &amp; emergency funds.
-                </p>
+                <div>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Save Smart</h3>
+                  <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                    Simple ways to save more money & emergency funds.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 3: Invest for Growth */}
-            <div className="group bg-[#7C1FA8] hover:bg-[#6b1a91] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-purple-400/30 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer space-y-2 flex flex-col justify-between text-white">
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-                  </svg>
+            <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <div className="space-y-3">
+                <div className="w-11 h-11 rounded-2xl bg-blue-100/60 border border-blue-200/60 text-blue-700 flex items-center justify-center shadow-2xs">
+                  <FiTrendingUp className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-white leading-tight">
-                  Invest for Growth
-                </h3>
-                <p className="text-[10.5px] sm:text-[11px] text-purple-100/90 leading-snug font-medium">
-                  Choose the right investments to grow wealth.
-                </p>
+                <div>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Invest for Growth</h3>
+                  <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                    Choose the right investments to grow wealth.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 4: Protect What Matters */}
-            <div className="group bg-[#7C1FA8] hover:bg-[#6b1a91] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-purple-400/30 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer space-y-2 flex flex-col justify-between text-white">
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
+            <div className="bg-[#F5F3FF] border border-[#DDD6FE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <div className="space-y-3">
+                <div className="w-11 h-11 rounded-2xl bg-purple-100/80 border border-purple-200/80 text-purple-700 flex items-center justify-center shadow-2xs">
+                  <FiShield className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-white leading-tight">
-                  Protect What Matters
-                </h3>
-                <p className="text-[10.5px] sm:text-[11px] text-purple-100/90 leading-snug font-medium">
-                  Explore insurance options for your family.
-                </p>
+                <div>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Protect What Matters</h3>
+                  <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                    Explore insurance options for your family.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 5: Manage Debt */}
-            <div className="group bg-[#7C1FA8] hover:bg-[#6b1a91] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-purple-400/30 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer space-y-2 flex flex-col justify-between text-white">
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
-                  </svg>
+            <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <div className="space-y-3">
+                <div className="w-11 h-11 rounded-2xl bg-amber-100/60 border border-amber-200/60 text-amber-700 flex items-center justify-center shadow-2xs">
+                  <FiCreditCard className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-white leading-tight">
-                  Manage Debt
-                </h3>
-                <p className="text-[10.5px] sm:text-[11px] text-purple-100/90 leading-snug font-medium">
-                  Smart tips to improve your financial health.
-                </p>
+                <div>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Manage Debt</h3>
+                  <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                    Smart tips to improve your financial health.
+                  </p>
+                </div>
               </div>
             </div>
 
             {/* Card 6: Plan Your Goals */}
-            <div className="group bg-[#7C1FA8] hover:bg-[#6b1a91] p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-purple-400/30 shadow-sm hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer space-y-2 flex flex-col justify-between text-white">
-              <div className="space-y-1.5 sm:space-y-2">
-                <div className="w-8 h-8 sm:w-9 sm:h-9 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold flex-shrink-0">
-                  <svg className="w-4 h-4 sm:w-4.5 sm:h-4.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 00-2 2v6a2 2 0 002 2h14a2 2 0 002-2v-6a2 2 0 00-2-2H5z" />
-                  </svg>
+            <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+              <div className="space-y-3">
+                <div className="w-11 h-11 rounded-2xl bg-pink-100/80 border border-pink-200/80 text-pink-700 flex items-center justify-center shadow-2xs">
+                  <FiTarget className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-sm font-extrabold text-white leading-tight">
-                  Plan Your Goals
-                </h3>
-                <p className="text-[10.5px] sm:text-[11px] text-purple-100/90 leading-snug font-medium">
-                  Plan for major life goals &amp; retirement.
-                </p>
+                <div>
+                  <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Plan Your Goals</h3>
+                  <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                    Plan for major life goals & retirement.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -330,86 +319,92 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
           <span className="text-[#7C1FA8] text-xs font-extrabold uppercase tracking-widest bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/80">
             MONEY HABITS THAT MATTER
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E] mt-3 tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mt-3 tracking-tight">
             Build better habits, build a better life
           </h2>
-          <p className="text-sm sm:text-base text-[#666077] mt-1.5 font-normal">
+          <p className="text-xs sm:text-sm text-[#544F66] mt-1.5 font-medium">
             Small changes today can lead to big financial wins tomorrow.
           </p>
         </div>
 
-        {/* 5 Column Cards Row (2-column on mobile, 5 on desktop) */}
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-5 gap-3">
+        {/* 5 Cards Grid (Matching Investment Solutions card layout) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5">
           
           {/* Habit 1: Set Clear Goals */}
-          <div className="group bg-[#FAF6FC] border border-purple-100/90 hover:border-purple-300 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center flex flex-col items-center space-y-2 sm:space-y-2.5 shadow-2xs hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-100 text-[#7C1FA8] group-hover:bg-[#7C1FA8] group-hover:text-white flex items-center justify-center font-bold transition-all shadow-xs">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 17C14.7614 17 17 14.7614 17 12C17 9.23858 14.7614 7 12 7C9.23858 7 7 9.23858 7 12C7 14.7614 9.23858 17 12 17Z" />
-                <path strokeLinecap="round" strokeLinejoin="round" d="M12 13C12.5523 13 13 12.5523 13 12C13 11.4477 12.5523 11 12 11C11.4477 11 11 11.4477 11 12C11 12.5523 11.4477 13 12 13Z" />
-              </svg>
+          <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-purple-100/60 border border-purple-200/60 text-[#8B1FA8] flex items-center justify-center shadow-2xs">
+                <FiTarget className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Set Clear Goals</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Define what you want to achieve.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Set Clear Goals</h3>
-            <p className="text-[10.5px] sm:text-xs text-[#666077] leading-tight sm:leading-relaxed font-medium">
-              Define what you want to achieve.
-            </p>
           </div>
 
           {/* Habit 2: Track Your Money */}
-          <div className="group bg-[#FAF6FC] border border-purple-100/90 hover:border-purple-300 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center flex flex-col items-center space-y-2 sm:space-y-2.5 shadow-2xs hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-100 text-[#7C1FA8] group-hover:bg-[#7C1FA8] group-hover:text-white flex items-center justify-center font-bold transition-all shadow-xs">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-              </svg>
+          <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-blue-100/60 border border-blue-200/60 text-blue-700 flex items-center justify-center shadow-2xs">
+                <FiActivity className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Track Your Money</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Know where your money goes every month.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Track Your Money</h3>
-            <p className="text-[10.5px] sm:text-xs text-[#666077] leading-tight sm:leading-relaxed font-medium">
-              Know where your money goes every month.
-            </p>
           </div>
 
           {/* Habit 3: Live Below Your Means */}
-          <div className="group bg-[#FAF6FC] border border-purple-100/90 hover:border-purple-300 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center flex flex-col items-center space-y-2 sm:space-y-2.5 shadow-2xs hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-100 text-[#7C1FA8] group-hover:bg-[#7C1FA8] group-hover:text-white flex items-center justify-center font-bold transition-all shadow-xs">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3 10h18M7 15h1m4 0h1m-7 4h12a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
-              </svg>
+          <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-100/60 border border-emerald-200/60 text-emerald-700 flex items-center justify-center shadow-2xs">
+                <FiCheckCircle className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Live Below Your Means</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Spend less than you earn and save the rest.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Live Below Your Means</h3>
-            <p className="text-[10.5px] sm:text-xs text-[#666077] leading-tight sm:leading-relaxed font-medium">
-              Spend less than you earn and save the rest.
-            </p>
           </div>
 
           {/* Habit 4: Invest Consistently */}
-          <div className="group bg-[#FAF6FC] border border-purple-100/90 hover:border-purple-300 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center flex flex-col items-center space-y-2 sm:space-y-2.5 shadow-2xs hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-100 text-[#7C1FA8] group-hover:bg-[#7C1FA8] group-hover:text-white flex items-center justify-center font-bold transition-all shadow-xs">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-              </svg>
+          <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-amber-100/60 border border-amber-200/60 text-amber-700 flex items-center justify-center shadow-2xs">
+                <FiTrendingUp className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Invest Consistently</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Start small, stay consistent and grow wealth.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Invest Consistently</h3>
-            <p className="text-[10.5px] sm:text-xs text-[#666077] leading-tight sm:leading-relaxed font-medium">
-              Start small, stay consistent and grow wealth.
-            </p>
           </div>
 
           {/* Habit 5: Review & Improve */}
-          <div className="group bg-[#FAF6FC] border border-purple-100/90 hover:border-purple-300 rounded-xl sm:rounded-2xl p-3 sm:p-4 text-center flex flex-col items-center space-y-2 sm:space-y-2.5 shadow-2xs hover:shadow-md hover:scale-[1.02] transition-all cursor-pointer col-span-2 lg:col-span-1">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-purple-100 text-[#7C1FA8] group-hover:bg-[#7C1FA8] group-hover:text-white flex items-center justify-center font-bold transition-all shadow-xs">
-              <svg className="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
-              </svg>
+          <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left sm:col-span-2 lg:col-span-1">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-pink-100/80 border border-pink-200/80 text-pink-700 flex items-center justify-center shadow-2xs">
+                <FiRefreshCw className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Review & Improve</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Review regularly and keep improving.
+                </p>
+              </div>
             </div>
-            <h3 className="text-xs sm:text-sm font-extrabold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Review &amp; Improve</h3>
-            <p className="text-[10.5px] sm:text-xs text-[#666077] leading-tight sm:leading-relaxed font-medium">
-              Review regularly and keep improving.
-            </p>
           </div>
 
-        </div>
         </div>
       </section>
 

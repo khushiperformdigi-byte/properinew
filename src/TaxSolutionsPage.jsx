@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
 
 // Animated Counter Component for Trust Metrics
 function AnimatedMetric({ value, label, prefix = '', suffix = '' }) {
@@ -134,6 +135,19 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    sendWhatsAppEnquiry({
+      formName: modalOption.title || 'Tax Solutions Lead Form',
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      service: 'Tax Solutions',
+      extra: {
+        annualIncome: formatINR(annualIncome),
+        invested80C: formatINR(invested80C),
+        taxSaved: formatINR(taxSaved),
+      }
+    });
     setFormSubmitted(true);
     setTimeout(() => {
       setSelectedModal(false);
@@ -213,7 +227,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
 
 
       {/* 3. SECTION 3: HOW IT WORKS (EXACT MATCH TO REFERENCE SCREENSHOT 2) */}
-      <section className="w-full bg-[#FAF5FD] py-12 sm:py-16 px-4 sm:px-6 lg:px-8 my-6 font-sans">
+      <section className="w-full bg-[#FAF5FD] py-10 lg:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EBE8EF]/60 font-sans">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Title & Decorative Squiggly Arrow */}
@@ -305,7 +319,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 4. SECTION 4: CALCULATE YOUR SAVINGS (INTERACTIVE TAX CALCULATOR WITH MATCHING HEIGHT) */}
-      <section className="w-full bg-[#FCE9F4] py-8 sm:py-10 px-4 sm:px-6 lg:px-8 my-6 font-sans">
+      <section className="w-full bg-[#FCE9F4] py-10 lg:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EBE8EF]/60 font-sans">
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
           
           {/* Left Content Side */}
@@ -332,12 +346,12 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
               </div>
             </div>
 
-            {/* 3D Calculator Image - Aligns bottom with right card */}
-            <div className="w-full mt-2 flex-1 min-h-[140px] max-h-[190px] overflow-hidden rounded-2xl">
+            {/* 3D Calculator Image - Full View Without Clipping */}
+            <div className="w-full mt-3 flex items-center justify-center rounded-2xl overflow-hidden">
               <img 
                 src="/calculator_3d.jpg" 
                 alt="3D Tax Calculator" 
-                className="w-full h-full object-cover object-center drop-shadow-md mix-blend-multiply opacity-95 hover:opacity-100 transition-opacity"
+                className="w-full h-auto max-h-[260px] sm:max-h-[300px] object-contain drop-shadow-md mix-blend-multiply opacity-95 hover:opacity-100 transition-opacity select-none"
               />
             </div>
           </div>
@@ -358,15 +372,15 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                 step="50000"
                 value={annualIncome}
                 onChange={(e) => setAnnualIncome(Number(e.target.value))}
-                className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-[#7C1FA8]"
+                className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FA8]"
               />
-              <div className="flex justify-between text-xs text-[#666077] font-semibold">
-                <span>₹ 3 Lakhs</span>
-                <span>₹ 30 Lakhs</span>
+              <div className="flex justify-between text-[10px] text-gray-400 font-semibold">
+                <span>₹3 Lakhs</span>
+                <span>₹30 Lakhs</span>
               </div>
             </div>
 
-            {/* Slider 2: Invested Amount (80C) */}
+            {/* Slider 2: Invested Amount (Section 80C) */}
             <div className="space-y-1.5">
               <div className="flex justify-between items-center text-xs font-extrabold">
                 <span className="text-[#666077]">Invested Amount (80C)</span>
@@ -379,44 +393,43 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                 step="5000"
                 value={invested80C}
                 onChange={(e) => setInvested80C(Number(e.target.value))}
-                className="w-full h-2 bg-purple-100 rounded-lg appearance-none cursor-pointer accent-[#7C1FA8]"
+                className="w-full h-2 bg-purple-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FA8]"
               />
-              <div className="flex justify-between text-xs text-[#666077] font-semibold">
-                <span>₹ 0</span>
-                <span>₹ 1.5 Lakhs (Max)</span>
+              <div className="flex justify-between text-[10px] text-gray-400 font-semibold">
+                <span>₹0</span>
+                <span>₹1.5 Lakhs (Max)</span>
               </div>
             </div>
 
-            {/* Output Display Box */}
-            <div className="bg-[#F3FAF5] border border-emerald-200/80 rounded-xl p-3.5 flex items-center justify-between shadow-2xs">
+            {/* Savings Highlight Box */}
+            <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-xl p-3.5 flex items-center justify-between">
               <div>
-                <span className="text-xs font-extrabold text-[#666077] uppercase tracking-wider block">You can save up to</span>
-                <div className="text-2xl sm:text-3xl font-black text-emerald-600 mt-0.5">
-                  {formatINR(taxSaved)} <span className="text-xs font-bold text-[#666077]">in taxes</span>
-                </div>
+                <div className="text-[10px] font-black uppercase text-emerald-800 tracking-wider">YOU CAN SAVE UP TO</div>
+                <div className="text-xl sm:text-2xl font-black text-emerald-600 tracking-tight">{formatINR(taxSaved)} <span className="text-xs font-bold text-emerald-700">in taxes</span></div>
               </div>
-              <div className="w-10 h-10 rounded-full bg-emerald-500 text-white flex items-center justify-center font-black text-xl shadow-md shrink-0">
+              <div className="w-9 h-9 rounded-full bg-emerald-500 text-white flex items-center justify-center font-bold text-base shadow-xs">
                 ✓
               </div>
             </div>
 
-            {/* Apply CTA */}
+            {/* CTA Button Inside Calculator */}
             <button
-              onClick={() => handleOpenApplyModal(`Tax Plan Application - ${formatINR(annualIncome)}`, `Estimated Savings: ${formatINR(taxSaved)}`)}
-              className="w-full py-3 bg-[#7C1FA8] hover:bg-[#6b1a91] text-white font-black rounded-xl transition-all text-center cursor-pointer shadow-md active:scale-95 text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2"
+              onClick={() => handleOpenApplyModal(`Tax Calculator - ${formatINR(taxSaved)} Saved`, `Save ${formatINR(taxSaved)} under Section 80C.`)}
+              className="w-full py-3 bg-[#7C1FA8] hover:bg-[#6b1a91] text-white font-extrabold rounded-xl transition-all text-xs uppercase tracking-wider shadow-md cursor-pointer active:scale-95 flex items-center justify-center gap-2"
             >
-              <span>Start Tax Planning</span>
+              <span>Get Expert Tax Advice</span>
               <span>➔</span>
             </button>
+
           </div>
 
         </div>
       </section>
 
 
-      {/* 7. SECTION 6: 5 TRUST METRICS STRIP (SHIFTED UP WITH ANIMATED COUNTERS) */}
-      <section className=" -mt-3 sm:-mt-4 mb-6 sm:mb-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans relative z-20">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3.5 sm:gap-4">
+      {/* 7. SECTION 6: 5 TRUST METRICS STRIP WITH GENEROUS MARGIN & PADDING */}
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans relative z-20">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-5">
           
           <AnimatedMetric value="2L+" label="Happy Investors" />
           <AnimatedMetric value="₹ 8500 Cr+" prefix="₹ " suffix="+" label="Assets Managed" />
@@ -427,14 +440,14 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
         </div>
       </section>
 
-      {/* 8. SECTION 7: BOTTOM CTA BANNER (ULTRA COMPACT HEIGHT) */}
-      <section className="py-2 sm:py-3 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
+      {/* 8. SECTION 7: BOTTOM CTA BANNER WITH GENEROUS MARGIN & PADDING */}
+      <section className="pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
         <div 
-          className="rounded-[20px] sm:rounded-[24px] py-3.5 sm:py-4.5 px-5 sm:px-7 lg:px-9 shadow-xl text-white relative overflow-hidden bg-cover bg-center"
+          className="rounded-[22px] sm:rounded-[28px] py-6 sm:py-8 px-6 sm:px-8 lg:px-10 shadow-xl text-white relative overflow-hidden bg-cover bg-center"
           style={{ backgroundImage: "url('/ChatGPT Image Aug 26, 2026, 09_00_05 PM.png')" }}
         >
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-4 relative z-10">
-            <div className="space-y-1 max-w-2xl text-center lg:text-left">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-6 relative z-10">
+            <div className="space-y-2 max-w-2xl text-center lg:text-left">
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white tracking-tight leading-tight">
                 Smart tax planning today,<br className="hidden sm:block"/> financial freedom tomorrow.
               </h2>
@@ -445,7 +458,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
 
             <button
               onClick={() => handleOpenApplyModal('Bottom CTA - Explore Tax Solutions', 'Get started with Prosperi5 tax saving plans today.')}
-              className="bg-white text-[#7C1FA8] hover:bg-purple-50 font-extrabold px-5 sm:px-6 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm transition-all shadow-md cursor-pointer active:scale-95 whitespace-nowrap flex items-center gap-2 shrink-0"
+              className="bg-white text-[#7C1FA8] hover:bg-purple-50 font-extrabold px-6 sm:px-7 py-3 rounded-full text-xs sm:text-sm transition-all shadow-md cursor-pointer active:scale-95 whitespace-nowrap flex items-center gap-2 shrink-0"
             >
               <span>Explore Tax Solutions</span>
               <span>➔</span>
@@ -458,16 +471,12 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
       {selectedModal && (
         <div className="fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div 
-            className="bg-white bg-cover bg-center rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 overflow-hidden border border-purple-100/80"
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 overflow-hidden border border-purple-100"
           >
-            {/* Translucent overlay for clean text & input legibility */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px] z-0 pointer-events-none" />
-
             <div className="relative z-10">
               <button
                 onClick={() => setSelectedModal(false)}
-                className="absolute top-0 right-0 w-9 h-9 rounded-full bg-gray-100/90 text-gray-500 hover:bg-gray-200 flex items-center justify-center cursor-pointer font-bold transition-colors z-20"
+                className="absolute top-0 right-0 w-9 h-9 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center cursor-pointer font-bold transition-colors z-20"
               >
                 ✕
               </button>
@@ -501,14 +510,14 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                       placeholder="e.g. Rahul Sharma"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
                     />
                   </div>
 
                   <div>
                     <label className="text-sm font-extrabold text-[#1E1B2E] block mb-1.5">Phone Number</label>
-                    <div className="flex items-center border border-gray-200 rounded-xl overflow-hidden focus-within:border-[#7C1FA8] focus-within:ring-1 focus-within:ring-[#7C1FA8] transition-all">
-                      <select className="bg-transparent pl-3 pr-1 py-3 text-xs sm:text-sm font-bold text-[#1E1B2E] outline-none border-r border-gray-200 cursor-pointer">
+                    <div className="flex items-center bg-white border border-gray-300 rounded-xl overflow-hidden focus-within:border-[#7C1FA8] focus-within:ring-1 focus-within:ring-[#7C1FA8] transition-all">
+                      <select className="bg-white pl-3 pr-1 py-3 text-xs sm:text-sm font-bold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
                         <option value="+91">🇮🇳 +91</option>
                         <option value="+1">🇺🇸 +1</option>
                         <option value="+44">🇬🇧 +44</option>
@@ -524,7 +533,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                         placeholder="e.g. 9876543210"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-3 py-3 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none bg-transparent"
+                        className="w-full px-3 py-3 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none bg-white"
                       />
                     </div>
                   </div>
@@ -537,7 +546,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                       placeholder="e.g. rahul@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
+                      className="w-full px-4 py-3 bg-white border border-gray-300 rounded-xl text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
                     />
                   </div>
 
@@ -547,7 +556,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                       type="text"
                       value={formData.amount || formatINR(taxSaved)}
                       onChange={(e) => setFormData({ ...formData, amount: e.target.value })}
-                      className="w-full px-4 py-3 border border-purple-200 rounded-xl text-sm font-black text-[#7C1FA8] bg-purple-50/60 focus:outline-none focus:border-[#7C1FA8]"
+                      className="w-full px-4 py-3 border border-purple-200 rounded-xl text-sm font-black text-[#7C1FA8] bg-purple-50 focus:outline-none focus:border-[#7C1FA8]"
                     />
                   </div>
                 </div>
@@ -560,7 +569,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
                   <span>➔</span>
                 </button>
               </form>
-              )}
+            )}
             </div>
           </div>
         </div>

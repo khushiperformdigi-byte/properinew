@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
+  const [activeStep, setActiveStep] = useState('01');
   const [loanAmount, setLoanAmount] = useState(2500000);
   const [interestRate, setInterestRate] = useState(9.5);
   const [tenureYears, setTenureYears] = useState(10);
@@ -36,12 +37,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Home Loans',
       subtitle: 'Turn your dream home into reality with competitive rates and easy EMIs.',
       image: '/fin_home_clean.png',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-purple-200/90',
-      iconBg: 'bg-[#7C1FA8]',
+      bgGradient: 'bg-[#FAF4FD]',
+      cardBorder: 'border-[#EBE3F5]',
+      iconBg: 'bg-purple-100/60 border border-purple-200/60',
+      iconColor: 'text-[#8B1FA8]',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       )
     },
@@ -50,12 +52,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Loan Against Property',
       subtitle: 'Leverage the value of your real estate assets to unlock low-cost capital.',
       image: '/fin_vault_clean.png',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-amber-200/90',
-      iconBg: 'bg-[#F59E0B]',
+      bgGradient: 'bg-[#FFFBEB]',
+      cardBorder: 'border-[#FEF3C7]',
+      iconBg: 'bg-amber-100/60 border border-amber-200/60',
+      iconColor: 'text-amber-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
         </svg>
       )
     },
@@ -64,12 +67,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Personal Loans',
       subtitle: "Access flexible, multi-purpose funds for life's immediate financial needs.",
       image: '/fin_wallet_clean.png',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-pink-200/90',
-      iconBg: 'bg-[#EC4899]',
+      bgGradient: 'bg-[#FDF2F8]',
+      cardBorder: 'border-[#FCE7F3]',
+      iconBg: 'bg-pink-100/80 border border-pink-200/80',
+      iconColor: 'text-pink-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
         </svg>
       )
     },
@@ -78,12 +82,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Business Loans',
       subtitle: 'Power your enterprise expansion with customized, quick-disposal capital.',
       image: '/fin_chart_clean.png',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-blue-200/90',
-      iconBg: 'bg-[#3B82F6]',
+      bgGradient: 'bg-[#EFF6FF]',
+      cardBorder: 'border-[#DBEAFE]',
+      iconBg: 'bg-blue-100/60 border border-blue-200/60',
+      iconColor: 'text-blue-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
         </svg>
       )
     },
@@ -92,12 +97,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Working Capital Finance',
       subtitle: 'Maintain smooth cash flows, manage inventory, and fund daily operations.',
       image: '/working_capital_3d_clean.jpg',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-emerald-200/90',
-      iconBg: 'bg-[#10B981]',
+      bgGradient: 'bg-[#F0FDF4]',
+      cardBorder: 'border-[#DCFCE7]',
+      iconBg: 'bg-emerald-100/60 border border-emerald-200/60',
+      iconColor: 'text-emerald-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
       )
     },
@@ -106,12 +112,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Overdraft Facilities',
       subtitle: 'Enjoy on-demand credit lines with interest charged only on utilized amount.',
       image: '/overdraft_3d_clean.jpg',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-teal-200/90',
-      iconBg: 'bg-[#14B8A6]',
+      bgGradient: 'bg-[#F0FDFA]',
+      cardBorder: 'border-[#CCFBF1]',
+      iconBg: 'bg-teal-100/80 border border-teal-200/80',
+      iconColor: 'text-teal-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       )
     },
@@ -120,12 +127,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Vehicle Loans',
       subtitle: 'Drive your personal or commercial vehicle with tailored financing options.',
       image: '/fin_car_clean.png',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-violet-200/90',
-      iconBg: 'bg-[#8B5CF6]',
+      bgGradient: 'bg-[#F5F3FF]',
+      cardBorder: 'border-[#DDD6FE]',
+      iconBg: 'bg-purple-100/80 border border-purple-200/80',
+      iconColor: 'text-purple-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m-6 0a1 1 0 102 0m-2 0a1 1 0 112 0m6 0a1 1 0 102 0m-2 0a1 1 0 112 0" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m-6 0a1 1 0 102 0m-2 0a1 1 0 112 0m6 0a1 1 0 102 0m-2 0a1 1 0 112 0" />
         </svg>
       )
     },
@@ -134,12 +142,13 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       title: 'Vendor Financing',
       subtitle: 'Optimize supply chain liquidity and build stronger trade relationships.',
       image: '/fin_books_clean.png',
-      bgGradient: 'bg-white',
-      cardBorder: 'border-rose-200/90',
-      iconBg: 'bg-[#F43F5E]',
+      bgGradient: 'bg-[#FFF7ED]',
+      cardBorder: 'border-[#FFEDD5]',
+      iconBg: 'bg-orange-100/60 border border-orange-200/60',
+      iconColor: 'text-orange-700',
       icon: (
-        <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
         </svg>
       )
     }
@@ -248,17 +257,17 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
               </button>
             </div>
 
-            {/* Highlight Pills */}
-            <div className="flex flex-wrap items-center gap-2.5 pt-1">
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+            {/* Highlight Pills - All 3 Points on a Single Line */}
+            <div className="flex flex-nowrap items-center gap-2 pt-1 overflow-x-auto scrollbar-none no-scrollbar max-w-full">
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
                 <span className="text-amber-500 font-black">⚡</span>
                 <span>Fast Approvals</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
                 <span className="text-[#7C1FA8] font-black">🔒</span>
                 <span>Competitive Interest Rates</span>
               </div>
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
                 <span className="text-emerald-600 font-black">💼</span>
                 <span>Multiple Lending Partners</span>
               </div>
@@ -332,46 +341,25 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
           </div>
 
           {/* 8 Product Cards Grid (4 columns on lg, 2 columns on sm) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {financingProducts.map((product) => (
               <div
                 key={product.id}
                 onClick={() => setSelectedOptionModal({ title: product.title, subtitle: product.subtitle })}
-                className={`bg-white border-2 ${product.cardBorder} hover:border-[#7C1FA8] hover:shadow-2xl hover:scale-[1.02] rounded-[24px] p-6 transition-all duration-300 shadow-md group cursor-pointer flex flex-col justify-between relative overflow-hidden min-h-[230px]`}
+                className={`${product.bgGradient} border ${product.cardBorder} rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer`}
               >
-                <div className="space-y-4 relative z-10">
-                  {/* Icon Badge */}
-                  <div className={`w-11 h-11 rounded-2xl ${product.iconBg} flex items-center justify-center shrink-0 shadow-md group-hover:scale-110 transition-transform duration-300`}>
+                <div className="space-y-3">
+                  <div className={`w-11 h-11 rounded-2xl ${product.iconBg} ${product.iconColor} flex items-center justify-center shadow-2xs`}>
                     {product.icon}
                   </div>
-
-                  {/* Title & Subtitle */}
-                  <div className="space-y-1.5">
-                    <h3 className="font-sans font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-tight">
+                  <div>
+                    <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">
                       {product.title}
                     </h3>
-                    <p className="text-xs text-[#4A4458] font-semibold leading-relaxed">
+                    <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                       {product.subtitle}
                     </p>
                   </div>
-                </div>
-
-                {/* Bottom Action Link */}
-                <div className="pt-4 border-t border-purple-100 mt-4 relative z-10 flex items-center justify-between">
-                  <span className="text-xs font-extrabold text-[#7C1FA8] group-hover:translate-x-1.5 transition-all flex items-center gap-1.5">
-                    <span>Apply Now</span>
-                    <span>→</span>
-                  </span>
-                </div>
-
-                {/* Background 3D Graphic */}
-                <div className="absolute right-[-8px] bottom-[-8px] w-24 h-24 sm:w-28 sm:h-28 opacity-85 group-hover:opacity-100 group-hover:scale-105 transition-all duration-300 pointer-events-none overflow-hidden rounded-br-[22px]">
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    style={{ mixBlendMode: 'multiply' }}
-                    className="w-full h-full object-contain object-bottom"
-                  />
                 </div>
               </div>
             ))}
@@ -381,61 +369,86 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* SCREEN 4: WHY FINANCE THROUGH PROSPERi5 SECTION */}
-      <section className="w-full py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
-        <div className="max-w-5xl mx-auto space-y-10">
+      <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-[#FAF8FC] border-b border-[#EBE8EF]">
+        <div className="max-w-5xl mx-auto space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2 max-w-3xl mx-auto">
             <div className="inline-block bg-amber-400 text-[#1E1B2E] font-extrabold px-5 py-1.5 rounded-full text-xs uppercase tracking-wider shadow-2xs mb-1">
               WHY CHOOSE PROSPERi5
             </div>
-            <h2 className="font-sans font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#1E1B2E] leading-tight tracking-tight">
+            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl lg:text-[40px] text-[#1E1B2E] leading-tight tracking-tight">
               Why Finance Through PROSPERi5
             </h2>
-            <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed max-w-2xl mx-auto">
+            <p className="font-medium text-base text-[#544F66] leading-relaxed max-w-2xl mx-auto">
               We streamline your borrowing process with multi-lender access, competitive terms, and dedicated end-to-end guidance.
             </p>
           </div>
 
-          {/* Timeline List Layout matching Screenshot 1 */}
-          <div className="max-w-4xl mx-auto relative space-y-6 sm:space-y-7">
+          {/* Vertical Timeline List Matching Five Reasons Partners Switch Section */}
+          <div className="max-w-4xl mx-auto relative space-y-4 sm:space-y-5">
             {/* Connecting Vertical Timeline Line */}
             <div className="absolute left-[19px] sm:left-[23px] top-[24px] bottom-[24px] w-[2px] bg-purple-200/80 pointer-events-none z-0"></div>
 
-            {whyChoosePoints.map((point) => (
-              <div key={point.step} className="flex items-center gap-4 sm:gap-6 relative z-10">
-                
-                {/* Timeline Number Circle */}
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white border-2 border-[#7C1FA8] text-[#7C1FA8] font-extrabold text-sm sm:text-base flex items-center justify-center shrink-0 shadow-sm">
-                  {point.step}
-                </div>
-
-                {/* Staggered Card Container */}
+            {whyChoosePoints.map((point) => {
+              const isActive = activeStep === point.step;
+              return (
                 <div 
-                  className={`flex-1 rounded-[22px] p-5 sm:p-6 transition-all duration-300 flex items-center justify-between gap-4 group cursor-pointer ${
-                    point.isPastel 
-                      ? 'bg-[#F6EFFC] border border-[#EADBFA] shadow-2xs hover:shadow-md hover:border-[#7C1FA8]' 
-                      : 'bg-white border border-purple-100/90 shadow-md hover:shadow-xl hover:border-[#7C1FA8] ml-3 sm:ml-10'
-                  }`}
+                  key={point.step} 
+                  className="flex items-center gap-4 sm:gap-6 relative z-10"
+                  onMouseEnter={() => setActiveStep(point.step)}
                 >
-                  {/* Left Text Block */}
-                  <div className="space-y-1 text-left max-w-2xl">
-                    <h3 className="font-sans font-extrabold text-base sm:text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-tight">
-                      {point.title}
-                    </h3>
-                    <p className="text-xs sm:text-sm text-[#544F66] font-medium leading-relaxed">
-                      {point.description}
-                    </p>
+                  
+                  {/* Timeline Number Circle */}
+                  <div 
+                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full font-extrabold text-sm sm:text-base flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isActive 
+                        ? 'bg-[#7C1FA8] text-white shadow-md scale-105' 
+                        : 'bg-white border-2 border-purple-300 text-[#7C1FA8] shadow-xs'
+                    }`}
+                  >
+                    {point.step}
                   </div>
 
-                  {/* Right Circle Icon */}
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center shrink-0 shadow-sm group-hover:scale-110 transition-transform">
-                    {point.icon}
+                  {/* Card Container - Matching Homepage Active/Inactive styling */}
+                  <div 
+                    className={`flex-1 rounded-[22px] p-5 sm:p-6 transition-all duration-300 flex items-center justify-between gap-4 group cursor-pointer ${
+                      isActive 
+                        ? 'bg-[#7C1FA8] text-white shadow-xl shadow-purple-950/20' 
+                        : 'bg-white border border-purple-100/90 shadow-xs hover:shadow-md hover:border-purple-300'
+                    }`}
+                  >
+                    {/* Left Text Block */}
+                    <div className="space-y-1 text-left max-w-2xl">
+                      <h3 className={`font-sans font-extrabold text-base sm:text-xl leading-tight transition-colors ${
+                        isActive ? 'text-white' : 'text-[#1E1B2E] group-hover:text-[#7C1FA8]'
+                      }`}>
+                        {point.title}
+                      </h3>
+                      <p className={`text-base font-medium leading-relaxed transition-colors ${
+                        isActive ? 'text-purple-100' : 'text-[#544F66]'
+                      }`}>
+                        {point.description}
+                      </p>
+                    </div>
+
+                    {/* Right Circle Icon */}
+                    <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${
+                      isActive
+                        ? 'bg-white text-[#7C1FA8] shadow-md scale-105'
+                        : 'bg-purple-50 text-[#7C1FA8] group-hover:bg-[#7C1FA8] group-hover:text-white'
+                    }`}>
+                      {React.cloneElement(point.icon, {
+                        className: `w-5 h-5 sm:w-6 sm:h-6 transition-colors ${
+                          isActive ? 'text-[#7C1FA8]' : 'text-[#7C1FA8] group-hover:text-white'
+                        }`
+                      })}
+                    </div>
                   </div>
+
                 </div>
-
-              </div>
-            ))}
+              );
+            })}
           </div>
 
         </div>
@@ -571,12 +584,8 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
       {selectedOptionModal && (
         <div className="fixed inset-0 z-[9999] bg-black/65 backdrop-blur-xs flex items-center justify-center p-4">
           <div 
-            className="bg-white bg-cover bg-center rounded-[28px] max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-purple-100/80 animate-in fade-in zoom-in-95 duration-200 text-left overflow-hidden"
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-[28px] max-w-lg w-full p-6 sm:p-7 shadow-2xl relative border border-purple-100 animate-in fade-in zoom-in-95 duration-200 text-left overflow-hidden"
           >
-            {/* Translucent Overlay */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px] z-0 pointer-events-none" />
-
             <div className="relative z-10 space-y-4">
               {/* Top Gradient Accent Bar */}
               <div className="absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r from-[#7C1FA8] via-[#EC4899] to-[#F59E0B]"></div>
@@ -587,7 +596,7 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
                   setSelectedOptionModal(null);
                   setModalSubmitted(false);
                 }}
-                className="absolute top-0 right-0 text-gray-400 hover:text-[#7C1FA8] w-8 h-8 rounded-full bg-gray-100/90 hover:bg-purple-100 flex items-center justify-center font-extrabold text-sm cursor-pointer transition-colors z-20"
+                className="absolute top-0 right-0 text-gray-400 hover:text-[#7C1FA8] w-8 h-8 rounded-full bg-gray-100 hover:bg-purple-100 flex items-center justify-center font-extrabold text-sm cursor-pointer transition-colors z-20"
               >
                 ✕
               </button>
@@ -622,14 +631,14 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
                         type="text" 
                         required 
                         placeholder="e.g. Rahul Sharma"
-                        className="w-full bg-white/95 border border-[#EBE8EF] focus:border-[#7C1FA8] rounded-xl p-2.5 text-xs font-bold text-[#1E1B2E] outline-none transition-all shadow-2xs"
+                        className="w-full bg-white border border-gray-300 focus:border-[#7C1FA8] rounded-xl p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none transition-all"
                       />
                     </div>
 
                     <div>
                       <label className="text-xs font-extrabold text-[#1E1B2E] block mb-1">Phone Number *</label>
-                      <div className="flex items-center bg-white/95 border border-[#EBE8EF] focus-within:border-[#7C1FA8] rounded-xl overflow-hidden shadow-2xs">
-                        <select className="bg-transparent pl-2.5 pr-1 py-2.5 text-xs font-bold text-[#1E1B2E] outline-none border-r border-[#EBE8EF] cursor-pointer">
+                      <div className="flex items-center bg-white border border-gray-300 focus-within:border-[#7C1FA8] rounded-xl overflow-hidden">
+                        <select className="bg-white pl-2.5 pr-1 py-2.5 text-xs font-bold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
                           <option value="+91">🇮🇳 +91</option>
                           <option value="+1">🇺🇸 +1</option>
                           <option value="+44">🇬🇧 +44</option>
@@ -640,7 +649,7 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
                           type="tel" 
                           required 
                           placeholder="e.g. 98765 43210"
-                          className="w-full bg-transparent p-2.5 text-xs font-bold text-[#1E1B2E] outline-none"
+                          className="w-full bg-white p-2.5 text-xs font-medium text-[#1E1B2E] placeholder:text-gray-400 outline-none"
                         />
                       </div>
                     </div>

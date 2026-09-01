@@ -23,6 +23,7 @@ require_once __DIR__ . '/controllers/JobsController.php';
 require_once __DIR__ . '/controllers/BlogController.php';
 require_once __DIR__ . '/controllers/MediaController.php';
 require_once __DIR__ . '/controllers/EnquiriesController.php';
+require_once __DIR__ . '/controllers/CommentsController.php';
 
 // 3. Parse Request Method & Path
 $method = $_SERVER['REQUEST_METHOD'];
@@ -185,6 +186,34 @@ try {
     }
     if ($method === 'DELETE' && preg_match('#^/admin/enquiries/(\d+)$#', $path, $m)) {
         echo json_encode(EnquiriesController::deleteAdmin((int)$m[1]));
+        exit;
+    }
+
+    // Public Comments
+    if ($method === 'GET' && preg_match('#^/posts/([^/]+)/comments$#', $path, $m)) {
+        echo json_encode(CommentsController::listPublic(urldecode($m[1])));
+        exit;
+    }
+    if ($method === 'POST' && preg_match('#^/posts/([^/]+)/comments$#', $path, $m)) {
+        echo json_encode(CommentsController::submit(urldecode($m[1]), $body));
+        exit;
+    }
+
+    // Admin Comment Moderation
+    if ($method === 'GET' && $path === '/admin/comments') {
+        echo json_encode(CommentsController::listAdmin($_GET));
+        exit;
+    }
+    if (($method === 'PATCH' || $method === 'PUT' || $method === 'POST') && preg_match('#^/admin/comments/(\d+)/approve$#', $path, $m)) {
+        echo json_encode(CommentsController::approve((int)$m[1]));
+        exit;
+    }
+    if (($method === 'PATCH' || $method === 'PUT' || $method === 'POST') && preg_match('#^/admin/comments/(\d+)/reject$#', $path, $m)) {
+        echo json_encode(CommentsController::reject((int)$m[1]));
+        exit;
+    }
+    if ($method === 'DELETE' && preg_match('#^/admin/comments/(\d+)$#', $path, $m)) {
+        echo json_encode(CommentsController::delete((int)$m[1]));
         exit;
     }
 

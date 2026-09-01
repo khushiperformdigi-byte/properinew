@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Footer from './Footer';
+import { FiEdit3, FiUserCheck, FiShield, FiCheckCircle } from 'react-icons/fi';
 
 export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -358,131 +359,90 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
           </div>
 
 
-          {/* PART 2: HOW GETTING PROTECTED WORKS (4-STEP FLOW) */}
+          {/* PART 2: HOW GETTING PROTECTED WORKS (4-STEP FLOW - MATCHING INVESTMENT PAGE CARDS LAYOUT) */}
           <div className="text-center w-full">
             <span className="text-[#7C1FAB] font-extrabold text-[11px] sm:text-xs tracking-[0.2em] uppercase mb-1.5 block">
               SIMPLE. QUICK. SECURE.
             </span>
-            <h2 className="font-sans font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] tracking-tight mb-6">
               How getting protected works
             </h2>
 
-            {/* 4 Steps Grid (2-column on mobile, flex row on desktop) */}
-            <div className="w-full max-w-7xl mx-auto mt-6">
-              <div className="grid grid-cols-2 lg:flex lg:flex-row items-stretch justify-center gap-3 sm:gap-4 lg:gap-3.5">
-                
-                {/* Step 01 */}
-                <div className="w-full lg:w-[210px] min-h-[140px] sm:min-h-[145px] shrink-0 bg-white/95 backdrop-blur-sm rounded-[20px] p-3.5 sm:p-4 border border-[#EBE3F5] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group text-left">
-                  <div className="flex items-center justify-between w-full mb-2 sm:mb-2.5">
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#F3E8FF] flex items-center justify-center shrink-0">
-                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#7C1FAB] text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.4" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                        </svg>
-                      </div>
+            {/* 4 Steps Grid (Matching Investment Solutions card layout) */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+              
+              {/* Step 01 */}
+              <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-11 h-11 rounded-2xl bg-purple-100/60 border border-purple-200/60 text-[#8B1FA8] flex items-center justify-center shadow-2xs">
+                      <FiEdit3 className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
-                    <span className="font-black text-lg sm:text-xl text-[#7C1FAB] font-mono">01</span>
+                    <span className="font-mono font-black text-xl text-[#8B1FA8]/40">01</span>
                   </div>
-
                   <div>
-                    <h3 className="font-extrabold text-xs sm:text-sm text-[#1E1B2E] mb-1">Choose a Plan</h3>
-                    <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-relaxed">
+                    <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Choose a Plan</h3>
+                    <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                       Pick a plan that fits your needs.
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Arrow 1 Connector */}
-                <div className="hidden lg:flex items-center justify-center shrink-0 px-1">
-                  <div className="w-10 h-10 rounded-full bg-white border border-[#E5C6FF] shadow-xs flex items-center justify-center text-[#7C1FAB] hover:bg-[#7C1FAB] hover:text-white transition-all duration-300">
-                    <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Step 02 */}
-                <div className="w-full lg:w-[210px] min-h-[140px] sm:min-h-[145px] shrink-0 bg-white/95 backdrop-blur-sm rounded-[20px] p-3.5 sm:p-4 border border-[#EBE3F5] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group text-left">
-                  <div className="flex items-center justify-between w-full mb-2 sm:mb-2.5">
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#FFE4E6] flex items-center justify-center shrink-0">
-                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#DB2777] text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.4" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                        </svg>
-                      </div>
+              {/* Step 02 */}
+              <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-11 h-11 rounded-2xl bg-pink-100/80 border border-pink-200/80 text-pink-700 flex items-center justify-center shadow-2xs">
+                      <FiUserCheck className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
-                    <span className="font-black text-lg sm:text-xl text-[#DB2777] font-mono">02</span>
+                    <span className="font-mono font-black text-xl text-pink-700/40">02</span>
                   </div>
-
                   <div>
-                    <h3 className="font-extrabold text-xs sm:text-sm text-[#1E1B2E] mb-1">Share Details</h3>
-                    <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-relaxed">
+                    <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Share Details</h3>
+                    <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                       Provide basic details in a few minutes.
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Arrow 2 Connector */}
-                <div className="hidden lg:flex items-center justify-center shrink-0 px-1">
-                  <div className="w-10 h-10 rounded-full bg-white border border-[#FBCFE8] shadow-xs flex items-center justify-center text-[#DB2777] hover:bg-[#DB2777] hover:text-white transition-all duration-300">
-                    <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Step 03 */}
-                <div className="w-full lg:w-[210px] min-h-[140px] sm:min-h-[145px] shrink-0 bg-white/95 backdrop-blur-sm rounded-[20px] p-3.5 sm:p-4 border border-[#EBE3F5] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group text-left">
-                  <div className="flex items-center justify-between w-full mb-2 sm:mb-2.5">
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#FEF3C7] flex items-center justify-center shrink-0">
-                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#F59E0B] text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.4" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                        </svg>
-                      </div>
+              {/* Step 03 */}
+              <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-11 h-11 rounded-2xl bg-amber-100/60 border border-amber-200/60 text-amber-700 flex items-center justify-center shadow-2xs">
+                      <FiShield className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
-                    <span className="font-black text-lg sm:text-xl text-[#F59E0B] font-mono">03</span>
+                    <span className="font-mono font-black text-xl text-amber-700/40">03</span>
                   </div>
-
                   <div>
-                    <h3 className="font-extrabold text-xs sm:text-sm text-[#1E1B2E] mb-1">Get Covered</h3>
-                    <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-relaxed">
+                    <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Get Covered</h3>
+                    <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                       Your policy is activated instantly.
                     </p>
                   </div>
                 </div>
+              </div>
 
-                {/* Arrow 3 Connector */}
-                <div className="hidden lg:flex items-center justify-center shrink-0 px-1">
-                  <div className="w-10 h-10 rounded-full bg-white border border-[#FDE68A] shadow-xs flex items-center justify-center text-[#F59E0B] hover:bg-[#F59E0B] hover:text-white transition-all duration-300">
-                    <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                    </svg>
-                  </div>
-                </div>
-
-                {/* Step 04 */}
-                <div className="w-full lg:w-[210px] min-h-[140px] sm:min-h-[145px] shrink-0 bg-white/95 backdrop-blur-sm rounded-[20px] p-3.5 sm:p-4 border border-[#EBE3F5] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group text-left">
-                  <div className="flex items-center justify-between w-full mb-2 sm:mb-2.5">
-                    <div className="w-9 h-9 sm:w-11 sm:h-11 rounded-full bg-[#DCFCE7] flex items-center justify-center shrink-0">
-                      <div className="w-6 h-6 sm:w-7 sm:h-7 rounded-full bg-[#16A34A] text-white flex items-center justify-center shadow-xs group-hover:scale-110 transition-transform">
-                        <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2.4" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16a2 2 0 104 0M4 12a8 8 0 1116 0H4z" />
-                        </svg>
-                      </div>
+              {/* Step 04 */}
+              <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+                <div className="space-y-3">
+                  <div className="flex items-center justify-between">
+                    <div className="w-11 h-11 rounded-2xl bg-emerald-100/60 border border-emerald-200/60 text-emerald-700 flex items-center justify-center shadow-2xs">
+                      <FiCheckCircle className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
-                    <span className="font-black text-lg sm:text-xl text-[#16A34A] font-mono">04</span>
+                    <span className="font-mono font-black text-xl text-emerald-700/40">04</span>
                   </div>
-
                   <div>
-                    <h3 className="font-extrabold text-xs sm:text-sm text-[#1E1B2E] mb-1">Stay Secure</h3>
-                    <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-relaxed">
+                    <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Stay Secure</h3>
+                    <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                       We've got your back, always.
                     </p>
                   </div>
                 </div>
-
               </div>
+
             </div>
           </div>
 
@@ -544,17 +504,13 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
       {selectedPlanModal && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm z-[200] flex items-center justify-center p-4" onClick={() => setSelectedPlanModal(null)}>
           <div 
-            className="bg-white bg-cover bg-center rounded-3xl p-8 max-w-md w-full shadow-2xl relative overflow-hidden border border-purple-100/80" 
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-3xl p-8 max-w-md w-full shadow-2xl relative overflow-hidden border border-purple-100" 
             onClick={e => e.stopPropagation()}
           >
-            {/* Translucent overlay for clean text & input legibility */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px] z-0 pointer-events-none" />
-
             <div className="relative z-10">
               <div className="flex items-center justify-between mb-6">
                 <h2 className="font-bold text-xl text-[#1E1B2E]">{selectedPlanModal.title || 'Get Protected'}</h2>
-                <button onClick={() => setSelectedPlanModal(null)} className="w-9 h-9 rounded-full bg-gray-100/90 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors z-20">
+                <button onClick={() => setSelectedPlanModal(null)} className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors z-20">
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
                   </svg>
@@ -562,9 +518,9 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
               </div>
               <p className="text-[#544F66] font-medium mb-6 text-sm">Enter your contact details to receive a customized quote & policy consultation.</p>
               <div className="space-y-4">
-                <input type="text" placeholder="Full Name" className="w-full border border-[#EBE8EF] bg-white/95 rounded-xl px-4 py-3 text-sm outline-none focus:border-[#7C1FAB] transition-colors shadow-2xs" />
-                <div className="flex items-center border border-[#EBE8EF] bg-white/95 rounded-xl overflow-hidden focus-within:border-[#7C1FAB] transition-colors shadow-2xs">
-                  <select className="bg-transparent pl-3 pr-1 py-3 text-xs sm:text-sm font-semibold text-[#1E1B2E] outline-none border-r border-[#EBE8EF] cursor-pointer">
+                <input type="text" placeholder="Full Name" className="w-full border border-gray-300 bg-white rounded-xl px-4 py-3 text-sm outline-none focus:border-[#7C1FAB] placeholder:text-gray-400 transition-colors" />
+                <div className="flex items-center border border-gray-300 bg-white rounded-xl overflow-hidden focus-within:border-[#7C1FAB] transition-colors">
+                  <select className="bg-white pl-3 pr-1 py-3 text-xs sm:text-sm font-semibold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
                     <option value="+91">🇮🇳 +91</option>
                     <option value="+1">🇺🇸 +1</option>
                     <option value="+44">🇬🇧 +44</option>

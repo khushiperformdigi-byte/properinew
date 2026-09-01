@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import TinyEditor from './TinyEditor';
+import AdminCommentsManager from '../components/AdminCommentsManager';
 import {
   createAdminPost,
   deleteAdminPost,
@@ -45,6 +46,7 @@ function toDateInput(value) {
 }
 
 export default function BlogAdminPanel({ onUnauthorized }) {
+  const [mainTab, setMainTab] = useState('posts'); // posts | comments
   const [view, setView] = useState('list'); // list | edit
   const [posts, setPosts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -233,20 +235,54 @@ export default function BlogAdminPanel({ onUnauthorized }) {
 
   if (view === 'list') {
     return (
-      <div className="space-y-5">
-        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h2 className="text-xl font-extrabold text-[#1E1B2E]">All Posts</h2>
-            <p className="text-sm text-[#6F6A82]">Create, edit and publish blog articles.</p>
-          </div>
+      <div className="space-y-6 font-sans">
+        
+        {/* Main Section Navigation Bar */}
+        <div className="flex items-center gap-3 border-b border-[#EBE8EF] pb-3">
           <button
             type="button"
-            onClick={openCreate}
-            className="px-5 py-2.5 rounded-xl bg-[#C81E1E] hover:bg-[#A51818] text-white font-bold text-sm cursor-pointer"
+            onClick={() => setMainTab('posts')}
+            className={`px-4 py-2 rounded-xl font-extrabold text-sm flex items-center gap-2 transition-all cursor-pointer ${
+              mainTab === 'posts'
+                ? 'bg-[#7C1FA8] text-white shadow-md'
+                : 'bg-gray-100 text-[#544F66] hover:bg-purple-100 hover:text-[#7C1FA8]'
+            }`}
           >
-            Add New Post
+            <span>📝</span>
+            <span>Articles &amp; Posts</span>
+          </button>
+
+          <button
+            type="button"
+            onClick={() => setMainTab('comments')}
+            className={`px-4 py-2 rounded-xl font-extrabold text-sm flex items-center gap-2 transition-all cursor-pointer ${
+              mainTab === 'comments'
+                ? 'bg-[#7C1FA8] text-white shadow-md'
+                : 'bg-gray-100 text-[#544F66] hover:bg-purple-100 hover:text-[#7C1FA8]'
+            }`}
+          >
+            <span>💬</span>
+            <span>Comment Approvals</span>
           </button>
         </div>
+
+        {mainTab === 'comments' ? (
+          <AdminCommentsManager />
+        ) : (
+          <div className="space-y-5">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div>
+                <h2 className="text-xl font-extrabold text-[#1E1B2E]">All Posts</h2>
+                <p className="text-sm text-[#6F6A82]">Create, edit and publish blog articles.</p>
+              </div>
+              <button
+                type="button"
+                onClick={openCreate}
+                className="px-5 py-2.5 rounded-xl bg-[#C81E1E] hover:bg-[#A51818] text-white font-bold text-sm cursor-pointer"
+              >
+                Add New Post
+              </button>
+            </div>
 
         <div className="flex flex-wrap gap-2">
           <select
@@ -319,6 +355,8 @@ export default function BlogAdminPanel({ onUnauthorized }) {
             </div>
           )}
         </div>
+          </div>
+        )}
       </div>
     );
   }

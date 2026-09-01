@@ -27,6 +27,7 @@ import BlogDetailPage from './BlogDetailPage';
 import BlogAdminPanel from './admin/BlogAdminPanel';
 import CareersPage from './CareersPage';
 import CareersAdminPage from './CareersAdminPage';
+import AdminCommentsManager from './components/AdminCommentsManager';
 import Footer from './Footer';
 import Navbar from './Navbar';
 import { getPageFromUrl, getPathForPage, PAGE_TITLES } from './utils/routing';
@@ -408,6 +409,13 @@ function App() {
       case 'blog-admin':
       case 'admin/blog':
         return <BlogAdminPanel onNavigateHome={() => navigateToPage('home')} onNavigatePage={handleNavigatePage} />;
+      case 'admin-comments':
+      case 'admin/comments':
+        return (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <AdminCommentsManager />
+          </div>
+        );
       case 'home':
       default:
         return renderHomepageSections();

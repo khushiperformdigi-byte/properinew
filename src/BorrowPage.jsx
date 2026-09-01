@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
+import { FiEdit3, FiFileText, FiCheckCircle, FiCreditCard } from 'react-icons/fi';
 
 export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -141,6 +143,15 @@ export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    sendWhatsAppEnquiry({
+      formName: selectedModalOption?.title || 'Loan / Borrow Application Form',
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      service: 'Loans / Borrowing',
+      message: formData.message,
+    });
     setFormSubmitted(true);
   };
 
@@ -336,18 +347,8 @@ export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
               {/* CTA Buttons Row */}
               <div className="flex flex-wrap items-center gap-3.5">
                 <button
-                  onClick={() => handleOpenApplyModal('Explore Loan Options', 'Find the best loan offer suited for your financial goals.')}
-                  className="h-[46px] sm:h-[50px] px-7 sm:px-8 rounded-xl bg-[#7C1FA8] hover:bg-[#68198f] text-white font-bold text-sm sm:text-base shadow-md shadow-purple-900/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-                >
-                  <span>Explore Loan Options</span>
-                  <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                  </svg>
-                </button>
-
-                <button
                   onClick={() => handleOpenApplyModal('Check Eligibility', 'Check your borrowing limit with zero impact on CIBIL score.')}
-                  className="h-[46px] sm:h-[50px] px-7 sm:px-8 rounded-xl bg-white hover:bg-purple-50 text-[#7C1FA8] border border-[#7C1FA8]/40 font-bold text-sm sm:text-base shadow-2xs transition-all active:scale-95 cursor-pointer flex items-center justify-center"
+                  className="h-[46px] sm:h-[50px] px-7 sm:px-8 rounded-xl bg-[#7C1FA8] hover:bg-[#68198f] text-white font-bold text-sm sm:text-base shadow-md shadow-purple-900/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center"
                 >
                   Check Eligibility
                 </button>
@@ -649,92 +650,91 @@ export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
 
       {/* ========================================================================= */}
       {/* 6. SECTION 3: HOW IT WORKS */}
-      {/* ========================================================================= */}
       <section className="py-8 lg:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans border-b border-purple-100/60">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="text-[#7C1FA8] text-xs font-extrabold uppercase tracking-widest bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/80">
             HOW IT WORKS
           </span>
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E] mt-3 tracking-tight">
+          <h2 className="font-heading font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mt-3 tracking-tight">
             Get your loan in 4 simple steps.
           </h2>
         </div>
 
-        {/* 4 Steps Grid (2-column on mobile, 4 on desktop) */}
-        <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-10 relative">
-            
-            {/* Step 1 */}
-            <div className="group bg-[#FAF6FC] border border-purple-100/90 rounded-xl sm:rounded-2xl p-3.5 sm:p-6 relative flex flex-col justify-between space-y-2 sm:space-y-4 hover:border-purple-300 hover:shadow-lg hover:shadow-purple-900/5 transition-all duration-300">
-              <div className="space-y-2 sm:space-y-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center font-extrabold text-xs sm:text-sm shadow-sm">
-                  1
+        {/* 4 Steps Grid (Matching Investment Solutions card layout) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          
+          {/* Step 1 */}
+          <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="w-11 h-11 rounded-2xl bg-purple-100/60 border border-purple-200/60 text-[#8B1FA8] flex items-center justify-center shadow-2xs">
+                  <FiEdit3 className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-lg font-extrabold text-[#1E1B2E]">Apply Online</h3>
-                <p className="text-[10.5px] sm:text-sm text-[#666077] leading-snug sm:leading-relaxed font-medium">
+                <span className="font-mono font-black text-xl text-[#8B1FA8]/40">01</span>
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Apply Online</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                   Fill in a few details and submit your application.
                 </p>
               </div>
-              {/* Step SVG Arrow Badge */}
-              <div className="hidden lg:flex items-center justify-center absolute left-[calc(100%+20px)] -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white border border-purple-200 text-[#7C1FA8] shadow-md pointer-events-none group-hover:scale-110 transition-transform">
-                <svg className="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </div>
             </div>
+          </div>
 
-            {/* Step 2 */}
-            <div className="group bg-[#FAF6FC] border border-purple-100/90 rounded-xl sm:rounded-2xl p-3.5 sm:p-6 relative flex flex-col justify-between space-y-2 sm:space-y-4 hover:border-purple-300 hover:shadow-lg hover:shadow-purple-900/5 transition-all duration-300">
-              <div className="space-y-2 sm:space-y-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center font-extrabold text-xs sm:text-sm shadow-sm">
-                  2
+          {/* Step 2 */}
+          <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="w-11 h-11 rounded-2xl bg-pink-100/80 border border-pink-200/80 text-pink-700 flex items-center justify-center shadow-2xs">
+                  <FiFileText className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-lg font-extrabold text-[#1E1B2E]">Verification</h3>
-                <p className="text-[10.5px] sm:text-sm text-[#666077] leading-snug sm:leading-relaxed font-medium">
+                <span className="font-mono font-black text-xl text-pink-700/40">02</span>
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Verification</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                   We verify your documents and assess your eligibility.
                 </p>
               </div>
-              {/* Step SVG Arrow Badge */}
-              <div className="hidden lg:flex items-center justify-center absolute left-[calc(100%+20px)] -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white border border-purple-200 text-[#7C1FA8] shadow-md pointer-events-none group-hover:scale-110 transition-transform">
-                <svg className="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </div>
             </div>
+          </div>
 
-            {/* Step 3 */}
-            <div className="group bg-[#FAF6FC] border border-purple-100/90 rounded-xl sm:rounded-2xl p-3.5 sm:p-6 relative flex flex-col justify-between space-y-2 sm:space-y-4 hover:border-purple-300 hover:shadow-lg hover:shadow-purple-900/5 transition-all duration-300">
-              <div className="space-y-2 sm:space-y-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xs sm:text-sm shadow-sm">
-                  3
+          {/* Step 3 */}
+          <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="w-11 h-11 rounded-2xl bg-amber-100/60 border border-amber-200/60 text-amber-700 flex items-center justify-center shadow-2xs">
+                  <FiCheckCircle className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-lg font-extrabold text-[#1E1B2E]">Approval</h3>
-                <p className="text-[10.5px] sm:text-sm text-[#666077] leading-snug sm:leading-relaxed font-medium">
+                <span className="font-mono font-black text-xl text-amber-700/40">03</span>
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Approval</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                   Get instant approval and loan offer.
                 </p>
               </div>
-              {/* Step SVG Arrow Badge */}
-              <div className="hidden lg:flex items-center justify-center absolute left-[calc(100%+20px)] -translate-x-1/2 top-1/2 -translate-y-1/2 z-20 w-7 h-7 rounded-full bg-white border border-purple-200 text-[#7C1FA8] shadow-md pointer-events-none group-hover:scale-110 transition-transform">
-                <svg className="w-3.5 h-3.5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </div>
             </div>
+          </div>
 
-            {/* Step 4 */}
-            <div className="group bg-[#FAF6FC] border border-purple-100/90 rounded-xl sm:rounded-2xl p-3.5 sm:p-6 relative flex flex-col justify-between space-y-2 sm:space-y-4 hover:border-purple-300 hover:shadow-lg hover:shadow-purple-900/5 transition-all duration-300">
-              <div className="space-y-2 sm:space-y-3">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center font-extrabold text-xs sm:text-sm shadow-sm">
-                  4
+          {/* Step 4 */}
+          <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 relative text-left">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <div className="w-11 h-11 rounded-2xl bg-emerald-100/60 border border-emerald-200/60 text-emerald-700 flex items-center justify-center shadow-2xs">
+                  <FiCreditCard className="w-5.5 h-5.5 stroke-[2.2]" />
                 </div>
-                <h3 className="text-xs sm:text-lg font-extrabold text-[#1E1B2E]">Disbursal</h3>
-                <p className="text-[10.5px] sm:text-sm text-[#666077] leading-snug sm:leading-relaxed font-medium">
+                <span className="font-mono font-black text-xl text-emerald-700/40">04</span>
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Disbursal</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                   Receive funds directly in your account.
                 </p>
               </div>
             </div>
-
           </div>
+
         </div>
       </section>
 
@@ -874,16 +874,12 @@ export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
       {selectedModal && (
         <div className="fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div 
-            className="bg-white bg-cover bg-center rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 overflow-hidden border border-purple-100/80"
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 overflow-hidden border border-purple-100"
           >
-            {/* Translucent overlay for clean text & input legibility */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px] z-0 pointer-events-none" />
-
             <div className="relative z-10">
               <button
                 onClick={() => setSelectedModal(false)}
-                className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-100/90 text-gray-500 hover:bg-gray-200 flex items-center justify-center cursor-pointer font-bold transition-colors z-20"
+                className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center cursor-pointer font-bold transition-colors z-20"
               >
                 ✕
               </button>
@@ -906,14 +902,14 @@ export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
                         placeholder="e.g. Rahul Sharma"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full p-3 rounded-xl border border-gray-200/90 bg-white/95 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all shadow-2xs"
+                        className="w-full p-3 rounded-xl border border-gray-300 bg-white text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
                       />
                     </div>
 
                     <div>
                       <label className="block font-extrabold text-[#1E1B2E] mb-1.5">Mobile Number</label>
-                      <div className="flex items-center border border-gray-200/90 bg-white/95 rounded-xl overflow-hidden focus-within:border-[#7C1FA8] focus-within:ring-1 focus-within:ring-[#7C1FA8] transition-all shadow-2xs">
-                        <select className="bg-transparent pl-3 pr-1 py-3 text-xs sm:text-sm font-bold text-[#1E1B2E] outline-none border-r border-gray-200/90 cursor-pointer">
+                      <div className="flex items-center border border-gray-300 bg-white rounded-xl overflow-hidden focus-within:border-[#7C1FA8] focus-within:ring-1 focus-within:ring-[#7C1FA8] transition-all">
+                        <select className="bg-white pl-3 pr-1 py-3 text-xs sm:text-sm font-bold text-[#1E1B2E] outline-none border-r border-gray-300 cursor-pointer">
                           <option value="+91">🇮🇳 +91</option>
                           <option value="+1">🇺🇸 +1</option>
                           <option value="+44">🇬🇧 +44</option>
@@ -929,7 +925,7 @@ export default function BorrowPage({ onNavigateHome, onNavigatePage }) {
                           placeholder="10-digit mobile number"
                           value={formData.phone}
                           onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                          className="w-full p-3 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none bg-transparent"
+                          className="w-full p-3 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none bg-white"
                         />
                       </div>
                     </div>

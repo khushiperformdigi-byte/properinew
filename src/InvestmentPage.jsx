@@ -268,112 +268,112 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-                <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-purple-100/60 border border-purple-200/60 text-[#8B1FA8] flex items-center justify-center shadow-2xs">
                       <FiPieChart className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Mutual Funds</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Diversified solutions for long-term wealth creation through SIPs and lump sum investments.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-emerald-100/60 border border-emerald-200/60 text-emerald-700 flex items-center justify-center shadow-2xs">
                       <FiShield className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Government Bonds</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Stable investment options backed by Central and State Governments.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-amber-100/60 border border-amber-200/60 text-amber-700 flex items-center justify-center shadow-2xs">
                       <FiCheckCircle className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Corporate Fixed Deposits & NCDs</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Fixed-income opportunities for investors seeking predictable returns.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-blue-100/60 border border-blue-200/60 text-blue-700 flex items-center justify-center shadow-2xs">
                       <FiTrendingUp className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Equities</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Participate in the growth of leading listed companies.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#F5F3FF] border border-[#DDD6FE] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#F5F3FF] border border-[#DDD6FE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-purple-100/80 border border-purple-200/80 text-purple-700 flex items-center justify-center shadow-2xs">
                       <FiUsers className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">AIF & PMS</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Sophisticated investment solutions for HNI and Ultra-HNI investors.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-pink-100/80 border border-pink-200/80 text-pink-700 flex items-center justify-center shadow-2xs">
                       <FiTarget className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Structured Investment Products</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Market-linked investment opportunities designed for specific risk-return objectives.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#F0FDFA] border border-[#CCFBF1] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#F0FDFA] border border-[#CCFBF1] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-teal-100/80 border border-teal-200/80 text-teal-700 flex items-center justify-center shadow-2xs">
                       <FiShield className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Unlisted Investment Opportunities</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Access select pre-IPO and private market investment opportunities.
                       </p>
                     </div>
                   </div>
                 </div>
 
-                <div className="bg-[#FFF7ED] border border-[#FFEDD5] rounded-[22px] p-5 flex flex-col justify-between min-h-[160px] shadow-2xs">
+                <div className="bg-[#FFF7ED] border border-[#FFEDD5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs">
                   <div className="space-y-3">
                     <div className="w-11 h-11 rounded-2xl bg-orange-100/80 border border-orange-200/80 text-orange-700 flex items-center justify-center shadow-2xs">
                       <FiCreditCard className="w-5.5 h-5.5 stroke-[2.2]" />
                     </div>
                     <div>
                       <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Invoice Discounting</h3>
-                      <p className="text-xs font-body text-[#544F66] font-semibold mt-1 leading-snug">
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
                         Alternative investment opportunities for investors seeking diversified sources of returns.
                       </p>
                     </div>

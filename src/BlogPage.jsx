@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import Footer from './Footer';
 import { sendWhatsAppEnquiry } from './utils/whatsapp';
 import { fetchPublishedPosts, resolveMediaUrl } from './api/blog';
@@ -185,7 +185,14 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
   const [advisorForm, setAdvisorForm] = useState({ name: '', phone: '', countryCode: '+91', category: 'Mutual Funds & SIPs' });
   const [blogPosts, setBlogPosts] = useState(DEFAULT_9_BLOGS);
   const [postsLoading, setPostsLoading] = useState(true);
-  const [postsError, setPostsError] = useState('');
+  const categoryScrollRef = useRef(null);
+
+  const scrollCategory = (direction) => {
+    if (categoryScrollRef.current) {
+      const scrollAmount = direction === 'left' ? -260 : 260;
+      categoryScrollRef.current.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+    }
+  };
 
   useEffect(() => {
     let cancelled = false;
@@ -311,51 +318,91 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
       <main id="blog-grid-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
 
         {/* CATEGORY FILTER TABS & SORT / SEARCH BAR */}
-        <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-5 mb-10 pb-6 border-b border-[#EBE8EF]">
+        <div className="space-y-4 mb-10 pb-6 border-b border-[#EBE8EF]">
+          
+          {/* Row 1: Category Filter Pills Carousel with Left & Right Nav Buttons and Side Fade Masks */}
+          <div className="relative flex items-center gap-2.5">
+            
+            {/* Left Nav Button */}
+            <button
+              onClick={() => scrollCategory('left')}
+              className="w-9 h-9 rounded-full bg-white border border-[#EBE8EF] text-[#7C1FA8] hover:bg-purple-50 shadow-2xs hover:shadow flex items-center justify-center font-black text-lg cursor-pointer shrink-0 z-20 transition-all active:scale-95"
+              aria-label="Scroll Categories Left"
+              title="Scroll Left"
+            >
+              ‹
+            </button>
 
-          {/* Category Filter Pills (Responsive scrollable) */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none no-scrollbar">
-            {categories.map((cat) => {
-              const isActive = activeCategory === cat.id;
-              return (
-                <button
-                  key={cat.id}
-                  onClick={() => {
-                    setActiveCategory(cat.id);
-                    setCurrentPageNum(1);
-                  }}
-                  className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-tight transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${isActive
-                    ? 'bg-[#5E1083] text-white shadow-md shadow-purple-900/15'
-                    : 'bg-white text-[#544F66] border border-[#EBE8EF] hover:border-purple-300 hover:text-[#7C1FA8]'
-                    }`}
-                >
-                  {cat.label}
-                </button>
-              );
-            })}
+            {/* Scroll Container with Left & Right Side Fade Overlay Masks */}
+            <div className="relative flex-1 overflow-hidden py-1">
+              
+              {/* Left Fade Mask (Reduced width for subtle effect) */}
+              <div className="absolute left-0 top-0 bottom-0 w-4 bg-gradient-to-r from-white/90 to-transparent pointer-events-none z-10 hidden sm:block" />
+
+              {/* Scrollable Category Pills List */}
+              <div 
+                ref={categoryScrollRef}
+                className="flex items-center gap-2 overflow-x-auto scroll-smooth scrollbar-none no-scrollbar px-1"
+              >
+                {categories.map((cat) => {
+                  const isActive = activeCategory === cat.id;
+                  return (
+                    <button
+                      key={cat.id}
+                      onClick={() => {
+                        setActiveCategory(cat.id);
+                        setCurrentPageNum(1);
+                      }}
+                      className={`px-5 py-2.5 rounded-full text-xs sm:text-sm font-semibold tracking-tight transition-all duration-200 cursor-pointer whitespace-nowrap shrink-0 ${isActive
+                        ? 'bg-[#5E1083] text-white shadow-md shadow-purple-900/15'
+                        : 'bg-white text-[#544F66] border border-[#EBE8EF] hover:border-purple-300 hover:text-[#7C1FA8]'
+                        }`}
+                    >
+                      {cat.label}
+                    </button>
+                  );
+                })}
+              </div>
+
+              {/* Right Fade Mask (Reduced width for subtle effect) */}
+              <div className="absolute right-0 top-0 bottom-0 w-4 bg-gradient-to-l from-white/90 to-transparent pointer-events-none z-10 hidden sm:block" />
+
+            </div>
+
+            {/* Right Nav Button */}
+            <button
+              onClick={() => scrollCategory('right')}
+              className="w-9 h-9 rounded-full bg-white border border-[#EBE8EF] text-[#7C1FA8] hover:bg-purple-50 shadow-2xs hover:shadow flex items-center justify-center font-black text-lg cursor-pointer shrink-0 z-20 transition-all active:scale-95"
+              aria-label="Scroll Categories Right"
+              title="Scroll Right"
+            >
+              ›
+            </button>
+
           </div>
 
-          {/* Search & Sort Controls */}
-          <div className="flex items-center gap-3 self-end lg:self-auto w-full sm:w-auto">
+          {/* Row 2: Search Bar & Sort Dropdown Under Category Pills */}
+          <div className="flex flex-col sm:flex-row items-center justify-between gap-3 pt-2">
+            
             {/* Search Input */}
-            <div className="relative flex-1 sm:w-56">
+            <div className="relative w-full sm:w-80 lg:w-96">
               <input
                 type="text"
-                placeholder="Search articles..."
+                placeholder="Search articles by title or keyword..."
                 value={searchQuery}
                 onChange={(e) => {
                   setSearchQuery(e.target.value);
                   setCurrentPageNum(1);
                 }}
-                className="w-full bg-white border border-[#EBE8EF] rounded-full pl-9 pr-8 py-2 text-xs text-[#1E1B2E] placeholder-[#8E8A9D] focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
+                className="w-full bg-white border border-[#EBE8EF] rounded-full pl-9.5 pr-8 py-2.5 text-xs sm:text-sm text-[#1E1B2E] placeholder-[#8E8A9D] focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all shadow-2xs"
               />
-              <svg className="w-4 h-4 text-[#8E8A9D] absolute left-3 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 text-[#8E8A9D] absolute left-3.5 top-1/2 -translate-y-1/2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs cursor-pointer"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-xs cursor-pointer font-bold"
                 >
                   ✕
                 </button>
@@ -363,22 +410,26 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
             </div>
 
             {/* Sort Dropdown */}
-            <div className="relative">
-              <select
-                value={sortBy}
-                onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none bg-white border border-[#EBE8EF] text-[#1E1B2E] font-semibold text-xs sm:text-sm rounded-full pl-4 pr-9 py-2 focus:outline-none focus:border-[#7C1FA8] transition-all cursor-pointer shadow-2xs"
-              >
-                <option value="latest">Latest First</option>
-                <option value="oldest">Oldest First</option>
-                <option value="read-time-asc">Quick Reads (Shortest)</option>
-                <option value="read-time-desc">In-Depth Reads</option>
-              </select>
-              <svg className="w-4 h-4 text-[#544F66] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-              </svg>
+            <div className="relative w-full sm:w-auto flex justify-end">
+              <div className="relative inline-block w-full sm:w-auto">
+                <select
+                  value={sortBy}
+                  onChange={(e) => setSortBy(e.target.value)}
+                  className="w-full sm:w-auto appearance-none bg-white border border-[#EBE8EF] text-[#1E1B2E] font-bold text-xs sm:text-sm rounded-full pl-4 pr-9 py-2.5 focus:outline-none focus:border-[#7C1FA8] transition-all cursor-pointer shadow-2xs"
+                >
+                  <option value="latest">Latest First</option>
+                  <option value="oldest">Oldest First</option>
+                  <option value="read-time-asc">Quick Reads (Shortest)</option>
+                  <option value="read-time-desc">In-Depth Reads</option>
+                </select>
+                <svg className="w-4 h-4 text-[#544F66] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                </svg>
+              </div>
             </div>
+
           </div>
+
         </div>
 
         {postsLoading && (
@@ -390,71 +441,6 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
         {!postsLoading && postsError && (
           <div className="mb-8 bg-white rounded-[24px] border border-red-100 p-8 text-sm text-red-700">
             {postsError}
-          </div>
-        )}
-
-        {/* 5. FEATURED BLOG CARD */}
-        {!postsLoading && featuredPost && activeCategory === 'All' && !searchQuery && currentPageNum === 1 && (
-          <div
-            onClick={() => onNavigatePage ? onNavigatePage('blog-detail', featuredPost.id) : setSelectedArticle(featuredPost)}
-            className="mb-12 bg-white rounded-[24px] border border-[#EBE8EF] overflow-hidden shadow-sm hover:shadow-[0_20px_45px_rgba(124,31,168,0.08)] hover:border-purple-200 transition-all duration-300 group cursor-pointer"
-          >
-            <div className="grid grid-cols-1 lg:grid-cols-12 items-stretch">
-              {/* Left Image Section */}
-              <div className="lg:col-span-6 relative overflow-hidden bg-purple-50 min-h-[260px] sm:min-h-[340px] lg:min-h-[380px]">
-                <img
-                  src={featuredPost.image}
-                  alt={featuredPost.title}
-                  className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700 ease-out"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
-              </div>
-
-              {/* Right Content Section */}
-              <div className="lg:col-span-6 p-6 sm:p-8 lg:p-10 flex flex-col justify-between">
-                <div>
-                  {/* Category / Featured Tag */}
-                  <div className="inline-block mb-3 sm:mb-4">
-                    <span className="text-[#7C1FA8] font-black text-xs tracking-wider uppercase bg-[#F5EEFB] px-3 py-1 rounded-md border border-purple-100">
-                      FEATURED
-                    </span>
-                  </div>
-
-                  {/* Title */}
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-tight mb-4">
-                    {featuredPost.title}
-                  </h2>
-
-                  {/* Excerpt */}
-                  <p className="text-[#544F66] text-sm sm:text-base leading-relaxed mb-6 font-normal">
-                    {featuredPost.excerpt}
-                  </p>
-                </div>
-
-                {/* Meta Row */}
-                <div className="flex items-center justify-between pt-4 border-t border-[#F5F2F8] text-xs sm:text-sm text-[#8E8A9D]">
-                  <div className="flex items-center gap-2">
-                    <span className="flex items-center gap-1.5">
-                      <svg className="w-4 h-4 text-[#8E8A9D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                      </svg>
-                      {featuredPost.date}
-                    </span>
-                    <span>·</span>
-                    <span className="flex items-center gap-1.5">
-                      <svg className="w-4 h-4 text-[#8E8A9D]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      {featuredPost.readTime}
-                    </span>
-                  </div>
-
-                  <span className="text-[#7C1FA8] font-bold flex items-center gap-1 group-hover:translate-x-1 transition-transform">
-                    Read Article <span className="text-base leading-none">→</span>
-                  </span>
-                </div>
-              </div>
-            </div>
           </div>
         )}
 
@@ -480,20 +466,17 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
 
                   {/* Card Content */}
                   <div className="p-6 sm:p-7">
-                    {/* Category */}
-                    <span className="text-[#7C1FA8] text-[11px] sm:text-xs font-black tracking-wider uppercase block mb-2.5">
-                      {post.category}
-                    </span>
+                    {/* Category Pill Badge */}
+                    <div className="mb-2.5">
+                      <span className="inline-block bg-[#FAF5FD] border border-purple-200/80 text-[#7C1FA8] text-[10px] sm:text-[11px] font-black tracking-wider uppercase px-3 py-1 rounded-full shadow-2xs">
+                        {post.category}
+                      </span>
+                    </div>
 
                     {/* Title */}
-                    <h3 className="text-base sm:text-lg font-bold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug mb-3">
+                    <h3 className="text-base sm:text-lg font-bold text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
                       {post.title}
                     </h3>
-
-                    {/* Description */}
-                    <p className="text-[#6C677E] text-xs sm:text-sm leading-relaxed line-clamp-3">
-                      {post.excerpt}
-                    </p>
                   </div>
                 </div>
 

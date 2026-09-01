@@ -26,6 +26,7 @@ export const PAGE_ROUTES = {
   'blog': '/blog',
   'blog-detail': '/blog/detail',
   'blog-admin': '/blog-admin',
+  'admin-comments': '/admin-comments',
   'admin': '/admin',
   'careers': '/careers',
   'careers-admin': '/careers-admin',

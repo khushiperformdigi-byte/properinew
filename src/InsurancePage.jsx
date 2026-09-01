@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Footer from './Footer';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
 
 // Helper component for animated Protection Score gauge & counter
 function AnimatedProtectionScore({ onOpenModal }) {
@@ -194,12 +195,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Life Insurance',
       subtitle: "Secure your family's future with complete protection.",
       image: '/card_umbrella_clean.png',
-      bgGradient: 'bg-[#F4EDFC]',
-      cardBorder: 'border-[#E8DAF5]',
-      iconColor: 'text-[#7C1FAB]',
+      bgGradient: 'bg-[#FAF4FD]',
+      cardBorder: 'border-[#EBE3F5]',
+      iconBg: 'bg-purple-100/60 border border-purple-200/60',
+      iconColor: 'text-[#8B1FA8]',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
         </svg>
       )
     },
@@ -208,12 +210,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Health Insurance',
       subtitle: 'Quality healthcare for you & your family.',
       image: '/card_heart_clean.png',
-      bgGradient: 'bg-[#FDF0F6]',
-      cardBorder: 'border-[#FAD6E7]',
-      iconColor: 'text-[#C81E8C]',
+      bgGradient: 'bg-[#FDF2F8]',
+      cardBorder: 'border-[#FCE7F3]',
+      iconBg: 'bg-pink-100/80 border border-pink-200/80',
+      iconColor: 'text-pink-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.684a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
         </svg>
       )
     },
@@ -222,12 +225,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Motor Insurance',
       subtitle: 'Complete protection for your car, bike & vehicles.',
       image: '/card_car_orange.png',
-      bgGradient: 'bg-[#FFF6ED]',
-      cardBorder: 'border-[#FFE3CD]',
-      iconColor: 'text-[#EA580C]',
+      bgGradient: 'bg-[#FFFBEB]',
+      cardBorder: 'border-[#FEF3C7]',
+      iconBg: 'bg-amber-100/60 border border-amber-200/60',
+      iconColor: 'text-amber-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m-6 0a1 1 0 102 0m-2 0a1 1 0 112 0" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M13 16V6a1 1 0 00-1-1H4a1 1 0 00-1 1v10a1 1 0 001 1h1m8-1a1 1 0 01-1 1H9m4-1V8a1 1 0 011-1h2.586a1 1 0 01.707.293l3.414 3.414a1 1 0 01.293.707V16a1 1 0 01-1 1h-1m-6-1a1 1 0 001 1h1m-6 0a1 1 0 102 0m-2 0a1 1 0 112 0" />
         </svg>
       )
     },
@@ -236,12 +240,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Travel Insurance',
       subtitle: 'Worry-free travel across the world.',
       image: '/card_plane_clean.png',
-      bgGradient: 'bg-[#F0F7FF]',
-      cardBorder: 'border-[#D3E6FE]',
-      iconColor: 'text-[#0284C7]',
+      bgGradient: 'bg-[#EFF6FF]',
+      cardBorder: 'border-[#DBEAFE]',
+      iconBg: 'bg-blue-100/60 border border-blue-200/60',
+      iconColor: 'text-blue-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
         </svg>
       )
     },
@@ -250,12 +255,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Property Insurance',
       subtitle: 'Protect your home, building & valuable assets.',
       image: '/card_home_clean.png',
-      bgGradient: 'bg-[#F1F9F4]',
-      cardBorder: 'border-[#D5ECE0]',
-      iconColor: 'text-[#16A34A]',
+      bgGradient: 'bg-[#F0FDF4]',
+      cardBorder: 'border-[#DCFCE7]',
+      iconBg: 'bg-emerald-100/60 border border-emerald-200/60',
+      iconColor: 'text-emerald-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
         </svg>
       )
     },
@@ -266,10 +272,11 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       image: '/working_capital_3d_clean.jpg',
       bgGradient: 'bg-[#F5F3FF]',
       cardBorder: 'border-[#DDD6FE]',
-      iconColor: 'text-[#7C3AED]',
+      iconBg: 'bg-purple-100/80 border border-purple-200/80',
+      iconColor: 'text-purple-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h4m-4 0V11m0 0h4m-4 0a2 2 0 100 4m0-4a2 2 0 110 4m4-4a2 2 0 100 4m0-4a2 2 0 110 4" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h4m-4 0V11m0 0h4m-4 0a2 2 0 100 4m0-4a2 2 0 110 4m4-4a2 2 0 100 4m0-4a2 2 0 110 4" />
         </svg>
       )
     },
@@ -278,12 +285,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Marine Insurance',
       subtitle: 'Comprehensive cargo & transit security across sea and land.',
       image: '/card_clock_3d.png',
-      bgGradient: 'bg-[#ECFEFF]',
-      cardBorder: 'border-[#A5F3FC]',
-      iconColor: 'text-[#0891B2]',
+      bgGradient: 'bg-[#F0FDFA]',
+      cardBorder: 'border-[#CCFBF1]',
+      iconBg: 'bg-teal-100/80 border border-teal-200/80',
+      iconColor: 'text-teal-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
         </svg>
       )
     },
@@ -292,12 +300,13 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       title: 'Workmen Insurance',
       subtitle: 'Employee compensation & workplace risk protection.',
       image: '/card_teddy_clean.png',
-      bgGradient: 'bg-[#FDF2F8]',
-      cardBorder: 'border-[#FCD7EC]',
-      iconColor: 'text-[#D946EF]',
+      bgGradient: 'bg-[#FFF7ED]',
+      cardBorder: 'border-[#FFEDD5]',
+      iconBg: 'bg-orange-100/60 border border-orange-200/60',
+      iconColor: 'text-orange-700',
       icon: (
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+        <svg className="w-5.5 h-5.5 stroke-[2.2]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
         </svg>
       )
     }
@@ -365,7 +374,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
 
                 {/* Screen 1 Headline */}
                 <h1 className="font-sans font-extrabold text-[34px] leading-[42px] sm:text-[44px] sm:leading-[52px] lg:text-[50px] lg:leading-[58px] tracking-[-0.03em] text-[#1E1B2E] mb-3 max-w-[560px]">
-                  Protect What <span className="text-[#7C1FA8]">Matters Most.</span>
+                  Protect What Matters Most. 
                 </h1>
 
                 {/* Screen 1 Sub-Headline */}
@@ -493,7 +502,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
                   COMPREHENSIVE COVERAGE
                 </span>
                 <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E]">
-                  Insurance Solutions for <span className="text-[#7C1FAB]">Every Need</span>
+                  Insurance Solutions for Every Need
                 </h2>
               </div>
 
@@ -502,36 +511,19 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
                   <div
                     key={plan.id}
                     onClick={() => setSelectedPlanModal(plan)}
-                    className={`${plan.bgGradient} border ${plan.cardBorder} rounded-[24px] p-5 transition-all duration-300 shadow-2xs hover:shadow-xl hover:scale-[1.02] group cursor-pointer relative overflow-hidden flex flex-col justify-between min-h-[220px] sm:min-h-[240px]`}
+                    className={`${plan.bgGradient} border ${plan.cardBorder} rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300 cursor-pointer`}
                   >
-                    <div className="flex flex-col justify-between space-y-3 z-10 max-w-[62%]">
-                      <div className="space-y-2.5">
-                        <div className="w-10 h-10 rounded-xl bg-white shadow-xs flex items-center justify-center shrink-0">
-                          <div className={plan.iconColor}>{plan.icon}</div>
-                        </div>
-                        <div>
-                          <h3 className="font-extrabold text-base sm:text-lg text-[#1E1B2E] leading-snug group-hover:text-[#7C1FAB] transition-colors">
-                            {plan.title}
-                          </h3>
-                          <p className="text-[11.5px] sm:text-xs text-[#544F66] font-semibold leading-relaxed mt-1">
-                            {plan.subtitle}
-                          </p>
-                        </div>
+                    <div className="space-y-3">
+                      <div className={`w-11 h-11 rounded-2xl ${plan.iconBg} ${plan.iconColor} flex items-center justify-center shadow-2xs`}>
+                        {plan.icon}
                       </div>
-                    </div>
-
-                    <div className="absolute right-[0px] bottom-[0px] w-[50%] h-[82%] flex items-end justify-end pointer-events-none">
-                      <img
-                        src={plan.image}
-                        alt={plan.title}
-                        style={{ mixBlendMode: 'multiply' }}
-                        className="max-w-full max-h-full object-contain object-bottom group-hover:scale-105 transition-transform duration-300 opacity-90"
-                      />
-                    </div>
-
-                    <div className="absolute bottom-1 right-1 z-20">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-full bg-white shadow-md border border-white/90 flex items-center justify-center text-[#7C1FAB] group-hover:bg-[#7C1FAB] group-hover:text-white group-hover:border-[#7C1FAB] transition-all text-base sm:text-lg font-bold pb-0.5">
-                        →
+                      <div>
+                        <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">
+                          {plan.title}
+                        </h3>
+                        <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                          {plan.subtitle}
+                        </p>
                       </div>
                     </div>
                   </div>
@@ -539,87 +531,92 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
               </div>
             </section>
 
-            {/* SCREEN 4: WHY CHOOSE PROSPERIS FOR INSURANCE (COMPACT DESIGN) */}
-            <section className="bg-[#FAF5FD] border border-[#EBE8EF] rounded-[22px] py-4 px-4 sm:px-6 shadow-2xs space-y-3.5">
-              <div className="text-left space-y-0.5">
-                <span className="text-[#7C1FAB] text-[10px] font-extrabold tracking-wider uppercase block">
+            {/* SCREEN 4: WHY CHOOSE PROSPERIS FOR INSURANCE (MATCHING CARD DESIGN) */}
+            <section className="py-2 space-y-4">
+              <div className="text-center space-y-0.5">
+                <span className="text-[#7C1FAB] text-[11px] font-extrabold tracking-widest uppercase block">
                   THE PROSPERIS ADVANTAGE
                 </span>
-                <h2 className="text-xl sm:text-2xl font-extrabold text-[#1E1B2E]">
+                <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E]">
                   Why Choose PROSPERi5 For Insurance
                 </h2>
-                <div className="w-10 h-0.5 bg-[#7C1FAB] rounded-full mt-1"></div>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 pt-1">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
                 
-                <div className="bg-white/80 backdrop-blur-xs p-3.5 rounded-xl border border-purple-100/80 space-y-1.5 flex flex-col justify-between hover:shadow-xs transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h4m-4 0V11m0 0h4m-4 0a2 2 0 100 4m0-4a2 2 0 110 4m4-4a2 2 0 100 4m0-4a2 2 0 110 4" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-xs sm:text-[13px] text-[#1E1B2E] leading-snug">Access to Leading Insurance Companies</h4>
-                    <p className="text-[10.5px] text-[#666077] font-medium leading-normal mt-1">
-                      Choose from a wide network of trusted insurers, giving you the flexibility to find protection that best suits your needs and budget.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white/80 backdrop-blur-xs p-3.5 rounded-xl border border-purple-100/80 space-y-1.5 flex flex-col justify-between hover:shadow-xs transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-xs sm:text-[13px] text-[#1E1B2E] leading-snug">Complete Protection Under One Roof</h4>
-                    <p className="text-[10.5px] text-[#666077] font-medium leading-normal mt-1">
-                      Life, health, motor, travel, home and business insurance—designed to protect what matters most.
-                    </p>
+                {/* Feature 1 */}
+                <div className="bg-gradient-to-br from-purple-50/80 to-purple-100/40 border border-purple-100/90 rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="space-y-3">
+                    <div className="w-11 h-11 rounded-2xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center shadow-2xs shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5m0 0h4m-4 0V11m0 0h4m-4 0a2 2 0 100 4m0-4a2 2 0 110 4m4-4a2 2 0 100 4m0-4a2 2 0 110 4" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">
+                        Access to Leading Insurance Companies
+                      </h3>
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                        Choose from a wide network of trusted insurers, giving you the flexibility to find protection that best suits your needs and budget.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-xs p-3.5 rounded-xl border border-purple-100/80 space-y-1.5 flex flex-col justify-between hover:shadow-xs transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-xs sm:text-[13px] text-[#1E1B2E] leading-snug">Claims Support That Stands By You</h4>
-                    <p className="text-[10.5px] text-[#666077] font-medium leading-normal mt-1">
-                      Insurance is tested at the time of a claim. Our team assists you through the claims process, helping make it smoother and less stressful.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="bg-white/80 backdrop-blur-xs p-3.5 rounded-xl border border-purple-100/80 space-y-1.5 flex flex-col justify-between hover:shadow-xs transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="font-extrabold text-xs sm:text-[13px] text-[#1E1B2E] leading-snug">Regular Policy Reviews</h4>
-                    <p className="text-[10.5px] text-[#666077] font-medium leading-normal mt-1">
-                      Your insurance needs evolve with life. We periodically review your coverage to help ensure it continues to align with your changing circumstances.
-                    </p>
+                {/* Feature 2 */}
+                <div className="bg-gradient-to-br from-pink-50/80 to-pink-100/40 border border-pink-100/90 rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="space-y-3">
+                    <div className="w-11 h-11 rounded-2xl bg-pink-100 text-[#C81E8C] flex items-center justify-center shadow-2xs shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">
+                        Complete Protection Under One Roof
+                      </h3>
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                        Life, health, motor, travel, home and business insurance—designed to protect what matters most.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
-                <div className="bg-white/80 backdrop-blur-xs p-3.5 rounded-xl border border-purple-100/80 space-y-1.5 flex flex-col justify-between hover:shadow-xs transition-all">
-                  <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
-                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
+                {/* Feature 3 */}
+                <div className="bg-gradient-to-br from-indigo-50/80 to-indigo-100/40 border border-indigo-100/90 rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="space-y-3">
+                    <div className="w-11 h-11 rounded-2xl bg-indigo-100 text-[#4F46E5] flex items-center justify-center shadow-2xs shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">
+                        Claims Support That Stands By You
+                      </h3>
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                        Insurance is tested at the time of a claim. Our team assists you through the claims process, helping make it smoother and less stressful.
+                      </p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="font-extrabold text-xs sm:text-[13px] text-[#1E1B2E] leading-snug">Protection Without Interruption</h4>
-                    <p className="text-[10.5px] text-[#666077] font-medium leading-normal mt-1">
-                      From timely renewal reminders to hassle-free renewals, we help keep your coverage active and up to date.
-                    </p>
+                </div>
+
+                {/* Feature 4 */}
+                <div className="bg-gradient-to-br from-emerald-50/80 to-emerald-100/40 border border-emerald-100/90 rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+                  <div className="space-y-3">
+                    <div className="w-11 h-11 rounded-2xl bg-emerald-100 text-[#059669] flex items-center justify-center shadow-2xs shrink-0">
+                      <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">
+                        Protection Without Interruption
+                      </h3>
+                      <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                        From periodic policy reviews to timely renewal reminders, we help keep your coverage active and up to date.
+                      </p>
+                    </div>
                   </div>
                 </div>
 
@@ -907,6 +904,15 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
               <form
                 onSubmit={(e) => {
                   e.preventDefault();
+                  const fd = new FormData(e.target);
+                  sendWhatsAppEnquiry({
+                    formName: 'IRDAI POSP Insurance Partner Form',
+                    name: fd.get('fullName') || 'Insurance Partner Applicant',
+                    phone: fd.get('phone') || '',
+                    email: fd.get('email') || '',
+                    city: fd.get('city') || '',
+                    service: 'IRDAI POSP Insurance Advisor Partner'
+                  });
                   setPartnerSubmitted(true);
                 }}
                 className="space-y-3.5"
@@ -974,12 +980,8 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
       {selectedPlanModal && (
         <div className="fixed inset-0 z-[9999] bg-black/60 backdrop-blur-xs flex items-center justify-center p-4">
           <div 
-            className="bg-white bg-cover bg-center rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-purple-100/80 relative overflow-hidden animate-in fade-in zoom-in duration-200"
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-3xl p-6 max-w-lg w-full shadow-2xl border border-purple-100 relative overflow-hidden animate-in fade-in zoom-in duration-200"
           >
-            {/* Translucent overlay for clean text & input legibility */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px] z-0 pointer-events-none" />
-
             <div className="relative z-10 space-y-4">
               <div className="flex items-center justify-between border-b border-gray-100/80 pb-3">
                 <div className="flex items-center gap-2">

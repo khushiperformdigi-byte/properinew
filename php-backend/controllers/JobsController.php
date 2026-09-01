@@ -2,6 +2,7 @@
 // Jobs Controller
 
 require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../mailer.php';
 
 class JobsController {
     public static function formatJob(array $row): array {
@@ -133,6 +134,27 @@ class JobsController {
             'INSERT INTO job_applications (job_id, full_name, email, phone, message, created_at) VALUES (?, ?, ?, ?, ?, NOW())',
             [$jobId, $fullName, $email, $phone, $message]
         );
+        $appId = (int)DB::lastInsertId();
+
+        // Send Email Alert to support@prosperi5.com
+        $subject = "💼 New Job Application: $fullName for Job #$jobId";
+        $htmlBody = "
+        <div style='font-family:Arial,sans-serif;max-w:600px;margin:0 auto;border:1px solid #EBE8EF;border-radius:16px;overflow:hidden;'>
+            <div style='background:#7C1FA8;padding:20px;text-align:center;color:#ffffff;'>
+                <h2 style='margin:0;font-size:22px;font-weight:800;'>New Job Application!</h2>
+            </div>
+            <div style='padding:25px;background:#ffffff;'>
+                <p style='color:#1E1B2E;font-size:15px;'>A new candidate applied for <strong>Job ID #$jobId</strong> via the Careers portal:</p>
+                <table style='width:100%;border-collapse:collapse;margin-top:15px;font-size:14px;'>
+                    <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;width:35%;'>Applicant Name</td><td style='padding:8px 12px;color:#1E1B2E;font-weight:bold;'>".htmlspecialchars($fullName)."</td></tr>
+                    <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Email Address</td><td style='padding:8px 12px;color:#1E1B2E;'><a href='mailto:".htmlspecialchars($email)."' style='color:#7C1FA8;'>".htmlspecialchars($email)."</a></td></tr>
+                    <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Phone Number</td><td style='padding:8px 12px;color:#1E1B2E;'><a href='tel:".htmlspecialchars($phone)."' style='color:#7C1FA8;font-weight:bold;'>".htmlspecialchars($phone)."</a></td></tr>
+                    " . ($message ? "<tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Cover Letter / Message</td><td style='padding:8px 12px;color:#1E1B2E;'>".nl2br(htmlspecialchars($message))."</td></tr>" : "") . "
+                </table>
+            </div>
+        </div>
+        ";
+        Mailer::send(SMTP_RECEIVER, $subject, $htmlBody, $email);
 
         return [
             'success' => true,

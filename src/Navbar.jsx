@@ -598,51 +598,50 @@ export default function Navbar({
       {expertModalOpen && (
         <div className="fixed inset-0 z-[99999] bg-black/65 backdrop-blur-sm flex items-center justify-center p-4">
           <div
-            className="bg-white bg-cover bg-center rounded-[28px] max-w-md w-full p-6 sm:p-7 shadow-2xl relative border border-white/20 animate-in fade-in zoom-in duration-200 text-left overflow-hidden"
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-[28px] max-w-md w-full p-6 sm:p-7 shadow-2xl relative border border-purple-100 animate-in fade-in zoom-in duration-200 text-left overflow-hidden"
           >
             <button
               onClick={() => setExpertModalOpen(false)}
-              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-white/20 hover:bg-white/30 text-white flex items-center justify-center font-bold text-sm cursor-pointer z-20 transition-all"
+              className="absolute top-4 right-4 w-9 h-9 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center font-bold text-sm cursor-pointer z-20 transition-all"
             >
               ✕
             </button>
 
             <div className="relative z-10">
-              <span className="text-[11px] font-extrabold text-[#F5A623] uppercase tracking-wider bg-white/15 backdrop-blur-md border border-white/20 px-3 py-1 rounded-full inline-block mb-2">
+              <span className="text-[11px] font-extrabold text-[#7C1FA8] uppercase tracking-wider bg-purple-100 px-3 py-1 rounded-full inline-block mb-2">
                 CONTACT & INQUIRY
               </span>
-              <h3 className="text-xl sm:text-2xl font-black text-white tracking-tight">
+              <h3 className="text-xl sm:text-2xl font-extrabold text-[#1E1B2E] tracking-tight">
                 Contact PROSPERi5
               </h3>
-              <p className="text-xs text-white/80 mt-1 mb-5">
+              <p className="text-xs text-[#544F66] mt-1 mb-5 font-medium">
                 Leave your details below and our expert team will reach out to you shortly.
               </p>
 
               {submitted ? (
-                <div className="bg-emerald-500/20 backdrop-blur-md border border-emerald-400/40 rounded-2xl p-5 text-center text-white">
+                <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-5 text-center text-[#1E1B2E]">
                   <div className="w-12 h-12 rounded-full bg-emerald-500 text-white flex items-center justify-center mx-auto mb-2 text-xl font-black shadow-md">
                     ✓
                   </div>
-                  <h4 className="font-bold text-white text-sm">Request Received!</h4>
-                  <p className="text-xs text-emerald-200 mt-1">Our advisor will connect with you shortly.</p>
+                  <h4 className="font-bold text-[#1E1B2E] text-sm">Request Received!</h4>
+                  <p className="text-xs text-emerald-700 mt-1">Our advisor will connect with you shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={handleFormSubmit} className="space-y-3.5">
                   <div>
-                    <label className="text-xs font-bold text-white block mb-1">Full Name</label>
+                    <label className="text-xs font-bold text-[#1E1B2E] block mb-1">Full Name</label>
                     <input
                       type="text"
                       required
                       placeholder="Enter your full name"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-white border border-purple-200 rounded-xl text-xs sm:text-sm text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#F5A623]"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-300 rounded-xl text-xs sm:text-sm text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8]"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-white block mb-1">Phone Number</label>
+                    <label className="text-xs font-bold text-[#1E1B2E] block mb-1">Phone Number</label>
                     <PhoneInput
                       value={formData.phone}
                       countryCode={formData.countryCode}
@@ -653,23 +652,23 @@ export default function Navbar({
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-white block mb-1">Email Address</label>
+                    <label className="text-xs font-bold text-[#1E1B2E] block mb-1">Email Address</label>
                     <input
                       type="email"
                       required
                       placeholder="name@example.com"
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-white border border-purple-200 rounded-xl text-xs sm:text-sm text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#F5A623]"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-300 rounded-xl text-xs sm:text-sm text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8]"
                     />
                   </div>
 
                   <div>
-                    <label className="text-xs font-bold text-white block mb-1">Area of Interest</label>
+                    <label className="text-xs font-bold text-[#1E1B2E] block mb-1">Area of Interest</label>
                     <select
                       value={formData.query}
                       onChange={(e) => setFormData({ ...formData, query: e.target.value })}
-                      className="w-full px-3.5 py-2.5 bg-white border border-purple-200 rounded-xl text-xs sm:text-sm text-[#1E1B2E] focus:outline-none focus:border-[#F5A623]"
+                      className="w-full px-3.5 py-2.5 bg-white border border-gray-300 rounded-xl text-xs sm:text-sm text-[#1E1B2E] focus:outline-none focus:border-[#7C1FA8]"
                     >
                       <option value="Mutual Funds & SIP">Mutual Funds & SIP</option>
                       <option value="Health & Life Insurance">Health & Life Insurance</option>

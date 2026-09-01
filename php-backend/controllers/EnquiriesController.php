@@ -2,6 +2,7 @@
 // Enquiries Controller
 
 require_once __DIR__ . '/../db.php';
+require_once __DIR__ . '/../mailer.php';
 
 class EnquiriesController {
     private static function ensureTableExists() {
@@ -78,6 +79,47 @@ class EnquiriesController {
                 [$formName, $formPath, $name, $email, $phone, $city, $service, $message, $extraJson]
             );
             $newId = (int)DB::lastInsertId();
+
+            // Send Realtime Email Alert via Gmail SMTP to support@prosperi5.com
+            $subject = "🔔 New Website Lead: $formName from $name";
+            
+            $extraRows = '';
+            if (!empty($extra) && is_array($extra)) {
+                foreach ($extra as $k => $v) {
+                    $valStr = is_array($v) ? implode(', ', $v) : (string)$v;
+                    $extraRows .= "<tr><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>".htmlspecialchars(ucwords($k))."</td><td style='padding:8px 12px;color:#1E1B2E;'>".htmlspecialchars($valStr)."</td></tr>";
+                }
+            }
+
+            $htmlBody = "
+            <div style='font-family:Arial,sans-serif;max-w:600px;margin:0 auto;border:1px solid #EBE8EF;border-radius:16px;overflow:hidden;box-shadow:0 10px 30px rgba(0,0,0,0.05);'>
+                <div style='background:#7C1FA8;padding:20px;text-align:center;color:#ffffff;'>
+                    <h2 style='margin:0;font-size:22px;font-weight:800;'>New Lead Received!</h2>
+                    <p style='margin:5px 0 0 0;font-size:13px;opacity:0.9;'>PROSPERi5 Lead Capture System</p>
+                </div>
+                <div style='padding:25px;background:#ffffff;'>
+                    <p style='margin-top:0;color:#1E1B2E;font-size:15px;line-height:1.5;'>A new customer lead/enquiry has been submitted via your website. Here are the captured details:</p>
+                    
+                    <table style='width:100%;border-collapse:collapse;margin-top:15px;font-size:14px;'>
+                        <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;width:35%;'>Form Name</td><td style='padding:8px 12px;color:#7C1FA8;font-weight:bold;'>".htmlspecialchars($formName)."</td></tr>
+                        <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Page Path</td><td style='padding:8px 12px;color:#1E1B2E;'>".htmlspecialchars($formPath)."</td></tr>
+                        <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Full Name</td><td style='padding:8px 12px;color:#1E1B2E;font-weight:bold;'>".htmlspecialchars($name)."</td></tr>
+                        <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Email Address</td><td style='padding:8px 12px;color:#1E1B2E;'><a href='mailto:".htmlspecialchars($email)."' style='color:#7C1FA8;'>".htmlspecialchars($email)."</a></td></tr>
+                        <tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Phone Number</td><td style='padding:8px 12px;color:#1E1B2E;'><a href='tel:".htmlspecialchars($phone)."' style='color:#7C1FA8;font-weight:bold;'>".htmlspecialchars($phone)."</a></td></tr>
+                        " . ($city ? "<tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>City / Location</td><td style='padding:8px 12px;color:#1E1B2E;'>".htmlspecialchars($city)."</td></tr>" : "") . "
+                        " . ($service ? "<tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Service Interested</td><td style='padding:8px 12px;color:#1E1B2E;'>".htmlspecialchars($service)."</td></tr>" : "") . "
+                        " . ($message ? "<tr style='border-bottom:1px solid #EBE8EF;'><td style='padding:8px 12px;font-weight:bold;color:#544F66;background:#FAF5FD;'>Message</td><td style='padding:8px 12px;color:#1E1B2E;'>".nl2br(htmlspecialchars($message))."</td></tr>" : "") . "
+                        $extraRows
+                    </table>
+                    
+                    <div style='margin-top:25px;padding-top:15px;border-top:1px solid #EBE8EF;text-align:center;font-size:12px;color:#8E8A9D;'>
+                        Submitted on ".date('Y-m-d H:i:s')." | PROSPERi5 Automated System
+                    </div>
+                </div>
+            </div>
+            ";
+
+            Mailer::send(SMTP_RECEIVER, $subject, $htmlBody, $email);
 
             return [
                 'success' => true,

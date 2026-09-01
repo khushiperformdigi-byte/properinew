@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Footer from './Footer';
 import Testimonials from './Testimonials';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
+import { FiPieChart, FiClock, FiTrendingUp, FiPercent, FiGlobe, FiShield } from 'react-icons/fi';
 
 function AnimatedCounter({ end, decimals = 0, prefix = '', suffix = '', duration = 1600 }) {
   const [count, setCount] = useState(0);
@@ -102,6 +104,15 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
+    sendWhatsAppEnquiry({
+      formName: selectedModalOption?.title || 'Wealth Growth Lead Form',
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      city: formData.city,
+      service: 'Wealth Growth / Investments',
+      message: formData.message,
+    });
     setFormSubmitted(true);
   };
 
@@ -286,10 +297,10 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
         </div>
       </section>
 
-      {/* 4. INVEST YOUR WAY. GROW EVERY DAY. SECTION (ZERO HOVER EFFECTS) */}
+      {/* 4. INVEST YOUR WAY. GROW EVERY DAY. SECTION */}
       <section id="invest-solutions" className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto select-none scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-7">
-          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E] tracking-tight">
+          <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#1E1B2E] tracking-tight">
             Invest your way. Grow every day.
           </h2>
           <p className="text-xs sm:text-sm text-[#6E6B7B] mt-1.5 font-medium">
@@ -297,128 +308,96 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
           </p>
         </div>
 
-        {/* 2 Grid Lines Form (2 in mobile, 3 in desktop) */}
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-5">
-          
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {/* Card 1: Mutual Funds */}
-          <div className="bg-white border border-[#EBE8EF] rounded-2xl p-3.5 sm:p-5 shadow-2xs">
-            <div className="bg-[#F7F3FC] rounded-xl overflow-hidden flex items-center justify-center h-40 sm:h-60 mb-3 p-1.5">
-              <img 
-                src="/grow_card_mutual_funds.jpg" 
-                alt="Mutual Funds 3D Growth"
-                className="w-full h-full object-contain rounded-xl" 
-              />
+          <div className="bg-[#FAF4FD] border border-[#EBE3F5] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-purple-100/60 border border-purple-200/60 text-[#8B1FA8] flex items-center justify-center shadow-2xs">
+                <FiPieChart className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Mutual Funds</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Invest in expertly managed funds across categories.
+                </p>
+              </div>
             </div>
-            <h3 className="font-extrabold text-sm sm:text-lg text-[#1E1B2E] mb-1">Mutual Funds</h3>
-            <p className="text-[11px] sm:text-[13.5px] text-[#6E6B7B] leading-normal font-medium">
-              Invest in expertly managed funds across categories.
-            </p>
           </div>
 
           {/* Card 2: SIP */}
-          <div className="bg-white border border-[#EBE8EF] rounded-2xl p-3.5 sm:p-5 shadow-2xs">
-            <div className="bg-[#F7F3FC] rounded-xl overflow-hidden flex items-center justify-center h-40 sm:h-60 mb-3 p-1.5">
-              <img 
-                src="/grow_card_sip.jpg" 
-                alt="SIP 3D Calendar Growth"
-                className="w-full h-full object-contain rounded-xl" 
-              />
+          <div className="bg-[#F0FDF4] border border-[#DCFCE7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-emerald-100/60 border border-emerald-200/60 text-emerald-700 flex items-center justify-center shadow-2xs">
+                <FiClock className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">SIP</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Build wealth steadily with Systematic Investment Plans.
+                </p>
+              </div>
             </div>
-            <h3 className="font-extrabold text-sm sm:text-lg text-[#1E1B2E] mb-1">SIP</h3>
-            <p className="text-[11px] sm:text-[13.5px] text-[#6E6B7B] leading-normal font-medium">
-              Build wealth steadily with Systematic Investment Plans.
-            </p>
           </div>
 
           {/* Card 3: Index Funds */}
-          <div className="bg-white border border-[#EBE8EF] rounded-2xl p-3.5 sm:p-5 shadow-2xs">
-            <div className="bg-[#F7F3FC] rounded-xl overflow-hidden flex items-center justify-center h-40 sm:h-60 mb-3 p-1.5">
-              <img 
-                src="/grow_card_index_funds.jpg" 
-                alt="Index Funds 3D Chart"
-                className="w-full h-full object-contain rounded-xl" 
-              />
+          <div className="bg-[#EFF6FF] border border-[#DBEAFE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-blue-100/60 border border-blue-200/60 text-blue-700 flex items-center justify-center shadow-2xs">
+                <FiTrendingUp className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Index Funds</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Low cost. Diversified. Tracks the market.
+                </p>
+              </div>
             </div>
-            <h3 className="font-extrabold text-sm sm:text-lg text-[#1E1B2E] mb-1">Index Funds</h3>
-            <p className="text-[11px] sm:text-[13.5px] text-[#6E6B7B] leading-normal font-medium">
-              Low cost. Diversified. Tracks the market.
-            </p>
           </div>
 
           {/* Card 4: ELSS Funds */}
-          <div className="bg-white border border-[#EBE8EF] rounded-2xl p-3.5 sm:p-5 shadow-2xs">
-            <div className="bg-[#F3EBFB] rounded-xl overflow-hidden flex items-center justify-center h-40 sm:h-60 mb-3 p-1.5 relative">
-              <div className="relative flex items-center justify-center scale-90 sm:scale-100">
-                {/* 3D Glossy Rounded Purple Calculator Box */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-[20px] sm:rounded-[26px] bg-gradient-to-br from-[#7C1FA8] via-[#6A1B9A] to-[#4A148C] text-white flex flex-col items-center justify-center shadow-lg shadow-[#7C1FA8]/30 border border-white/20 relative">
-                  <div className="w-14 sm:w-16 h-3.5 sm:h-4.5 bg-[#310A5C]/80 rounded-md border border-white/20 mb-1.5 sm:mb-2 flex items-center justify-end px-1 sm:px-1.5 text-[8.5px] sm:text-[9.5px] font-bold text-purple-200">
-                    80C ₹
-                  </div>
-                  <div className="grid grid-cols-3 gap-1 sm:gap-1.5 w-14 sm:w-16">
-                    <div className="h-1 sm:h-1.5 rounded bg-white/40"></div>
-                    <div className="h-1 sm:h-1.5 rounded bg-white/40"></div>
-                    <div className="h-1 sm:h-1.5 rounded bg-white/40"></div>
-                    <div className="h-1 sm:h-1.5 rounded bg-white/40"></div>
-                    <div className="h-1 sm:h-1.5 rounded bg-white/40"></div>
-                    <div className="h-1 sm:h-1.5 rounded bg-[#F5A623]"></div>
-                  </div>
-                </div>
-                {/* 3D Gold Rupee Coin Badge */}
-                <div className="absolute -bottom-1 -right-2 bg-gradient-to-br from-[#FFD700] via-[#F5A623] to-[#D48806] text-white font-extrabold text-[10px] sm:text-xs w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 border-white shadow-md shadow-[#F5A623]/40">
-                  ₹
-                </div>
+          <div className="bg-[#FFFBEB] border border-[#FEF3C7] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-amber-100/60 border border-amber-200/60 text-amber-700 flex items-center justify-center shadow-2xs">
+                <FiPercent className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">ELSS Funds</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Save tax up to ₹46,800 u/s 80C while growing wealth.
+                </p>
               </div>
             </div>
-            <h3 className="font-extrabold text-sm sm:text-lg text-[#1E1B2E] mb-1">ELSS Funds</h3>
-            <p className="text-[11px] sm:text-[13.5px] text-[#6E6B7B] leading-normal font-medium">
-              Save tax up to ₹46,800 u/s 80C while growing wealth.
-            </p>
           </div>
 
           {/* Card 5: Thematic Funds */}
-          <div className="bg-white border border-[#EBE8EF] rounded-2xl p-3.5 sm:p-5 shadow-2xs">
-            <div className="bg-[#F3EBFB] rounded-xl overflow-hidden flex items-center justify-center h-40 sm:h-60 mb-3 p-1.5 relative">
-              <div className="relative flex items-center justify-center scale-90 sm:scale-100">
-                {/* 3D Glossy Globe Sphere */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-gradient-to-br from-[#7C1FA8] via-[#6A1B9A] to-[#4A148C] text-white flex items-center justify-center shadow-lg shadow-[#7C1FA8]/30 border border-white/20 relative">
-                  <svg className="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                  </svg>
-                </div>
-                {/* 3D Gold Rupee Coin Badge */}
-                <div className="absolute -bottom-1 -right-2 bg-gradient-to-br from-[#FFD700] via-[#F5A623] to-[#D48806] text-white font-extrabold text-[10px] sm:text-xs w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 border-white shadow-md shadow-[#F5A623]/40">
-                  ₹
-                </div>
+          <div className="bg-[#F5F3FF] border border-[#DDD6FE] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-purple-100/80 border border-purple-200/80 text-purple-700 flex items-center justify-center shadow-2xs">
+                <FiGlobe className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Thematic Funds</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Invest in future-ready sectors and trends.
+                </p>
               </div>
             </div>
-            <h3 className="font-extrabold text-sm sm:text-lg text-[#1E1B2E] mb-1">Thematic Funds</h3>
-            <p className="text-[11px] sm:text-[13.5px] text-[#6E6B7B] leading-normal font-medium">
-              Invest in future-ready sectors and trends.
-            </p>
           </div>
 
           {/* Card 6: Debt Funds */}
-          <div className="bg-white border border-[#EBE8EF] rounded-2xl p-3.5 sm:p-5 shadow-2xs">
-            <div className="bg-[#F3EBFB] rounded-xl overflow-hidden flex items-center justify-center h-40 sm:h-60 mb-3 p-1.5 relative">
-              <div className="relative flex items-center justify-center scale-90 sm:scale-100">
-                {/* 3D Glossy Rounded Shield Box */}
-                <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-[20px] sm:rounded-[26px] bg-gradient-to-br from-[#7C1FA8] via-[#6A1B9A] to-[#4A148C] text-white flex items-center justify-center shadow-lg shadow-[#7C1FA8]/30 border border-white/20 relative">
-                  <svg className="w-10 h-10 sm:w-12 sm:h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.8" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                  </svg>
-                </div>
-                {/* 3D Gold Rupee Coin Badge */}
-                <div className="absolute -bottom-1 -right-2 bg-gradient-to-br from-[#FFD700] via-[#F5A623] to-[#D48806] text-white font-extrabold text-[10px] sm:text-xs w-6 h-6 sm:w-8 sm:h-8 rounded-full flex items-center justify-center border-2 border-white shadow-md shadow-[#F5A623]/40">
-                  ₹
-                </div>
+          <div className="bg-[#FDF2F8] border border-[#FCE7F3] rounded-[22px] p-5 flex flex-col justify-between min-h-[170px] shadow-2xs hover:shadow-md hover:-translate-y-0.5 transition-all duration-300">
+            <div className="space-y-3">
+              <div className="w-11 h-11 rounded-2xl bg-pink-100/80 border border-pink-200/80 text-pink-700 flex items-center justify-center shadow-2xs">
+                <FiShield className="w-5.5 h-5.5 stroke-[2.2]" />
+              </div>
+              <div>
+                <h3 className="font-heading font-extrabold text-base sm:text-lg text-[#1E1B2E]">Debt Funds</h3>
+                <p className="text-base font-body text-[#544F66] font-medium mt-1 leading-relaxed">
+                  Earn stable returns with lower risk investments.
+                </p>
               </div>
             </div>
-            <h3 className="font-extrabold text-sm sm:text-lg text-[#1E1B2E] mb-1">Debt Funds</h3>
-            <p className="text-[11px] sm:text-[13.5px] text-[#6E6B7B] leading-normal font-medium">
-              Earn stable returns with lower risk investments.
-            </p>
           </div>
-
         </div>
       </section>
 
@@ -732,16 +711,12 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
       {selectedModal && (
         <div className="fixed inset-0 z-[10000] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
           <div 
-            className="bg-white bg-cover bg-center rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 overflow-hidden border border-purple-100/80"
-            style={{ backgroundImage: `url("/ChatGPT Image Aug 21, 2026, 10_49_29 AM.png")` }}
+            className="bg-white rounded-3xl max-w-md w-full p-6 sm:p-8 relative shadow-2xl animate-in fade-in zoom-in-95 overflow-hidden border border-purple-100"
           >
-            {/* Translucent overlay for clean text & input legibility */}
-            <div className="absolute inset-0 bg-white/85 backdrop-blur-[2px] z-0 pointer-events-none" />
-
             <div className="relative z-10">
               <button
                 onClick={() => setSelectedModal(false)}
-                className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-100/90 text-gray-500 hover:bg-gray-200 flex items-center justify-center cursor-pointer font-bold transition-colors z-20"
+                className="absolute top-0 right-0 w-8 h-8 rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 flex items-center justify-center cursor-pointer font-bold transition-colors z-20"
               >
                 ✕
               </button>
@@ -764,7 +739,7 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
                         placeholder="e.g. Rahul Sharma"
                         value={formData.name}
                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full bg-white/95 border border-gray-200/90 rounded-xl py-3 px-4 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all shadow-2xs"
+                        className="w-full bg-white border border-gray-300 rounded-xl py-3 px-4 text-sm font-medium text-[#1E1B2E] placeholder:text-gray-400 focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8] transition-all"
                       />
                     </div>
 

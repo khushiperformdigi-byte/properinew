@@ -11,6 +11,7 @@ export default function LoanAgainstSecuritiesPage({ onNavigateHome, onNavigatePa
   // LAS Calculator Inputs (Defaults matching screenshot)
   const [securitiesValue, setSecuritiesValue] = useState(1000000); // 10 Lakh
   const [ltv, setLtv] = useState(70); // 70%
+  const [hoveredSegment, setHoveredSegment] = useState(null);
 
   // Handlers
   const handleSecuritiesChange = (e) => {
@@ -29,12 +30,21 @@ export default function LoanAgainstSecuritiesPage({ onNavigateHome, onNavigatePa
     setLtv(70);
   };
 
-  // Math Calculation
-  const eligibleLoanAmount = useMemo(() => {
+  // Math Calculations
+  const { eligibleLoanAmount, pledgedMargin, estMonthlyInterest } = useMemo(() => {
     const val = parseFloat(securitiesValue) || 0;
     const ltvRatio = parseFloat(ltv) || 70;
-    return Math.round((val * ltvRatio) / 100);
+    const loan = Math.round((val * ltvRatio) / 100);
+    const margin = val - loan;
+    const interest = Math.round((loan * 0.095) / 12);
+    return { eligibleLoanAmount: loan, pledgedMargin: margin, estMonthlyInterest: interest };
   }, [securitiesValue, ltv]);
+
+  // Donut SVG Math
+  const radius = 42;
+  const circumference = 2 * Math.PI * radius; // ~263.89
+  const loanStroke = (ltv / 100) * circumference;
+  const marginStroke = ((100 - ltv) / 100) * circumference;
 
   // Format currency helper
   const formatINR = (val) => {
@@ -76,23 +86,23 @@ export default function LoanAgainstSecuritiesPage({ onNavigateHome, onNavigatePa
               Use our Loan Against Securities (LAS) Calculator to estimate instant credit limit against your equity shares, mutual funds, and bonds without liquidating your investments.
             </p>
 
-            {/* 3 Feature Highlight Pills Row */}
-            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+            {/* 3 Feature Highlight Pills Row - Single Line */}
+            <div className="flex flex-nowrap items-center gap-2 pt-1 overflow-x-auto scrollbar-none no-scrollbar max-w-full">
               
               {/* Feature Pill 1: Instant Loan Estimate */}
-              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
                 <span className="text-[#7C1FA8] font-black text-xs">⚡</span>
                 <span>Instant Loan Estimate</span>
               </div>
 
               {/* Feature Pill 2: Higher LTV Ratio */}
-              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
                 <span className="text-emerald-600 font-black text-xs">📈</span>
                 <span>Higher LTV Ratio</span>
               </div>
 
               {/* Feature Pill 3: Zero Equity Selling */}
-              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
                 <span className="text-[#7C1FA8] font-black text-xs">🛡️</span>
                 <span>Zero Equity Selling</span>
               </div>
@@ -227,104 +237,185 @@ export default function LoanAgainstSecuritiesPage({ onNavigateHome, onNavigatePa
               </div>
             </div>
 
-            {/* ACTION BUTTONS */}
-            <div className="space-y-2 pt-1">
+            {/* RESET BUTTON ONLY */}
+            <div className="pt-2 flex justify-center">
               <button
-                onClick={() => setConsultModalOpen(true)}
-                className="w-full bg-[#5E1083] hover:bg-[#7C1FAB] text-white font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+                onClick={handleReset}
+                className="text-xs font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1.5 py-1 px-3 rounded-lg hover:bg-purple-50 cursor-pointer"
               >
-                <span>Calculate Loan</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                <svg className="w-3.5 h-3.5 text-[#7C1FAB]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                 </svg>
+                <span>Reset</span>
               </button>
-
-              <div className="flex items-center justify-center gap-3">
-                <button
-                  onClick={handleReset}
-                  className="text-[11px] font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1 py-0.5 cursor-pointer"
-                >
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                  </svg>
-                  <span>Reset All</span>
-                </button>
-              </div>
             </div>
 
           </div>
 
-          {/* RIGHT COLUMN: WHY LOAN AGAINST SECURITIES? */}
-          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-4 text-left relative overflow-hidden">
+          {/* RIGHT COLUMN: LAS CREDIT & COLLATERAL BREAKDOWN (WITH FUNCTIONAL SVG DONUT PIE CHART) */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-3.5 text-left relative overflow-hidden h-full flex flex-col justify-between">
             
             {/* Header */}
-            <div className="flex items-start justify-between pb-1.5 border-b border-gray-100">
+            <div className="flex items-start justify-between">
               <div className="flex items-center gap-2.5">
-                <div className="w-8 h-8 rounded-lg bg-pink-100 text-[#C81E8C] flex items-center justify-center font-bold text-xs">
+                <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-xs">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6a7.5 7.5 0 107.5 7.5h-7.5V6z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0013.5 3v7.5z" />
                   </svg>
                 </div>
                 <div>
-                  <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Why Loan Against Securities?</h2>
+                  <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Loan &amp; Portfolio Breakdown</h2>
+                  <span className="text-[11px] font-medium text-[#8E8A9D]">Instant credit limit at {ltv}% LTV Ratio</span>
                 </div>
               </div>
             </div>
 
-            {/* 4 FEATURE ROWS (Matching Screenshot) */}
-            <div className="space-y-3.5 pt-1">
+            {/* BIG HIGHLIGHTED ELIGIBLE LOAN AMOUNT */}
+            <div className="py-0">
+              <div className="text-2xl sm:text-3xl lg:text-[34px] font-black text-[#7C1FAB] tracking-tight">
+                {formatINR(eligibleLoanAmount)}
+              </div>
+            </div>
+
+            {/* 3-STATS SUMMARY ROW */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-0 pb-2 border-b border-gray-100 text-left">
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Total Portfolio</span>
+                <span className="text-xs sm:text-sm font-bold text-[#1E1B2E]">{formatINR(securitiesValue)}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Max Loan Limit</span>
+                <span className="text-xs sm:text-sm font-bold text-[#7C1FAB]">{formatINR(eligibleLoanAmount)}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Est. Interest</span>
+                <span className="text-xs sm:text-sm font-bold text-amber-600">~{formatINR(estMonthlyInterest)}/mo</span>
+              </div>
+            </div>
+
+            {/* INTERACTIVE DONUT PIE CHART CONTAINER */}
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center py-1">
               
-              {/* Feature 1 */}
-              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
-                  </svg>
-                </div>
-                <div>
-                  <h3 className="font-bold text-sm text-[#1E1B2E]">Quick Liquidity</h3>
-                  <p className="text-xs text-[#544F66]">Get funds in just a few hours.</p>
+              {/* SVG Donut Chart (Left Side) */}
+              <div className="sm:col-span-5 flex justify-center relative">
+                <svg className="w-36 h-36 sm:w-40 sm:h-40 transform -rotate-90" viewBox="0 0 100 100">
+                  {/* Background Track Circle */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    fill="transparent"
+                    stroke="#FAF5FD"
+                    strokeWidth="14"
+                  />
+
+                  {/* Segment 2: Retained Equity Margin (Emerald #22C55E) */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    fill="transparent"
+                    stroke="#22C55E"
+                    strokeWidth={hoveredSegment === 'margin' ? 16 : 14}
+                    strokeDasharray={`${marginStroke} ${circumference}`}
+                    strokeDashoffset={0}
+                    className="transition-all duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredSegment('margin')}
+                    onMouseLeave={() => setHoveredSegment(null)}
+                  />
+
+                  {/* Segment 1: Approved Loan Limit (Purple #7C1FAB) */}
+                  <circle
+                    cx="50"
+                    cy="50"
+                    r="42"
+                    fill="transparent"
+                    stroke="#7C1FAB"
+                    strokeWidth={hoveredSegment === 'loan' ? 16 : 14}
+                    strokeDasharray={`${loanStroke} ${circumference}`}
+                    strokeDashoffset={`-${marginStroke}`}
+                    className="transition-all duration-300 cursor-pointer"
+                    onMouseEnter={() => setHoveredSegment('loan')}
+                    onMouseLeave={() => setHoveredSegment(null)}
+                  />
+                </svg>
+
+                {/* Donut Center Label */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                  <span className="text-sm font-black text-[#7C1FAB]">₹</span>
+                  <span className="text-[11px] font-extrabold text-[#1E1B2E]">{ltv}% LTV</span>
                 </div>
               </div>
 
-              {/* Feature 2 */}
-              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
-                  </svg>
+              {/* Breakdown Legend List (Right Side) */}
+              <div className="sm:col-span-7 space-y-2.5 text-xs">
+                
+                {/* Legend Item 1: Loan Credit Limit */}
+                <div 
+                  className={`flex items-center justify-between p-1.5 rounded-lg transition-all cursor-pointer ${hoveredSegment === 'loan' ? 'bg-purple-50 border border-purple-200' : ''}`}
+                  onMouseEnter={() => setHoveredSegment('loan')}
+                  onMouseLeave={() => setHoveredSegment(null)}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#7C1FAB]"></span>
+                    <span className="text-[#544F66] font-medium">Eligible Loan Sanction</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-[#1E1B2E] block">{formatINR(eligibleLoanAmount)}</span>
+                    <span className="text-[10px] text-[#8E8A9D]">{ltv}%</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-sm text-[#1E1B2E]">Keep Your Investments</h3>
-                  <p className="text-xs text-[#544F66]">Hold your securities and still get cash.</p>
-                </div>
-              </div>
 
-              {/* Feature 3 */}
-              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
-                  </svg>
+                {/* Legend Item 2: Retained Equity Margin */}
+                <div 
+                  className={`flex items-center justify-between p-1.5 rounded-lg transition-all cursor-pointer ${hoveredSegment === 'margin' ? 'bg-emerald-50 border border-emerald-200' : ''}`}
+                  onMouseEnter={() => setHoveredSegment('margin')}
+                  onMouseLeave={() => setHoveredSegment(null)}
+                >
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#22C55E]"></span>
+                    <span className="text-[#544F66] font-medium">Collateral Equity Buffer</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-[#1E1B2E] block">{formatINR(pledgedMargin)}</span>
+                    <span className="text-[10px] text-[#8E8A9D]">{100 - ltv}%</span>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-bold text-sm text-[#1E1B2E]">Flexible Tenure</h3>
-                  <p className="text-xs text-[#544F66]">Choose a repayment period that suits you.</p>
-                </div>
-              </div>
 
-              {/* Feature 4 */}
-              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
-                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
-                  <span className="text-base font-black text-[#7C1FAB]">%</span>
+                {/* Total Row */}
+                <div className="pt-2 border-t border-purple-100/80 flex items-center justify-between">
+                  <span className="font-bold text-[#1E1B2E]">Total Pledged Portfolio</span>
+                  <span className="font-extrabold text-[#7C1FAB]">{formatINR(securitiesValue)}</span>
                 </div>
-                <div>
-                  <h3 className="font-bold text-sm text-[#1E1B2E]">Lower Interest Rates</h3>
-                  <p className="text-xs text-[#544F66]">Enjoy competitive interest rates.</p>
-                </div>
+
               </div>
 
             </div>
+
+            {/* LOAN ADVANTAGE REMINDER BOX */}
+            <div className="bg-[#FAF5FD] rounded-xl p-2.5 px-3 border border-purple-100 flex items-center gap-3">
+              <div className="w-7 h-7 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                </svg>
+              </div>
+              <div>
+                <span className="text-xs font-bold text-[#1E1B2E] block">Keep 100% Fund Growth &amp; Dividends</span>
+                <span className="text-[10px] text-[#544F66] font-medium">Your investments remain in your name while enjoying instant liquidity.</span>
+              </div>
+            </div>
+
+            {/* Direct Action Button */}
+            <button
+              onClick={() => setConsultModalOpen(true)}
+              className="w-full bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Apply for {formatINR(eligibleLoanAmount)} Loan</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </button>
 
           </div>
 

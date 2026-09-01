@@ -6,7 +6,7 @@ import PhoneInput from './components/PhoneInput';
 export default function SipCalculatorPage({ onNavigateHome, onNavigatePage }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [consultModalOpen, setConsultModalOpen] = useState(false);
-  const [showTable, setShowTable] = useState(false);
+  const [showTable, setShowTable] = useState(true);
   const [consultForm, setConsultForm] = useState({ name: '', phone: '', risk: 'Moderate (Balanced Advantage / Flexi Cap Funds)' });
 
   // Calculator inputs
@@ -228,24 +228,24 @@ export default function SipCalculatorPage({ onNavigateHome, onNavigatePage }) {
               Use our SIP Calculator to estimate future value of your investments and plan your financial goals with precision.
             </p>
 
-            {/* 3 Feature Highlight Pills Row - Bolder Pills */}
-            <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
+            {/* 3 Feature Highlight Pills Row - Single Line */}
+            <div className="flex flex-nowrap items-center gap-2 pt-1.5 overflow-x-auto scrollbar-none no-scrollbar max-w-full">
               
               {/* Feature Pill 1: Instant Results */}
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
-                <span className="text-amber-500 font-black text-sm">⚡</span>
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
+                <span className="text-amber-500 font-black text-xs">⚡</span>
                 <span>Instant Results</span>
               </div>
 
               {/* Feature Pill 2: Real-Time Insights */}
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
-                <span className="text-[#7C1FA8] font-black text-sm">📊</span>
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
+                <span className="text-[#7C1FA8] font-black text-xs">📊</span>
                 <span>Real-Time Insights</span>
               </div>
 
               {/* Feature Pill 3: 100% Accurate & Free */}
-              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
-                <span className="text-rose-500 font-black text-sm">🎯</span>
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-2.5 py-1 rounded-full text-[11px] sm:text-xs font-bold text-[#1E1B2E] shadow-2xs whitespace-nowrap shrink-0">
+                <span className="text-rose-500 font-black text-xs">🎯</span>
                 <span>100% Accurate & Free</span>
               </div>
 
@@ -416,38 +416,17 @@ export default function SipCalculatorPage({ onNavigateHome, onNavigatePage }) {
               </p>
             </div>
 
-            {/* ACTION BUTTONS */}
-            <div className="space-y-2 pt-1">
+            {/* RESET BUTTON ONLY */}
+            <div className="pt-2 flex justify-center">
               <button
-                onClick={() => setConsultModalOpen(true)}
-                className="w-full bg-[#5E1083] hover:bg-[#7C1FAB] text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+                onClick={handleReset}
+                className="text-xs font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1.5 py-1 px-3 rounded-lg hover:bg-purple-50 cursor-pointer"
               >
-                <span>Calculate &amp; Plan</span>
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                <svg className="w-3.5 h-3.5 text-[#7C1FAB]" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                 </svg>
+                <span>Reset</span>
               </button>
-
-              <div className="flex items-center justify-center gap-3">
-                <button
-                  onClick={handleReset}
-                  className="text-[11px] font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1 py-0.5 cursor-pointer"
-                >
-                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
-                  </svg>
-                  <span>Reset All</span>
-                </button>
-
-                <span className="text-gray-300">|</span>
-
-                <button
-                  onClick={() => setShowTable(!showTable)}
-                  className="text-[11px] font-bold text-[#7C1FAB] hover:underline transition-all flex items-center gap-1 py-0.5 cursor-pointer"
-                >
-                  <span>{showTable ? 'Hide Schedule' : 'View Year-wise Schedule'}</span>
-                </button>
-              </div>
             </div>
 
           </div>

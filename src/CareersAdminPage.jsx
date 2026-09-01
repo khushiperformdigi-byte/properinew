@@ -12,6 +12,7 @@ import {
 import { uploadAdminMedia } from './api/blog';
 import BlogAdminPanel from './admin/BlogAdminPanel';
 import EnquiriesAdminPanel from './admin/EnquiriesAdminPanel';
+import AdminCommentsManager from './components/AdminCommentsManager';
 
 const inputClass =
   'w-full border border-[#EBE8EF] rounded-xl px-3.5 py-2.5 text-sm text-[#1E1B2E] bg-white focus:outline-none focus:border-[#7C1FA8] focus:ring-1 focus:ring-[#7C1FA8]';
@@ -380,7 +381,13 @@ function CareersAdminInner() {
                 PROSPERi5 Admin
               </p>
               <h1 className="text-xl sm:text-2xl font-extrabold">
-                {section === 'blog' ? 'Blog' : 'Job openings'}
+                {section === 'comments'
+                  ? 'Blog Comment Moderation'
+                  : section === 'blog'
+                  ? 'Blog'
+                  : section === 'enquiries'
+                  ? 'User Enquiries & Leads'
+                  : 'Job openings'}
               </h1>
             </div>
             <div className="flex items-center gap-3">
@@ -395,7 +402,7 @@ function CareersAdminInner() {
             </div>
           </div>
 
-          <div className="flex gap-3">
+          <div className="flex flex-wrap gap-3">
             <button
               type="button"
               onClick={() => setSection('jobs')}
@@ -429,12 +436,25 @@ function CareersAdminInner() {
             >
               📋 User Enquiries & Leads
             </button>
+            <button
+              type="button"
+              onClick={() => setSection('comments')}
+              className={`px-5 py-2.5 rounded-xl text-sm font-extrabold cursor-pointer transition-all shadow-2xs ${
+                section === 'comments'
+                  ? 'bg-[#7C1FA8] text-white ring-2 ring-[#7C1FA8]/30'
+                  : 'bg-white border border-[#EBE8EF] text-[#544F66] hover:bg-[#FAF5FD] hover:text-[#7C1FA8]'
+              }`}
+            >
+              💬 Blog Comments
+            </button>
           </div>
         </div>
       </header>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6">
-        {section === 'enquiries' ? (
+        {section === 'comments' ? (
+          <AdminCommentsManager />
+        ) : section === 'enquiries' ? (
           <EnquiriesAdminPanel onUnauthorized={() => setAdmin(null)} />
         ) : section === 'blog' ? (
           <BlogAdminPanel onUnauthorized={() => setAdmin(null)} />

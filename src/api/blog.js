@@ -120,4 +120,98 @@ export async function uploadAdminMediaFromUrl(url, altText = '') {
   return payload.data?.media;
 }
 
+/* ==========================================================================
+   BLOG COMMENTS API ENDPOINTS (Public & Admin Moderation)
+   ========================================================================== */
+
+/** Fetch approved comments and nested replies for a specific post */
+export async function fetchPostComments(postId) {
+  try {
+    const payload = await request(`/posts/${encodeURIComponent(postId)}/comments`);
+    return Array.isArray(payload.data?.comments) ? payload.data.comments : (payload.data || []);
+  } catch (err) {
+    console.warn(`[Comments API] Fetch error for post ${postId}:`, err.message);
+    return null; // Signals fallback to local state if server offline
+  }
+}
+
+/** Submit a new comment or reply (stored as pending for admin approval) */
+export async function submitPostComment({ postId, parentId = null, authorName, authorEmail, content }) {
+  const payload = await request(`/posts/${encodeURIComponent(postId)}/comments`, {
+    method: 'POST',
+    body: {
+      parent_id: parentId,
+      author_name: authorName,
+      author_email: authorEmail,
+      content: content,
+    },
+  });
+  return payload.data?.comment || payload;
+}
+
+/** Fetch comments for Admin Moderation (filtered by status: 'pending', 'approved', 'rejected') */
+export async function fetchAdminComments(status = 'pending') {
+  const payload = await request(`/admin/comments?status=${encodeURIComponent(status)}`, { auth: true });
+  return Array.isArray(payload.data?.comments) ? payload.data.comments : [];
+}
+
+/** Admin: Approve a comment */
+export async function approveAdminComment(commentId) {
+  const payload = await request(`/admin/comments/${commentId}/approve`, {
+    method: 'PATCH',
+    auth: true,
+  });
+  return payload.data?.comment || payload;
+}
+
+/** Admin: Reject a comment */
+export async function rejectAdminComment(commentId) {
+  const payload = await request(`/admin/comments/${commentId}/reject`, {
+    method: 'PATCH',
+    auth: true,
+  });
+  return payload.data?.comment || payload;
+}
+
+/** Admin: Delete a comment */
+export async function deleteAdminComment(commentId) {
+  const payload = await request(`/admin/comments/${commentId}`, {
+    method: 'DELETE',
+    auth: true,
+  });
+  return payload.data;
+}
+
+/* ==========================================================================
+   ENQUIRIES & LEADS API ENDPOINTS (Public Lead Capture)
+   ========================================================================== */
+
+/** Submit a new enquiry/lead form to /api/enquiries */
+export async function submitEnquiry(payload) {
+  try {
+    const data = await request('/enquiries', {
+      method: 'POST',
+      body: payload,
+    });
+    return data;
+  } catch (err) {
+    console.warn('[Enquiry API Error]:', err.message);
+    return { success: false, error: err.message };
+  }
+}
+
+/** Submit a job application to /api/applications */
+export async function submitJobApplication(payload) {
+  try {
+    const data = await request('/applications', {
+      method: 'POST',
+      body: payload,
+    });
+    return data;
+  } catch (err) {
+    console.warn('[Job Application API Error]:', err.message);
+    return { success: false, error: err.message };
+  }
+}
+
 export { API_BASE };
