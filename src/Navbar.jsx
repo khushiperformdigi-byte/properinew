@@ -78,48 +78,53 @@ export default function Navbar({
     }, 2000);
   };
 
+  const isHome = currentPage === 'home' || currentPage === 'partner-b2b' || currentPage === 'partner';
+  const navBgClass = isHome 
+    ? 'bg-white' 
+    : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
+
   return (
     <>
-      <div className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]">
-      {/* 1. TOP CONTACT UTILITY BAR (DESKTOP ONLY) */}
-      <div className="hidden sm:block bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40">
-        <div className="max-w-[1500px] mx-auto px-1 sm:px-2 py-0.5 flex justify-between items-center text-xs text-[#1E1B2E]">
-          <div className="flex items-center gap-2.5">
-            <div className="flex gap-2 items-center text-[#544F66]">
-              <div className="w-4.5 h-4.5 rounded-full bg-[#7C1FA8]/10 flex items-center justify-center text-[#7C1FA8]">
-                <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-                </svg>
+      <div className={`w-full ${navBgClass}`}>
+        {/* 1. TOP CONTACT UTILITY BAR (DESKTOP ONLY) */}
+        <div className={`hidden sm:block ${navBgClass} w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40`}>
+          <div className="max-w-[1500px] mx-auto px-1 sm:px-2 py-0.5 flex justify-between items-center text-xs text-[#1E1B2E]">
+            <div className="flex items-center gap-2.5">
+              <div className="flex gap-2 items-center text-[#544F66]">
+                <div className="w-4.5 h-4.5 rounded-full bg-[#7C1FA8]/10 flex items-center justify-center text-[#7C1FA8]">
+                  <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                  </svg>
+                </div>
+                <span className="font-semibold text-[#1E1B2E] text-xs">Investments · Insurance · Financing</span>
               </div>
-              <span className="font-semibold text-[#1E1B2E] text-xs">Investments · Insurance · Financing</span>
+              <span className="text-purple-200 hidden sm:inline">|</span>
+              <span className="border border-purple-200/80 text-[#7C1FA8] bg-purple-50/80 backdrop-blur-sm px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider hidden sm:inline-block shadow-2xs">
+                All through one trusted relationship
+              </span>
             </div>
-            <span className="text-purple-200 hidden sm:inline">|</span>
-            <span className="border border-purple-200/80 text-[#7C1FA8] bg-purple-50/80 backdrop-blur-sm px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider hidden sm:inline-block shadow-2xs">
-              All through one trusted relationship
-            </span>
-          </div>
 
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button
-              onClick={() => setExpertModalOpen(true)}
-              className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-bold px-3 py-1 rounded-full text-[10px] transition-all shadow-2xs flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
-                <path d="M2.25 6.622c0-1.077.873-1.95 1.95-1.95h2.25c.877 0 1.63.585 1.85 1.432l.711 2.766c.2.783-.062 1.615-.67 2.115l-1.56 1.287a15.776 15.776 0 0 0 6.6 6.6l1.287-1.56c.5-.608 1.332-.87 2.115-.67l2.766.711c.847.22 1.432.973 1.432 1.85v2.25c0 1.077-.873 1.95-1.95 1.95h-2.25a16.5 16.5 0 0 1-16.5-16.5v-2.25Z" />
-              </svg>
-              Talk to an Expert
-            </button>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <button
+                onClick={() => setExpertModalOpen(true)}
+                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-bold px-3 py-1 rounded-full text-[10px] transition-all shadow-2xs flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
+                  <path d="M2.25 6.622c0-1.077.873-1.95 1.95-1.95h2.25c.877 0 1.63.585 1.85 1.432l.711 2.766c.2.783-.062 1.615-.67 2.115l-1.56 1.287a15.776 15.776 0 0 0 6.6 6.6l1.287-1.56c.5-.608 1.332-.87 2.115-.67l2.766.711c.847.22 1.432.973 1.432 1.85v2.25c0 1.077-.873 1.95-1.95 1.95h-2.25a16.5 16.5 0 0 1-16.5-16.5v-2.25Z" />
+                </svg>
+                Talk to an Expert
+              </button>
 
 
+            </div>
           </div>
         </div>
-      </div>
 
-      {/* 2. GLASSNAVBAR - FULL WIDTH ON MOBILE, FLOATING PILL ON DESKTOP */}
-      <header className="sticky top-0 z-50 w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]">
-        <nav className={`w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-1.5 pb-1 lg:pb-1.5 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
-          <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
+        {/* 2. GLASSNAVBAR - FULL WIDTH ON MOBILE, FLOATING PILL ON DESKTOP */}
+        <header className={`sticky top-0 z-50 w-full ${navBgClass}`}>
+          <nav className={`w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-1.5 pb-1 lg:pb-1.5 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
+            <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
 
           {/* Brand Logo */}
           <div className="flex items-center cursor-pointer group shrink-0 pr-2 sm:pr-4" onClick={() => handleNav('home')}>
