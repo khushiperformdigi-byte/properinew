@@ -287,8 +287,8 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
           {/* Timeline & Steps Layout (01 to 05) */}
           <div className="max-w-4xl mx-auto relative pl-2 sm:pl-4 pt-2">
             <div className="space-y-4 relative z-10">
-              {/* Vertical Purple Connecting Line */}
-              <div className="absolute left-[15px] sm:left-[18px] lg:left-[19px] top-4 bottom-4 w-[2px] bg-purple-200/80 z-0 pointer-events-none" />
+              {/* Vertical Purple Connecting Line - Centered through circles 01 to 05 */}
+              <div className="absolute left-4 sm:left-5 top-5 bottom-5 w-[2px] -translate-x-[1px] bg-purple-200/80 z-0 pointer-events-none" />
 
               {[
                 {
@@ -296,7 +296,6 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Comprehensive Financial Solutions',
                   description: 'From investments and insurance to financing, access every financial solution through one trusted partner.',
                   bg: 'bg-[#FAF6FC]',
-                  isShifted: false,
                   icon: <FiTrendingUp className="w-5 h-5 text-white" />
                 },
                 {
@@ -304,7 +303,6 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Your Interests Come First',
                   description: 'Every recommendation is guided by what best serves your financial needs.',
                   bg: 'bg-white',
-                  isShifted: true,
                   icon: <FiCheckCircle className="w-5 h-5 text-white" />
                 },
                 {
@@ -312,7 +310,6 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Solutions Tailored To You',
                   description: 'No two financial journeys are the same. We recommend solutions that match your needs—not a one-size-fits-all approach.',
                   bg: 'bg-[#FAF6FC]',
-                  isShifted: false,
                   icon: <FiShield className="w-5 h-5 text-white" />
                 },
                 {
@@ -320,7 +317,6 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Long-Term Relationships',
                   description: "We're here to support your financial journey, not just a single transaction.",
                   bg: 'bg-white',
-                  isShifted: true,
                   icon: <FiHeart className="w-5 h-5 text-white" />
                 },
                 {
@@ -328,13 +324,12 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Transparency You Can Count On',
                   description: 'Clear communication, informed decisions and no unnecessary complexity.',
                   bg: 'bg-[#FAF6FC]',
-                  isShifted: false,
                   icon: <FiCreditCard className="w-5 h-5 text-white" />
                 }
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className={`flex items-center gap-3.5 sm:gap-5 group relative z-10 transition-all duration-200 ${item.isShifted ? 'lg:translate-x-3' : ''}`}
+                  className="flex items-center gap-3.5 sm:gap-5 group relative z-10 transition-all duration-200"
                 >
                   {/* Step Number Circle */}
                   <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-[#7C1FA8] border-2 border-[#7C1FA8] flex items-center justify-center text-xs sm:text-sm font-extrabold shrink-0 shadow-xs relative z-10">
