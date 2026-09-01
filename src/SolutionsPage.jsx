@@ -66,7 +66,7 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
 
               <button
                 onClick={() => {
-                  const el = document.getElementById('what-we-offer');
+                  const el = document.getElementById('how-you-earn');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
                 className="h-[52px] sm:h-[56px] px-7 sm:px-8 rounded-2xl border-2 border-[#7C1FA8] text-[#7C1FA8] hover:bg-purple-50 font-extrabold text-sm sm:text-base transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
@@ -195,90 +195,8 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
           </div>
         </section>
 
-        {/* SECTION 2: WHAT WE OFFER? */}
-        <section id="what-we-offer" className="space-y-8">
-          <div className="text-center space-y-3 max-w-3xl mx-auto">
-            <span className="bg-[#F5EEFB] text-[#7C1FA8] text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-purple-200/80 inline-block">
-              COMPLETE PRODUCT SHELF
-            </span>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#1E1B2E] tracking-tight">
-              What We Offer?
-            </h2>
-            <p className="font-body font-semibold text-sm sm:text-base text-[#544F66]">
-              Access over 50+ financial products across three core verticals under a single empanelment.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
-            
-            {/* H3: Investments */}
-            <div 
-              onClick={() => handleNav('investment')}
-              className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#7C1FA8] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
-            >
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-purple-100 text-[#7C1FA8] flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
-                  📈
-                </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h3>
-                <p className="text-sm sm:text-[15px] font-extrabold text-[#1E1B2E] leading-relaxed bg-[#FAF6FC] p-4.5 rounded-2xl border border-purple-100">
-                  Mutual Funds · Fixed Income · AIF · PMS · Equities · Unlisted Securities · Smallcase
-                </p>
-              </div>
-
-              <div className="w-full py-3.5 px-5 rounded-xl bg-[#7C1FA8] group-hover:bg-[#68198f] text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                <span>Explore More</span>
-                <span>→</span>
-              </div>
-            </div>
-
-            {/* H3: Insurance */}
-            <div 
-              onClick={() => handleNav('insurance')}
-              className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#C81E8C] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
-            >
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-pink-100 text-[#C81E8C] flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
-                  🛡️
-                </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h3>
-                <p className="text-sm sm:text-[15px] font-extrabold text-[#1E1B2E] leading-relaxed bg-[#FDF2F8] p-4.5 rounded-2xl border border-pink-100">
-                  Life · Health · Motor · Travel · Property · More
-                </p>
-              </div>
-
-              <div className="w-full py-3.5 px-5 rounded-xl bg-[#C81E8C] group-hover:bg-[#a81674] text-white font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                <span>Explore More</span>
-                <span>→</span>
-              </div>
-            </div>
-
-            {/* H3: Financing */}
-            <div 
-              onClick={() => handleNav('financing')}
-              className="bg-white rounded-[24px] border-2 border-purple-100 p-6 sm:p-7 shadow-sm hover:shadow-xl hover:border-[#F5A623] transition-all duration-300 flex flex-col justify-between space-y-6 group cursor-pointer"
-            >
-              <div className="space-y-4">
-                <div className="w-12 h-12 rounded-2xl bg-amber-100 text-[#D49300] flex items-center justify-center text-2xl font-bold group-hover:scale-110 transition-transform">
-                  💳
-                </div>
-                <h3 className="font-heading font-extrabold text-2xl text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h3>
-                <p className="text-sm sm:text-[15px] font-extrabold text-[#1E1B2E] leading-relaxed bg-[#FFFBEB] p-4.5 rounded-2xl border border-amber-100">
-                  Home Loan · Personal Loan · Business Loan · Vehicle Loan · LAP · Overdraft
-                </p>
-              </div>
-
-              <div className="w-full py-3.5 px-5 rounded-xl bg-[#F5A623] group-hover:bg-[#D49300] text-[#1E1B2E] font-extrabold text-xs sm:text-sm shadow-md transition-all flex items-center justify-center gap-2">
-                <span>Explore More</span>
-                <span>→</span>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
         {/* SECTION 3: HOW YOU EARN */}
-        <section className="bg-gradient-to-br from-[#FAF8FC] via-[#F4ECFB] to-[#FAF8FC] border border-purple-100 rounded-[28px] p-6 sm:p-10 lg:p-12 space-y-10 shadow-xs">
+        <section id="how-you-earn" className="bg-gradient-to-br from-[#FAF8FC] via-[#F4ECFB] to-[#FAF8FC] border border-purple-100 rounded-[28px] p-6 sm:p-10 lg:p-12 space-y-10 shadow-xs">
           <div className="text-center space-y-3 max-w-3xl mx-auto">
             <span className="bg-purple-100 text-[#7C1FA8] text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-purple-200/80 inline-block">
               REVENUE MODELS
