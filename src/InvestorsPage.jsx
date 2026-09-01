@@ -185,11 +185,11 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
               </span>
             </div>
 
-            <h2 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-[30px] leading-tight text-[#1E1B2E] tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[34px] leading-tight text-[#1E1B2E] tracking-tight">
               One Trusted Partner for Every Financial Need.
             </h2>
 
-            <p className="font-body font-semibold text-xs sm:text-sm text-[#544F66] leading-relaxed max-w-[560px] mx-auto pt-0.5">
+            <p className="font-body font-semibold text-xs sm:text-sm text-[#544F66] leading-relaxed max-w-[600px] mx-auto pt-0.5">
               Why manage multiple financial relationships when one trusted partner can do it all? PROSPERi5 brings investments, insurance and financing together thereby making every financial decision simpler, more connected and easier to manage.
             </p>
           </div>
