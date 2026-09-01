@@ -422,7 +422,7 @@ function App() {
     <>
 
       {/* 3. HERO CONTAINER */}
-      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 -mt-[76px] lg:-mt-[88px] pt-[96px] sm:pt-[126px] lg:pt-[136px] pb-4 lg:pb-8 z-10 relative overflow-hidden">
+      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-4 sm:pt-6 lg:pt-8 pb-4 lg:pb-8 z-10 relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
 
           {/* LEFT CONTENT COLUMN */}

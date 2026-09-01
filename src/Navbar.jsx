@@ -78,13 +78,10 @@ export default function Navbar({
     }, 2000);
   };
 
-  const isDarkPage = currentPage === 'protect';
   const isHome = currentPage === 'home' || currentPage === 'partner-b2b' || currentPage === 'partner';
-  const navBgClass = isDarkPage
-    ? 'bg-[#160628] bg-gradient-to-r from-[#19062D] via-[#140426] to-[#200A38]'
-    : isHome 
-      ? 'bg-white' 
-      : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
+  const navBgClass = isHome 
+    ? 'bg-white' 
+    : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
 
   return (
     <>
@@ -125,7 +122,7 @@ export default function Navbar({
         </div>
 
         {/* 2. GLASSNAVBAR - FULL WIDTH ON MOBILE, FLOATING PILL ON DESKTOP */}
-        <header className={`sticky top-0 z-50 w-full ${navBgClass}`}>
+        <header className={`relative z-50 w-full ${navBgClass}`}>
           <nav className={`w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-1.5 pb-1 lg:pb-1.5 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
             <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
 

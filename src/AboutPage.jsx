@@ -44,7 +44,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
     <div className="w-full bg-[#FAF8FC] font-sans text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
 
       {/* 1. HERO SECTION */}
-      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[88px] lg:-mt-[104px] pt-[130px] sm:pt-[145px] lg:pt-[160px] pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 font-sans">
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 font-sans">
         
         {/* Ambient Curved Light Purple Background Overlay */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
