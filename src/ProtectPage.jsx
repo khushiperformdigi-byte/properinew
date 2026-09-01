@@ -71,7 +71,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
 
 
       {/* 3. HERO SECTION (PROTECT WHAT MATTERS) */}
-      <section className="w-full bg-[#160628] bg-gradient-to-r from-[#19062D] via-[#140426] to-[#200A38] relative overflow-hidden border-b border-purple-900/50 -mt-[76px] lg:-mt-[88px] pt-[116px] sm:pt-[126px] lg:pt-[136px] pb-5 sm:pb-6 lg:pb-7 px-4 sm:px-6 lg:px-8 font-sans">
+      <section className="w-full bg-[#160628] bg-gradient-to-r from-[#19062D] via-[#140426] to-[#200A38] relative overflow-hidden border-b border-purple-900/50 -mt-[110px] lg:-mt-[135px] pt-[150px] sm:pt-[170px] lg:pt-[195px] pb-12 sm:pb-16 lg:pb-20 px-4 sm:px-6 lg:px-8 font-sans">
         {/* Soft Ambient Background Glows */}
         <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-purple-600/20 rounded-full filter blur-[120px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-10 w-[350px] h-[350px] bg-pink-600/15 rounded-full filter blur-[100px] pointer-events-none"></div>

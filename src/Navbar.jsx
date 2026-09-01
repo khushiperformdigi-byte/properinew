@@ -78,10 +78,13 @@ export default function Navbar({
     }, 2000);
   };
 
+  const isDarkPage = currentPage === 'protect';
   const isHome = currentPage === 'home' || currentPage === 'partner-b2b' || currentPage === 'partner';
-  const navBgClass = isHome 
-    ? 'bg-white' 
-    : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
+  const navBgClass = isDarkPage
+    ? 'bg-[#160628] bg-gradient-to-r from-[#19062D] via-[#140426] to-[#200A38]'
+    : isHome 
+      ? 'bg-white' 
+      : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
 
   return (
     <>
