@@ -206,69 +206,63 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
             </div>
           </div>
 
-          {/* Timeline & Steps Layout (Homepage Format) */}
-          <div className="max-w-4xl mx-auto relative pl-2 sm:pl-4 pt-4">
-            <div className="space-y-4 relative z-10">
-              {/* Vertical Purple Connecting Line */}
-              <div className="absolute left-[15px] sm:left-[18px] lg:left-[19px] top-4 bottom-4 w-[2px] bg-purple-200/80 z-0 pointer-events-none" />
-
-              {[
-                {
-                  step: '01',
-                  title: 'Grow Your Wealth',
-                  description: 'Build long-term wealth with investment solutions tailored to your financial goals.',
-                  page: 'investment',
-                  bg: 'bg-[#FAF6FC]',
-                  isShifted: false,
-                  icon: <FiTrendingUp className="w-5 h-5 text-white" />
-                },
-                {
-                  step: '02',
-                  title: 'Protect What Matters',
-                  description: 'Comprehensive insurance solutions for you, your family and your assets.',
-                  page: 'insurance',
-                  bg: 'bg-white',
-                  isShifted: true,
-                  icon: <FiShield className="w-5 h-5 text-white" />
-                },
-                {
-                  step: '03',
-                  title: 'Finance Your Aspirations',
-                  description: "Smart financing solutions for homes, businesses and life's biggest milestones.",
-                  page: 'financing',
-                  bg: 'bg-[#FAF6FC]',
-                  isShifted: false,
-                  icon: <FiCreditCard className="w-5 h-5 text-white" />
-                }
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  onClick={() => handleNav(item.page)}
-                  className={`flex items-center gap-3.5 sm:gap-5 group cursor-pointer relative z-10 transition-all duration-200 ${item.isShifted ? 'lg:translate-x-3' : ''}`}
-                >
-                  {/* Step Number Circle */}
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-[#7C1FA8] border-2 border-[#7C1FA8] flex items-center justify-center text-xs sm:text-sm font-extrabold shrink-0 shadow-xs relative z-10">
-                    {item.step}
-                  </div>
-
-                  {/* Step Content Card */}
-                  <div className={`flex-1 ${item.bg} border border-purple-100/90 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 shadow-2xs group-hover:shadow-md transition-shadow`}>
-                    <div className="space-y-0.5 text-left">
-                      <h3 className="font-sans font-extrabold text-base sm:text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
-                        {item.title}
-                      </h3>
-                      <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
-                        {item.description}
-                      </p>
-                    </div>
-
-                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center shrink-0 shadow-xs">
-                      {item.icon}
-                    </div>
-                  </div>
+          {/* 3 Solution Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-left pt-2">
+            
+            {/* Card 1: Grow Your Wealth */}
+            <div 
+              onClick={() => handleNav('investment')}
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-2xs group-hover:scale-105 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
+                  <FiTrendingUp className="w-6 h-6" />
                 </div>
-              ))}
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                  Grow Your Wealth
+                </h3>
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
+                  Build long-term wealth with investment solutions tailored to your financial goals.
+                </p>
+              </div>
             </div>
+
+            {/* Card 2: Protect What Matters */}
+            <div 
+              onClick={() => handleNav('insurance')}
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-2xs group-hover:scale-105 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
+                  <FiShield className="w-6 h-6" />
+                </div>
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                  Protect What Matters
+                </h3>
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
+                  Comprehensive insurance solutions for you, your family and your assets.
+                </p>
+              </div>
+            </div>
+
+            {/* Card 3: Finance Your Aspirations */}
+            <div 
+              onClick={() => handleNav('financing')}
+              className="bg-white rounded-[24px] p-6 sm:p-7 border border-purple-100/90 shadow-2xs hover:shadow-md transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+            >
+              <div className="space-y-3">
+                <div className="w-12 h-12 rounded-2xl bg-gradient-to-tr from-purple-100 to-purple-50 text-[#7C1FA8] border border-purple-200/60 flex items-center justify-center shadow-2xs group-hover:scale-105 group-hover:bg-[#7C1FA8] group-hover:text-white transition-all duration-300">
+                  <FiCreditCard className="w-6 h-6" />
+                </div>
+                <h3 className="font-sans font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                  Finance Your Aspirations
+                </h3>
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
+                  Smart financing solutions for homes, businesses and life's biggest milestones.
+                </p>
+              </div>
+            </div>
+
           </div>
         </section>
 
