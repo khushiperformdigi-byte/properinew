@@ -291,12 +291,8 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
               The PROSPERi5 Difference
             </h2>
 
-            <p className="font-body font-extrabold text-sm sm:text-base text-[#7C1FA8] leading-relaxed">
+            <p className="font-body font-semibold text-sm sm:text-base text-[#1E1B2E] leading-relaxed">
               Financial advice built around what's right for you.
-            </p>
-
-            <p className="font-body font-semibold text-xs sm:text-sm text-[#544F66] leading-relaxed max-w-2xl mx-auto">
-              Built on trust, transparency and doing what's right for every client.
             </p>
           </div>
 
