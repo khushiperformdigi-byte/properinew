@@ -1386,7 +1386,7 @@ function App() {
         <div className="absolute -bottom-10 -left-10 w-[300px] h-[300px] bg-purple-200/30 rounded-full filter blur-[90px] pointer-events-none"></div>
         <div className="absolute top-2 right-0 w-[250px] h-[250px] bg-pink-200/20 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Section Header (Centered & Compact) */}
           <ScrollReveal animation="up" delay={30} className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl">
@@ -1402,7 +1402,7 @@ function App() {
           </ScrollReveal>
 
           {/* Stepper Timeline Header Row with 5 Numbered Purple Circles */}
-          <ScrollReveal animation="scale" delay={50} className="hidden lg:grid grid-cols-5 gap-3.5 sm:gap-4 mb-5 relative max-w-6xl mx-auto">
+          <ScrollReveal animation="scale" delay={50} className="hidden lg:grid grid-cols-5 gap-3.5 sm:gap-4 mb-5 relative max-w-7xl mx-auto">
             {/* Horizontal Background Line (Simple Solid Line) */}
             <div className="absolute top-1/2 left-[10%] right-[10%] -translate-y-1/2 h-[2px] bg-purple-200 pointer-events-none z-0"></div>
 
@@ -1426,7 +1426,7 @@ function App() {
           </ScrollReveal>
 
           {/* 5 Horizontal Process Cards Grid (White by default, Purple background & White text on Hover) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 relative max-w-6xl mx-auto items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 relative max-w-7xl mx-auto items-stretch">
             {[
               {
                 step: '01',
@@ -2015,7 +2015,7 @@ function App() {
         <div className="absolute top-10 left-10 w-[300px] h-[300px] bg-pink-100/30 rounded-full filter blur-[90px] pointer-events-none"></div>
         <div className="absolute -bottom-10 right-10 w-[300px] h-[300px] bg-purple-200/30 rounded-full filter blur-[90px] pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Section Header (Exact Mobile View Specs) */}
           <ScrollReveal animation="up" delay={30} className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl">

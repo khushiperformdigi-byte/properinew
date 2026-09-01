@@ -315,7 +315,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
 
       {/* INDIVIDUAL CUSTOMER VIEW */}
           {/* 2. HERO SECTION (PROTECT WHAT MATTERS MOST) */}
-          <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 font-sans">
+          <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[88px] lg:-mt-[104px] pt-[130px] sm:pt-[145px] lg:pt-[160px] pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 font-sans">
             
             {/* Soft Ambient Background Glows */}
             <div className="absolute top-0 right-1/3 w-[400px] h-[400px] bg-purple-300/20 rounded-full filter blur-[100px] pointer-events-none"></div>
