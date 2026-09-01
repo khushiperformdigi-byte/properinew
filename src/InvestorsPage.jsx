@@ -183,39 +183,7 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
         </div>
       </section>
 
-      {/* SCREEN 2: ONE TRUSTED PARTNER SECTION */}
-      <section className="w-full py-6 sm:py-8 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto">
-          <div className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[22px] p-5 sm:p-7 lg:p-8 text-white shadow-xl relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6">
-            
-            {/* Ambient Background Glow */}
-            <div className="absolute -right-10 -bottom-10 w-64 h-64 bg-purple-400/20 rounded-full blur-3xl pointer-events-none"></div>
 
-            <div className="space-y-2 text-center md:text-left max-w-3xl relative z-10">
-              <span className="bg-white/15 border border-white/20 text-purple-100 px-3 py-0.5 rounded-full text-[10px] font-extrabold tracking-wider uppercase inline-block">
-                ONE RELATIONSHIP. UNLIMITED POSSIBILITIES.
-              </span>
-              <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-tight tracking-tight">
-                One Trusted Partner for Every Financial Need.
-              </h2>
-              <p className="text-xs sm:text-sm text-purple-100/90 font-medium leading-relaxed">
-                Why manage multiple financial relationships when one trusted partner can do it all? PROSPERi5 brings investments, insurance and financing together thereby making every financial decision simpler, more connected and easier to manage.
-              </p>
-            </div>
-
-            <div className="shrink-0 relative z-10">
-              <button
-                onClick={() => setSelectedModal(true)}
-                className="bg-white hover:bg-purple-50 text-[#7C1FA8] font-extrabold px-6 py-3 rounded-xl text-xs sm:text-sm shadow-md transition-all active:scale-95 cursor-pointer flex items-center gap-2"
-              >
-                <span>Get Expert Support</span>
-                <span>➔</span>
-              </button>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* SCREEN 3: THE PROSPERi5 DIFFERENCE SECTION */}
       <section id="prosperi5-difference-section" className="w-full py-12 lg:py-16 px-4 sm:px-6 lg:px-8 bg-[#FAF8FC] border-b border-[#EBE8EF]">

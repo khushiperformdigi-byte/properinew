@@ -598,28 +598,6 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
               </div>
             </section>
 
-            {/* B2B PARTNER CROSSOVER BANNER */}
-            <section className="bg-gradient-to-r from-[#F4EDFC] via-[#FAF5FE] to-[#F4EDFC] border border-[#E8DAF5] rounded-[22px] p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5 text-left">
-                <div className="w-11 h-11 rounded-2xl bg-[#7C1FA8] text-white flex items-center justify-center text-xl shrink-0 shadow-md">
-                  💼
-                </div>
-                <div>
-                  <h4 className="font-extrabold text-base text-[#1E1B2E]">Are you a Financial Advisor or Distributor?</h4>
-                  <p className="text-xs text-[#544F66] font-semibold mt-0.5">
-                    Offer life, health, motor & property insurance to your clients and earn high POSP commissions.
-                  </p>
-                </div>
-              </div>
-
-              <button
-                onClick={() => setViewMode('partner')}
-                className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs shadow-md transition-all whitespace-nowrap cursor-pointer shrink-0"
-              >
-                Become a Partner Distributor →
-              </button>
-            </section>
-
             {/* SCREEN 5: BANNER CTA SECTION */}
             <section className="bg-[#5E1683] rounded-[22px] p-4.5 sm:p-6 lg:px-8 py-5 text-white flex flex-col md:flex-row items-center justify-between gap-5 shadow-lg relative overflow-hidden">
               <div className="flex items-center gap-4.5 text-left max-w-xl sm:max-w-2xl lg:max-w-3xl flex-1">
@@ -650,28 +628,8 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
             </section>
 
           </main>
-              <div className="space-y-2 text-left max-w-2xl">
-                <span className="text-xs font-extrabold uppercase tracking-widest text-purple-200 block">
-                  JOIN PROSPERIS PARTNER NETWORK
-                </span>
-                <h2 className="text-xl sm:text-2xl lg:text-3xl font-extrabold text-white leading-snug">
-                  Your clients need insurance. You should be the one to provides it.
-                </h2>
-                <p className="text-xs sm:text-sm text-purple-100 font-medium leading-relaxed">
-                  Join distributors who are using PROSPERi5 to add insurance to what they offer and earn from it. Get certified, get supported, and grow.
-                </p>
-              </div>
 
-              <button
-                onClick={() => setPartnerModalOpen(true)}
-                className="bg-white hover:bg-purple-50 text-[#1E1B2E] font-extrabold px-8 sm:px-10 py-4 rounded-full text-xs sm:text-sm min-w-[220px] transition-all shadow-lg hover:scale-105 flex items-center justify-center gap-2 cursor-pointer shrink-0 active:scale-95"
-              >
-                <span>Get started as a partner</span>
-                <span className="text-base">→</span>
-              </button>
-            </section>
-
-          </main>
+          <Footer onNavigateHome={onNavigateHome} onNavigatePage={onNavigatePage} />
         </>
       )}
 
