@@ -403,8 +403,8 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 flex-1">
                       <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
-                        <div className="w-8 h-8 rounded-xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-2xs">
-                          <FiPieChart className="w-4 h-4" />
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiPieChart className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
                           <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Comprehensive Spectrum</h4>
@@ -415,8 +415,8 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                       </div>
 
                       <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
-                        <div className="w-8 h-8 rounded-xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-2xs">
-                          <FiTarget className="w-4 h-4" />
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiTarget className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
                           <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Matched To Your Needs</h4>
@@ -427,8 +427,8 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                       </div>
 
                       <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
-                        <div className="w-8 h-8 rounded-xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-2xs">
-                          <FiTrendingUp className="w-4 h-4" />
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiTrendingUp className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
                           <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Diversification Made Simple</h4>
@@ -439,8 +439,8 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                       </div>
 
                       <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
-                        <div className="w-8 h-8 rounded-xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-2xs">
-                          <FiShield className="w-4 h-4" />
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiShield className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
                           <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Exclusive Opportunities</h4>
@@ -471,12 +471,14 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
 
               <button
                 onClick={() => {
-                  if (onNavigateHome) onNavigateHome();
-                  else if (onNavigatePage) onNavigatePage('home');
+                  if (onNavigatePage) {
+                    onNavigatePage('partner', 'signup');
+                  } else {
+                    window.location.href = '/partner-b2b#signup';
+                  }
                   setTimeout(() => {
-                    const el = document.getElementById('partner-waitlist') || document.getElementById('contact');
+                    const el = document.getElementById('signup') || document.getElementById('partner-waitlist') || document.getElementById('contact');
                     if (el) el.scrollIntoView({ behavior: 'smooth' });
-                    else window.location.href = '/#partner-waitlist';
                   }, 100);
                 }}
                 className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all whitespace-nowrap cursor-pointer shrink-0 hover:scale-105 active:scale-95"
