@@ -114,26 +114,26 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             
             {/* For Clients Card */}
-            <div className="bg-white rounded-[28px] p-7 sm:p-9 border border-purple-100/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-[22px] p-5 sm:p-6 border border-purple-100/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-6 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-3 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
-                <h3 className="font-sans font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mb-3">
+                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#1E1B2E] mb-1.5">
                   For Clients
                 </h3>
-                <p className="font-medium text-sm sm:text-base text-[#544F66] leading-relaxed mb-6">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-snug mb-3.5">
                   We help clients build wealth responsibly, protect assets, and achieve aspirations, through curated solutions.
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-purple-100/60">
-                <div className="flex flex-wrap gap-2.5">
+              <div className="pt-3.5 border-t border-purple-100/60">
+                <div className="flex flex-wrap gap-2">
                   {['Investment', 'Insurance', 'Financing'].map((bullet, idx) => (
-                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#7C1FA8]"></span>
+                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-[11px] font-extrabold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8]"></span>
                       {bullet}
                     </span>
                   ))}
@@ -142,26 +142,26 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
             </div>
 
             {/* For Partners Card */}
-            <div className="bg-white rounded-[28px] p-7 sm:p-9 border border-purple-100/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-[22px] p-5 sm:p-6 border border-purple-100/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-6 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-3 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="font-sans font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mb-3">
+                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#1E1B2E] mb-1.5">
                   For Partners
                 </h3>
-                <p className="font-medium text-sm sm:text-base text-[#544F66] leading-relaxed mb-6">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-snug mb-3.5">
                   A scalable distribution and execution platform, enabling you to offer full suite of financial solutions while retaining client ownership.
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-purple-100/60">
-                <div className="flex flex-wrap gap-2.5">
+              <div className="pt-3.5 border-t border-purple-100/60">
+                <div className="flex flex-wrap gap-2">
                   {['Platform', 'Partner', 'Scale'].map((bullet, idx) => (
-                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#7C1FA8]"></span>
+                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-[11px] font-extrabold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8]"></span>
                       {bullet}
                     </span>
                   ))}
