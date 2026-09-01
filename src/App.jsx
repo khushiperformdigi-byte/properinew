@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { sendWhatsAppEnquiry } from './utils/whatsapp';
 import PhoneInput from './components/PhoneInput';
+import SolutionsPage from './SolutionsPage';
 import InvestmentPage from './InvestmentPage';
 import InsurancePage from './InsurancePage';
 import FinancingPage from './FinancingPage';
@@ -337,6 +338,9 @@ function App() {
 
   const renderPageContent = () => {
     switch (currentPage) {
+      case 'solutions':
+      case 'solution':
+        return <SolutionsPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
       case 'protect':
         return <ProtectPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
       case 'investment':

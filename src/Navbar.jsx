@@ -151,9 +151,9 @@ export default function Navbar({
 
             {/* Solutions Direct Link */}
             <a
-              href={getPathForPage('investment')}
-              onClick={(e) => { e.preventDefault(); handleNav('investment'); }}
-              className={`whitespace-nowrap transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'investment' || currentPage === 'insurance' || currentPage === 'financing' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : 'hover:text-[#7C1FA8]'}`}
+              href={getPathForPage('solutions')}
+              onClick={(e) => { e.preventDefault(); handleNav('solutions'); }}
+              className={`whitespace-nowrap transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'solutions' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : 'hover:text-[#7C1FA8]'}`}
             >
               Solutions
             </a>
@@ -500,10 +500,10 @@ export default function Navbar({
 
                 {/* 03 Solutions */}
                 <button
-                  onClick={() => handleNav('investment')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'investment' || currentPage === 'insurance' || currentPage === 'financing' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
+                  onClick={() => handleNav('solutions')}
+                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'solutions' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'investment' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>03</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'solutions' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>03</span>
                   <span className="font-bold text-sm">Solutions</span>
                 </button>
 
