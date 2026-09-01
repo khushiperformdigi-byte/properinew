@@ -272,8 +272,8 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
           </div>
         </section>
 
-        {/* SCREEN 3: THE PROSPERi5 DIFFERENCE (Un-boxed & Compact) */}
-        <section id="prosperi5-difference-section" className="w-full space-y-8 py-2">
+        {/* SCREEN 3: THE PROSPERi5 DIFFERENCE (Un-boxed & Compact Timeline Steps Format) */}
+        <section id="prosperi5-difference-section" className="w-full space-y-6 py-2">
           <div className="text-center space-y-2.5 max-w-3xl mx-auto">
             <div>
               <span className="bg-[#F5EEFB] text-[#7C1FA8] text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-purple-200/80 inline-block">
@@ -290,26 +290,81 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
             </p>
           </div>
 
-          {/* 6 Feature Cards Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-            {prosperi5DifferencePoints.map((point, idx) => (
-              <div
-                key={idx}
-                className="bg-[#FAF6FC] rounded-2xl border border-purple-100/90 p-5.5 space-y-3 shadow-2xs hover:shadow-md transition-all duration-300 group flex flex-col justify-between"
-              >
-                <div className="space-y-2.5">
-                  <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center shrink-0 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
-                    {point.icon}
+          {/* Timeline & Steps Layout (01 to 05) */}
+          <div className="max-w-4xl mx-auto relative pl-2 sm:pl-4 pt-2">
+            <div className="space-y-4 relative z-10">
+              {/* Vertical Purple Connecting Line */}
+              <div className="absolute left-[15px] sm:left-[18px] lg:left-[19px] top-4 bottom-4 w-[2px] bg-purple-200/80 z-0 pointer-events-none" />
+
+              {[
+                {
+                  step: '01',
+                  title: 'Comprehensive Financial Solutions',
+                  description: 'From investments and insurance to financing, access every financial solution through one trusted partner.',
+                  bg: 'bg-[#FAF6FC]',
+                  isShifted: false,
+                  icon: <FiTrendingUp className="w-5 h-5 text-white" />
+                },
+                {
+                  step: '02',
+                  title: 'Your Interests Come First',
+                  description: 'Every recommendation is guided by what best serves your financial needs.',
+                  bg: 'bg-white',
+                  isShifted: true,
+                  icon: <FiCheckCircle className="w-5 h-5 text-white" />
+                },
+                {
+                  step: '03',
+                  title: 'Solutions Tailored To You',
+                  description: 'No two financial journeys are the same. We recommend solutions that match your needs—not a one-size-fits-all approach.',
+                  bg: 'bg-[#FAF6FC]',
+                  isShifted: false,
+                  icon: <FiShield className="w-5 h-5 text-white" />
+                },
+                {
+                  step: '04',
+                  title: 'Long-Term Relationships',
+                  description: "We're here to support your financial journey, not just a single transaction.",
+                  bg: 'bg-white',
+                  isShifted: true,
+                  icon: <FiHeart className="w-5 h-5 text-white" />
+                },
+                {
+                  step: '05',
+                  title: 'Transparency You Can Count On',
+                  description: 'Clear communication, informed decisions and no unnecessary complexity.',
+                  bg: 'bg-[#FAF6FC]',
+                  isShifted: false,
+                  icon: <FiCreditCard className="w-5 h-5 text-white" />
+                }
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`flex items-center gap-3.5 sm:gap-5 group relative z-10 transition-all duration-200 ${item.isShifted ? 'lg:translate-x-3' : ''}`}
+                >
+                  {/* Step Number Circle */}
+                  <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-white text-[#7C1FA8] border-2 border-[#7C1FA8] flex items-center justify-center text-xs sm:text-sm font-extrabold shrink-0 shadow-xs relative z-10">
+                    {item.step}
                   </div>
-                  <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
-                    {point.title}
-                  </h3>
-                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
-                    {point.description}
-                  </p>
+
+                  {/* Step Content Card */}
+                  <div className={`flex-1 ${item.bg} border border-purple-100/90 rounded-2xl p-4 sm:p-5 flex items-center justify-between gap-4 shadow-2xs group-hover:shadow-md transition-shadow`}>
+                    <div className="space-y-0.5 text-left">
+                      <h3 className="font-sans font-extrabold text-base sm:text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                        {item.title}
+                      </h3>
+                      <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+
+                    <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#7C1FA8] text-white flex items-center justify-center shrink-0 shadow-xs">
+                      {item.icon}
+                    </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
 
