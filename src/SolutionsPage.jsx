@@ -75,16 +75,6 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
                 <span>Get Started — Zero Fee</span>
                 <FiArrowRight className="w-5 h-5" />
               </button>
-
-              <button
-                onClick={() => {
-                  const el = document.getElementById('how-you-earn');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="h-[52px] sm:h-[56px] px-7 sm:px-8 rounded-2xl border-2 border-[#7C1FA8] text-[#7C1FA8] hover:bg-purple-50 font-extrabold text-sm sm:text-base transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2"
-              >
-                <span>Explore 50+ Products</span>
-              </button>
             </div>
 
             {/* Micro Trust Bullet Bar */}
