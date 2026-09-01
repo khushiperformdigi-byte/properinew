@@ -51,37 +51,19 @@ export default function Footer({ onNavigatePage }) {
           {/* 4 Link Columns Grid (2x2) */}
           <div className="grid grid-cols-2 gap-x-6 gap-y-7 w-full text-left mb-8 px-1">
 
-            {/* Column 1: SOLUTIONS */}
+            {/* Column 1: FOR INVESTORS */}
             <div className="flex flex-col gap-2">
               <h4 className="text-[#F5A623] text-xs font-bold tracking-wider uppercase mb-1">
-                SOLUTIONS
+                FOR INVESTORS
               </h4>
               <ul className="space-y-2 text-xs sm:text-sm font-medium text-white/80">
-                <li><a href={getPathForPage('grow')} onClick={(e) => { e.preventDefault(); handleNav('grow'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Grow</a></li>
-                <li><a href={getPathForPage('protect')} onClick={(e) => { e.preventDefault(); handleNav('protect'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Protect</a></li>
+                <li><a href={getPathForPage('solutions')} onClick={(e) => { e.preventDefault(); handleNav('solutions'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Solutions</a></li>
                 <li><a href={getPathForPage('investment')} onClick={(e) => { e.preventDefault(); handleNav('investment'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Investments</a></li>
                 <li><a href={getPathForPage('insurance')} onClick={(e) => { e.preventDefault(); handleNav('insurance'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Insurance</a></li>
                 <li><a href={getPathForPage('financing')} onClick={(e) => { e.preventDefault(); handleNav('financing'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Financing</a></li>
                 <li><a href={getPathForPage('loan')} onClick={(e) => { e.preventDefault(); handleNav('loan'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Loans</a></li>
                 <li><a href={getPathForPage('borrow')} onClick={(e) => { e.preventDefault(); handleNav('borrow'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Borrow</a></li>
                 <li><a href={getPathForPage('tools')} onClick={(e) => { e.preventDefault(); handleNav('tools'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Financial Tools</a></li>
-              </ul>
-            </div>
-
-            {/* Column 2: FOR INVESTORS */}
-            <div className="flex flex-col gap-2">
-              <h4 className="text-[#F5A623] text-xs font-bold tracking-wider uppercase mb-1">
-                FOR INVESTORS
-              </h4>
-              <ul className="space-y-2 text-xs sm:text-sm font-medium text-white/80">
-                <li><a href={getPathForPage('investors')} onClick={(e) => { e.preventDefault(); handleNav('investors'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Investor Overview</a></li>
-                <li><a href={getPathForPage('insights')} onClick={(e) => { e.preventDefault(); handleNav('insights'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Market Insights</a></li>
-                <li><a href={getPathForPage('tax')} onClick={(e) => { e.preventDefault(); handleNav('tax'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Tax Solutions</a></li>
-                <li><a href={getPathForPage('personal-finance')} onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Personal Finance</a></li>
-                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Knowledge Centre</a></li>
-                <li><a href={getPathForPage('blog')} onClick={(e) => { e.preventDefault(); handleNav('blog'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Blog &amp; Articles</a></li>
-                <li><a href={getPathForPage('about')} onClick={(e) => { e.preventDefault(); handleNav('about'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Talk To an Expert</a></li>
-                <li><a href={getPathForPage('home')} onClick={(e) => { e.preventDefault(); handleNav('home'); setTimeout(() => { const el = document.getElementById('faqs'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 150); }} className="hover:text-white transition-colors cursor-pointer text-left block">FAQs</a></li>
               </ul>
             </div>
 
@@ -217,8 +199,8 @@ export default function Footer({ onNavigatePage }) {
         {/* Main Floating Footer Card Container */}
         <div className="bg-[#180F24]/95 backdrop-blur-md rounded-[24px] sm:rounded-[28px] p-4 sm:p-5 lg:p-6 max-w-[1248px] mx-auto border border-white/10 shadow-2xl relative overflow-hidden">
 
-          {/* TOP NAVIGATION GRID (5 COLUMNS) */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-10 mb-5 sm:mb-6">
+          {/* TOP NAVIGATION GRID (4 COLUMNS) */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 mb-5 sm:mb-6">
 
             {/* Column 1: Brand Info */}
             <div className="lg:col-span-1 flex flex-col justify-start">
@@ -235,12 +217,11 @@ export default function Footer({ onNavigatePage }) {
               </div>
             </div>
 
-            {/* Column 2: SOLUTIONS */}
+            {/* Column 2: FOR INVESTORS */}
             <div>
-              <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">SOLUTIONS</h4>
+              <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">FOR INVESTORS</h4>
               <ul className="space-y-1 text-xs sm:text-[13px] text-white/90 font-semibold">
-                <li><a href={getPathForPage('grow')} onClick={(e) => { e.preventDefault(); handleNav('grow'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Grow</a></li>
-                <li><a href={getPathForPage('protect')} onClick={(e) => { e.preventDefault(); handleNav('protect'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Protect</a></li>
+                <li><a href={getPathForPage('solutions')} onClick={(e) => { e.preventDefault(); handleNav('solutions'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Solutions</a></li>
                 <li><a href={getPathForPage('investment')} onClick={(e) => { e.preventDefault(); handleNav('investment'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Investments</a></li>
                 <li><a href={getPathForPage('insurance')} onClick={(e) => { e.preventDefault(); handleNav('insurance'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Insurance</a></li>
                 <li><a href={getPathForPage('financing')} onClick={(e) => { e.preventDefault(); handleNav('financing'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Financing</a></li>
@@ -250,22 +231,7 @@ export default function Footer({ onNavigatePage }) {
               </ul>
             </div>
 
-            {/* Column 3: FOR INVESTORS */}
-            <div>
-              <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">FOR INVESTORS</h4>
-              <ul className="space-y-1 text-xs sm:text-[13px] text-white/90 font-semibold">
-                <li><a href={getPathForPage('investors')} onClick={(e) => { e.preventDefault(); handleNav('investors'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Investor Overview</a></li>
-                <li><a href={getPathForPage('insights')} onClick={(e) => { e.preventDefault(); handleNav('insights'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Market Insights</a></li>
-                <li><a href={getPathForPage('tax')} onClick={(e) => { e.preventDefault(); handleNav('tax'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Tax Solutions</a></li>
-                <li><a href={getPathForPage('personal-finance')} onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Personal Finance</a></li>
-                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Knowledge Centre</a></li>
-                <li><a href={getPathForPage('blog')} onClick={(e) => { e.preventDefault(); handleNav('blog'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Blog &amp; Articles</a></li>
-                <li><a href={getPathForPage('about')} onClick={(e) => { e.preventDefault(); handleNav('about'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Talk To an Expert</a></li>
-                <li><a href={getPathForPage('home')} onClick={(e) => { e.preventDefault(); handleNav('home'); setTimeout(() => { const el = document.getElementById('faqs'); if (el) el.scrollIntoView({ behavior: 'smooth' }); }, 150); }} className="hover:text-white transition-colors cursor-pointer text-left block">FAQs</a></li>
-              </ul>
-            </div>
-
-            {/* Column 4: FOR PARTNERS */}
+            {/* Column 3: FOR PARTNERS */}
             <div>
               <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">FOR PARTNERS</h4>
               <ul className="space-y-1 text-xs sm:text-[13px] text-white/90 font-semibold">
@@ -276,7 +242,7 @@ export default function Footer({ onNavigatePage }) {
               </ul>
             </div>
 
-            {/* Column 5: COMPANY */}
+            {/* Column 4: COMPANY */}
             <div>
               <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">COMPANY</h4>
               <ul className="space-y-1 text-xs sm:text-[13px] text-white/90 font-semibold">
