@@ -202,11 +202,7 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                   <button
                     onClick={() => {
-                      if (onNavigatePage) {
-                        onNavigatePage('login');
-                      } else {
-                        setSelectedModal({ title: 'Start Investing - Login / Sign Up' });
-                      }
+                      setSelectedModal({ title: 'Start Investing - Empanelment Form' });
                     }}
                     className="bg-[#7C1FAB] hover:bg-[#63148B] text-white font-bold px-8 py-4 rounded-[18px] text-sm sm:text-base shadow-xl shadow-[#7C1FAB]/25 transition-all flex items-center gap-2.5 cursor-pointer active:scale-95"
                   >
@@ -216,11 +212,12 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                 </div>
               </div>
 
-              <div className="lg:col-span-6 flex justify-center lg:justify-end">
+              <div className="lg:col-span-6 flex justify-center lg:justify-end select-none">
                 <img
                   src="/dc1af9b7-84fe-44db-9ec3-7674a25fd1fd.png"
                   alt="Smart Investments 3D Growth Illustration"
-                  className="w-full max-w-[620px] lg:max-w-[680px] h-[300px] sm:h-[360px] lg:h-[400px] object-contain object-center transition-transform duration-300 hover:scale-[1.02]"
+                  draggable={false}
+                  className="w-full max-w-[620px] lg:max-w-[680px] h-[300px] sm:h-[360px] lg:h-[400px] object-contain object-center transition-transform duration-300 hover:scale-[1.02] select-none pointer-events-none user-select-none"
                 />
               </div>
             </div>
