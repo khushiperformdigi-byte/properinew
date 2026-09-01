@@ -285,7 +285,7 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
           </div>
 
           {/* Timeline & Steps Layout (01 to 05) */}
-          <div className="max-w-7xl mx-auto relative pl-2 sm:pl-4 pt-2">
+          <div className="max-w-5xl mx-auto relative pl-2 sm:pl-4 pt-2">
             <div className="space-y-4 relative z-10">
               {/* Vertical Purple Connecting Line - Centered through circles 01 to 05 */}
               <div className="absolute left-4 sm:left-5 top-5 bottom-5 w-[2px] -translate-x-[1px] bg-purple-200/80 z-0 pointer-events-none" />
