@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FiArrowRight, FiCheckCircle, FiShield, FiTrendingUp, FiCreditCard, FiUser, FiStar, FiCheck, FiHeart } from 'react-icons/fi';
+import { FiArrowRight, FiCheckCircle, FiShield, FiTrendingUp, FiCreditCard, FiUser, FiStar, FiCheck, FiHeart, FiLayers, FiUserCheck, FiSliders, FiUsers, FiEye } from 'react-icons/fi';
 import Footer from './Footer';
 
 export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
@@ -296,35 +296,35 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
                   title: 'Comprehensive Financial Solutions',
                   description: 'From investments and insurance to financing, access every financial solution through one trusted partner.',
                   bg: 'bg-[#FAF6FC]',
-                  icon: <FiTrendingUp className="w-5 h-5 text-white" />
+                  icon: <FiLayers className="w-5 h-5 text-white" />
                 },
                 {
                   step: '02',
                   title: 'Your Interests Come First',
                   description: 'Every recommendation is guided by what best serves your financial needs.',
                   bg: 'bg-white',
-                  icon: <FiCheckCircle className="w-5 h-5 text-white" />
+                  icon: <FiUserCheck className="w-5 h-5 text-white" />
                 },
                 {
                   step: '03',
                   title: 'Solutions Tailored To You',
                   description: 'No two financial journeys are the same. We recommend solutions that match your needs—not a one-size-fits-all approach.',
                   bg: 'bg-[#FAF6FC]',
-                  icon: <FiShield className="w-5 h-5 text-white" />
+                  icon: <FiSliders className="w-5 h-5 text-white" />
                 },
                 {
                   step: '04',
                   title: 'Long-Term Relationships',
                   description: "We're here to support your financial journey, not just a single transaction.",
                   bg: 'bg-white',
-                  icon: <FiHeart className="w-5 h-5 text-white" />
+                  icon: <FiUsers className="w-5 h-5 text-white" />
                 },
                 {
                   step: '05',
                   title: 'Transparency You Can Count On',
                   description: 'Clear communication, informed decisions and no unnecessary complexity.',
                   bg: 'bg-[#FAF6FC]',
-                  icon: <FiCreditCard className="w-5 h-5 text-white" />
+                  icon: <FiEye className="w-5 h-5 text-white" />
                 }
               ].map((item, idx) => (
                 <div
