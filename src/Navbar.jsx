@@ -177,21 +177,7 @@ export default function Navbar({
                 </svg>
               </button>
 
-              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-xl p-1.5 shadow-[0_16px_40px_rgba(30,27,46,0.18)] w-[200px] space-y-0.5 animate-in fade-in slide-in-from-top-1 z-[9999]">
-                <a
-                  href={getPathForPage('grow')}
-                  onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Grow
-                </a>
-                <a
-                  href={getPathForPage('protect')}
-                  onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Protect
-                </a>
+              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-xl p-1.5 shadow-[0_16px_40px_rgba(30,27,46,0.18)] w-[180px] space-y-0.5 animate-in fade-in slide-in-from-top-1 z-[9999]">
                 <a
                   href={getPathForPage('investment')}
                   onClick={(e) => { e.preventDefault(); handleNav('investment'); }}
@@ -212,27 +198,6 @@ export default function Navbar({
                   className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
                 >
                   Financing
-                </a>
-                <a
-                  href={getPathForPage('borrow')}
-                  onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Borrow &amp; Loans
-                </a>
-                <a
-                  href={getPathForPage('personal-finance')}
-                  onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Personal Finance
-                </a>
-                <a
-                  href={getPathForPage('tax')}
-                  onClick={(e) => { e.preventDefault(); handleNav('tax'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Tax Solutions
                 </a>
               </div>
             </div>
@@ -466,14 +431,9 @@ export default function Navbar({
                   {mobileSolutionsOpen && (
                     <div className="px-3 pb-3 pt-1 border-t border-purple-50 flex flex-col gap-1 bg-purple-50/30">
                       {[
-                        { label: 'Grow', page: 'grow' },
-                        { label: 'Protect', page: 'protect' },
                         { label: 'Investment', page: 'investment' },
                         { label: 'Insurance', page: 'insurance' },
                         { label: 'Financing', page: 'financing' },
-                        { label: 'Borrow & Loans', page: 'borrow' },
-                        { label: 'Personal Finance', page: 'personal-finance' },
-                        { label: 'Tax Solutions', page: 'tax' },
                       ].map((item, idx) => (
                         <button
                           key={idx}
