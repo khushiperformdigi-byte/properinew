@@ -207,16 +207,20 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
           </div>
         </section>
 
-        {/* SECTION 3: HOW YOU EARN */}
-        <section id="how-you-earn" className="bg-gradient-to-br from-[#FAF8FC] via-[#F4ECFB] to-[#FAF8FC] border border-purple-100 rounded-[28px] p-6 sm:p-10 lg:p-12 space-y-10 shadow-xs">
-          <div className="text-center space-y-3 max-w-3xl mx-auto">
-            <span className="bg-purple-100 text-[#7C1FA8] text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-purple-200/80 inline-block">
-              REVENUE MODELS
-            </span>
-            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl text-[#1E1B2E] tracking-tight">
+        {/* SECTION 3: HOW YOU EARN (Un-boxed & Compact) */}
+        <section id="how-you-earn" className="w-full space-y-8 py-2">
+          <div className="text-center space-y-2.5 max-w-3xl mx-auto">
+            <div>
+              <span className="bg-[#F5EEFB] text-[#7C1FA8] text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-purple-200/80 inline-block">
+                REVENUE MODELS
+              </span>
+            </div>
+
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[34px] leading-tight text-[#1E1B2E] tracking-tight pt-1">
               One Client. Multiple Ways To Earn.
             </h2>
-            <p className="font-body font-semibold text-sm sm:text-base text-[#544F66]">
+
+            <p className="font-body font-semibold text-xs sm:text-sm text-[#544F66] leading-relaxed max-w-2xl mx-auto pt-0.5">
               Transparent, automated commission structures across all three vertical lines.
             </p>
           </div>
