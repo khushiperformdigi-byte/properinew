@@ -313,9 +313,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
   return (
     <div className="min-h-screen bg-[#FAF8FC] font-sans text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
 
-      {viewMode === 'individual' ? (
-        <>
-          {/* INDIVIDUAL CUSTOMER VIEW */}
+      {/* INDIVIDUAL CUSTOMER VIEW */}
           {/* 2. HERO SECTION (PROTECT WHAT MATTERS MOST) */}
           <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-8 sm:pt-10 lg:pt-12 pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 font-sans">
             
@@ -603,8 +601,6 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
           </main>
 
           <Footer onNavigateHome={onNavigateHome} onNavigatePage={onNavigatePage} />
-        </>
-      )}
 
       {/* PARTNER REGISTRATION MODAL */}
       {partnerModalOpen && (
