@@ -177,7 +177,7 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
 
         {/* SCREEN 2: ONE TRUSTED PARTNER (Un-boxed & Compact) */}
-        <section className="w-full space-y-4 py-2">
+        <section className="w-full space-y-6 py-2">
           <div className="max-w-4xl mx-auto text-center space-y-3">
             <div>
               <span className="inline-block bg-[#F5EEFB] border border-purple-200/80 px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-[#7C1FA8]">
@@ -192,6 +192,89 @@ export default function InvestorsPage({ onNavigateHome, onNavigatePage }) {
             <p className="font-body font-semibold text-sm sm:text-[15.5px] text-[#544F66] leading-relaxed max-w-3xl mx-auto pt-0.5">
               Why manage multiple financial relationships when one trusted partner can do it all? PROSPERi5 brings investments, insurance and financing together thereby making every financial decision simpler, more connected and easier to manage.
             </p>
+          </div>
+
+          {/* Speech Bubble Banner Accent */}
+          <div className="max-w-2xl mx-auto text-center relative pt-2 pb-1">
+            <div className="bg-gradient-to-r from-[#7C1FA8] via-[#6E1C98] to-[#5E1683] text-white px-7 sm:px-9 py-3.5 sm:py-4 rounded-3xl sm:rounded-[36px] shadow-lg relative inline-block border border-purple-300/30">
+              <p className="font-heading font-extrabold text-sm sm:text-base lg:text-lg leading-snug tracking-tight text-white">
+                Why Go To Three Different Places? <br className="hidden sm:block" />
+                <span className="text-[#F5A623]">When One Trusted Partner Can Do It All.</span>
+              </p>
+              {/* Pointer Tail */}
+              <div className="absolute left-1/2 -translate-x-1/2 -bottom-2.5 w-0 h-0 border-l-[10px] border-l-transparent border-r-[10px] border-r-transparent border-t-[10px] border-t-[#5E1683]" />
+            </div>
+          </div>
+
+          {/* 3 Solution Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5 text-left pt-2">
+            
+            {/* Card 1: Grow Your Wealth */}
+            <div 
+              onClick={() => handleNav('investment')}
+              className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-6 space-y-3.5 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+            >
+              <div className="space-y-2.5">
+                <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center font-bold text-lg group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
+                  📈
+                </div>
+                <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                  Grow Your Wealth
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                  Build long-term wealth with investment solutions tailored to your financial goals.
+                </p>
+              </div>
+              <div className="pt-2 border-t border-purple-100/60 flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs group-hover:translate-x-1 transition-transform">
+                <span>Explore Investment Solutions</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            {/* Card 2: Protect What Matters */}
+            <div 
+              onClick={() => handleNav('insurance')}
+              className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-6 space-y-3.5 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+            >
+              <div className="space-y-2.5">
+                <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center font-bold text-lg group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
+                  🛡️
+                </div>
+                <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                  Protect What Matters
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                  Comprehensive insurance solutions for you, your family and your assets.
+                </p>
+              </div>
+              <div className="pt-2 border-t border-purple-100/60 flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs group-hover:translate-x-1 transition-transform">
+                <span>Explore Insurance Solutions</span>
+                <span>→</span>
+              </div>
+            </div>
+
+            {/* Card 3: Finance Your Aspirations */}
+            <div 
+              onClick={() => handleNav('financing')}
+              className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-6 space-y-3.5 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+            >
+              <div className="space-y-2.5">
+                <div className="w-10 h-10 rounded-xl bg-white shadow-2xs text-[#7C1FA8] flex items-center justify-center font-bold text-lg group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors">
+                  🏦
+                </div>
+                <h3 className="font-heading font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors leading-snug">
+                  Finance Your Aspirations
+                </h3>
+                <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                  Smart financing solutions for homes, businesses and life's biggest milestones.
+                </p>
+              </div>
+              <div className="pt-2 border-t border-purple-100/60 flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs group-hover:translate-x-1 transition-transform">
+                <span>Explore Financing Solutions</span>
+                <span>→</span>
+              </div>
+            </div>
+
           </div>
         </section>
 
