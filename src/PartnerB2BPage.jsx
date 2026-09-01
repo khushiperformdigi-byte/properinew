@@ -395,12 +395,12 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* SECTION 4: COMPARISON TABLE */}
-      <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
+      <section className="w-full pt-12 sm:pt-16 lg:pt-20 pb-10 lg:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
         <div className="max-w-6xl mx-auto space-y-8">
           
           {/* Section Header */}
-          <div className="text-center space-y-2 max-w-3xl mx-auto">
-            <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase block">
+          <div className="text-center space-y-2 max-w-3xl mx-auto pt-2 sm:pt-3">
+            <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase mt-2 sm:mt-3 mb-3 sm:mb-4 block">
               WHY PARTNERS CHOOSE US
             </span>
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[#1E1B2E] leading-tight tracking-tight">

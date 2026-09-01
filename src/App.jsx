@@ -1535,15 +1535,15 @@ function App() {
       </section>
 
       {/* 6. COMPARISON TABLE SECTION (PROSPERi5 vs. Other National Distributors) */}
-      <section className="bg-white w-full py-5 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-purple-100/40 font-sans">
+      <section className="bg-white w-full pt-10 sm:pt-14 lg:pt-16 pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-purple-100/40 font-sans">
         <div className="max-w-7xl mx-auto">
 
           {/* Section Header (Mobile View Specs) */}
-          <div id="about" className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl">
+          <div id="about" className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl pt-2 sm:pt-3">
             {/* Top Badge: WHY PARTNERS CHOOSE US (Inter 600 SemiBold 14px -0.5px tracking) */}
             <span
               style={{ fontFamily: "'Inter', sans-serif" }}
-              className="text-[#7C1FA8] font-semibold text-[14px] leading-none tracking-[-0.5px] uppercase mb-2 inline-block text-center"
+              className="text-[#7C1FA8] font-semibold text-[14px] leading-none tracking-[-0.5px] uppercase mt-2 sm:mt-3 mb-3 sm:mb-4 inline-block text-center"
             >
               WHY PARTNERS CHOOSE US
             </span>
