@@ -312,34 +312,6 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
 
   return (
     <div className="min-h-screen bg-[#FAF8FC] font-sans text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
-      
-      {/* VIEW MODE TOGGLE HEADER BAR */}
-      <div className="w-full bg-[#F3EBFB] border-b border-purple-200/60 -mt-[76px] lg:-mt-[88px] pt-[84px] lg:pt-[96px] pb-2.5 px-4 text-center relative z-20">
-        <div className="max-w-7xl mx-auto flex items-center justify-center">
-          <div className="bg-white p-1 rounded-full border border-purple-200 shadow-sm inline-flex items-center gap-1">
-            <button
-              onClick={() => setViewMode('individual')}
-              className={`px-4 sm:px-6 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
-                viewMode === 'individual'
-                  ? 'bg-[#7C1FA8] text-white shadow-md'
-                  : 'text-[#544F66] hover:text-[#7C1FA8]'
-              }`}
-            >
-              🛡️ Individual & Family Protection
-            </button>
-            <button
-              onClick={() => setViewMode('partner')}
-              className={`px-4 sm:px-6 py-2 rounded-full text-xs font-extrabold transition-all cursor-pointer ${
-                viewMode === 'partner'
-                  ? 'bg-[#7C1FA8] text-white shadow-md'
-                  : 'text-[#544F66] hover:text-[#7C1FA8]'
-              }`}
-            >
-              💼 Partner & Distributor Program (Earn Commission)
-            </button>
-          </div>
-        </div>
-      </div>
 
       {viewMode === 'individual' ? (
         <>
