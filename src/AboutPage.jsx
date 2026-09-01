@@ -44,12 +44,12 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
     <div className="w-full bg-[#FAF8FC] font-sans text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
 
       {/* 1. HERO SECTION */}
-      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 font-sans">
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 font-sans">
         
         {/* Ambient Curved Light Purple Background Overlay */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
           
           {/* Left Column: Heading, Subtitle & Action Buttons */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left">
@@ -88,19 +88,21 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 2. WHY WE EXIST BANNER */}
-      <section className="w-full bg-white py-8 lg:py-12 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto overflow-hidden rounded-3xl shadow-xl border border-purple-900/10">
-          <img
-            src="/ChatGPT Image Aug 31, 2026, 03_59_40 PM.png"
-            alt="Why We Exist - Empowering partners to create financial well-being for all"
-            className="w-full block h-auto object-cover object-center max-h-[420px]"
-          />
+      <section className="w-full bg-white py-8 lg:py-12">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
+          <div className="w-full overflow-hidden rounded-3xl shadow-xl border border-purple-900/10">
+            <img
+              src="/ChatGPT Image Aug 31, 2026, 03_59_40 PM.png"
+              alt="Why We Exist - Empowering partners to create financial well-being for all"
+              className="w-full block h-auto object-cover object-center max-h-[420px]"
+            />
+          </div>
         </div>
       </section>
 
       {/* 3. SECTION: OUR ECOSYSTEM */}
-      <section className="w-full bg-[#FAF8FC] py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full bg-[#FAF8FC] py-12 lg:py-16 border-t border-[#EBE8EF]">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase mb-2 block">
@@ -176,8 +178,8 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
 
 
       {/* 5. SECTION: OUR PHILOSOPHY */}
-      <section className="w-full bg-[#FAF8FC] py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full bg-[#FAF8FC] py-12 lg:py-16 border-t border-[#EBE8EF]">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           
           <div className="text-center mb-10 max-w-3xl mx-auto">
             <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase mb-2 block">
@@ -243,8 +245,8 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 6. SECTION: OUR LEADERSHIP TEAM */}
-      <section className="w-full bg-[#FAF8FC] py-10 lg:py-14 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto">
+      <section className="w-full bg-[#FAF8FC] py-10 lg:py-14 border-t border-[#EBE8EF]">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           
           {/* Section Breadcrumb & Header */}
           <div className="text-center mb-8 sm:mb-10 max-w-3xl mx-auto">
