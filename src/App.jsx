@@ -366,7 +366,7 @@ function App() {
         return <KnowledgeCenterPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
       case 'partner':
       case 'partner-b2b':
-        return <PartnerB2BPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
+        return null;
       case 'personal-finance':
       case 'personalfinance':
       case 'finance':

@@ -184,8 +184,8 @@ export default function Navbar({
                 
                 {/* 1. FOR PARTNERS (Above For Investors, single link, no sub-list) */}
                 <a
-                  href={getPathForPage('partner')}
-                  onClick={(e) => { e.preventDefault(); handleNav('partner'); }}
+                  href={getPathForPage('home')}
+                  onClick={(e) => { e.preventDefault(); handleNav('home'); }}
                   className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 transition-colors group/partner cursor-pointer"
                 >
                   <div className="w-7 h-7 rounded-lg bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
@@ -371,7 +371,7 @@ export default function Navbar({
                 <button
                   onClick={() => {
                     if (setActiveTab) setActiveTab('partners');
-                    handleNav('partner');
+                    handleNav('home');
                   }}
                   className={`px-3.5 py-1.5 rounded-[10px] font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${activeTab === 'partners' ? 'bg-[#FCEBF4] text-[#C81E8C] shadow-sm' : 'text-[#8E8A9D] hover:text-[#1E1B2E]'}`}
                 >

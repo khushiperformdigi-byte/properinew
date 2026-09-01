@@ -15,7 +15,7 @@ export const PAGE_ROUTES = {
   'loan': '/loan',
   'grow': '/grow',
   'knowledge': '/knowledge-center',
-  'partner': '/partner-b2b',
+  'partner': '/',
   'personal-finance': '/personal-finance',
   'tax': '/tax-solutions',
   'insights': '/market-insights',
@@ -139,7 +139,7 @@ export const getPageFromUrl = () => {
       break;
     case 'partner':
     case 'partner-b2b':
-      targetPage = 'partner';
+      targetPage = 'home';
       break;
     case 'personal-finance':
     case 'personalfinance':
