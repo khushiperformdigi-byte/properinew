@@ -1,0 +1,594 @@
+import React, { useState, useMemo } from 'react';
+import Footer from './Footer';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
+import PhoneInput from './components/PhoneInput';
+
+export default function LoanAgainstSecuritiesPage({ onNavigateHome, onNavigatePage }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [consultModalOpen, setConsultModalOpen] = useState(false);
+  const [consultForm, setConsultForm] = useState({ name: '', phone: '', collateral: 'Equity Shares (NSE / BSE)' });
+
+  // LAS Calculator Inputs (Defaults matching screenshot)
+  const [securitiesValue, setSecuritiesValue] = useState(1000000); // 10 Lakh
+  const [ltv, setLtv] = useState(70); // 70%
+
+  // Handlers
+  const handleSecuritiesChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9]/g, '');
+    const num = Number(rawVal);
+    setSecuritiesValue(Math.min(Math.max(num, 0), 50000000));
+  };
+
+  const handleLtvChange = (e) => {
+    const num = Number(e.target.value);
+    setLtv(Math.min(Math.max(num, 50), 90));
+  };
+
+  const handleReset = () => {
+    setSecuritiesValue(1000000);
+    setLtv(70);
+  };
+
+  // Math Calculation
+  const eligibleLoanAmount = useMemo(() => {
+    const val = parseFloat(securitiesValue) || 0;
+    const ltvRatio = parseFloat(ltv) || 70;
+    return Math.round((val * ltvRatio) / 100);
+  }, [securitiesValue, ltv]);
+
+  // Format currency helper
+  const formatINR = (val) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(val);
+  };
+
+  return (
+    <div className="w-full bg-[#FAF8FC] font-sans text-[#1E1B2E] antialiased selection:bg-purple-100 selection:text-[#7C1FAB] overflow-x-hidden">
+
+      {/* 3. FULL-WIDTH HERO SECTION (FREE WIDTH - NO BOX) */}
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[76px] lg:-mt-[84px] pt-[106px] sm:pt-[114px] lg:pt-[120px] pb-4 sm:pb-5 lg:pb-6 px-4 sm:px-6 lg:px-8 font-sans">
+        
+        {/* Ambient Purple Soft Glow */}
+        <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[450px] h-[450px] bg-purple-200/40 rounded-full filter blur-[75px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-5 lg:gap-6 items-center relative z-10">
+          
+          {/* LEFT COLUMN: Badge, Title, Subtitle & 3 Feature Pills */}
+          <div className="lg:col-span-6 flex flex-col justify-center items-start text-left space-y-3 relative py-2">
+            
+            {/* Category Pill Badge */}
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-purple-100/90 border border-purple-200/80 text-[#7C1FA8] text-[11px] sm:text-xs font-black uppercase tracking-wider shadow-2xs">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8] inline-block animate-pulse"></span>
+              <span>LOAN AGAINST SECURITIES CALCULATOR</span>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="font-sans font-extrabold text-[26px] leading-[32px] sm:text-[32px] sm:leading-[38px] lg:text-[38px] lg:leading-[44px] tracking-[-0.02em] text-[#1E1B2E] max-w-[520px]">
+              Unlock Value. Invest. Grow. <br />
+              <span className="text-[#7C1FA8]">Achieve More.</span>
+            </h1>
+
+            {/* Subtitle Paragraph - Enriched Text */}
+            <p className="font-medium text-xs sm:text-[14.5px] leading-snug sm:leading-relaxed text-[#544F66] max-w-[480px]">
+              Use our Loan Against Securities (LAS) Calculator to estimate instant credit limit against your equity shares, mutual funds, and bonds without liquidating your investments.
+            </p>
+
+            {/* 3 Feature Highlight Pills Row */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-1">
+              
+              {/* Feature Pill 1: Instant Loan Estimate */}
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-[#7C1FA8] font-black text-xs">⚡</span>
+                <span>Instant Loan Estimate</span>
+              </div>
+
+              {/* Feature Pill 2: Higher LTV Ratio */}
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-emerald-600 font-black text-xs">📈</span>
+                <span>Higher LTV Ratio</span>
+              </div>
+
+              {/* Feature Pill 3: Zero Equity Selling */}
+              <div className="flex items-center gap-1.5 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-3.5 py-1.5 rounded-full text-xs font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-[#7C1FA8] font-black text-xs">🛡️</span>
+                <span>Zero Equity Selling</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: 3D Graphic */}
+          <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-start w-full mt-3 lg:mt-0 lg:-ml-8">
+            <div className="relative z-10 flex justify-center lg:justify-start items-center w-full">
+              <img
+                src="/ChatGPT Image Aug 29, 2026, 11_35_53 PM.png"
+                alt="Unlock Value. Invest. Grow. Achieve More - PROSPERi5 LAS Calculator"
+                className="w-full h-auto max-h-[260px] sm:max-h-[300px] lg:max-h-[330px] max-w-[580px] object-contain drop-shadow-md select-none pointer-events-none transform origin-left"
+                draggable={false}
+                style={{ clipPath: 'inset(0px 0px 0px 4px)' }}
+              />
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* 4. MAIN CALCULATOR CONTENT CONTAINER */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 relative z-10">
+
+        {/* 2-COLUMN CALCULATOR GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          {/* LEFT COLUMN: LAS CALCULATOR */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-4 text-left">
+            
+            {/* Card Header */}
+            <div className="flex items-center gap-2.5 pb-1.5 border-b border-gray-100">
+              <div className="w-8 h-8 rounded-lg bg-[#7C1FAB] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">LAS Calculator</h2>
+            </div>
+
+            {/* INPUT 1: Securities Value */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-[#1E1B2E]">
+                Securities Value (₹)
+              </label>
+
+              <div className="relative">
+                <input
+                  type="text"
+                  value={securitiesValue.toLocaleString('en-IN')}
+                  onChange={handleSecuritiesChange}
+                  className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                />
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="50000"
+                  max="50000000"
+                  step="50000"
+                  value={securitiesValue}
+                  onChange={(e) => setSecuritiesValue(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>₹ 50,000</span>
+                  <span>₹ 5,00,00,000</span>
+                </div>
+              </div>
+            </div>
+
+            {/* INPUT 2: Loan to Value (LTV) */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <label className="block text-xs font-bold text-[#1E1B2E]">
+                  Loan to Value (LTV)
+                </label>
+                <span className="text-[#8E8A9D] cursor-pointer" title="Percentage of securities market value eligible for loan">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                  </svg>
+                </span>
+              </div>
+
+              <div className="relative">
+                <select
+                  value={ltv}
+                  onChange={handleLtvChange}
+                  className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none cursor-pointer"
+                >
+                  {[50, 55, 60, 65, 70, 75, 80, 85, 90].map((ltvVal) => (
+                    <option key={ltvVal} value={ltvVal}>{ltvVal}%</option>
+                  ))}
+                </select>
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="50"
+                  max="90"
+                  step="1"
+                  value={ltv}
+                  onChange={(e) => setLtv(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>50%</span>
+                  <span>90%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* ELIGIBLE LOAN AMOUNT BOX */}
+            <div className="bg-[#FAF5FD] rounded-2xl p-4 border border-purple-100 flex items-center gap-4">
+              <div className="w-10 h-10 rounded-xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-lg shrink-0">
+                💰
+              </div>
+              <div>
+                <span className="text-xs font-semibold text-[#544F66] block">Eligible Loan Amount</span>
+                <span className="text-2xl sm:text-3xl font-black text-[#7C1FAB] tracking-tight">
+                  {formatINR(eligibleLoanAmount)}
+                </span>
+              </div>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="space-y-2 pt-1">
+              <button
+                onClick={() => setConsultModalOpen(true)}
+                className="w-full bg-[#5E1083] hover:bg-[#7C1FAB] text-white font-bold py-3.5 rounded-xl text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+              >
+                <span>Calculate Loan</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </button>
+
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={handleReset}
+                  className="text-[11px] font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                  <span>Reset All</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: WHY LOAN AGAINST SECURITIES? */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-4 text-left relative overflow-hidden">
+            
+            {/* Header */}
+            <div className="flex items-start justify-between pb-1.5 border-b border-gray-100">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-pink-100 text-[#C81E8C] flex items-center justify-center font-bold text-xs">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Why Loan Against Securities?</h2>
+                </div>
+              </div>
+            </div>
+
+            {/* 4 FEATURE ROWS (Matching Screenshot) */}
+            <div className="space-y-3.5 pt-1">
+              
+              {/* Feature 1 */}
+              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-[#1E1B2E]">Quick Liquidity</h3>
+                  <p className="text-xs text-[#544F66]">Get funds in just a few hours.</p>
+                </div>
+              </div>
+
+              {/* Feature 2 */}
+              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 18L9 11.25l4.306 4.307a11.95 11.95 0 015.814-5.519l2.74-1.22m0 0l-5.94-2.28m5.94 2.28l-2.28 5.941" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-[#1E1B2E]">Keep Your Investments</h3>
+                  <p className="text-xs text-[#544F66]">Hold your securities and still get cash.</p>
+                </div>
+              </div>
+
+              {/* Feature 3 */}
+              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-[#1E1B2E]">Flexible Tenure</h3>
+                  <p className="text-xs text-[#544F66]">Choose a repayment period that suits you.</p>
+                </div>
+              </div>
+
+              {/* Feature 4 */}
+              <div className="flex items-start gap-3.5 p-2 rounded-xl hover:bg-purple-50/40 transition-colors">
+                <div className="w-10 h-10 rounded-full bg-[#FAF5FD] border border-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-sm shrink-0">
+                  <span className="text-base font-black text-[#7C1FAB]">%</span>
+                </div>
+                <div>
+                  <h3 className="font-bold text-sm text-[#1E1B2E]">Lower Interest Rates</h3>
+                  <p className="text-xs text-[#544F66]">Enjoy competitive interest rates.</p>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+        {/* 4. HOW IT WORKS (Matching Screenshot) */}
+        <section className="mt-10 sm:mt-12 text-left">
+          
+          <h2 className="text-xl sm:text-2xl font-extrabold text-[#1E1B2E] tracking-tight mb-6">
+            How It Works
+          </h2>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 items-center">
+            
+            {/* Step 1 */}
+            <div className="relative bg-white rounded-xl sm:rounded-[22px] border border-[#EBE3F5] p-3.5 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-[135px] sm:h-[155px]">
+              <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-xs sm:text-sm font-bold shrink-0">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-sm text-[#1E1B2E] mb-0.5 sm:mb-1 leading-tight">1. Share Securities</h3>
+                <p className="text-[10px] sm:text-[11px] text-[#544F66] leading-tight">Use shares / mutual funds as collateral.</p>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="relative bg-white rounded-xl sm:rounded-[22px] border border-[#EBE3F5] p-3.5 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-[135px] sm:h-[155px]">
+              <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-xs sm:text-sm font-bold shrink-0">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0H3" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-sm text-[#1E1B2E] mb-0.5 sm:mb-1 leading-tight">2. Get Loan</h3>
+                <p className="text-[10px] sm:text-[11px] text-[#544F66] leading-tight">Instant loan against holdings.</p>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="relative bg-white rounded-xl sm:rounded-[22px] border border-[#EBE3F5] p-3.5 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-[135px] sm:h-[155px]">
+              <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-xs sm:text-sm font-bold shrink-0">
+                <span className="text-xs sm:text-base font-black">₹</span>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-sm text-[#1E1B2E] mb-0.5 sm:mb-1 leading-tight">3. Use Funds</h3>
+                <p className="text-[10px] sm:text-[11px] text-[#544F66] leading-tight">Meet your financial needs.</p>
+              </div>
+            </div>
+
+            {/* Step 4 */}
+            <div className="relative bg-white rounded-xl sm:rounded-[22px] border border-[#EBE3F5] p-3.5 sm:p-5 shadow-sm hover:shadow-md transition-all flex flex-col justify-between h-[135px] sm:h-[155px]">
+              <div className="w-7 h-7 sm:w-9 sm:h-9 rounded-lg sm:rounded-xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-xs sm:text-sm font-bold shrink-0">
+                <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M16.5 10.5V6.75a4.5 4.5 0 10-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 002.25-2.25v-6.75a2.25 2.25 0 00-2.25-2.25H6.75a2.25 2.25 0 00-2.25 2.25v6.75a2.25 2.25 0 002.25 2.25z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-sm text-[#1E1B2E] mb-0.5 sm:mb-1 leading-tight">4. Repay &amp; Unlock</h3>
+                <p className="text-[10px] sm:text-[11px] text-[#544F66] leading-tight">Get securities back upon repayment.</p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        {/* 5. 2-COLUMN GRID: ELIGIBILITY CRITERIA & SUPPORTED SECURITIES (Matching Screenshot) */}
+        <section className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6 text-left">
+          
+          {/* Eligibility Criteria */}
+          <div className="bg-white rounded-[24px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-4">
+            <div className="flex items-center gap-2.5 pb-2 border-b border-gray-100">
+              <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-xs">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Eligibility Criteria</h3>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                'Demat account with approved securities',
+                'Minimum eligible securities value as per lender norms',
+                'Stable income source',
+                'Good credit history'
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-[#544F66] font-medium">
+                  <div className="w-5 h-5 rounded-full bg-[#F5EEFB] text-[#7C1FAB] flex items-center justify-center shrink-0">
+                    <svg className="w-3.5 h-3.5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Supported Securities */}
+          <div className="bg-white rounded-[24px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-4">
+            <div className="flex items-center gap-2.5 pb-2 border-b border-gray-100">
+              <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-xs">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+                </svg>
+              </div>
+              <h3 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Supported Securities</h3>
+            </div>
+
+            <div className="space-y-3">
+              {[
+                'Equity Shares (NSE / BSE)',
+                'Mutual Funds',
+                'Government Securities',
+                'Other Approved Instruments'
+              ].map((item, idx) => (
+                <div key={idx} className="flex items-center gap-3 text-xs sm:text-sm text-[#544F66] font-medium">
+                  <div className="w-5 h-5 rounded-full bg-[#F5EEFB] text-[#7C1FAB] flex items-center justify-center shrink-0">
+                    <svg className="w-3.5 h-3.5 stroke-[3]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </section>
+
+        {/* 6. BOTTOM CALLOUT BANNER CARD (Matching Screenshot) */}
+        <section className="mt-8 bg-gradient-to-r from-[#FAF5FD] via-[#F6EEFA] to-[#FAF5FD] border border-purple-100 rounded-[28px] p-6 sm:p-8 flex flex-col sm:flex-row items-center justify-between gap-6 shadow-sm text-left relative overflow-hidden">
+          
+          <div className="flex flex-col sm:flex-row items-center gap-6">
+            
+            {/* 3D Wallet Graphic */}
+            <div className="w-24 sm:w-28 h-20 sm:h-24 shrink-0 flex items-center justify-center">
+              <img
+                src="/las_wallet_illustration.png"
+                alt="Purple Wallet with Rupee Coin"
+                className="max-h-20 sm:max-h-24 w-auto object-contain filter drop-shadow-md select-none"
+              />
+            </div>
+
+            <div className="space-y-1 text-center sm:text-left">
+              <h3 className="text-lg sm:text-xl font-extrabold text-[#1E1B2E]">
+                Turn your investments into instant funds.
+              </h3>
+              <p className="text-xs sm:text-sm text-[#544F66] font-medium">
+                Loan Against Securities – Smart borrowing, without selling.
+              </p>
+            </div>
+
+          </div>
+
+          <button
+            onClick={() => setConsultModalOpen(true)}
+            className="bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold px-6 py-3 rounded-xl text-xs sm:text-sm shadow-md transition-all flex items-center gap-2 shrink-0 cursor-pointer"
+          >
+            <span>Get Started</span>
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </button>
+
+        </section>
+
+      </main>
+
+      {/* 7. CONSULTATION / LAS APPLICATION MODAL */}
+      {consultModalOpen && (
+        <div className="fixed inset-0 bg-[#11081F]/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-[32px] max-w-md w-full p-6 sm:p-8 shadow-2xl border border-purple-100 relative animate-in fade-in zoom-in duration-200">
+            <button
+              onClick={() => setConsultModalOpen(false)}
+              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-purple-50 text-[#7C1FAB] hover:bg-purple-100 flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="w-12 h-12 rounded-2xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-2xl font-bold mb-4">
+              💼
+            </div>
+
+            <h3 className="text-xl font-bold text-[#1E1B2E] mb-1">Apply for LAS Loan of {formatINR(eligibleLoanAmount)}</h3>
+            <p className="text-xs text-[#544F66] mb-5 leading-relaxed">
+              Against your portfolio of <strong className="text-[#7C1FAB]">{formatINR(securitiesValue)}</strong> @ {ltv}% LTV. Connect with our dedicated credit manager for paperless Demat pledge &amp; same-day disbursal.
+            </p>
+
+            <form
+              className="space-y-3.5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendWhatsAppEnquiry({
+                  formName: 'Loan Against Securities (LAS) Application',
+                  name: consultForm.name,
+                  phone: consultForm.phone,
+                  service: 'Loan Against Securities',
+                  extra: {
+                    'Eligible Loan Amount': formatINR(eligibleLoanAmount),
+                    'Portfolio Value': formatINR(securitiesValue),
+                    'LTV Ratio': `${ltv}%`,
+                    'Collateral Type': consultForm.collateral
+                  }
+                });
+                alert('Thank you! Our credit officer will contact you to process your LAS loan application.');
+                setConsultModalOpen(false);
+                setConsultForm({ name: '', phone: '', collateral: 'Equity Shares (NSE / BSE)' });
+              }}
+            >
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Full Name</label>
+                <input
+                  type="text"
+                  required
+                  value={consultForm.name}
+                  onChange={(e) => setConsultForm({ ...consultForm, name: e.target.value })}
+                  placeholder="Enter your name"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EBE3F5] text-xs focus:outline-none focus:border-[#7C1FAB] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Mobile Number</label>
+                <PhoneInput
+                  value={consultForm.phone}
+                  countryCode={consultForm.countryCode || '+91'}
+                  onCountryCodeChange={(code) => setConsultForm((f) => ({ ...f, countryCode: code }))}
+                  onChange={(val) => setConsultForm((f) => ({ ...f, phone: val }))}
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Primary Collateral Type</label>
+                <select
+                  value={consultForm.collateral}
+                  onChange={(e) => setConsultForm({ ...consultForm, collateral: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EBE3F5] text-xs focus:outline-none focus:border-[#7C1FAB] transition-colors bg-white"
+                >
+                  <option>Equity Shares (NSE / BSE)</option>
+                  <option>Mutual Fund Units (CAMS / KFintech)</option>
+                  <option>Sovereign Gold Bonds / Govt Securities</option>
+                  <option>Corporate Bonds</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold py-3.5 rounded-xl text-xs shadow-md transition-all cursor-pointer mt-2"
+              >
+                Submit for Instant Sanction
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+
+    </div>
+  );
+}

@@ -1,0 +1,693 @@
+import React, { useState, useMemo } from 'react';
+import Footer from './Footer';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
+import PhoneInput from './components/PhoneInput';
+
+export default function EmiCalculatorPage({ onNavigateHome, onNavigatePage }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [consultModalOpen, setConsultModalOpen] = useState(false);
+  const [consultForm, setConsultForm] = useState({ name: '', phone: '', loanType: 'Home Loan' });
+
+  // EMI Calculator Inputs (Defaults matching screenshot)
+  const [loanAmount, setLoanAmount] = useState(1500000);
+  const [interestRate, setInterestRate] = useState(8.5);
+  const [tenure, setTenure] = useState(5);
+  const [tenureUnit, setTenureUnit] = useState('years'); // 'years' | 'months'
+
+  // Input Handlers
+  const handleLoanAmountChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9]/g, '');
+    const num = Number(rawVal);
+    setLoanAmount(Math.min(Math.max(num, 0), 100000000));
+  };
+
+  const handleInterestRateChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9.]/g, '');
+    const num = Number(rawVal);
+    setInterestRate(Math.min(Math.max(num, 0), 50));
+  };
+
+  const handleTenureChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9]/g, '');
+    const num = Number(rawVal);
+    const maxVal = tenureUnit === 'years' ? 30 : 360;
+    setTenure(Math.min(Math.max(num, 1), maxVal));
+  };
+
+  const handleReset = () => {
+    setLoanAmount(1500000);
+    setInterestRate(8.5);
+    setTenure(5);
+    setTenureUnit('years');
+  };
+
+  // Effective months
+  const totalMonths = tenureUnit === 'years' ? tenure * 12 : tenure;
+  const effectiveYears = tenureUnit === 'years' ? tenure : tenure / 12;
+
+  // Math Calculations for EMI & Amortization
+  const { emi, totalInterest, totalPayment, principalPct, interestPct, amortizationSchedule } = useMemo(() => {
+    const P = parseFloat(loanAmount) || 0;
+    const annualR = parseFloat(interestRate) || 0;
+    const N = Math.max(1, Math.round(totalMonths));
+
+    if (P <= 0 || annualR <= 0 || N <= 0) {
+      return {
+        emi: 0,
+        totalInterest: 0,
+        totalPayment: P,
+        principalPct: 100,
+        interestPct: 0,
+        amortizationSchedule: []
+      };
+    }
+
+    const r = annualR / 12 / 100;
+    const compoundFactor = Math.pow(1 + r, N);
+    const calculatedEmi = Math.round((P * r * compoundFactor) / (compoundFactor - 1));
+    const calculatedTotalPayment = calculatedEmi * N;
+    const calculatedTotalInterest = Math.max(0, calculatedTotalPayment - P);
+
+    const princPct = ((P / calculatedTotalPayment) * 100).toFixed(1);
+    const intPct = ((calculatedTotalInterest / calculatedTotalPayment) * 100).toFixed(1);
+
+    // Build Annual Amortization Table
+    let currentBalance = P;
+    const schedule = [];
+    const totalYears = Math.ceil(N / 12);
+
+    for (let y = 1; y <= totalYears; y++) {
+      let annualPrincipal = 0;
+      let annualInterest = 0;
+      const monthsInThisYear = Math.min(12, N - (y - 1) * 12);
+
+      for (let m = 1; m <= monthsInThisYear; m++) {
+        const monthlyInt = currentBalance * r;
+        let monthlyPrinc = calculatedEmi - monthlyInt;
+        if (monthlyPrinc > currentBalance) {
+          monthlyPrinc = currentBalance;
+        }
+        annualInterest += monthlyInt;
+        annualPrincipal += monthlyPrinc;
+        currentBalance = Math.max(0, currentBalance - monthlyPrinc);
+      }
+
+      schedule.push({
+        year: `Year ${y}`,
+        principalPaid: Math.round(annualPrincipal),
+        interestPaid: Math.round(annualInterest),
+        totalPayment: Math.round(annualPrincipal + annualInterest),
+        outstandingBalance: Math.round(currentBalance)
+      });
+    }
+
+    return {
+      emi: calculatedEmi,
+      totalInterest: calculatedTotalInterest,
+      totalPayment: calculatedTotalPayment,
+      principalPct: princPct,
+      interestPct: intPct,
+      amortizationSchedule: schedule
+    };
+  }, [loanAmount, interestRate, totalMonths]);
+
+  // Format currency helper
+  const formatINR = (val) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(val);
+  };
+
+  // Donut SVG circumference calculation
+  const radius = 60;
+  const strokeWidth = 24;
+  const circumference = 2 * Math.PI * radius;
+  const principalStroke = (Number(principalPct) / 100) * circumference;
+  const interestStroke = (Number(interestPct) / 100) * circumference;
+
+  return (
+    <div className="w-full bg-[#FAF8FC] font-sans text-[#1E1B2E] antialiased selection:bg-purple-100 selection:text-[#7C1FAB] overflow-x-hidden">
+
+      {/* 3. FULL-WIDTH HERO SECTION (FREE WIDTH - NO BOX) */}
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[76px] lg:-mt-[84px] pt-[104px] sm:pt-[112px] lg:pt-[118px] pb-1.5 sm:pb-2 lg:pb-2.5 px-4 sm:px-6 lg:px-8 font-sans">
+        
+        {/* Ambient Purple Soft Glow */}
+        <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
+          
+          {/* LEFT COLUMN: Badge, Title, Subtitle & 3 Feature Pills */}
+          <div className="lg:col-span-6 flex flex-col justify-center items-start text-left space-y-4 relative py-2">
+            
+            {/* Category Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100/90 border border-purple-200/80 text-[#7C1FA8] text-xs sm:text-[13px] font-black uppercase tracking-wider shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#7C1FA8] inline-block animate-pulse"></span>
+              <span>EMI CALCULATOR</span>
+            </div>
+
+            {/* Main Title */}
+            <h1 className="font-sans font-extrabold text-[36px] leading-[44px] sm:text-[46px] sm:leading-[54px] lg:text-[52px] lg:leading-[60px] tracking-[-0.03em] text-[#1E1B2E] max-w-[600px]">
+              Calculate Your EMI. <br />
+              Plan Your <span className="text-[#7C1FA8]">Purchase.</span>
+            </h1>
+
+            {/* Subtitle Paragraph */}
+            <p className="font-medium text-[15px] sm:text-[16px] leading-[24px] sm:leading-[27px] text-[#544F66] max-w-[520px]">
+              Use our EMI Calculator to estimate your monthly payments and plan your loans with ease.
+            </p>
+
+            {/* 3 Feature Highlight Pills Row */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
+              
+              {/* Feature Pill 1: Easy Calculation */}
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-[#7C1FA8] font-black text-sm">🧮</span>
+                <span>Easy Calculation</span>
+              </div>
+
+              {/* Feature Pill 2: Interest Breakdown */}
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-[#7C1FA8] font-black text-sm">📊</span>
+                <span>Interest Breakdown</span>
+              </div>
+
+              {/* Feature Pill 3: Instant Results */}
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-amber-500 font-black text-sm">⚡</span>
+                <span>Instant Results</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: 3D Graphic (Height Aligned to Left Content Height) */}
+          <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-end w-full h-full mt-4 lg:mt-0">
+            <div className="relative z-10 w-full h-full flex justify-center lg:justify-end items-center">
+              <img
+                src="/ChatGPT Image Aug 29, 2026, 11_17_05 PM.png"
+                alt="Calculate Your EMI. Plan Your Purchase - PROSPERi5 EMI Calculator"
+                className="h-full w-auto max-h-[320px] sm:max-h-[360px] lg:max-h-[380px] max-w-full object-contain drop-shadow-xl select-none"
+              />
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* 4. MAIN CALCULATOR CONTENT CONTAINER */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 relative z-10">
+
+        {/* 2-COLUMN CALCULATOR GRID */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          {/* LEFT COLUMN: LOAN DETAILS */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-3.5 text-left h-full flex flex-col justify-between">
+            
+            {/* Card Header */}
+            <div className="flex items-center gap-2.5 pb-1.5 border-b border-gray-100">
+              <div className="w-8 h-8 rounded-lg bg-[#7C1FAB] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 8.25h19.5M2.25 9h19.5m-16.5 5.25h6m-6 2.25h3m-3.75 3h15a2.25 2.25 0 002.25-2.25V6.75A2.25 2.25 0 0019.5 4.5h-15A2.25 2.25 0 002.25 6.75v10.5A2.25 2.25 0 004.5 19.5z" />
+                </svg>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Loan Details</h2>
+            </div>
+
+            {/* INPUT 1: Loan Amount */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <label className="block text-xs font-bold text-[#1E1B2E]">
+                  Loan Amount
+                </label>
+                <span className="text-[#8E8A9D] cursor-pointer" title="Total principal amount you wish to borrow">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                  </svg>
+                </span>
+              </div>
+
+              <div className="relative">
+                <input
+                  type="text"
+                  value={loanAmount.toLocaleString('en-IN')}
+                  onChange={handleLoanAmountChange}
+                  className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                />
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="50000"
+                  max="10000000"
+                  step="10000"
+                  value={loanAmount}
+                  onChange={(e) => setLoanAmount(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>₹50,000</span>
+                  <span>₹1,00,00,000</span>
+                </div>
+              </div>
+            </div>
+
+            {/* INPUT 2: Interest Rate */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <label className="block text-xs font-bold text-[#1E1B2E]">
+                  Interest Rate (% p.a.)
+                </label>
+                <span className="text-[#8E8A9D] cursor-pointer" title="Annual interest rate offered by lender">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                  </svg>
+                </span>
+              </div>
+
+              <div className="relative">
+                <input
+                  type="number"
+                  step="0.05"
+                  value={interestRate}
+                  onChange={handleInterestRateChange}
+                  className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                />
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="1"
+                  max="30"
+                  step="0.1"
+                  value={interestRate}
+                  onChange={(e) => setInterestRate(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>1%</span>
+                  <span>30%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* INPUT 3: Loan Tenure */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <label className="block text-xs font-bold text-[#1E1B2E]">
+                  Loan Tenure
+                </label>
+                <span className="text-[#8E8A9D] cursor-pointer" title="Total loan repayment period">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                  </svg>
+                </span>
+              </div>
+
+              <div className="grid grid-cols-12 gap-2">
+                <div className="col-span-8">
+                  <input
+                    type="number"
+                    value={tenure}
+                    onChange={handleTenureChange}
+                    className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                  />
+                </div>
+                <div className="col-span-4">
+                  <select
+                    value={tenureUnit}
+                    onChange={(e) => setTenureUnit(e.target.value)}
+                    className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] rounded-xl px-2.5 py-2 text-xs font-bold text-[#1E1B2E] transition-all outline-none cursor-pointer"
+                  >
+                    <option value="years">Years</option>
+                    <option value="months">Months</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="1"
+                  max={tenureUnit === 'years' ? 30 : 360}
+                  step="1"
+                  value={tenure}
+                  onChange={(e) => setTenure(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>1 {tenureUnit === 'years' ? 'Year' : 'Month'}</span>
+                  <span>{tenureUnit === 'years' ? '30 Years' : '360 Months'}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* SMART TIP BOX */}
+            <div className="bg-[#FAF5FD] border border-purple-100 rounded-xl p-2.5 flex items-start gap-2.5">
+              <div className="w-5 h-5 rounded-full bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">
+                💡
+              </div>
+              <p className="text-[11px] text-[#544F66] leading-relaxed font-medium">
+                <strong className="text-[#1E1B2E] font-bold">Tip:</strong> Lower interest rates or longer tenure reduces EMI but increases total interest paid.
+              </p>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="space-y-2 pt-1">
+              <button
+                onClick={() => setConsultModalOpen(true)}
+                className="w-full bg-[#5E1083] hover:bg-[#7C1FAB] text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+              >
+                <span>Calculate EMI</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </button>
+
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={handleReset}
+                  className="text-[11px] font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                  <span>Reset All</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: YOUR EMI SUMMARY */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-3.5 text-left relative overflow-hidden h-full flex flex-col justify-between">
+            
+            {/* Header */}
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-xs">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Your EMI Summary</h2>
+                </div>
+              </div>
+            </div>
+
+            {/* BIG MONTHLY EMI */}
+            <div className="py-0">
+              <span className="text-xs font-semibold text-[#544F66] block mb-0.5">Monthly EMI</span>
+              <div className="text-2xl sm:text-3xl lg:text-[34px] font-black text-[#7C1FAB] tracking-tight">
+                {formatINR(emi)}
+              </div>
+            </div>
+
+            {/* 3-STATS SUMMARY ROW */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-0 pb-2 border-b border-gray-100 text-left">
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Total Interest Payable</span>
+                <span className="text-xs sm:text-sm font-bold text-[#1E1B2E]">{formatINR(totalInterest)}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Total Payment</span>
+                <span className="text-xs sm:text-sm font-bold text-[#16A34A]">{formatINR(totalPayment)}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Interest Rate (p.a.)</span>
+                <span className="text-xs sm:text-sm font-bold text-[#0284C7]">{interestRate.toFixed(2)}%</span>
+              </div>
+            </div>
+
+            {/* INTERACTIVE DONUT / PIE CHART + BREAKDOWN LIST */}
+            <div className="grid grid-cols-1 sm:grid-cols-12 gap-4 items-center bg-[#FAF9FC] rounded-xl p-3 border border-purple-50">
+              
+              {/* Donut Visual */}
+              <div className="sm:col-span-5 flex justify-center items-center relative py-1">
+                <svg width="140" height="140" viewBox="0 0 160 160" className="transform -rotate-90">
+                  {/* Background Track */}
+                  <circle
+                    cx="80"
+                    cy="80"
+                    r={radius}
+                    fill="transparent"
+                    stroke="#EBE8EF"
+                    strokeWidth={strokeWidth}
+                  />
+
+                  {/* Principal Circle Slice (Purple) */}
+                  <circle
+                    cx="80"
+                    cy="80"
+                    r={radius}
+                    fill="transparent"
+                    stroke="#7C1FAB"
+                    strokeWidth={strokeWidth}
+                    strokeDasharray={`${principalStroke} ${circumference}`}
+                    strokeDashoffset="0"
+                    className="transition-all duration-500"
+                  />
+
+                  {/* Interest Circle Slice (Green) */}
+                  <circle
+                    cx="80"
+                    cy="80"
+                    r={radius}
+                    fill="transparent"
+                    stroke="#22C55E"
+                    strokeWidth={strokeWidth}
+                    strokeDasharray={`${interestStroke} ${circumference}`}
+                    strokeDashoffset={`-${principalStroke}`}
+                    className="transition-all duration-500"
+                  />
+                </svg>
+
+                {/* Donut Center Icon */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                  <span className="text-xs font-black text-[#1E1B2E]">₹</span>
+                </div>
+              </div>
+
+              {/* Breakdown Legend List */}
+              <div className="sm:col-span-7 space-y-2.5 text-xs">
+                
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#7C1FAB]"></span>
+                    <span className="text-[#544F66] font-medium">Principal Amount</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-[#1E1B2E] block">{formatINR(loanAmount)}</span>
+                    <span className="text-[10px] text-[#8E8A9D]">{principalPct}%</span>
+                  </div>
+                </div>
+
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    <span className="w-2.5 h-2.5 rounded-full bg-[#22C55E]"></span>
+                    <span className="text-[#544F66] font-medium">Total Interest</span>
+                  </div>
+                  <div className="text-right">
+                    <span className="font-bold text-[#1E1B2E] block">{formatINR(totalInterest)}</span>
+                    <span className="text-[10px] text-[#8E8A9D]">{interestPct}%</span>
+                  </div>
+                </div>
+
+                <div className="pt-2 border-t border-purple-100/80 flex items-center justify-between">
+                  <span className="font-bold text-[#1E1B2E]">Total Payment</span>
+                  <span className="font-extrabold text-[#7C1FAB]">{formatINR(totalPayment)}</span>
+                </div>
+
+              </div>
+
+            </div>
+
+            {/* LOAN TENURE REMINDER BOX */}
+            <div className="bg-[#FAF5FD] rounded-xl p-2.5 px-3 border border-purple-100 flex items-center gap-3">
+              <div className="w-7 h-7 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center shrink-0">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                </svg>
+              </div>
+              <div>
+                <span className="text-xs font-bold text-[#1E1B2E] block">Loan tenure: {tenure} {tenureUnit}</span>
+                <span className="text-[10px] text-[#544F66] font-medium">Your EMI of {formatINR(emi)} is due on the start of every month.</span>
+              </div>
+            </div>
+
+            {/* Direct Action Button */}
+            <button
+              onClick={() => setConsultModalOpen(true)}
+              className="w-full bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Apply for {formatINR(loanAmount)} Loan</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* 4. FULL-WIDTH AMORTIZATION OVERVIEW CARD (Matching Screenshot) */}
+        <section className="mt-8 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-7 shadow-[0_8px_30px_rgba(30,27,46,0.04)] text-left">
+          
+          {/* Header */}
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-xs">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 013 19.875v-6.75zM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V8.625zM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 01-1.125-1.125V4.125z" />
+              </svg>
+            </div>
+            <div>
+              <h3 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Amortization Overview</h3>
+              <p className="text-xs text-[#544F66]">This is how your loan will be paid off over time.</p>
+            </div>
+          </div>
+
+          {/* Table */}
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-xs sm:text-sm">
+              <thead>
+                <tr className="bg-[#FAF5FD] text-[#1E1B2E] border-b border-purple-100">
+                  <th className="py-3 px-4 rounded-l-xl font-bold">Year</th>
+                  <th className="py-3 px-4 font-bold">Principal Paid</th>
+                  <th className="py-3 px-4 font-bold">Interest Paid</th>
+                  <th className="py-3 px-4 font-bold">Total Payment</th>
+                  <th className="py-3 px-4 rounded-r-xl font-bold">Outstanding Balance</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-100">
+                {amortizationSchedule.map((row, idx) => (
+                  <tr key={idx} className="hover:bg-purple-50/50 transition-colors">
+                    <td className="py-3 px-4 font-bold text-[#1E1B2E]">{row.year}</td>
+                    <td className="py-3 px-4 text-[#544F66] font-medium">{formatINR(row.principalPaid)}</td>
+                    <td className="py-3 px-4 text-[#544F66] font-medium">{formatINR(row.interestPaid)}</td>
+                    <td className="py-3 px-4 text-[#544F66] font-medium">{formatINR(row.totalPayment)}</td>
+                    <td className="py-3 px-4 font-bold text-[#7C1FAB]">{formatINR(row.outstandingBalance)}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+          {/* Disclaimer Note */}
+          <div className="mt-4 flex items-center gap-2 text-[11px] text-[#8E8A9D]">
+            <svg className="w-4 h-4 text-[#7C1FAB] shrink-0" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12c0 1.268-.63 2.39-1.593 3.068a3.745 3.745 0 01-1.043 3.296 3.745 3.745 0 01-3.296 1.043A3.745 3.745 0 0112 21c-1.268 0-2.39-.63-3.068-1.593a3.746 3.746 0 01-3.296-1.043 3.745 3.745 0 01-1.043-3.296A3.745 3.745 0 013 12c0-1.268.63-2.39 1.593-3.068a3.745 3.745 0 011.043-3.296 3.746 3.746 0 013.296-1.043A3.746 3.746 0 0112 3c1.268 0 2.39.63 3.068 1.593a3.746 3.746 0 013.296 1.043 3.746 3.746 0 011.043 3.296A3.745 3.745 0 0121 12z" />
+            </svg>
+            <span>Note: The above calculation is for indicative purpose only. Actual values may vary.</span>
+          </div>
+
+        </section>
+
+      </main>
+
+      {/* 5. CONSULTATION / LOAN APPLICATION MODAL */}
+      {consultModalOpen && (
+        <div className="fixed inset-0 bg-[#11081F]/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-[32px] max-w-md w-full p-6 sm:p-8 shadow-2xl border border-purple-100 relative animate-in fade-in zoom-in duration-200">
+            <button
+              onClick={() => setConsultModalOpen(false)}
+              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-purple-50 text-[#7C1FAB] hover:bg-purple-100 flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="w-12 h-12 rounded-2xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-2xl font-bold mb-4">
+              🏠
+            </div>
+
+            <h3 className="text-xl font-bold text-[#1E1B2E] mb-1">Apply for Loan of {formatINR(loanAmount)}</h3>
+            <p className="text-xs text-[#544F66] mb-5 leading-relaxed">
+              Calculated Monthly EMI: <strong className="text-[#7C1FAB]">{formatINR(emi)}</strong> for {tenure} {tenureUnit}. Connect with our lending partners for instant paperless loan approval.
+            </p>
+
+            <form
+              className="space-y-3.5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendWhatsAppEnquiry({
+                  formName: `Loan EMI Consultation (${consultForm.loanType})`,
+                  name: consultForm.name,
+                  phone: consultForm.phone,
+                  service: consultForm.loanType,
+                  extra: {
+                    'Requested Amount': formatINR(loanAmount),
+                    'Interest Rate': `${interestRate}%`,
+                    'Tenure': `${tenure} ${tenureUnit}`,
+                    'Est. Monthly EMI': formatINR(emi)
+                  }
+                });
+                alert('Thank you! Our loan specialist will connect with you shortly.');
+                setConsultModalOpen(false);
+                setConsultForm({ name: '', phone: '', loanType: 'Home Loan' });
+              }}
+            >
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Full Name</label>
+                <input
+                  type="text"
+                  required
+                  value={consultForm.name}
+                  onChange={(e) => setConsultForm({ ...consultForm, name: e.target.value })}
+                  placeholder="Enter your name"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EBE3F5] text-xs focus:outline-none focus:border-[#7C1FAB] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Mobile Number</label>
+                <PhoneInput
+                  value={consultForm.phone}
+                  countryCode={consultForm.countryCode || '+91'}
+                  onCountryCodeChange={(code) => setConsultForm((f) => ({ ...f, countryCode: code }))}
+                  onChange={(val) => setConsultForm((f) => ({ ...f, phone: val }))}
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Loan Type</label>
+                <select
+                  value={consultForm.loanType}
+                  onChange={(e) => setConsultForm({ ...consultForm, loanType: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EBE3F5] text-xs focus:outline-none focus:border-[#7C1FAB] transition-colors bg-white"
+                >
+                  <option>Home Loan</option>
+                  <option>Loan Against Securities (LAS)</option>
+                  <option>Personal Loan</option>
+                  <option>Business Loan</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold py-3.5 rounded-xl text-xs shadow-md transition-all cursor-pointer mt-2"
+              >
+                Get Best Loan Quotes
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+
+    </div>
+  );
+}

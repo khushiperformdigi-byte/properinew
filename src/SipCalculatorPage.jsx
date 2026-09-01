@@ -1,0 +1,911 @@
+import React, { useState, useEffect, useMemo, useRef } from 'react';
+import Footer from './Footer';
+import { sendWhatsAppEnquiry } from './utils/whatsapp';
+import PhoneInput from './components/PhoneInput';
+
+export default function SipCalculatorPage({ onNavigateHome, onNavigatePage }) {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [consultModalOpen, setConsultModalOpen] = useState(false);
+  const [showTable, setShowTable] = useState(false);
+  const [consultForm, setConsultForm] = useState({ name: '', phone: '', risk: 'Moderate (Balanced Advantage / Flexi Cap Funds)' });
+
+  // Calculator inputs
+  const [monthlyInvestment, setMonthlyInvestment] = useState(10000);
+  const [expectedReturn, setExpectedReturn] = useState(12);
+  const [duration, setDuration] = useState(15);
+  const [durationUnit, setDurationUnit] = useState('years'); // 'years' | 'months'
+  const [hoveredPoint, setHoveredPoint] = useState(null);
+
+  // Formatted duration in years
+  const effectiveYears = durationUnit === 'years' ? duration : duration / 12;
+
+  // Handle number input changes
+  const handleMonthlyInputChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9]/g, '');
+    const num = Number(rawVal);
+    setMonthlyInvestment(Math.min(Math.max(num, 0), 1000000));
+  };
+
+  const handleReturnInputChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9.]/g, '');
+    const num = Number(rawVal);
+    setExpectedReturn(Math.min(Math.max(num, 0), 50));
+  };
+
+  const handleDurationInputChange = (e) => {
+    const rawVal = e.target.value.replace(/[^0-9]/g, '');
+    const num = Number(rawVal);
+    const maxVal = durationUnit === 'years' ? 50 : 600;
+    setDuration(Math.min(Math.max(num, 1), maxVal));
+  };
+
+  const handleReset = () => {
+    setMonthlyInvestment(10000);
+    setExpectedReturn(12);
+    setDuration(15);
+    setDurationUnit('years');
+  };
+
+  // Comprehensive calculations
+  const { totalInvested, estReturns, totalValue, yearWiseData } = useMemo(() => {
+    const P = parseFloat(monthlyInvestment) || 0;
+    const annualR = parseFloat(expectedReturn) || 0;
+    const i = annualR / 12 / 100;
+    const totalMonths = Math.round(effectiveYears * 12);
+
+    if (P <= 0 || totalMonths <= 0 || i <= 0) {
+      return {
+        totalInvested: P * totalMonths,
+        estReturns: 0,
+        totalValue: P * totalMonths,
+        yearWiseData: []
+      };
+    }
+
+    const futureVal = Math.round(P * ((Math.pow(1 + i, totalMonths) - 1) / i) * (1 + i));
+    const invested = Math.round(P * totalMonths);
+    const returns = futureVal - invested;
+
+    // Generate year-by-year curve points
+    const yearsCount = Math.max(1, Math.ceil(effectiveYears));
+    const data = [];
+
+    // Starting point (Year 0)
+    data.push({
+      year: 0,
+      label: '0',
+      invested: 0,
+      returns: 0,
+      total: 0
+    });
+
+    for (let y = 1; y <= yearsCount; y++) {
+      const months = Math.min(y * 12, totalMonths);
+      const yearInvested = Math.round(P * months);
+      const yearTotal = Math.round(P * ((Math.pow(1 + i, months) - 1) / i) * (1 + i));
+      const yearReturns = Math.max(0, yearTotal - yearInvested);
+
+      data.push({
+        year: y,
+        label: `${y}Y`,
+        invested: yearInvested,
+        returns: yearReturns,
+        total: yearTotal
+      });
+    }
+
+    return {
+      totalInvested: invested,
+      estReturns: returns,
+      totalValue: futureVal,
+      yearWiseData: data
+    };
+  }, [monthlyInvestment, expectedReturn, effectiveYears]);
+
+  // Format currency in Indian standard format (₹ 36,80,611)
+  const formatINR = (val) => {
+    return new Intl.NumberFormat('en-IN', {
+      style: 'currency',
+      currency: 'INR',
+      maximumFractionDigits: 0
+    }).format(val);
+  };
+
+  // Format for Y-Axis (e.g. 10L, 20L, 1.5Cr)
+  const formatAxisAmount = (val) => {
+    if (val >= 10000000) {
+      const cr = val / 10000000;
+      return `${cr % 1 === 0 ? cr : cr.toFixed(1)}Cr`;
+    }
+    if (val >= 100000) {
+      const l = val / 100000;
+      return `${l % 1 === 0 ? l : l.toFixed(0)}L`;
+    }
+    if (val >= 1000) {
+      return `${(val / 1000).toFixed(0)}k`;
+    }
+    return `${val}`;
+  };
+
+  // SVG Chart Geometry - Compact & Sleek
+  const chartWidth = 540;
+  const chartHeight = 160;
+  const padding = { top: 12, right: 15, bottom: 26, left: 40 };
+  const graphWidth = chartWidth - padding.left - padding.right;
+  const graphHeight = chartHeight - padding.top - padding.bottom;
+
+  // Max value for Y-Axis
+  const maxY = useMemo(() => {
+    if (!yearWiseData.length) return 100000;
+    const maxVal = yearWiseData[yearWiseData.length - 1].total;
+    // Round up to clean ceiling
+    if (maxVal <= 0) return 100000;
+    const magnitude = Math.pow(10, Math.floor(Math.log10(maxVal)));
+    return Math.ceil(maxVal / magnitude) * magnitude;
+  }, [yearWiseData]);
+
+  // Y-Axis Ticks (4 ticks)
+  const yTicks = [0, maxY * 0.25, maxY * 0.5, maxY * 0.75, maxY];
+
+  // X-Axis Ticks (up to 6 ticks)
+  const xTicks = useMemo(() => {
+    if (!yearWiseData.length) return [];
+    const count = yearWiseData.length;
+    if (count <= 6) return yearWiseData;
+    const step = Math.ceil((count - 1) / 5);
+    const ticks = [];
+    for (let i = 0; i < count; i += step) {
+      ticks.push(yearWiseData[i]);
+    }
+    if (ticks[ticks.length - 1].year !== yearWiseData[count - 1].year) {
+      ticks.push(yearWiseData[count - 1]);
+    }
+    return ticks;
+  }, [yearWiseData]);
+
+  // Generate SVG Polygon / Path for Invested (Purple) and Total (Green over Purple)
+  const { investedPath, totalPath, investedArea, totalArea, pointCoords } = useMemo(() => {
+    if (!yearWiseData.length) {
+      return { investedPath: '', totalPath: '', investedArea: '', totalArea: '', pointCoords: [] };
+    }
+
+    const n = yearWiseData.length;
+    const coords = yearWiseData.map((d, index) => {
+      const x = padding.left + (index / (n - 1)) * graphWidth;
+      const yInvested = padding.top + graphHeight - (d.invested / maxY) * graphHeight;
+      const yTotal = padding.top + graphHeight - (d.total / maxY) * graphHeight;
+      return { x, yInvested, yTotal, data: d };
+    });
+
+    // Generate line paths
+    const investedLine = coords.map((c, idx) => `${idx === 0 ? 'M' : 'L'} ${c.x} ${c.yInvested}`).join(' ');
+    const totalLine = coords.map((c, idx) => `${idx === 0 ? 'M' : 'L'} ${c.x} ${c.yTotal}`).join(' ');
+
+    // Generate area polygons
+    const zeroY = padding.top + graphHeight;
+    const invArea = `${investedLine} L ${coords[coords.length - 1].x} ${zeroY} L ${coords[0].x} ${zeroY} Z`;
+
+    // Total area goes along total curve then backwards along invested curve to fill just the green top part
+    const totalTopArea = `${totalLine} L ${coords[coords.length - 1].x} ${zeroY} L ${coords[0].x} ${zeroY} Z`;
+
+    return {
+      investedPath: investedLine,
+      totalPath: totalLine,
+      investedArea: invArea,
+      totalArea: totalTopArea,
+      pointCoords: coords
+    };
+  }, [yearWiseData, maxY, graphWidth, graphHeight, padding]);
+
+  return (
+    <div className="w-full bg-[#FAF8FC] font-sans text-[#1E1B2E] antialiased selection:bg-purple-100 selection:text-[#7C1FAB] overflow-x-hidden">
+
+      {/* 3. FULL-WIDTH HERO SECTION (COMPACT HEIGHT - BOLDER LEFT CONTENT) */}
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[76px] lg:-mt-[84px] pt-[104px] sm:pt-[112px] lg:pt-[118px] pb-1.5 sm:pb-2 lg:pb-2.5 px-4 sm:px-6 lg:px-8 font-sans">
+        
+        {/* Ambient Purple Soft Glow */}
+        <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
+
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
+          
+          {/* LEFT COLUMN: Badge, Larger Bold Title, Expanded Subtitle & 3 Feature Pills */}
+          <div className="lg:col-span-6 flex flex-col justify-center items-start text-left space-y-4 relative py-2">
+            
+            {/* Category Pill Badge */}
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-purple-100/90 border border-purple-200/80 text-[#7C1FA8] text-xs sm:text-[13px] font-black uppercase tracking-wider shadow-2xs">
+              <span className="w-2 h-2 rounded-full bg-[#7C1FA8] inline-block animate-pulse"></span>
+              <span>SIP CALCULATOR</span>
+            </div>
+
+            {/* Main Title - Increased Height & Size */}
+            <h1 className="font-sans font-extrabold text-[36px] leading-[44px] sm:text-[46px] sm:leading-[54px] lg:text-[52px] lg:leading-[60px] tracking-[-0.03em] text-[#1E1B2E] max-w-[600px]">
+              Plan Smarter. <br />
+              Grow <span className="text-[#7C1FA8]">Wealth.</span>
+            </h1>
+
+            {/* Subtitle Paragraph - Increased Font & Spacing */}
+            <p className="font-medium text-[15px] sm:text-[16px] leading-[24px] sm:leading-[27px] text-[#544F66] max-w-[520px]">
+              Use our SIP Calculator to estimate future value of your investments and plan your financial goals with precision.
+            </p>
+
+            {/* 3 Feature Highlight Pills Row - Bolder Pills */}
+            <div className="flex flex-wrap items-center gap-2.5 pt-1.5">
+              
+              {/* Feature Pill 1: Instant Results */}
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-amber-500 font-black text-sm">⚡</span>
+                <span>Instant Results</span>
+              </div>
+
+              {/* Feature Pill 2: Real-Time Insights */}
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-[#7C1FA8] font-black text-sm">📊</span>
+                <span>Real-Time Insights</span>
+              </div>
+
+              {/* Feature Pill 3: 100% Accurate & Free */}
+              <div className="flex items-center gap-2 bg-white/90 backdrop-blur-xs border border-purple-100/90 px-4 py-2 rounded-full text-xs sm:text-[13px] font-bold text-[#1E1B2E] shadow-2xs">
+                <span className="text-rose-500 font-black text-sm">🎯</span>
+                <span>100% Accurate & Free</span>
+              </div>
+
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: 3D Graphic (Aligned to Left Content Height) */}
+          <div className="lg:col-span-6 relative flex items-center justify-center lg:justify-start w-full h-full mt-4 lg:mt-0 lg:-ml-4">
+            <div className="relative z-10 w-full h-full flex justify-center lg:justify-start items-center">
+              <img
+                src="/ChatGPT Image Aug 29, 2026, 10_59_27 PM.png"
+                alt="Plan Smarter. Grow Wealth - PROSPERi5 SIP Calculator"
+                className="w-full h-auto max-h-[340px] sm:max-h-[380px] lg:max-h-[400px] max-w-[620px] object-contain drop-shadow-xl select-none lg:scale-105 transform origin-left"
+              />
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      {/* 4. MAIN CALCULATOR CONTENT CONTAINER */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 relative z-10">
+
+        {/* 2-COLUMN CALCULATOR GRID - COMPACT & SLEEK */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+          
+          {/* LEFT COLUMN: YOUR SIP DETAILS */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-3.5 text-left h-full flex flex-col justify-between">
+            
+            {/* Card Header */}
+            <div className="flex items-center gap-2.5 pb-1.5 border-b border-gray-100">
+              <div className="w-8 h-8 rounded-lg bg-[#7C1FAB] text-white flex items-center justify-center font-bold text-xs shadow-sm">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                </svg>
+              </div>
+              <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Your SIP Details</h2>
+            </div>
+
+            {/* INPUT 1: Monthly Investment */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-[#1E1B2E]">
+                Monthly Investment (₹)
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  value={monthlyInvestment.toLocaleString('en-IN')}
+                  onChange={handleMonthlyInputChange}
+                  className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                />
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="500"
+                  max="500000"
+                  step="500"
+                  value={monthlyInvestment}
+                  onChange={(e) => setMonthlyInvestment(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>₹500</span>
+                  <span>₹5,00,000</span>
+                </div>
+              </div>
+            </div>
+
+            {/* INPUT 2: Expected Annual Return */}
+            <div className="space-y-1.5">
+              <div className="flex items-center gap-1.5">
+                <label className="block text-xs font-bold text-[#1E1B2E]">
+                  Expected Annual Return (%)
+                </label>
+                <span className="text-[#8E8A9D] cursor-pointer" title="Expected rate of return based on fund type">
+                  <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="10" />
+                    <path d="M12 16v-4m0-4h.01" />
+                  </svg>
+                </span>
+              </div>
+
+              <div className="relative">
+                <input
+                  type="number"
+                  step="0.1"
+                  value={expectedReturn}
+                  onChange={handleReturnInputChange}
+                  className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                />
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="1"
+                  max="30"
+                  step="0.5"
+                  value={expectedReturn}
+                  onChange={(e) => setExpectedReturn(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>1%</span>
+                  <span>30%</span>
+                </div>
+              </div>
+            </div>
+
+            {/* INPUT 3: Investment Duration */}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold text-[#1E1B2E]">
+                Investment Duration
+              </label>
+
+              <div className="grid grid-cols-12 gap-2">
+                <div className="col-span-8">
+                  <input
+                    type="number"
+                    value={duration}
+                    onChange={handleDurationInputChange}
+                    className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] focus:bg-white rounded-xl px-3.5 py-2 text-sm sm:text-base font-bold text-[#1E1B2E] transition-all outline-none"
+                  />
+                </div>
+                <div className="col-span-4">
+                  <select
+                    value={durationUnit}
+                    onChange={(e) => setDurationUnit(e.target.value)}
+                    className="w-full bg-[#FAF8FC] border border-[#EBE3F5] focus:border-[#7C1FAB] rounded-xl px-2.5 py-2 text-xs font-bold text-[#1E1B2E] transition-all outline-none cursor-pointer"
+                  >
+                    <option value="years">Years</option>
+                    <option value="months">Months</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Slider */}
+              <div className="pt-0.5">
+                <input
+                  type="range"
+                  min="1"
+                  max={durationUnit === 'years' ? 40 : 480}
+                  step="1"
+                  value={duration}
+                  onChange={(e) => setDuration(Number(e.target.value))}
+                  className="w-full h-1.5 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-[#7C1FAB]"
+                />
+                <div className="flex justify-between text-[10px] font-semibold text-[#8E8A9D] mt-0.5">
+                  <span>1 {durationUnit === 'years' ? 'Year' : 'Month'}</span>
+                  <span>{durationUnit === 'years' ? '40 Years' : '480 Months'}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* SMART TIP BOX */}
+            <div className="bg-[#FAF5FD] border border-purple-100 rounded-xl p-2.5 flex items-start gap-2.5">
+              <div className="w-5 h-5 rounded-full bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-[10px] shrink-0 mt-0.5 font-bold">
+                💡
+              </div>
+              <p className="text-[11px] text-[#544F66] leading-relaxed font-medium">
+                <strong className="text-[#1E1B2E] font-bold">Tip:</strong> Historically, equity mutual funds have delivered average returns of 10–15% p.a. over the long term.
+              </p>
+            </div>
+
+            {/* ACTION BUTTONS */}
+            <div className="space-y-2 pt-1">
+              <button
+                onClick={() => setConsultModalOpen(true)}
+                className="w-full bg-[#5E1083] hover:bg-[#7C1FAB] text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-sm hover:shadow transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
+              >
+                <span>Calculate &amp; Plan</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+                </svg>
+              </button>
+
+              <div className="flex items-center justify-center gap-3">
+                <button
+                  onClick={handleReset}
+                  className="text-[11px] font-bold text-[#8E8A9D] hover:text-[#7C1FAB] transition-colors flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <svg className="w-3 h-3" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                  </svg>
+                  <span>Reset All</span>
+                </button>
+
+                <span className="text-gray-300">|</span>
+
+                <button
+                  onClick={() => setShowTable(!showTable)}
+                  className="text-[11px] font-bold text-[#7C1FAB] hover:underline transition-all flex items-center gap-1 py-0.5 cursor-pointer"
+                >
+                  <span>{showTable ? 'Hide Schedule' : 'View Year-wise Schedule'}</span>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+          {/* RIGHT COLUMN: YOUR FUTURE CORPUS + LIVE GRAPH */}
+          <div className="lg:col-span-6 bg-white rounded-[24px] sm:rounded-[28px] border border-[#EBE3F5] p-5 sm:p-6 shadow-[0_8px_30px_rgba(30,27,46,0.04)] space-y-3.5 text-left relative overflow-hidden h-full flex flex-col justify-between">
+            
+            {/* Header */}
+            <div className="flex items-start justify-between">
+              <div className="flex items-center gap-2.5">
+                <div className="w-8 h-8 rounded-lg bg-purple-100 text-[#7C1FAB] flex items-center justify-center font-bold text-xs">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                  </svg>
+                </div>
+                <div>
+                  <h2 className="text-base sm:text-lg font-bold text-[#1E1B2E]">Your Future Corpus</h2>
+                  <span className="text-[11px] font-medium text-[#8E8A9D]">At the end of {duration} {durationUnit}</span>
+                </div>
+              </div>
+            </div>
+
+            {/* BIG HIGHLIGHTED TOTAL AMOUNT */}
+            <div className="py-0">
+              <div className="text-2xl sm:text-3xl lg:text-[34px] font-black text-[#7C1FAB] tracking-tight">
+                {formatINR(totalValue)}
+              </div>
+            </div>
+
+            {/* 3-STATS SUMMARY ROW */}
+            <div className="grid grid-cols-3 gap-2 sm:gap-3 pt-0 pb-2 border-b border-gray-100 text-left">
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Total Invested</span>
+                <span className="text-xs sm:text-sm font-bold text-[#1E1B2E]">{formatINR(totalInvested)}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">Est. Returns</span>
+                <span className="text-xs sm:text-sm font-bold text-[#16A34A]">{formatINR(estReturns)}</span>
+              </div>
+              <div>
+                <span className="text-[10px] font-semibold text-[#8E8A9D] block mb-0.5">XIRR / Return</span>
+                <span className="text-xs sm:text-sm font-bold text-[#0284C7]">{expectedReturn.toFixed(2)}%</span>
+              </div>
+            </div>
+
+            {/* INTERACTIVE WORKING GROWTH GRAPH */}
+            <div className="space-y-2">
+              
+              {/* Legend Row */}
+              <div className="flex items-center justify-end gap-4 text-[11px] font-semibold">
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-1.5 rounded-full bg-[#7C1FAB]"></span>
+                  <span className="text-[#544F66]">Invested Amount</span>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  <span className="w-3 h-1.5 rounded-full bg-[#22C55E]"></span>
+                  <span className="text-[#544F66]">Estimated Returns</span>
+                </div>
+              </div>
+
+              {/* Chart Canvas Area */}
+              <div className="w-full bg-[#FAF9FC] rounded-xl p-1.5 sm:p-2.5 border border-purple-50 relative select-none">
+                
+                <svg
+                  viewBox={`0 0 ${chartWidth} ${chartHeight}`}
+                  className="w-full h-auto overflow-visible"
+                >
+                  <defs>
+                    {/* Gradient for Invested (Purple) */}
+                    <linearGradient id="purpleGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#7C1FAB" stopOpacity="0.85" />
+                      <stop offset="100%" stopColor="#7C1FAB" stopOpacity="0.95" />
+                    </linearGradient>
+
+                    {/* Gradient for Returns (Green) */}
+                    <linearGradient id="greenGrad" x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="0%" stopColor="#22C55E" stopOpacity="0.95" />
+                      <stop offset="100%" stopColor="#16A34A" stopOpacity="0.85" />
+                    </linearGradient>
+                  </defs>
+
+                  {/* Horizontal Grid lines */}
+                  {yTicks.map((tickVal, i) => {
+                    const y = padding.top + graphHeight - (tickVal / maxY) * graphHeight;
+                    return (
+                      <g key={i}>
+                        <line
+                          x1={padding.left}
+                          y1={y}
+                          x2={padding.left + graphWidth}
+                          y2={y}
+                          stroke="#EBE8EF"
+                          strokeDasharray={i === 0 ? "none" : "3,3"}
+                          strokeWidth="1"
+                        />
+                        <text
+                          x={padding.left - 6}
+                          y={y + 3}
+                          textAnchor="end"
+                          className="text-[9px] fill-[#8E8A9D] font-medium"
+                        >
+                          {formatAxisAmount(tickVal)}
+                        </text>
+                      </g>
+                    );
+                  })}
+
+                  {/* Stacked Area: Green (Total Area) */}
+                  <path
+                    d={totalArea}
+                    fill="url(#greenGrad)"
+                    className="transition-all duration-300"
+                  />
+
+                  {/* Stacked Area: Purple (Invested Area) */}
+                  <path
+                    d={investedArea}
+                    fill="url(#purpleGrad)"
+                    className="transition-all duration-300"
+                  />
+
+                  {/* Total Line Top Edge */}
+                  <path
+                    d={totalPath}
+                    fill="none"
+                    stroke="#16A34A"
+                    strokeWidth="2"
+                    className="transition-all duration-300"
+                  />
+
+                  {/* Invested Line Edge */}
+                  <path
+                    d={investedPath}
+                    fill="none"
+                    stroke="#5E1083"
+                    strokeWidth="2"
+                    className="transition-all duration-300"
+                  />
+
+                  {/* X-Axis Ticks */}
+                  {xTicks.map((tick, i) => {
+                    const x = padding.left + (tick.year / effectiveYears) * graphWidth;
+                    return (
+                      <g key={i}>
+                        <line
+                          x1={x}
+                          y1={padding.top + graphHeight}
+                          x2={x}
+                          y2={padding.top + graphHeight + 4}
+                          stroke="#8E8A9D"
+                          strokeWidth="1"
+                        />
+                        <text
+                          x={x}
+                          y={padding.top + graphHeight + 14}
+                          textAnchor="middle"
+                          className="text-[10px] fill-[#8E8A9D] font-semibold"
+                        >
+                          {tick.label}
+                        </text>
+                      </g>
+                    );
+                  })}
+
+                  {/* Interactive Hover Nodes */}
+                  {pointCoords.map((pt, idx) => (
+                    <g
+                      key={idx}
+                      className="cursor-pointer group/node"
+                      onMouseEnter={() => setHoveredPoint(pt)}
+                      onMouseLeave={() => setHoveredPoint(null)}
+                    >
+                      {/* Invisible wider hit area */}
+                      <circle cx={pt.x} cy={pt.yTotal} r="12" fill="transparent" />
+                      {/* Visible node on total */}
+                      <circle
+                        cx={pt.x}
+                        cy={pt.yTotal}
+                        r={hoveredPoint && hoveredPoint.data.year === pt.data.year ? 4.5 : 2.5}
+                        fill="#FFFFFF"
+                        stroke="#16A34A"
+                        strokeWidth="2"
+                        className="transition-all duration-150"
+                      />
+                    </g>
+                  ))}
+                </svg>
+
+                {/* Interactive Tooltip Overlay */}
+                {hoveredPoint && (
+                  <div
+                    className="absolute bg-[#11081F] text-white p-2.5 rounded-xl shadow-xl text-xs z-30 pointer-events-none transform -translate-x-1/2 -translate-y-full mb-1"
+                    style={{
+                      left: `${(hoveredPoint.x / chartWidth) * 100}%`,
+                      top: `${(hoveredPoint.yTotal / chartHeight) * 100}%`
+                    }}
+                  >
+                    <div className="font-extrabold text-[#F5A623] border-b border-white/20 pb-0.5 mb-1 text-[11px]">
+                      Year {hoveredPoint.data.year}
+                    </div>
+                    <div className="flex justify-between gap-3 text-[10px]">
+                      <span className="text-gray-300">Invested:</span>
+                      <span className="font-bold">{formatINR(hoveredPoint.data.invested)}</span>
+                    </div>
+                    <div className="flex justify-between gap-3 text-[10px]">
+                      <span className="text-gray-300">Returns:</span>
+                      <span className="font-bold text-[#22C55E]">+{formatINR(hoveredPoint.data.returns)}</span>
+                    </div>
+                    <div className="flex justify-between gap-3 pt-0.5 mt-0.5 border-t border-white/15 text-[10px]">
+                      <span className="text-white font-semibold">Total Value:</span>
+                      <span className="font-extrabold text-[#F5A623]">{formatINR(hoveredPoint.data.total)}</span>
+                    </div>
+                  </div>
+                )}
+
+              </div>
+            </div>
+
+            {/* DISCLAIMER NOTE */}
+            <div className="bg-[#FAF5FD] rounded-xl p-2 px-3 border border-purple-100 text-center">
+              <p className="text-[10px] text-[#8E8A9D] font-medium leading-tight">
+                The graph represents an estimate based on the returns provided. Actual returns may vary depending on fund performance.
+              </p>
+            </div>
+
+            {/* Direct Action Button */}
+            <button
+              onClick={() => setConsultModalOpen(true)}
+              className="w-full bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold py-3 rounded-xl text-xs sm:text-sm shadow-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
+            >
+              <span>Invest {formatINR(monthlyInvestment)} / Month</span>
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2.5" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+              </svg>
+            </button>
+
+          </div>
+
+        </div>
+
+        {/* EXPANDABLE YEAR-WISE SCHEDULE TABLE */}
+        {showTable && (
+          <div className="mt-10 bg-white rounded-[28px] border border-[#EBE3F5] p-6 sm:p-8 shadow-sm animate-in fade-in slide-in-from-top-4 duration-300 text-left">
+            <div className="flex justify-between items-center mb-6">
+              <div>
+                <h3 className="text-xl font-bold text-[#1E1B2E]">Year-wise Wealth Accumulation Schedule</h3>
+                <p className="text-xs text-[#544F66]">Track how your monthly deposit grows every single year</p>
+              </div>
+              <button
+                onClick={() => setShowTable(false)}
+                className="text-xs font-bold text-[#7C1FAB] hover:underline cursor-pointer"
+              >
+                Close Table
+              </button>
+            </div>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-left text-xs sm:text-sm">
+                <thead>
+                  <tr className="bg-[#FAF5FD] text-[#1E1B2E] border-b border-purple-100">
+                    <th className="py-3 px-4 rounded-l-xl font-bold">Year</th>
+                    <th className="py-3 px-4 font-bold">Annual Investment</th>
+                    <th className="py-3 px-4 font-bold">Total Invested</th>
+                    <th className="py-3 px-4 font-bold">Est. Interest Earned</th>
+                    <th className="py-3 px-4 rounded-r-xl font-bold text-[#7C1FAB]">Ending Corpus</th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-gray-100">
+                  {yearWiseData.filter(d => d.year > 0).map((d) => (
+                    <tr key={d.year} className="hover:bg-purple-50/50 transition-colors">
+                      <td className="py-3 px-4 font-bold text-[#1E1B2E]">Year {d.year}</td>
+                      <td className="py-3 px-4 text-[#544F66]">{formatINR(monthlyInvestment * 12)}</td>
+                      <td className="py-3 px-4 text-[#544F66] font-medium">{formatINR(d.invested)}</td>
+                      <td className="py-3 px-4 text-[#16A34A] font-semibold">+{formatINR(d.returns)}</td>
+                      <td className="py-3 px-4 font-bold text-[#7C1FAB]">{formatINR(d.total)}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        )}
+
+        {/* 4. SIP BENEFITS SECTION (Matching Screenshot) */}
+        <section className="mt-14 sm:mt-16 text-left">
+          
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1E1B2E] tracking-tight mb-8">
+            SIP Benefits
+          </h2>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6">
+            
+            {/* Benefit 1 */}
+            <div className="bg-white rounded-xl sm:rounded-[24px] border border-[#EBE3F5] p-3.5 sm:p-6 shadow-sm hover:shadow-md transition-all hover:border-purple-200 flex flex-col justify-between group">
+              <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#F5EEFB] text-[#7C1FAB] flex items-center justify-center font-bold text-base sm:text-xl mb-2.5 sm:mb-4 group-hover:scale-110 group-hover:bg-[#7C1FAB] group-hover:text-white transition-all shrink-0">
+                <svg className="w-4.5 h-4.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-base text-[#1E1B2E] mb-1 sm:mb-2 leading-tight">
+                  Rupee Cost Averaging
+                </h3>
+                <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-snug sm:leading-relaxed">
+                  Invest fixed amounts regularly &amp; reduce market volatility impact.
+                </p>
+              </div>
+            </div>
+
+            {/* Benefit 2 */}
+            <div className="bg-white rounded-xl sm:rounded-[24px] border border-[#EBE3F5] p-3.5 sm:p-6 shadow-sm hover:shadow-md transition-all hover:border-purple-200 flex flex-col justify-between group">
+              <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#F5EEFB] text-[#7C1FAB] flex items-center justify-center font-bold text-base sm:text-xl mb-2.5 sm:mb-4 group-hover:scale-110 group-hover:bg-[#7C1FAB] group-hover:text-white transition-all shrink-0">
+                <svg className="w-4.5 h-4.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-base text-[#1E1B2E] mb-1 sm:mb-2 leading-tight">
+                  Power of Compounding
+                </h3>
+                <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-snug sm:leading-relaxed">
+                  Earn returns on your returns and accelerate wealth over time.
+                </p>
+              </div>
+            </div>
+
+            {/* Benefit 3 */}
+            <div className="bg-white rounded-xl sm:rounded-[24px] border border-[#EBE3F5] p-3.5 sm:p-6 shadow-sm hover:shadow-md transition-all hover:border-purple-200 flex flex-col justify-between group">
+              <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#F5EEFB] text-[#7C1FAB] flex items-center justify-center font-bold text-base sm:text-xl mb-2.5 sm:mb-4 group-hover:scale-110 group-hover:bg-[#7C1FAB] group-hover:text-white transition-all shrink-0">
+                <svg className="w-4.5 h-4.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-base text-[#1E1B2E] mb-1 sm:mb-2 leading-tight">
+                  Discipline &amp; Simplicity
+                </h3>
+                <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-snug sm:leading-relaxed">
+                  Stay disciplined with automated, hassle-free monthly debits.
+                </p>
+              </div>
+            </div>
+
+            {/* Benefit 4 */}
+            <div className="bg-white rounded-xl sm:rounded-[24px] border border-[#EBE3F5] p-3.5 sm:p-6 shadow-sm hover:shadow-md transition-all hover:border-purple-200 flex flex-col justify-between group">
+              <div className="w-9 h-9 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-[#F5EEFB] text-[#7C1FAB] flex items-center justify-center font-bold text-base sm:text-xl mb-2.5 sm:mb-4 group-hover:scale-110 group-hover:bg-[#7C1FAB] group-hover:text-white transition-all shrink-0">
+                <svg className="w-4.5 h-4.5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M15.59 14.37a6 6 0 01-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 006.16-12.12A14.98 14.98 0 009.631 8.41m5.96 5.96a14.926 14.926 0 01-5.841 2.58m-.119-8.54a6 6 0 00-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 00-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 01-2.448-2.448 14.9 14.9 0 01.06-.312m-2.24 2.39a4.493 4.493 0 00-1.757 4.306 4.493 4.493 0 004.306-1.758M16.5 9a1.5 1.5 0 11-3 0 1.5 1.5 0 013 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="font-bold text-xs sm:text-base text-[#1E1B2E] mb-1 sm:mb-2 leading-tight">
+                  Wealth Creation
+                </h3>
+                <p className="text-[10.5px] sm:text-xs text-[#544F66] font-medium leading-snug sm:leading-relaxed">
+                  Ideal for long-term goals like retirement and education.
+                </p>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+      </main>
+
+      {/* 5. CONSULTATION / START SIP MODAL */}
+      {consultModalOpen && (
+        <div className="fixed inset-0 bg-[#11081F]/70 backdrop-blur-sm z-[100] flex items-center justify-center p-4">
+          <div className="bg-white rounded-[32px] max-w-md w-full p-6 sm:p-8 shadow-2xl border border-purple-100 relative animate-in fade-in zoom-in duration-200">
+            <button
+              onClick={() => setConsultModalOpen(false)}
+              className="absolute top-5 right-5 w-9 h-9 rounded-full bg-purple-50 text-[#7C1FAB] hover:bg-purple-100 flex items-center justify-center transition-colors cursor-pointer"
+            >
+              <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </button>
+
+            <div className="w-12 h-12 rounded-2xl bg-purple-100 text-[#7C1FAB] flex items-center justify-center text-2xl font-bold mb-4">
+              📈
+            </div>
+
+            <h3 className="text-xl font-bold text-[#1E1B2E] mb-1">Start Your SIP of {formatINR(monthlyInvestment)}/mo</h3>
+            <p className="text-xs text-[#544F66] mb-5 leading-relaxed">
+              Target Corpus: <strong className="text-[#7C1FAB]">{formatINR(totalValue)}</strong> in {duration} {durationUnit}. Connect with our certified mutual fund advisors to pick top quartile funds.
+            </p>
+
+            <form
+              className="space-y-3.5"
+              onSubmit={(e) => {
+                e.preventDefault();
+                sendWhatsAppEnquiry({
+                  formName: 'SIP Investment Consultation',
+                  name: consultForm.name,
+                  phone: consultForm.phone,
+                  service: 'SIP Setup',
+                  extra: {
+                    'Monthly Investment': formatINR(monthlyInvestment),
+                    'Expected Return': `${expectedReturn}%`,
+                    'Duration': `${duration} ${durationUnit}`,
+                    'Target Corpus': formatINR(totalValue),
+                    'Risk Appetite': consultForm.risk
+                  }
+                });
+                alert('Thank you! Our investment advisor will call you to setup your SIP.');
+                setConsultModalOpen(false);
+                setConsultForm({ name: '', phone: '', risk: 'Moderate (Balanced Advantage / Flexi Cap Funds)' });
+              }}
+            >
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Full Name</label>
+                <input
+                  type="text"
+                  required
+                  value={consultForm.name}
+                  onChange={(e) => setConsultForm({ ...consultForm, name: e.target.value })}
+                  placeholder="Enter your name"
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EBE3F5] text-xs focus:outline-none focus:border-[#7C1FAB] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Mobile Number</label>
+                <PhoneInput
+                  value={consultForm.phone}
+                  countryCode={consultForm.countryCode || '+91'}
+                  onCountryCodeChange={(code) => setConsultForm((f) => ({ ...f, countryCode: code }))}
+                  onChange={(val) => setConsultForm((f) => ({ ...f, phone: val }))}
+                  placeholder="Enter phone number"
+                />
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-[#1E1B2E] mb-1">Preferred Risk Appetite</label>
+                <select
+                  value={consultForm.risk}
+                  onChange={(e) => setConsultForm({ ...consultForm, risk: e.target.value })}
+                  className="w-full px-3.5 py-2.5 rounded-xl border border-[#EBE3F5] text-xs focus:outline-none focus:border-[#7C1FAB] transition-colors bg-white"
+                >
+                  <option>Moderate (Balanced Advantage / Flexi Cap Funds)</option>
+                  <option>Aggressive (Mid Cap / Small Cap Funds)</option>
+                  <option>Conservative (Large Cap / Index Funds)</option>
+                </select>
+              </div>
+
+              <button
+                type="submit"
+                className="w-full bg-[#7C1FAB] hover:bg-[#6b1a91] text-white font-bold py-3.5 rounded-xl text-xs shadow-md transition-all cursor-pointer mt-2"
+              >
+                Proceed with Advisor
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
+
+
+    </div>
+  );
+}
