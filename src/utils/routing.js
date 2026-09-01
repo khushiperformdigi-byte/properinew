@@ -5,6 +5,7 @@ export const PAGE_ROUTES = {
   'about': '/about',
   'contact': '/contact',
   'contact-us': '/contact',
+  'solutions': '/solutions',
   'investment': '/investment',
   'insurance': '/insurance',
   'financing': '/financing',
@@ -14,7 +15,7 @@ export const PAGE_ROUTES = {
   'loan': '/loan',
   'grow': '/grow',
   'knowledge': '/knowledge-center',
-  'partner': '/partner-b2b',
+  'partner': '/',
   'personal-finance': '/personal-finance',
   'tax': '/tax-solutions',
   'insights': '/market-insights',
@@ -37,6 +38,7 @@ export const PAGE_ROUTES = {
 export const PAGE_TITLES = {
   'home': 'Prosperi5 - Integrated Financial Ecosystem | Wealth, Investments & Loans',
   'about': 'About Us - Prosperi5 | Leading Financial Services Platform',
+  'solutions': 'Multi-Product Distribution Solutions - Prosperi5',
   'investment': 'Investment Solutions - Prosperi5 | Wealth Management & Mutual Funds',
   'insurance': 'Insurance Solutions - Prosperi5 | Health, Life & Term Protection',
   'financing': 'Business Financing - Prosperi5 | Capital & Growth Solutions',
@@ -103,6 +105,10 @@ export const getPageFromUrl = () => {
     case 'about':
       targetPage = 'about';
       break;
+    case 'solutions':
+    case 'solution':
+      targetPage = 'solutions';
+      break;
     case 'investment':
       targetPage = 'investment';
       break;
@@ -134,7 +140,7 @@ export const getPageFromUrl = () => {
       break;
     case 'partner':
     case 'partner-b2b':
-      targetPage = 'partner';
+      targetPage = 'home';
       break;
     case 'personal-finance':
     case 'personalfinance':

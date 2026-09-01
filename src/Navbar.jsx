@@ -11,8 +11,14 @@ export default function Navbar({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
+  const [investorsDropdownOpen, setInvestorsDropdownOpen] = useState(false);
+  const [partnerDropdownOpen, setPartnerDropdownOpen] = useState(false);
+  const [knowledgeDropdownOpen, setKnowledgeDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [mobileInvestorsOpen, setMobileInvestorsOpen] = useState(false);
+  const [mobilePartnerOpen, setMobilePartnerOpen] = useState(false);
+  const [mobileKnowledgeOpen, setMobileKnowledgeOpen] = useState(false);
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const [expertModalOpen, setExpertModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -72,67 +78,53 @@ export default function Navbar({
     }, 2000);
   };
 
+  const isHome = currentPage === 'home' || currentPage === 'partner-b2b' || currentPage === 'partner';
+  const navBgClass = isHome 
+    ? 'bg-white' 
+    : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
+
   return (
     <>
-      {/* 1. TOP CONTACT UTILITY BAR (DESKTOP ONLY) */}
-      <div className="hidden sm:block bg-white w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40">
-        <div className="max-w-[1500px] mx-auto px-1 sm:px-2 py-0.5 flex justify-between items-center text-xs text-[#1E1B2E]">
-          <div className="flex items-center gap-2.5">
-            <div className="flex gap-2 items-center text-[#544F66]">
-              <div className="w-4.5 h-4.5 rounded-full bg-[#7C1FA8]/10 flex items-center justify-center text-[#7C1FA8]">
-                <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <circle cx="12" cy="12" r="3" />
-                  <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
-                </svg>
+      <div className={`w-full ${navBgClass}`}>
+        {/* 1. TOP CONTACT UTILITY BAR (DESKTOP ONLY) */}
+        <div className={`hidden sm:block ${navBgClass} w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40`}>
+          <div className="max-w-[1500px] mx-auto px-1 sm:px-2 py-0.5 flex justify-between items-center text-xs text-[#1E1B2E]">
+            <div className="flex items-center gap-2.5">
+              <div className="flex gap-2 items-center text-[#544F66]">
+                <div className="w-4.5 h-4.5 rounded-full bg-[#7C1FA8]/10 flex items-center justify-center text-[#7C1FA8]">
+                  <svg className="w-2.5 h-2.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
+                    <circle cx="12" cy="12" r="3" />
+                    <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
+                  </svg>
+                </div>
+                <span className="font-semibold text-[#1E1B2E] text-xs">Investments · Insurance · Financing</span>
               </div>
-              <span className="font-semibold text-[#1E1B2E] text-xs">Investments - Insurance · Financing</span>
+              <span className="text-purple-200 hidden sm:inline">|</span>
+              <span className="border border-purple-200/80 text-[#7C1FA8] bg-purple-50/80 backdrop-blur-sm px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider hidden sm:inline-block shadow-2xs">
+                All through one trusted relationship
+              </span>
             </div>
-            <span className="text-purple-200 hidden sm:inline">|</span>
-            <span className="border border-purple-200/80 text-[#7C1FA8] bg-purple-50/80 backdrop-blur-sm px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider hidden sm:inline-block shadow-2xs">
-              All through one trusted relationship
-            </span>
-          </div>
 
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button
-              onClick={() => setExpertModalOpen(true)}
-              className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-bold px-3 py-1 rounded-full text-[10px] transition-all shadow-2xs flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95"
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
-                <path d="M2.25 6.622c0-1.077.873-1.95 1.95-1.95h2.25c.877 0 1.63.585 1.85 1.432l.711 2.766c.2.783-.062 1.615-.67 2.115l-1.56 1.287a15.776 15.776 0 0 0 6.6 6.6l1.287-1.56c.5-.608 1.332-.87 2.115-.67l2.766.711c.847.22 1.432.973 1.432 1.85v2.25c0 1.077-.873 1.95-1.95 1.95h-2.25a16.5 16.5 0 0 1-16.5-16.5v-2.25Z" />
-              </svg>
-              Talk to an Expert
-            </button>
+            <div className="flex items-center gap-3 sm:gap-4">
+              <button
+                onClick={() => setExpertModalOpen(true)}
+                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-bold px-3 py-1 rounded-full text-[10px] transition-all shadow-2xs flex items-center gap-1 cursor-pointer hover:scale-105 active:scale-95"
+              >
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-3 h-3">
+                  <path d="M2.25 6.622c0-1.077.873-1.95 1.95-1.95h2.25c.877 0 1.63.585 1.85 1.432l.711 2.766c.2.783-.062 1.615-.67 2.115l-1.56 1.287a15.776 15.776 0 0 0 6.6 6.6l1.287-1.56c.5-.608 1.332-.87 2.115-.67l2.766.711c.847.22 1.432.973 1.432 1.85v2.25c0 1.077-.873 1.95-1.95 1.95h-2.25a16.5 16.5 0 0 1-16.5-16.5v-2.25Z" />
+                </svg>
+                Talk to an Expert
+              </button>
 
-            <div className="flex items-center gap-2 text-[#544F66] text-xs font-semibold">
-              <span className="text-purple-200">|</span>
-              <button
-                onClick={() => handleNav('partner')}
-                className="hover:text-[#7C1FA8] text-[#1E1B2E] transition-all flex items-center gap-1.5 font-semibold cursor-pointer bg-white/60 hover:bg-purple-50/80 px-2.5 py-0.5 rounded-full border border-purple-100/80 shadow-2xs text-xs"
-              >
-                <svg className="w-3 h-3 text-[#7C1FA8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-                </svg>
-                Partner Login
-              </button>
-              <span className="text-purple-200">|</span>
-              <button
-                onClick={() => handleNav('investors')}
-                className="hover:text-[#7C1FA8] text-[#1E1B2E] transition-all flex items-center gap-1.5 font-semibold cursor-pointer bg-white/60 hover:bg-purple-50/80 px-2.5 py-0.5 rounded-full border border-purple-100/80 shadow-2xs text-xs"
-              >
-                <svg className="w-3 h-3 text-[#7C1FA8]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                </svg>
-                Investor Login
-              </button>
+
             </div>
           </div>
         </div>
-      </div>
 
-      {/* 2. GLASSNAVBAR - FULL WIDTH ON MOBILE, FLOATING PILL ON DESKTOP */}
-      <nav className={`sticky top-0 lg:top-2.5 w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-2 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
-        <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
+        {/* 2. GLASSNAVBAR - FULL WIDTH ON MOBILE, FLOATING PILL ON DESKTOP */}
+        <header className={`relative z-50 w-full ${navBgClass}`}>
+          <nav className={`w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-1.5 pb-1 lg:pb-1.5 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
+            <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
 
           {/* Brand Logo */}
           <div className="flex items-center cursor-pointer group shrink-0 pr-2 sm:pr-4" onClick={() => handleNav('home')}>
@@ -164,76 +156,147 @@ export default function Navbar({
               About Us
             </a>
 
-            {/* SOLUTIONS DROPDOWN */}
+            {/* Solutions Direct Link */}
+            <a
+              href={getPathForPage('solutions')}
+              onClick={(e) => { e.preventDefault(); handleNav('solutions'); }}
+              className={`whitespace-nowrap transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'solutions' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : 'hover:text-[#7C1FA8]'}`}
+            >
+              Solutions
+            </a>
+
+
+
+
+
+            {/* KNOWLEDGE CENTER DROPDOWN */}
             <div
               className="relative group py-1"
-              onMouseEnter={() => setSolutionsDropdownOpen(true)}
-              onMouseLeave={() => setSolutionsDropdownOpen(false)}
+              onMouseEnter={() => setKnowledgeDropdownOpen(true)}
+              onMouseLeave={() => setKnowledgeDropdownOpen(false)}
             >
-              <button className="whitespace-nowrap hover:text-[#7C1FA8] transition-colors flex items-center gap-1 font-semibold cursor-pointer py-1">
-                Solutions
+              <a
+                href={getPathForPage('knowledge')}
+                onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }}
+                className={`whitespace-nowrap hover:text-[#7C1FA8] transition-colors flex items-center gap-1 font-semibold cursor-pointer py-1 relative ${currentPage === 'knowledge' || currentPage === 'personal-finance' || currentPage === 'tax' || currentPage === 'insights' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : ''}`}
+              >
+                Knowledge Center
                 <svg className="w-3.5 h-3.5 text-[#1E1B2E]/80 group-hover:text-[#7C1FA8] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                 </svg>
-              </button>
+              </a>
 
-              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-xl p-1.5 shadow-[0_16px_40px_rgba(30,27,46,0.18)] w-[200px] space-y-0.5 animate-in fade-in slide-in-from-top-1 z-[9999]">
+              {/* Single-Column Dropdown Box (For Partners on Top without sub-list, For Investors Below) */}
+              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-[20px] p-3.5 shadow-[0_20px_50px_rgba(30,27,46,0.16)] w-[260px] space-y-2 animate-in fade-in slide-in-from-top-1 z-[9999]">
+                
+                {/* 1. FOR PARTNERS (Above For Investors, single link, no sub-list) */}
                 <a
-                  href={getPathForPage('grow')}
-                  onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
+                  href={getPathForPage('home')}
+                  onClick={(e) => { e.preventDefault(); handleNav('home'); }}
+                  className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 transition-colors group/partner cursor-pointer"
                 >
-                  Grow
+                  <div className="w-7 h-7 rounded-lg bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xs shadow-xs shrink-0">
+                    ★
+                  </div>
+                  <div className="flex flex-col">
+                    <h4 className="font-extrabold text-xs text-[#1E1B2E] group-hover/partner:text-[#7C1FA8] transition-colors leading-tight">
+                      For Partners
+                    </h4>
+                    <p className="text-[10px] text-[#8E8A9D] font-medium leading-tight">
+                      B2B Partner Ecosystem
+                    </p>
+                  </div>
                 </a>
-                <a
-                  href={getPathForPage('protect')}
-                  onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Protect
-                </a>
-                <a
-                  href={getPathForPage('investment')}
-                  onClick={(e) => { e.preventDefault(); handleNav('investment'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Investment
-                </a>
-                <a
-                  href={getPathForPage('insurance')}
-                  onClick={(e) => { e.preventDefault(); handleNav('insurance'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Insurance
-                </a>
-                <a
-                  href={getPathForPage('financing')}
-                  onClick={(e) => { e.preventDefault(); handleNav('financing'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Financing
-                </a>
-                <a
-                  href={getPathForPage('borrow')}
-                  onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Borrow &amp; Loans
-                </a>
-                <a
-                  href={getPathForPage('personal-finance')}
-                  onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Personal Finance
-                </a>
-                <a
-                  href={getPathForPage('tax')}
-                  onClick={(e) => { e.preventDefault(); handleNav('tax'); }}
-                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
-                >
-                  Tax Solutions
-                </a>
+
+                <div className="h-px bg-purple-50 my-0.5" />
+
+                {/* 2. FOR INVESTORS (Below For Partners) */}
+                <div className="flex flex-col">
+                  <a
+                    href={getPathForPage('investors')}
+                    onClick={(e) => { e.preventDefault(); handleNav('investors'); }}
+                    className="flex items-center gap-2.5 p-2 rounded-xl hover:bg-purple-50 transition-colors group/investor cursor-pointer mb-1"
+                  >
+                    <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#EA580C] to-[#F59E0B] text-white flex items-center justify-center font-extrabold text-xs shadow-xs shrink-0">
+                      ₹
+                    </div>
+                    <div className="flex flex-col">
+                      <h4 className="font-extrabold text-xs text-[#1E1B2E] group-hover/investor:text-[#7C1FA8] transition-colors leading-tight">
+                        For Investors
+                      </h4>
+                      <p className="text-[10px] text-[#8E8A9D] font-medium leading-tight">
+                        B2C Articles by Category
+                      </p>
+                    </div>
+                  </a>
+
+                  <div className="flex flex-col space-y-0.5 text-xs font-semibold text-[#1E1B2E] pl-2 border-l-2 border-purple-50 ml-5 my-1">
+                    <a
+                      href={getPathForPage('grow')}
+                      onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Grow
+                    </a>
+                    <a
+                      href={getPathForPage('protect')}
+                      onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Protect
+                    </a>
+                    <a
+                      href={getPathForPage('borrow')}
+                      onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Borrow
+                    </a>
+                    <a
+                      href={getPathForPage('personal-finance')}
+                      onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Personal Finance
+                    </a>
+                    <a
+                      href={getPathForPage('investment')}
+                      onClick={(e) => { e.preventDefault(); handleNav('investment'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Investment / Wealth
+                    </a>
+                    <a
+                      href={getPathForPage('insurance')}
+                      onClick={(e) => { e.preventDefault(); handleNav('insurance'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Insurance
+                    </a>
+                    <a
+                      href={getPathForPage('loan')}
+                      onClick={(e) => { e.preventDefault(); handleNav('loan'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Loan
+                    </a>
+                    <a
+                      href={getPathForPage('tax')}
+                      onClick={(e) => { e.preventDefault(); handleNav('tax'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Tax Solutions
+                    </a>
+                    <a
+                      href={getPathForPage('insights')}
+                      onClick={(e) => { e.preventDefault(); handleNav('insights'); }}
+                      className="px-2.5 py-1 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Market Insights
+                    </a>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -303,14 +366,7 @@ export default function Navbar({
               Blog
             </a>
 
-            {/* Careers */}
-            <a
-              href={getPathForPage('careers')}
-              onClick={(e) => { e.preventDefault(); handleNav('careers'); }}
-              className={`whitespace-nowrap hover:text-[#7C1FA8] transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'careers' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : ''}`}
-            >
-              Careers
-            </a>
+
           </div>
 
           {/* Nav Right (Explore as + CTA Buttons) - Desktop */}
@@ -322,7 +378,7 @@ export default function Navbar({
                 <button
                   onClick={() => {
                     if (setActiveTab) setActiveTab('partners');
-                    handleNav('partner');
+                    handleNav('home');
                   }}
                   className={`px-3.5 py-1.5 rounded-[10px] font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${activeTab === 'partners' ? 'bg-[#FCEBF4] text-[#C81E8C] shadow-sm' : 'text-[#8E8A9D] hover:text-[#1E1B2E]'}`}
                 >
@@ -449,36 +505,58 @@ export default function Navbar({
                   <span className="font-bold text-sm">About Us</span>
                 </button>
 
-                {/* 03 Solutions (Accordion) */}
+                {/* 03 Solutions */}
+                <button
+                  onClick={() => handleNav('solutions')}
+                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'solutions' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
+                >
+                  <span className={`font-extrabold text-sm ${currentPage === 'solutions' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>03</span>
+                  <span className="font-bold text-sm">Solutions</span>
+                </button>
+
+                {/* 04 Knowledge Center (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
-                    onClick={() => setMobileSolutionsOpen(!mobileSolutionsOpen)}
+                    onClick={() => setMobileKnowledgeOpen(!mobileKnowledgeOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">03</span>
-                      <span className="font-bold text-sm text-[#1E1B2E]">Solutions</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">04</span>
+                      <span className="font-bold text-sm text-[#1E1B2E]">Knowledge Center</span>
                     </div>
-                    <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileSolutionsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileKnowledgeOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
                     </svg>
                   </button>
-                  {mobileSolutionsOpen && (
+                  {mobileKnowledgeOpen && (
                     <div className="px-3 pb-3 pt-1 border-t border-purple-50 flex flex-col gap-1 bg-purple-50/30">
+                      {/* For Partners Single Link */}
+                      <button
+                        onClick={() => handleNav('partner')}
+                        className="w-full py-2 px-3 rounded-lg hover:bg-white text-left font-bold text-xs text-[#7C1FA8] flex items-center gap-1.5 cursor-pointer transition-all border-b border-purple-100/50 mb-1"
+                      >
+                        <span>★ For Partners</span>
+                        <span className="text-[10px] text-gray-500 font-normal">→</span>
+                      </button>
+
+                      <div className="px-3 pt-1 pb-0.5 text-[10px] font-extrabold uppercase text-[#EA580C] tracking-wider">
+                        ₹ For Investors
+                      </div>
                       {[
                         { label: 'Grow', page: 'grow' },
                         { label: 'Protect', page: 'protect' },
-                        { label: 'Investment', page: 'investment' },
-                        { label: 'Insurance', page: 'insurance' },
-                        { label: 'Financing', page: 'financing' },
-                        { label: 'Borrow & Loans', page: 'borrow' },
+                        { label: 'Borrow', page: 'borrow' },
                         { label: 'Personal Finance', page: 'personal-finance' },
+                        { label: 'Investment / Wealth', page: 'investment' },
+                        { label: 'Insurance', page: 'insurance' },
+                        { label: 'Loan', page: 'loan' },
                         { label: 'Tax Solutions', page: 'tax' },
+                        { label: 'Market Insights', page: 'insights' },
                       ].map((item, idx) => (
                         <button
                           key={idx}
                           onClick={() => handleNav(item.page)}
-                          className="w-full py-2 px-3 rounded-lg hover:bg-white text-left font-semibold text-xs text-[#1E1B2E] flex items-center cursor-pointer transition-all"
+                          className="w-full py-1.5 px-3 rounded-lg hover:bg-white text-left font-semibold text-xs text-[#1E1B2E] flex items-center cursor-pointer transition-all"
                         >
                           <span>{item.label}</span>
                         </button>
@@ -487,14 +565,14 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 04 Tools & Calculators (Accordion) */}
+                {/* 05 Smart Tools & Calculators (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">04</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">05</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Smart Tools & Calculators</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileToolsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -522,40 +600,13 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 05 Blog & Insights */}
+                {/* 06 Blog & Insights */}
                 <button
                   onClick={() => handleNav('blog')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'blog' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>05</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>06</span>
                   <span className="font-bold text-sm">Blog & Insights</span>
-                </button>
-
-                {/* 06 Investors */}
-                <button
-                  onClick={() => handleNav('investors')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'investors' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'investors' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>06</span>
-                  <span className="font-bold text-sm">For Investors</span>
-                </button>
-
-                {/* 07 For Partners */}
-                <button
-                  onClick={() => handleNav('partner')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'partner' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'partner' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
-                  <span className="font-bold text-sm">For Partners (B2B)</span>
-                </button>
-
-                {/* 08 Careers */}
-                <button
-                  onClick={() => handleNav('careers')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'careers' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>08</span>
-                  <span className="font-bold text-sm">Careers</span>
                 </button>
 
               </div>
@@ -593,6 +644,8 @@ export default function Navbar({
           </div>
         )}
       </nav>
+    </header>
+  </div>
 
       {/* 3. TALK TO AN EXPERT / CONSULTATION MODAL */}
       {expertModalOpen && (
@@ -642,13 +695,15 @@ export default function Navbar({
 
                   <div>
                     <label className="text-xs font-bold text-[#1E1B2E] block mb-1">Phone Number</label>
-                    <PhoneInput
-                      value={formData.phone}
-                      countryCode={formData.countryCode}
-                      onCountryCodeChange={(code) => setFormData((f) => ({ ...f, countryCode: code }))}
-                      onChange={(val) => setFormData((f) => ({ ...f, phone: val }))}
-                      placeholder="Enter mobile number"
-                    />
+                    <div className="w-full px-3.5 py-1.5 bg-white border border-purple-200 rounded-xl">
+                      <PhoneInput
+                        value={formData.phone}
+                        countryCode={formData.countryCode}
+                        onCountryCodeChange={(code) => setFormData((f) => ({ ...f, countryCode: code }))}
+                        onChange={(val) => setFormData((f) => ({ ...f, phone: val }))}
+                        placeholder="Enter mobile number"
+                      />
+                    </div>
                   </div>
 
                   <div>

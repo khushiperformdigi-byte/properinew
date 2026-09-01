@@ -337,7 +337,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 3: BENEFITS OF JOINING PROSPERI5 */}
       <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-[#FAF8FC] border-b border-[#EBE8EF]">
-        <div className="max-w-5xl mx-auto space-y-8">
+        <div className="max-w-7xl mx-auto space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2 max-w-3xl mx-auto">
@@ -353,7 +353,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
           </div>
 
           {/* Staggered Vertical Timeline List Matching Reference Layout */}
-          <div className="max-w-4xl mx-auto relative space-y-5 sm:space-y-6">
+          <div className="max-w-7xl mx-auto relative space-y-5 sm:space-y-6">
             {/* Connecting Vertical Timeline Line */}
             <div className="absolute left-[19px] sm:left-[23px] top-[24px] bottom-[24px] w-[2px] bg-purple-200/80 pointer-events-none z-0"></div>
 
@@ -395,12 +395,12 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* SECTION 4: COMPARISON TABLE */}
-      <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
-        <div className="max-w-6xl mx-auto space-y-8">
+      <section className="w-full pt-12 sm:pt-16 lg:pt-20 pb-10 lg:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
+        <div className="max-w-7xl mx-auto space-y-8">
           
           {/* Section Header */}
-          <div className="text-center space-y-2 max-w-3xl mx-auto">
-            <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase block">
+          <div className="text-center space-y-2 max-w-3xl mx-auto pt-2 sm:pt-3">
+            <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase mt-2 sm:mt-3 mb-3 sm:mb-4 block">
               WHY PARTNERS CHOOSE US
             </span>
             <h2 className="font-sans font-extrabold text-2xl sm:text-3xl lg:text-4xl text-[#1E1B2E] leading-tight tracking-tight">

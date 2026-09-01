@@ -41,10 +41,10 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
   };
 
   return (
-    <div className="w-full bg-white font-sans text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
+    <div className="w-full bg-[#FAF8FC] font-sans text-body-text antialiased selection:bg-purple-100 selection:text-primary-purple overflow-x-hidden">
 
       {/* 1. HERO SECTION */}
-      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[76px] lg:-mt-[88px] pt-[116px] sm:pt-[126px] lg:pt-[136px] pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 font-sans">
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-6 sm:pt-8 lg:pt-10 pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 font-sans">
         
         {/* Ambient Curved Light Purple Background Overlay */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
@@ -114,26 +114,26 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
             
             {/* For Clients Card */}
-            <div className="bg-white rounded-[28px] p-7 sm:p-9 border border-purple-100/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-[22px] p-5 sm:p-6 border border-purple-100/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-6 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-3 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
                   </svg>
                 </div>
-                <h3 className="font-sans font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mb-3">
+                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#1E1B2E] mb-1.5">
                   For Clients
                 </h3>
-                <p className="font-medium text-sm sm:text-base text-[#544F66] leading-relaxed mb-6">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-snug mb-3.5">
                   We help clients build wealth responsibly, protect assets, and achieve aspirations, through curated solutions.
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-purple-100/60">
-                <div className="flex flex-wrap gap-2.5">
+              <div className="pt-3.5 border-t border-purple-100/60">
+                <div className="flex flex-wrap gap-2">
                   {['Investment', 'Insurance', 'Financing'].map((bullet, idx) => (
-                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#7C1FA8]"></span>
+                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-[11px] font-extrabold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8]"></span>
                       {bullet}
                     </span>
                   ))}
@@ -142,26 +142,26 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
             </div>
 
             {/* For Partners Card */}
-            <div className="bg-white rounded-[28px] p-7 sm:p-9 border border-purple-100/90 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group">
+            <div className="bg-white rounded-[22px] p-5 sm:p-6 border border-purple-100/90 shadow-sm hover:shadow-md transition-all duration-300 flex flex-col justify-between group">
               <div>
-                <div className="w-14 h-14 rounded-2xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-6 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
-                  <svg className="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="w-10 h-10 rounded-xl bg-purple-50 text-[#7C1FA8] flex items-center justify-center font-bold mb-3 group-hover:bg-[#7C1FA8] group-hover:text-white transition-colors duration-300">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                   </svg>
                 </div>
-                <h3 className="font-sans font-extrabold text-2xl sm:text-3xl text-[#1E1B2E] mb-3">
+                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#1E1B2E] mb-1.5">
                   For Partners
                 </h3>
-                <p className="font-medium text-sm sm:text-base text-[#544F66] leading-relaxed mb-6">
+                <p className="font-medium text-xs sm:text-sm text-[#544F66] leading-snug mb-3.5">
                   A scalable distribution and execution platform, enabling you to offer full suite of financial solutions while retaining client ownership.
                 </p>
               </div>
 
-              <div className="pt-6 border-t border-purple-100/60">
-                <div className="flex flex-wrap gap-2.5">
+              <div className="pt-3.5 border-t border-purple-100/60">
+                <div className="flex flex-wrap gap-2">
                   {['Platform', 'Partner', 'Scale'].map((bullet, idx) => (
-                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-xs sm:text-sm font-bold px-4 py-2 rounded-xl flex items-center gap-2">
-                      <span className="w-2 h-2 rounded-full bg-[#7C1FA8]"></span>
+                    <span key={idx} className="bg-[#FAF6FC] text-[#7C1FA8] border border-purple-200/80 text-[11px] font-extrabold px-3 py-1 rounded-lg flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8]"></span>
                       {bullet}
                     </span>
                   ))}
@@ -173,56 +173,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
         </div>
       </section>
 
-      {/* 4. SECTION: OUR VISION & MISSION */}
-      <section className="w-full bg-white py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto">
-          
-          <div className="text-center mb-10 max-w-3xl mx-auto">
-            <span className="text-[#C81E8C] font-semibold text-xs tracking-[0.2em] uppercase mb-2 block">
-              OUR VISION & MISSION
-            </span>
-            <p className="font-medium text-base sm:text-lg text-[#544F66] leading-relaxed">
-              Our Vision and Mission reflect our commitment to building long-term wealth, protecting futures, and enabling growth through transparent and responsible financial solutions.
-            </p>
-          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-            
-            {/* Our Vision Card */}
-            <div className="bg-[#FAF6FC] rounded-[28px] p-7 sm:p-9 border border-purple-100/90 shadow-sm relative overflow-hidden flex flex-col justify-between">
-              <div>
-                <span className="text-[#F5A623] bg-[#1E1B2E] text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider mb-4 inline-block">
-                  VISION
-                </span>
-                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-[#1E1B2E] mb-3">
-                  Our Vision: Where Are We Headed
-                </h3>
-                <p className="font-medium text-sm sm:text-base text-[#544F66] leading-relaxed">
-                  To empower you to build wealth, protect it, and achieve your aspirations with the perfect blend of the right guidance and the right financial solutions.
-                </p>
-              </div>
-              <div className="w-12 h-1 bg-[#7C1FA8] rounded-full mt-6"></div>
-            </div>
-
-            {/* Our Mission Card */}
-            <div className="bg-[#7C1FA8] text-white rounded-[28px] p-7 sm:p-9 shadow-lg relative overflow-hidden flex flex-col justify-between">
-              <div>
-                <span className="text-[#1E1B2E] bg-[#F5A623] text-[10px] font-extrabold uppercase px-3 py-1 rounded-full tracking-wider mb-4 inline-block">
-                  MISSION
-                </span>
-                <h3 className="font-sans font-extrabold text-xl sm:text-2xl text-white mb-3">
-                  Our Mission: What Drives Us Forward
-                </h3>
-                <p className="font-medium text-sm sm:text-base text-purple-100 leading-relaxed">
-                  To make wealth management effortless and trustworthy by combining clear guidance, high-quality products, and dependable execution by enabling individuals to grow, safeguard, and utilise their wealth with confidence.
-                </p>
-              </div>
-              <div className="w-12 h-1 bg-[#F5A623] rounded-full mt-6"></div>
-            </div>
-
-          </div>
-        </div>
-      </section>
 
       {/* 5. SECTION: OUR PHILOSOPHY */}
       <section className="w-full bg-[#FAF8FC] py-12 lg:py-16 px-4 sm:px-6 lg:px-8 border-t border-[#EBE8EF]">
@@ -297,15 +248,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
           
           {/* Section Breadcrumb & Header */}
           <div className="text-center mb-8 sm:mb-10 max-w-3xl mx-auto">
-            <div className="flex items-center justify-center gap-2 text-xs font-semibold text-[#544F66] mb-2.5">
-              <svg className="w-3.5 h-3.5 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-              </svg>
-              <span>›</span>
-              <span>About Us</span>
-              <span>›</span>
-              <span className="text-[#7C1FA8]">Leadership</span>
-            </div>
+
             <h2 className="font-sans font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#1E1B2E] leading-tight tracking-tight mb-2">
               Our Leadership
             </h2>
@@ -355,7 +298,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
                           </svg>
                         </a>
                         <a
-                          href="https://linkedin.com"
+                          href="https://linkedin.com/in/darshit-s-869720285"
                           target="_blank"
                           rel="noreferrer"
                           className="w-8 h-8 rounded-full bg-[#7C1FA8] hover:bg-[#68198f] text-white flex items-center justify-center transition-all shadow-xs"
@@ -507,7 +450,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
                           </svg>
                         </a>
                         <a
-                          href="https://linkedin.com"
+                          href="https://linkedin.com/in/paras-shah-71517a8a"
                           target="_blank"
                           rel="noreferrer"
                           className="w-8 h-8 rounded-full bg-[#7C1FA8] hover:bg-[#68198f] text-white flex items-center justify-center transition-all shadow-xs"

@@ -118,8 +118,8 @@ export default function KnowledgeCenterPage({ onNavigateHome, onNavigatePage }) 
       
 
 
-      {/* 3. HERO SECTION (FULL WIDTH - CUSTOM REACT) */}
-      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[76px] lg:-mt-[88px] pt-[116px] sm:pt-[126px] lg:pt-[136px] pb-5 sm:pb-6 lg:pb-7 px-4 sm:px-6 lg:px-8 font-sans">
+      {/* 2. HERO SECTION */}
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 pt-6 sm:pt-8 lg:pt-10 pb-5 sm:pb-6 lg:pb-7 px-4 sm:px-6 lg:px-8 font-sans">
         
         {/* Ambient Purple Background Glow */}
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[90px] pointer-events-none"></div>
@@ -150,7 +150,11 @@ export default function KnowledgeCenterPage({ onNavigateHome, onNavigatePage }) 
               <button 
                 onClick={() => {
                   const el = document.getElementById('articles-section');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  if (el) {
+                    el.scrollIntoView({ behavior: 'smooth' });
+                  } else {
+                    window.scrollTo({ top: 600, behavior: 'smooth' });
+                  }
                 }}
                 className="bg-[#7C1FA8] hover:bg-[#6b1a91] text-white font-extrabold px-6 py-3 rounded-xl text-sm shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
               >
@@ -160,12 +164,20 @@ export default function KnowledgeCenterPage({ onNavigateHome, onNavigatePage }) 
 
               <button 
                 onClick={() => {
-                  const el = document.getElementById('topics-section');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  if (onNavigatePage) {
+                    onNavigatePage('about');
+                    setTimeout(() => {
+                      const el = document.getElementById('contact-form-section');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }, 150);
+                  } else {
+                    window.location.href = '/about#contact-form-section';
+                  }
                 }}
                 className="border-2 border-[#7C1FA8] text-[#7C1FA8] hover:bg-purple-50/80 font-extrabold px-6 py-3 rounded-xl text-sm transition-all flex items-center justify-center gap-2 cursor-pointer active:scale-[0.99]"
               >
-                <span>Browse Topics</span>
+                <span>Talk To an Expert</span>
+                <span>➔</span>
               </button>
             </div>
 
@@ -480,7 +492,7 @@ export default function KnowledgeCenterPage({ onNavigateHome, onNavigatePage }) 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-8 select-none">
 
         {/* 6. BEGINNER'S LEARNING HUB SECTION */}
-        <div className="py-6 sm:py-8">
+        <div id="articles-section" className="py-6 sm:py-8">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-stretch">
             
             {/* Left Column (Header + 3D Learning Hub Graphic Box) */}

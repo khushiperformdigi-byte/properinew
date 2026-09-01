@@ -67,36 +67,36 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
     : protectionPlans.filter(p => p.category === activeCategory);
 
   return (
-    <div className="min-h-screen bg-[#FDFBFD] font-sans text-[#1E1B2E] antialiased selection:bg-purple-100 selection:text-[#7C1FAB] overflow-x-hidden">
+    <div className="min-h-screen bg-[#FAF8FC] font-sans text-[#1E1B2E] antialiased selection:bg-purple-100 selection:text-[#7C1FAB] overflow-x-hidden">
       
 
 
       {/* 3. HERO SECTION (PROTECT WHAT MATTERS) */}
-      <section className="w-full bg-[#160628] bg-gradient-to-r from-[#19062D] via-[#140426] to-[#200A38] relative overflow-hidden border-b border-purple-900/50 -mt-[76px] lg:-mt-[88px] pt-[116px] sm:pt-[126px] lg:pt-[136px] pb-5 sm:pb-6 lg:pb-7 px-4 sm:px-6 lg:px-8 font-sans">
+      <section className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] relative overflow-hidden border-b border-[#EBE8EF]/60 -mt-[88px] lg:-mt-[104px] pt-[130px] sm:pt-[145px] lg:pt-[160px] pb-8 sm:pb-12 lg:pb-16 px-4 sm:px-6 lg:px-8 font-sans">
         {/* Soft Ambient Background Glows */}
-        <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-purple-600/20 rounded-full filter blur-[120px] pointer-events-none"></div>
-        <div className="absolute bottom-0 left-10 w-[350px] h-[350px] bg-pink-600/15 rounded-full filter blur-[100px] pointer-events-none"></div>
+        <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-purple-200/40 rounded-full filter blur-[120px] pointer-events-none"></div>
+        <div className="absolute bottom-0 left-10 w-[350px] h-[350px] bg-pink-200/30 rounded-full filter blur-[100px] pointer-events-none"></div>
 
         <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
           
           {/* LEFT COLUMN: Title, Subtitle, CTA & Social Proof */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
             {/* Top Category Badge */}
-            <span className="text-purple-300/90 text-xs font-extrabold tracking-widest uppercase mb-1.5 inline-block font-sans">
+            <span className="text-[#7C1FA8] text-xs font-extrabold tracking-widest uppercase mb-1.5 inline-block font-sans">
               PROTECT WHAT MATTERS
             </span>
 
             {/* Main Title */}
-            <h1 className="font-sans font-extrabold text-[28px] sm:text-[44px] lg:text-[50px] leading-[36px] sm:leading-[50px] lg:leading-[58px] tracking-[-0.03em] text-white mb-2.5">
+            <h1 className="font-sans font-extrabold text-[28px] sm:text-[44px] lg:text-[50px] leading-[36px] sm:leading-[50px] lg:leading-[58px] tracking-[-0.03em] text-[#1E1B2E] mb-2.5">
               Protection today, <br className="hidden sm:inline" />
-              <span className="text-[#C084FC]">confidence</span> <br className="hidden sm:inline" />
+              <span className="text-[#7C1FA8]">confidence</span> <br className="hidden sm:inline" />
               always.
             </h1>
 
             {/* Subtitle Paragraph */}
             <p
               style={{ fontFamily: "'Inter', sans-serif" }}
-              className="font-medium text-xs sm:text-[15.5px] leading-[20px] sm:leading-[25px] text-purple-100/80 mb-4 sm:mb-5 max-w-[500px]"
+              className="font-medium text-xs sm:text-[15.5px] leading-[20px] sm:leading-[25px] text-[#544F66] mb-4 sm:mb-5 max-w-[500px]"
             >
               Comprehensive protection plans that safeguard your loved ones, your health and your future.
             </p>
@@ -105,22 +105,9 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
             <div className="flex flex-row items-center gap-2.5 sm:gap-3.5 mb-5 sm:mb-6 w-full sm:w-auto">
               <button
                 onClick={() => setSelectedPlanModal({ title: 'Explore Protection Plans' })}
-                className="flex-1 sm:flex-initial h-[42px] sm:h-[50px] px-4 sm:px-8 rounded-xl sm:rounded-[16px] bg-[#7C1FA8] hover:bg-[#68198f] text-white font-bold text-xs sm:text-base shadow-lg shadow-purple-950/60 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
+                className="flex-1 sm:flex-initial h-[42px] sm:h-[50px] px-4 sm:px-8 rounded-xl sm:rounded-[16px] bg-[#7C1FA8] hover:bg-[#68198f] text-white font-bold text-xs sm:text-base shadow-lg shadow-purple-900/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
               >
                 <span>Explore Protection</span>
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </button>
-              
-              <button
-                onClick={() => {
-                  const elem = document.getElementById('why-choose-protect');
-                  if (elem) elem.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="flex-1 sm:flex-initial h-[42px] sm:h-[50px] px-4 sm:px-8 rounded-xl sm:rounded-[16px] bg-white/5 border border-white/20 hover:bg-white/10 text-white font-bold text-xs sm:text-base transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
-              >
-                <span>How it Works</span>
                 <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
@@ -131,17 +118,17 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
             <div className="flex items-center gap-3 sm:gap-4 pt-0.5">
               {/* 3 Purple Icon Badges */}
               <div className="flex items-center gap-1 sm:gap-1.5 shrink-0">
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-900/60 border border-purple-500/30 text-purple-200 flex items-center justify-center shadow-xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F5EEFB] border border-purple-200/80 text-[#7C1FA8] flex items-center justify-center shadow-xs">
                   <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" />
                   </svg>
                 </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-900/60 border border-purple-500/30 text-purple-200 flex items-center justify-center shadow-xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F5EEFB] border border-purple-200/80 text-[#7C1FA8] flex items-center justify-center shadow-xs">
                   <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75m-3-7.036A11.959 11.959 0 013.598 6 11.99 11.99 0 003 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751A11.959 11.959 0 0112 2.714z" />
                   </svg>
                 </div>
-                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-purple-900/60 border border-purple-500/30 text-purple-200 flex items-center justify-center shadow-xs">
+                <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-[#F5EEFB] border border-purple-200/80 text-[#7C1FA8] flex items-center justify-center shadow-xs">
                   <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
                   </svg>
@@ -150,8 +137,8 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
 
               {/* Text & 5 Stars */}
               <div className="flex flex-col text-left">
-                <span className="text-[11px] sm:text-xs font-semibold text-purple-100/90 font-sans leading-tight">
-                  Trusted by <span className="font-extrabold text-white">50,000+</span> Families across PROSPERi5
+                <span className="text-[11px] sm:text-xs font-semibold text-[#544F66] font-sans leading-tight">
+                  Trusted by <span className="font-extrabold text-[#1E1B2E]">50,000+</span> Families across PROSPERi5
                 </span>
                 <div className="flex items-center gap-1 text-[#F5A623] text-[10px] sm:text-xs mt-0.5">
                   ★★★★★
@@ -451,7 +438,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 7. READY TO PROTECT CTA BANNER (Brand Purple #7C1FA8 Gradient, Compact Height) */}
       <section className="w-full bg-[#FAF8FC] py-4 sm:py-5 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[968px] mx-auto">
           <div className="bg-gradient-to-r from-[#7C1FA8] via-[#6B1991] to-[#521172] border border-purple-400/40 rounded-[22px] lg:rounded-[26px] p-3.5 sm:p-4.5 lg:p-5 shadow-xl shadow-purple-900/30 relative overflow-hidden group">
             
             {/* Background Ambient Glow */}
@@ -478,7 +465,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
                 </div>
               </div>
 
-              {/* Right side: 2 Buttons (Pill shape matching reference image) */}
+              {/* Right side: Explore Plans CTA Button */}
               <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto justify-center">
                 <button
                   onClick={() => setSelectedPlanModal({ title: 'Explore Protection Plans' })}
@@ -486,12 +473,6 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
                 >
                   <span>Explore Plans</span>
                   <span className="text-base leading-none text-[#7C1FA8]">→</span>
-                </button>
-                <button
-                  onClick={() => setSelectedPlanModal({ title: 'Talk to a Protection Expert' })}
-                  className="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-xs sm:text-sm px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 active:scale-95 cursor-pointer"
-                >
-                  Talk to an Expert
                 </button>
               </div>
 

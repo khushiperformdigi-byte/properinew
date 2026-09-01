@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { sendWhatsAppEnquiry } from './utils/whatsapp';
 import PhoneInput from './components/PhoneInput';
+import SolutionsPage from './SolutionsPage';
 import InvestmentPage from './InvestmentPage';
 import InsurancePage from './InsurancePage';
 import FinancingPage from './FinancingPage';
@@ -338,6 +339,9 @@ function App() {
 
   const renderPageContent = () => {
     switch (currentPage) {
+      case 'solutions':
+      case 'solution':
+        return <SolutionsPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
       case 'protect':
         return <ProtectPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
       case 'investment':
@@ -363,7 +367,7 @@ function App() {
         return <KnowledgeCenterPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
       case 'partner':
       case 'partner-b2b':
-        return <PartnerB2BPage onNavigateHome={() => navigateToPage('home')} onNavigatePage={(p) => navigateToPage(p)} />;
+        return renderHomepageSections();
       case 'personal-finance':
       case 'personalfinance':
       case 'finance':
@@ -426,7 +430,7 @@ function App() {
     <>
 
       {/* 3. HERO CONTAINER */}
-      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 -mt-[76px] lg:-mt-[88px] pt-[96px] sm:pt-[126px] lg:pt-[136px] pb-4 lg:pb-8 z-10 relative overflow-hidden">
+      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 pt-4 sm:pt-6 lg:pt-8 pb-4 lg:pb-8 z-10 relative overflow-hidden">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-12 items-center">
 
           {/* LEFT CONTENT COLUMN */}
@@ -1390,7 +1394,7 @@ function App() {
         <div className="absolute -bottom-10 -left-10 w-[300px] h-[300px] bg-purple-200/30 rounded-full filter blur-[90px] pointer-events-none"></div>
         <div className="absolute top-2 right-0 w-[250px] h-[250px] bg-pink-200/20 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Section Header (Centered & Compact) */}
           <ScrollReveal animation="up" delay={30} className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl">
@@ -1406,7 +1410,7 @@ function App() {
           </ScrollReveal>
 
           {/* Stepper Timeline Header Row with 5 Numbered Purple Circles */}
-          <ScrollReveal animation="scale" delay={50} className="hidden lg:grid grid-cols-5 gap-3.5 sm:gap-4 mb-5 relative max-w-6xl mx-auto">
+          <ScrollReveal animation="scale" delay={50} className="hidden lg:grid grid-cols-5 gap-3.5 sm:gap-4 mb-5 relative max-w-7xl mx-auto">
             {/* Horizontal Background Line (Simple Solid Line) */}
             <div className="absolute top-1/2 left-[10%] right-[10%] -translate-y-1/2 h-[2px] bg-purple-200 pointer-events-none z-0"></div>
 
@@ -1430,7 +1434,7 @@ function App() {
           </ScrollReveal>
 
           {/* 5 Horizontal Process Cards Grid (White by default, Purple background & White text on Hover) */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 relative max-w-6xl mx-auto items-stretch">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5 sm:gap-4 relative max-w-7xl mx-auto items-stretch">
             {[
               {
                 step: '01',
@@ -1543,15 +1547,15 @@ function App() {
       </section>
 
       {/* 6. COMPARISON TABLE SECTION (PROSPERi5 vs. Other National Distributors) */}
-      <section className="bg-white w-full py-5 sm:py-6 lg:py-8 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-purple-100/40 font-sans">
+      <section className="bg-white w-full pt-10 sm:pt-14 lg:pt-16 pb-6 sm:pb-8 lg:pb-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden select-none border-t border-purple-100/40 font-sans">
         <div className="max-w-7xl mx-auto">
 
           {/* Section Header (Mobile View Specs) */}
-          <div id="about" className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl">
+          <div id="about" className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl pt-2 sm:pt-3">
             {/* Top Badge: WHY PARTNERS CHOOSE US (Inter 600 SemiBold 14px -0.5px tracking) */}
             <span
               style={{ fontFamily: "'Inter', sans-serif" }}
-              className="text-[#7C1FA8] font-semibold text-[14px] leading-none tracking-[-0.5px] uppercase mb-2 inline-block text-center"
+              className="text-[#7C1FA8] font-semibold text-[14px] leading-none tracking-[-0.5px] uppercase mt-2 sm:mt-3 mb-3 sm:mb-4 inline-block text-center"
             >
               WHY PARTNERS CHOOSE US
             </span>
@@ -2019,7 +2023,7 @@ function App() {
         <div className="absolute top-10 left-10 w-[300px] h-[300px] bg-pink-100/30 rounded-full filter blur-[90px] pointer-events-none"></div>
         <div className="absolute -bottom-10 right-10 w-[300px] h-[300px] bg-purple-200/30 rounded-full filter blur-[90px] pointer-events-none"></div>
 
-        <div className="max-w-6xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
 
           {/* Section Header (Exact Mobile View Specs) */}
           <ScrollReveal animation="up" delay={30} className="mb-6 sm:mb-8 text-center flex flex-col items-center mx-auto lg:max-w-5xl">

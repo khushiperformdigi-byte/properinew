@@ -202,11 +202,7 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                 <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 pt-2">
                   <button
                     onClick={() => {
-                      if (onNavigatePage) {
-                        onNavigatePage('login');
-                      } else {
-                        setSelectedModal({ title: 'Start Investing - Login / Sign Up' });
-                      }
+                      setSelectedModal({ title: 'Start Investing - Empanelment Form' });
                     }}
                     className="bg-[#7C1FAB] hover:bg-[#63148B] text-white font-bold px-8 py-4 rounded-[18px] text-sm sm:text-base shadow-xl shadow-[#7C1FAB]/25 transition-all flex items-center gap-2.5 cursor-pointer active:scale-95"
                   >
@@ -216,11 +212,12 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                 </div>
               </div>
 
-              <div className="lg:col-span-6 flex justify-center lg:justify-end">
+              <div className="lg:col-span-6 flex justify-center lg:justify-end select-none">
                 <img
                   src="/dc1af9b7-84fe-44db-9ec3-7674a25fd1fd.png"
                   alt="Smart Investments 3D Growth Illustration"
-                  className="w-full max-w-[620px] lg:max-w-[680px] h-[300px] sm:h-[360px] lg:h-[400px] object-contain object-center transition-transform duration-300 hover:scale-[1.02]"
+                  draggable={false}
+                  className="w-full max-w-[620px] lg:max-w-[680px] h-[300px] sm:h-[360px] lg:h-[400px] object-contain object-center transition-transform duration-300 hover:scale-[1.02] select-none pointer-events-none user-select-none"
                 />
               </div>
             </div>
@@ -385,7 +382,7 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
             {/* SCREEN 4: WHY INVEST THROUGH PROSPERIS */}
             <section className="w-full bg-cover bg-center bg-no-repeat py-7 lg:py-9 border-y border-purple-100/60 my-4 relative overflow-hidden rounded-[22px]" style={{ backgroundImage: "url('/partner-value-bg.png')" }}>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                   <div className="lg:col-span-5 flex justify-center items-center">
                     <img
                       src="/ChatGPT Image Aug 24, 2026, 11_00_47 AM.png"
@@ -394,60 +391,60 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                     />
                   </div>
 
-                  <div className="lg:col-span-7 space-y-3">
-                    <div>
+                  <div className="lg:col-span-7 flex flex-col justify-between py-1">
+                    <div className="mb-3">
                       <span className="bg-[#F5EEFB] text-[#7C1FAB] text-[10px] sm:text-[11px] font-body font-extrabold px-4 py-1 rounded-full uppercase tracking-wider border border-purple-200/60 shadow-2xs inline-block">
                         THE PROSPERIS ADVANTAGE
                       </span>
-                      <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#1E1B2E] tracking-tight mt-1">
+                      <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#1E1B2E] tracking-tight mt-1.5">
                         Why Invest Through PROSPERi5
                       </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
-                          <FiPieChart className="w-3.5 h-3.5" />
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 flex-1">
+                      <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiPieChart className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Comprehensive Spectrum</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Comprehensive Spectrum</h4>
+                          <p className="text-xs font-body text-white/95 font-medium leading-normal mt-1.5">
                             From traditional investments to sophisticated opportunities, access all through one trusted partner.
                           </p>
                         </div>
                       </div>
 
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
-                          <FiTarget className="w-3.5 h-3.5" />
+                      <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiTarget className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Matched To Your Needs</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Matched To Your Needs</h4>
+                          <p className="text-xs font-body text-white/95 font-medium leading-normal mt-1.5">
                             Whether first-time investor or experienced HNI, access solutions aligned with your risk profile.
                           </p>
                         </div>
                       </div>
 
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
-                          <FiTrendingUp className="w-3.5 h-3.5" />
+                      <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiTrendingUp className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Diversification Made Simple</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Diversification Made Simple</h4>
+                          <p className="text-xs font-body text-white/95 font-medium leading-normal mt-1.5">
                             Build a balanced portfolio across equity, fixed income, alternative investments and structured products.
                           </p>
                         </div>
                       </div>
 
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
-                        <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
-                          <FiShield className="w-3.5 h-3.5" />
+                      <div className="bg-[#7C1FAB] p-4 sm:p-5 rounded-[20px] border border-[#7C1FAB] shadow-md flex items-start gap-3.5 h-full">
+                        <div className="w-8 h-8 rounded-xl bg-white text-[#7C1FA8] flex items-center justify-center shrink-0 font-extrabold mt-0.5 shadow-sm">
+                          <FiShield className="w-4 h-4 text-[#7C1FA8]" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Exclusive Opportunities</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-sm text-white tracking-wide">Exclusive Opportunities</h4>
+                          <p className="text-xs font-body text-white/95 font-medium leading-normal mt-1.5">
                             Explore investment opportunities that are often not available through conventional channels.
                           </p>
                         </div>
@@ -459,62 +456,35 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
             </section>
 
             {/* B2B PARTNER CROSSOVER BANNER */}
-            <section className="bg-gradient-to-r from-[#F4EDFC] via-[#FAF5FE] to-[#F4EDFC] border border-[#E8DAF5] rounded-[22px] p-5 flex flex-col sm:flex-row items-center justify-between gap-4">
-              <div className="flex items-center gap-3.5 text-left">
-                <div className="w-11 h-11 rounded-2xl bg-[#7C1FA8] text-white flex items-center justify-center text-xl shrink-0 shadow-md">
+            <section className="bg-gradient-to-r from-[#F4EDFC] via-[#FAF5FE] to-[#F4EDFC] border border-[#E8DAF5] rounded-[24px] p-6 sm:p-8 lg:p-9 min-h-[120px] flex flex-col sm:flex-row items-center justify-between gap-5 shadow-sm my-4">
+              <div className="flex items-center gap-4 text-left">
+                <div className="w-12 h-12 rounded-2xl bg-[#7C1FA8] text-white flex items-center justify-center text-2xl shrink-0 shadow-md">
                   💼
                 </div>
                 <div>
-                  <h4 className="font-extrabold text-base text-[#1E1B2E]">Are you an MFD, IFA, or Financial Distributor?</h4>
-                  <p className="text-xs text-[#544F66] font-semibold mt-0.5">
+                  <h4 className="font-extrabold text-base sm:text-lg text-[#1E1B2E]">Are you an MFD, IFA, or Financial Distributor?</h4>
+                  <p className="text-xs sm:text-sm text-[#544F66] font-semibold mt-1 leading-snug">
                     Distribute mutual funds, AIF, PMS, bonds, MLDs & invoice discounting to your clients and earn top payouts.
                   </p>
                 </div>
               </div>
 
               <button
-                onClick={() => setViewMode('partner')}
-                className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-2.5 rounded-xl text-xs shadow-md transition-all whitespace-nowrap cursor-pointer shrink-0"
+                onClick={() => {
+                  if (onNavigatePage) {
+                    onNavigatePage('partner', 'signup');
+                  } else {
+                    window.location.href = '/partner-b2b#signup';
+                  }
+                  setTimeout(() => {
+                    const el = document.getElementById('signup') || document.getElementById('partner-waitlist') || document.getElementById('contact');
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                  }, 100);
+                }}
+                className="bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold px-6 py-3.5 rounded-xl text-xs sm:text-sm shadow-md transition-all whitespace-nowrap cursor-pointer shrink-0 hover:scale-105 active:scale-95"
               >
                 Become an Investment Partner →
               </button>
-            </section>
-
-            {/* SCREEN 5: WEALTH BUILDING CTA BANNER */}
-            <section className="bg-gradient-to-r from-[#461065] via-[#7C1FAB] to-[#5E1083] rounded-[22px] p-5 sm:p-7 text-white shadow-lg relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-5">
-              <div className="flex items-center gap-4 text-center sm:text-left">
-                <div className="w-12 h-12 rounded-2xl bg-white/15 backdrop-blur-md flex items-center justify-center text-xl shrink-0 border border-white/20">
-                  💎
-                </div>
-                <div>
-                  <h2 className="text-lg sm:text-2xl font-heading font-extrabold tracking-tight text-white">Let's Build Your Wealth Together</h2>
-                  <p className="text-xs sm:text-sm font-body text-purple-100 font-medium mt-1 max-w-xl">
-                    Whether you're starting your investment journey or managing a diversified portfolio, we're here to help.
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-3 shrink-0">
-                <button
-                  onClick={() => {
-                    if (onNavigatePage) {
-                      onNavigatePage('login');
-                    } else {
-                      setSelectedModal({ title: 'Start Investing - Sign Up' });
-                    }
-                  }}
-                  className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-body font-extrabold px-6 py-3 rounded-full text-xs sm:text-sm transition-all shadow-md cursor-pointer whitespace-nowrap active:scale-95"
-                >
-                  Start Investing
-                </button>
-                <button
-                  onClick={() => setSelectedModal({ title: 'Talk To An Expert' })}
-                  className="bg-white hover:bg-purple-50 text-[#7C1FAB] font-body font-extrabold px-6 py-3 rounded-full text-xs sm:text-sm transition-all shadow-md cursor-pointer whitespace-nowrap active:scale-95 flex items-center gap-1.5"
-                >
-                  <span>Talk To An Expert</span>
-                  <span>→</span>
-                </button>
-              </div>
             </section>
 
           </main>
