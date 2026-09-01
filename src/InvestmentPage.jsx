@@ -385,7 +385,7 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
             {/* SCREEN 4: WHY INVEST THROUGH PROSPERIS */}
             <section className="w-full bg-cover bg-center bg-no-repeat py-7 lg:py-9 border-y border-purple-100/60 my-4 relative overflow-hidden rounded-[22px]" style={{ backgroundImage: "url('/partner-value-bg.png')" }}>
               <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
                   <div className="lg:col-span-5 flex justify-center items-center">
                     <img
                       src="/ChatGPT Image Aug 24, 2026, 11_00_47 AM.png"
@@ -394,60 +394,60 @@ export default function InvestmentPage({ onNavigateHome, onNavigatePage }) {
                     />
                   </div>
 
-                  <div className="lg:col-span-7 space-y-3">
-                    <div>
+                  <div className="lg:col-span-7 flex flex-col justify-between py-1">
+                    <div className="mb-3">
                       <span className="bg-[#F5EEFB] text-[#7C1FAB] text-[10px] sm:text-[11px] font-body font-extrabold px-4 py-1 rounded-full uppercase tracking-wider border border-purple-200/60 shadow-2xs inline-block">
                         THE PROSPERIS ADVANTAGE
                       </span>
-                      <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#1E1B2E] tracking-tight mt-1">
+                      <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#1E1B2E] tracking-tight mt-1.5">
                         Why Invest Through PROSPERi5
                       </h2>
                     </div>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 flex-1">
+                      <div className="bg-[#7C1FAB] p-3.5 sm:p-4 rounded-[18px] border border-[#7C1FAB] shadow-md flex items-start gap-3 h-full">
                         <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
                           <FiPieChart className="w-3.5 h-3.5" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Comprehensive Spectrum</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-xs text-white">Comprehensive Spectrum</h4>
+                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-1">
                             From traditional investments to sophisticated opportunities, access all through one trusted partner.
                           </p>
                         </div>
                       </div>
 
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
+                      <div className="bg-[#7C1FAB] p-3.5 sm:p-4 rounded-[18px] border border-[#7C1FAB] shadow-md flex items-start gap-3 h-full">
                         <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
                           <FiTarget className="w-3.5 h-3.5" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Matched To Your Needs</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-xs text-white">Matched To Your Needs</h4>
+                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-1">
                             Whether first-time investor or experienced HNI, access solutions aligned with your risk profile.
                           </p>
                         </div>
                       </div>
 
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
+                      <div className="bg-[#7C1FAB] p-3.5 sm:p-4 rounded-[18px] border border-[#7C1FAB] shadow-md flex items-start gap-3 h-full">
                         <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
                           <FiTrendingUp className="w-3.5 h-3.5" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Diversification Made Simple</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-xs text-white">Diversification Made Simple</h4>
+                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-1">
                             Build a balanced portfolio across equity, fixed income, alternative investments and structured products.
                           </p>
                         </div>
                       </div>
 
-                      <div className="bg-[#7C1FAB] p-3 rounded-[16px] border border-[#7C1FAB] shadow-md flex items-start gap-3">
+                      <div className="bg-[#7C1FAB] p-3.5 sm:p-4 rounded-[18px] border border-[#7C1FAB] shadow-md flex items-start gap-3 h-full">
                         <div className="w-7 h-7 rounded-lg bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center shrink-0 font-extrabold mt-0.5">
                           <FiShield className="w-3.5 h-3.5" />
                         </div>
                         <div>
-                          <h4 className="font-heading font-extrabold text-xs text-[#F5A623]">Exclusive Opportunities</h4>
-                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-0.5">
+                          <h4 className="font-heading font-extrabold text-xs text-white">Exclusive Opportunities</h4>
+                          <p className="text-[11px] font-body text-white/90 font-semibold leading-tight mt-1">
                             Explore investment opportunities that are often not available through conventional channels.
                           </p>
                         </div>
