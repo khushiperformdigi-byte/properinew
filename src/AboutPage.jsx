@@ -298,7 +298,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
                           </svg>
                         </a>
                         <a
-                          href="https://linkedin.com"
+                          href="https://linkedin.com/in/darshit-s-869720285"
                           target="_blank"
                           rel="noreferrer"
                           className="w-8 h-8 rounded-full bg-[#7C1FA8] hover:bg-[#68198f] text-white flex items-center justify-center transition-all shadow-xs"
@@ -450,7 +450,7 @@ export default function AboutPage({ onNavigateHome, onNavigatePage }) {
                           </svg>
                         </a>
                         <a
-                          href="https://linkedin.com"
+                          href="https://linkedin.com/in/paras-shah-71517a8a"
                           target="_blank"
                           rel="noreferrer"
                           className="w-8 h-8 rounded-full bg-[#7C1FA8] hover:bg-[#68198f] text-white flex items-center justify-center transition-all shadow-xs"
