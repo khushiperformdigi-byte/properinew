@@ -111,19 +111,6 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
                 </svg>
               </button>
-              
-              <button
-                onClick={() => {
-                  const elem = document.getElementById('why-choose-protect');
-                  if (elem) elem.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="flex-1 sm:flex-initial h-[42px] sm:h-[50px] px-4 sm:px-8 rounded-xl sm:rounded-[16px] bg-white/5 border border-white/20 hover:bg-white/10 text-white font-bold text-xs sm:text-base transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-1.5 whitespace-nowrap"
-              >
-                <span>How it Works</span>
-                <svg className="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2.5">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
-              </button>
             </div>
 
             {/* Social Proof Row */}
@@ -491,7 +478,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 7. READY TO PROTECT CTA BANNER (Brand Purple #7C1FA8 Gradient, Compact Height) */}
       <section className="w-full bg-[#FAF8FC] py-4 sm:py-5 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[968px] mx-auto">
           <div className="bg-gradient-to-r from-[#7C1FA8] via-[#6B1991] to-[#521172] border border-purple-400/40 rounded-[22px] lg:rounded-[26px] p-3.5 sm:p-4.5 lg:p-5 shadow-xl shadow-purple-900/30 relative overflow-hidden group">
             
             {/* Background Ambient Glow */}
@@ -518,7 +505,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
                 </div>
               </div>
 
-              {/* Right side: 2 Buttons (Pill shape matching reference image) */}
+              {/* Right side: Explore Plans CTA Button */}
               <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto justify-center">
                 <button
                   onClick={() => setSelectedPlanModal({ title: 'Explore Protection Plans' })}
@@ -526,12 +513,6 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
                 >
                   <span>Explore Plans</span>
                   <span className="text-base leading-none text-[#7C1FA8]">→</span>
-                </button>
-                <button
-                  onClick={() => setSelectedPlanModal({ title: 'Talk to a Protection Expert' })}
-                  className="bg-white/10 hover:bg-white/20 text-white border border-white/30 font-bold text-xs sm:text-sm px-5 py-2 sm:py-2.5 rounded-full transition-all duration-300 active:scale-95 cursor-pointer"
-                >
-                  Talk to an Expert
                 </button>
               </div>
 
