@@ -129,7 +129,7 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
             </h1>
 
             {/* Support Para */}
-            <p className="font-medium text-[15px] sm:text-[17px] leading-[26px] sm:leading-[29px] text-[#544F66] mb-7 max-w-[640px]">
+            <p className="font-medium text-[15px] sm:text-[16.5px] leading-[25px] sm:leading-[28px] text-[#544F66] mb-7 max-w-[540px]">
               Through our platform cover your clients across home loans, LAP, personal, business, vehicle loans and more. Strengthen relationships while earning attractive upfront payouts on every disbursal.
             </p>
 

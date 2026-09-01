@@ -62,7 +62,7 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
             </h1>
 
             {/* Sub Paragraph */}
-            <p className="font-medium text-[15px] sm:text-[16px] leading-[26px] sm:leading-[28px] text-[#544F66] mb-7 max-w-[490px]">
+            <p className="font-medium text-[15px] sm:text-[16.5px] leading-[25px] sm:leading-[28px] text-[#544F66] mb-7 max-w-[490px]">
               Deliver everything your clients’ needs such as investments, insurance, and financing through one powerful partnership. With PROSPERi5, you make a connection, and we handle the rest, ensuring every client requirement is met.
             </p>
 
@@ -135,7 +135,7 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
               Multiple Verticals. One Client. <span className="text-[#C81E8C]">Zero Leakage.</span>
             </h2>
 
-            <p className="font-body font-semibold text-sm sm:text-[15px] text-[#544F66] leading-relaxed max-w-xl mx-auto pt-0.5">
+            <p className="font-body font-semibold text-sm sm:text-[15.5px] text-[#544F66] leading-relaxed max-w-3xl mx-auto pt-0.5">
               You might capture one part of a client's financial life and watch the rest walk out the door. When you hold the Investments, Insurance, and Financing conversation in a single meeting, you become indispensable, unreplaceable.
             </p>
 
