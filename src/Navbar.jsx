@@ -11,8 +11,10 @@ export default function Navbar({
 }) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [solutionsDropdownOpen, setSolutionsDropdownOpen] = useState(false);
+  const [investorsDropdownOpen, setInvestorsDropdownOpen] = useState(false);
   const [toolsDropdownOpen, setToolsDropdownOpen] = useState(false);
   const [mobileSolutionsOpen, setMobileSolutionsOpen] = useState(false);
+  const [mobileInvestorsOpen, setMobileInvestorsOpen] = useState(false);
   const [mobileToolsOpen, setMobileToolsOpen] = useState(false);
   const [expertModalOpen, setExpertModalOpen] = useState(false);
   const [loginModalOpen, setLoginModalOpen] = useState(false);
@@ -202,6 +204,44 @@ export default function Navbar({
               </div>
             </div>
 
+            {/* FOR INVESTORS DROPDOWN */}
+            <div
+              className="relative group py-1"
+              onMouseEnter={() => setInvestorsDropdownOpen(true)}
+              onMouseLeave={() => setInvestorsDropdownOpen(false)}
+            >
+              <button className="whitespace-nowrap hover:text-[#7C1FA8] transition-colors flex items-center gap-1 font-semibold cursor-pointer py-1">
+                For Investors
+                <svg className="w-3.5 h-3.5 text-[#1E1B2E]/80 group-hover:text-[#7C1FA8] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                </svg>
+              </button>
+
+              <div className="absolute left-1/2 -translate-x-1/2 top-full hidden group-hover:flex flex-col bg-white border border-purple-100/90 rounded-xl p-1.5 shadow-[0_16px_40px_rgba(30,27,46,0.18)] w-[180px] space-y-0.5 animate-in fade-in slide-in-from-top-1 z-[9999]">
+                <a
+                  href={getPathForPage('grow')}
+                  onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
+                >
+                  Grow
+                </a>
+                <a
+                  href={getPathForPage('protect')}
+                  onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
+                >
+                  Protect
+                </a>
+                <a
+                  href={getPathForPage('borrow')}
+                  onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
+                  className="w-full text-left px-3 py-2 rounded-lg text-xs font-semibold text-[#1E1B2E] hover:text-[#7C1FA8] hover:bg-purple-50 transition-colors cursor-pointer block"
+                >
+                  Borrow
+                </a>
+              </div>
+            </div>
+
             {/* TOOLS DROPDOWN */}
             <div
               className="relative group py-1"
@@ -278,35 +318,8 @@ export default function Navbar({
             </a>
           </div>
 
-          {/* Nav Right (Explore as + CTA Buttons) - Desktop */}
+          {/* Nav Right (CTA Buttons) - Desktop */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-5 shrink-0 ml-6 xl:ml-8">
-            {/* Explore as Switch */}
-            <div className="flex items-center gap-2.5">
-              <span className="text-[#8E8A9D] font-semibold text-xs whitespace-nowrap">Explore as</span>
-              <div className="bg-purple-50/50 rounded-[14px] p-1 border border-[#EBE8EF] flex items-center text-[11px]">
-                <button
-                  onClick={() => {
-                    if (setActiveTab) setActiveTab('partners');
-                    handleNav('partner');
-                  }}
-                  className={`px-3.5 py-1.5 rounded-[10px] font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${activeTab === 'partners' ? 'bg-[#FCEBF4] text-[#C81E8C] shadow-sm' : 'text-[#8E8A9D] hover:text-[#1E1B2E]'}`}
-                >
-                  {activeTab === 'partners' && <span className="w-1.5 h-1.5 rounded-full bg-[#C81E8C]"></span>}
-                  For Partners
-                </button>
-                <button
-                  onClick={() => {
-                    if (setActiveTab) setActiveTab('investors');
-                    handleNav('investors');
-                  }}
-                  className={`px-3.5 py-1.5 rounded-[10px] font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${activeTab === 'investors' ? 'bg-purple-100 text-[#7C1FA8] shadow-sm' : 'text-[#8E8A9D] hover:text-[#1E1B2E]'}`}
-                >
-                  {activeTab === 'investors' && <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8]"></span>}
-                  For Investors
-                </button>
-              </div>
-            </div>
-
             {/* Action Buttons: Contact Us CTA */}
             <div className="flex items-center gap-3">
               <button
@@ -371,28 +384,6 @@ export default function Navbar({
                 </button>
               </div>
 
-              {/* Explore Mode Switcher */}
-              <div className="bg-white rounded-2xl p-2 border border-purple-100 shadow-xs flex gap-2">
-                <button
-                  onClick={() => {
-                    if (setActiveTab) setActiveTab('partners');
-                    handleNav('partner');
-                  }}
-                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'partners' ? 'bg-[#FCEBF4] text-[#C81E8C]' : 'text-gray-600'}`}
-                >
-                  • For Partners
-                </button>
-                <button
-                  onClick={() => {
-                    if (setActiveTab) setActiveTab('investors');
-                    handleNav('investors');
-                  }}
-                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'investors' ? 'bg-purple-100 text-[#7C1FA8]' : 'text-gray-600'}`}
-                >
-                  For Investors
-                </button>
-              </div>
-
               {/* Numbered Nav List */}
               <div className="flex flex-col gap-2.5 mt-2">
                 
@@ -447,14 +438,47 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 04 Tools & Calculators (Accordion) */}
+                {/* 04 For Investors (Accordion) */}
+                <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
+                  <button
+                    onClick={() => setMobileInvestorsOpen(!mobileInvestorsOpen)}
+                    className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
+                  >
+                    <div className="flex items-center gap-3.5">
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">04</span>
+                      <span className="font-bold text-sm text-[#1E1B2E]">For Investors</span>
+                    </div>
+                    <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileInvestorsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </button>
+                  {mobileInvestorsOpen && (
+                    <div className="px-3 pb-3 pt-1 border-t border-purple-50 flex flex-col gap-1 bg-purple-50/30">
+                      {[
+                        { label: 'Grow', page: 'grow' },
+                        { label: 'Protect', page: 'protect' },
+                        { label: 'Borrow', page: 'borrow' },
+                      ].map((item, idx) => (
+                        <button
+                          key={idx}
+                          onClick={() => handleNav(item.page)}
+                          className="w-full py-2 px-3 rounded-lg hover:bg-white text-left font-semibold text-xs text-[#1E1B2E] flex items-center cursor-pointer transition-all"
+                        >
+                          <span>{item.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+
+                {/* 05 Smart Tools & Calculators (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">04</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">05</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Smart Tools & Calculators</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileToolsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -482,39 +506,21 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 05 Blog & Insights */}
+                {/* 06 Blog & Insights */}
                 <button
                   onClick={() => handleNav('blog')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'blog' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>05</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>06</span>
                   <span className="font-bold text-sm">Blog & Insights</span>
                 </button>
 
-                {/* 06 Investors */}
-                <button
-                  onClick={() => handleNav('investors')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'investors' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'investors' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>06</span>
-                  <span className="font-bold text-sm">For Investors</span>
-                </button>
-
-                {/* 07 For Partners */}
-                <button
-                  onClick={() => handleNav('partner')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'partner' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'partner' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
-                  <span className="font-bold text-sm">For Partners (B2B)</span>
-                </button>
-
-                {/* 08 Careers */}
+                {/* 07 Careers */}
                 <button
                   onClick={() => handleNav('careers')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'careers' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>08</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
                   <span className="font-bold text-sm">Careers</span>
                 </button>
 
