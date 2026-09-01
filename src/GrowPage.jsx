@@ -205,17 +205,6 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
               >
                 <span>Start Investing</span>
               </button>
-              <a
-                href="#invest-solutions"
-                onClick={(e) => {
-                  e.preventDefault();
-                  const elem = document.getElementById('invest-solutions');
-                  if (elem) elem.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="h-[48px] sm:h-[52px] px-7 sm:px-8 rounded-[16px] bg-white border-2 border-[#7C1FA8] text-[#7C1FA8] hover:bg-purple-50 font-bold text-sm sm:text-base transition-all active:scale-95 cursor-pointer flex items-center justify-center"
-              >
-                Explore Funds
-              </a>
             </div>
 
             {/* Social Proof Row */}
