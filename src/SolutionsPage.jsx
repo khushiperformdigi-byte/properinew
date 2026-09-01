@@ -123,7 +123,7 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
 
         {/* SECTION 1: WHY MULTI-PRODUCTS? */}
         <section className="w-full space-y-8 py-2">
-          <div className="max-w-6xl mx-auto text-center space-y-3.5">
+          <div className="w-full text-center space-y-3.5">
             
             <div>
               <span className="inline-block bg-[#F5EEFB] border border-purple-200/80 px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-[#7C1FA8]">
@@ -140,23 +140,23 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
             </p>
 
             {/* 3 Verticals Zero Leakage Pill Cards Grid (Clickable Cards with Explore →) */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-7 pt-4 text-left">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 pt-4 text-left">
               
               {/* Card 1: Investments */}
               <div 
                 onClick={() => handleNav('investment')}
-                className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-7 sm:p-8 space-y-4 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+                className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-5 sm:p-5.5 space-y-3 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
               >
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-xl bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-lg shadow-xs group-hover:scale-105 transition-transform">
                     📈
                   </div>
-                  <h4 className="font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h4>
-                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h4>
+                  <p className="text-xs sm:text-[13.5px] font-semibold text-[#544F66] leading-snug">
                     Capture equity, mutual funds, AIFs &amp; fixed income wealth creation with long-term recurring trail payouts.
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs sm:text-sm pt-2 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs sm:text-sm pt-1 group-hover:translate-x-1 transition-transform">
                   <span>Explore</span>
                   <FiArrowRight className="w-4 h-4" />
                 </div>
@@ -165,18 +165,18 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
               {/* Card 2: Insurance */}
               <div 
                 onClick={() => handleNav('insurance')}
-                className="bg-[#FDF2F8] border border-pink-100 rounded-2xl p-7 sm:p-8 space-y-4 hover:border-[#C81E8C] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+                className="bg-[#FDF2F8] border border-pink-100 rounded-2xl p-5 sm:p-5.5 space-y-3 hover:border-[#C81E8C] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
               >
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-[#C81E8C] text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-xl bg-[#C81E8C] text-white flex items-center justify-center font-bold text-lg shadow-xs group-hover:scale-105 transition-transform">
                     🛡️
                   </div>
-                  <h4 className="font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h4>
-                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h4>
+                  <p className="text-xs sm:text-[13.5px] font-semibold text-[#544F66] leading-snug">
                     Protect client family &amp; assets with health, term &amp; general policies while unlocking upfront + renewal commission.
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#C81E8C] font-extrabold text-xs sm:text-sm pt-2 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-1.5 text-[#C81E8C] font-extrabold text-xs sm:text-sm pt-1 group-hover:translate-x-1 transition-transform">
                   <span>Explore</span>
                   <FiArrowRight className="w-4 h-4" />
                 </div>
@@ -185,18 +185,18 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
               {/* Card 3: Financing */}
               <div 
                 onClick={() => handleNav('financing')}
-                className="bg-[#FFFBEB] border border-amber-100 rounded-2xl p-7 sm:p-8 space-y-4 hover:border-[#F5A623] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+                className="bg-[#FFFBEB] border border-amber-100 rounded-2xl p-5 sm:p-5.5 space-y-3 hover:border-[#F5A623] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
               >
-                <div className="space-y-3">
-                  <div className="w-12 h-12 rounded-2xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
+                <div className="space-y-2">
+                  <div className="w-10 h-10 rounded-xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center font-bold text-lg shadow-xs group-hover:scale-105 transition-transform">
                     💳
                   </div>
-                  <h4 className="font-extrabold text-xl text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h4>
-                  <p className="text-xs sm:text-sm font-semibold text-[#544F66] leading-relaxed">
+                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h4>
+                  <p className="text-xs sm:text-[13.5px] font-semibold text-[#544F66] leading-snug">
                     Fulfill home loans, business loans &amp; overdraft needs instantly so your clients never consult outside lenders.
                   </p>
                 </div>
-                <div className="flex items-center gap-1.5 text-[#D49300] font-extrabold text-xs sm:text-sm pt-2 group-hover:translate-x-1 transition-transform">
+                <div className="flex items-center gap-1.5 text-[#D49300] font-extrabold text-xs sm:text-sm pt-1 group-hover:translate-x-1 transition-transform">
                   <span>Explore</span>
                   <FiArrowRight className="w-4 h-4" />
                 </div>
