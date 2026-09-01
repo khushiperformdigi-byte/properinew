@@ -471,7 +471,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
                   onClick={() => setSelectedPlanModal({ title: 'Explore Protection Plans' })}
                   className="bg-white hover:bg-purple-50 text-[#7C1FA8] font-extrabold text-xs sm:text-sm px-5 py-2 sm:py-2.5 rounded-full shadow-md hover:shadow-lg transition-all duration-300 active:scale-95 cursor-pointer flex items-center gap-1.5"
                 >
-                  <span>Explore Plans</span>
+                  <span>Explore Protection</span>
                   <span className="text-base leading-none text-[#7C1FA8]">→</span>
                 </button>
               </div>
