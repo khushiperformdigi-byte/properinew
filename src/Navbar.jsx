@@ -79,9 +79,9 @@ export default function Navbar({
   };
 
   return (
-    <>
+    <div className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]">
       {/* 1. TOP CONTACT UTILITY BAR (DESKTOP ONLY) */}
-      <div className="hidden sm:block bg-white w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40">
+      <div className="hidden sm:block bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40">
         <div className="max-w-[1500px] mx-auto px-1 sm:px-2 py-0.5 flex justify-between items-center text-xs text-[#1E1B2E]">
           <div className="flex items-center gap-2.5">
             <div className="flex gap-2 items-center text-[#544F66]">
@@ -91,7 +91,7 @@ export default function Navbar({
                   <path d="M12 2v4M12 18v4M2 12h4M18 12h4" />
                 </svg>
               </div>
-              <span className="font-semibold text-[#1E1B2E] text-xs">Investments - Insurance · Financing</span>
+              <span className="font-semibold text-[#1E1B2E] text-xs">Investments · Insurance · Financing</span>
             </div>
             <span className="text-purple-200 hidden sm:inline">|</span>
             <span className="border border-purple-200/80 text-[#7C1FA8] bg-purple-50/80 backdrop-blur-sm px-2.5 py-0.5 rounded-full text-[10px] font-bold tracking-wider hidden sm:inline-block shadow-2xs">
@@ -116,8 +116,9 @@ export default function Navbar({
       </div>
 
       {/* 2. GLASSNAVBAR - FULL WIDTH ON MOBILE, FLOATING PILL ON DESKTOP */}
-      <nav className={`sticky top-0 lg:top-2.5 w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-2 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
-        <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
+      <header className="sticky top-0 z-50 w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]">
+        <nav className={`w-full max-w-[1500px] mx-auto px-0 lg:px-8 xl:px-12 pt-0 lg:pt-1.5 pb-1 lg:pb-1.5 relative font-sans transition-all ${mobileMenuOpen ? 'z-[9999]' : 'z-50'}`}>
+          <div className="bg-white/95 lg:bg-white/80 backdrop-blur-xl lg:backdrop-blur-2xl rounded-none lg:rounded-[20px] border-b border-purple-100/60 lg:border lg:border-purple-100/60 shadow-xs lg:shadow-[0_6px_24px_rgba(30,27,46,0.08)] h-[56px] lg:h-[58px] px-4 sm:px-6 lg:px-6 flex items-center justify-between transition-all relative overflow-visible lg:ring-1 lg:ring-purple-100/50">
 
           {/* Brand Logo */}
           <div className="flex items-center cursor-pointer group shrink-0 pr-2 sm:pr-4" onClick={() => handleNav('home')}>
@@ -637,6 +638,8 @@ export default function Navbar({
           </div>
         )}
       </nav>
+    </header>
+  </div>
 
       {/* 3. TALK TO AN EXPERT / CONSULTATION MODAL */}
       {expertModalOpen && (
