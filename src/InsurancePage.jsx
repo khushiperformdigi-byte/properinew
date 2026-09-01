@@ -598,34 +598,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
               </div>
             </section>
 
-            {/* SCREEN 5: BANNER CTA SECTION */}
-            <section className="bg-[#5E1683] rounded-[22px] p-4.5 sm:p-6 lg:px-8 py-5 text-white flex flex-col md:flex-row items-center justify-between gap-5 shadow-lg relative overflow-hidden">
-              <div className="flex items-center gap-4.5 text-left max-w-xl sm:max-w-2xl lg:max-w-3xl flex-1">
-                <div className="w-12.5 h-12.5 sm:w-14 sm:h-14 rounded-2xl bg-white/15 backdrop-blur-md border border-white/20 flex items-center justify-center text-xl sm:text-2xl shadow-inner shrink-0">
-                  🛡️
-                </div>
 
-                <div className="space-y-0.5">
-                  <span className="text-[10.5px] sm:text-xs font-extrabold uppercase tracking-widest text-purple-200 block">
-                    STAY PREPARED FOR TOMORROW
-                  </span>
-                  <h3 className="text-base sm:text-xl lg:text-2xl font-extrabold text-white leading-snug tracking-tight">
-                    Protect Today. Stay Prepared for Tomorrow.
-                  </h3>
-                  <p className="text-xs sm:text-sm text-purple-100/90 font-medium">
-                    The right protection starts with understanding your needs. Let us help you choose insurance solutions that protect what matters most.
-                  </p>
-                </div>
-              </div>
-
-              <button 
-                onClick={() => setSelectedPlanModal({ title: 'Talk To an Insurance Expert' })}
-                className="bg-white hover:bg-purple-50 text-[#1E1B2E] font-extrabold px-8 sm:px-10 py-3 sm:py-3.5 rounded-full text-xs sm:text-sm min-w-[210px] sm:min-w-[240px] transition-all shadow-md hover:shadow-lg hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer shrink-0 active:scale-95"
-              >
-                <span>Talk To an Insurance Expert</span>
-                <span className="text-sm">→</span>
-              </button>
-            </section>
 
           </main>
 
