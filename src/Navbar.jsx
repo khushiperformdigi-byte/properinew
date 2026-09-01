@@ -246,14 +246,7 @@ export default function Navbar({
               </div>
             </div>
 
-            {/* For Partners (Direct Page Link) */}
-            <a
-              href={getPathForPage('partner')}
-              onClick={(e) => { e.preventDefault(); handleNav('partner'); }}
-              className={`whitespace-nowrap transition-colors py-1 font-semibold cursor-pointer relative ${currentPage === 'partner' ? 'text-[#7C1FA8] font-bold after:absolute after:bottom-[-6px] after:left-1/2 after:-translate-x-1/2 after:w-4 after:h-0.5 after:bg-[#C81E8C] after:rounded-full' : 'hover:text-[#7C1FA8]'}`}
-            >
-              For Partners
-            </a>
+
 
             {/* KNOWLEDGE CENTER DROPDOWN */}
             <div
@@ -477,8 +470,35 @@ export default function Navbar({
             </a>
           </div>
 
-          {/* Nav Right (CTA Buttons) - Desktop */}
+          {/* Nav Right (Explore as + CTA Buttons) - Desktop */}
           <div className="hidden lg:flex items-center gap-4 xl:gap-5 shrink-0 ml-6 xl:ml-8">
+            {/* Explore as Switch */}
+            <div className="flex items-center gap-2.5">
+              <span className="text-[#8E8A9D] font-semibold text-xs whitespace-nowrap">Explore as</span>
+              <div className="bg-purple-50/50 rounded-[14px] p-1 border border-[#EBE8EF] flex items-center text-[11px]">
+                <button
+                  onClick={() => {
+                    if (setActiveTab) setActiveTab('partners');
+                    handleNav('partner');
+                  }}
+                  className={`px-3.5 py-1.5 rounded-[10px] font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${activeTab === 'partners' ? 'bg-[#FCEBF4] text-[#C81E8C] shadow-sm' : 'text-[#8E8A9D] hover:text-[#1E1B2E]'}`}
+                >
+                  {activeTab === 'partners' && <span className="w-1.5 h-1.5 rounded-full bg-[#C81E8C]"></span>}
+                  For Partners
+                </button>
+                <button
+                  onClick={() => {
+                    if (setActiveTab) setActiveTab('investors');
+                    handleNav('investors');
+                  }}
+                  className={`px-3.5 py-1.5 rounded-[10px] font-bold transition-all duration-300 cursor-pointer flex items-center gap-1.5 whitespace-nowrap ${activeTab === 'investors' ? 'bg-purple-100 text-[#7C1FA8] shadow-sm' : 'text-[#8E8A9D] hover:text-[#1E1B2E]'}`}
+                >
+                  {activeTab === 'investors' && <span className="w-1.5 h-1.5 rounded-full bg-[#7C1FA8]"></span>}
+                  For Investors
+                </button>
+              </div>
+            </div>
+
             {/* Action Buttons: Contact Us CTA */}
             <div className="flex items-center gap-3">
               <button
@@ -540,6 +560,28 @@ export default function Navbar({
                   <svg className="w-5 h-5 stroke-[2.5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
                   </svg>
+                </button>
+              </div>
+
+              {/* Explore Mode Switcher */}
+              <div className="bg-white rounded-2xl p-2 border border-purple-100 shadow-xs flex gap-2">
+                <button
+                  onClick={() => {
+                    if (setActiveTab) setActiveTab('partners');
+                    handleNav('partner');
+                  }}
+                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'partners' ? 'bg-[#FCEBF4] text-[#C81E8C]' : 'text-gray-600'}`}
+                >
+                  • For Partners
+                </button>
+                <button
+                  onClick={() => {
+                    if (setActiveTab) setActiveTab('investors');
+                    handleNav('investors');
+                  }}
+                  className={`flex-1 py-2 rounded-xl text-xs font-bold transition-all ${activeTab === 'investors' ? 'bg-purple-100 text-[#7C1FA8]' : 'text-gray-600'}`}
+                >
+                  For Investors
                 </button>
               </div>
 
@@ -630,23 +672,14 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 05 For Partners */}
-                <button
-                  onClick={() => handleNav('partner')}
-                  className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'partner' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
-                >
-                  <span className={`font-extrabold text-sm ${currentPage === 'partner' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>05</span>
-                  <span className="font-bold text-sm">For Partners</span>
-                </button>
-
-                {/* 06 Knowledge Center (Accordion) */}
+                {/* 05 Knowledge Center (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileKnowledgeOpen(!mobileKnowledgeOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">06</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">05</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Knowledge Center</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileKnowledgeOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -688,14 +721,14 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 07 Smart Tools & Calculators (Accordion) */}
+                {/* 06 Smart Tools & Calculators (Accordion) */}
                 <div className="bg-white rounded-[16px] border border-[#EBE3F5] overflow-hidden shadow-sm">
                   <button
                     onClick={() => setMobileToolsOpen(!mobileToolsOpen)}
                     className="w-full h-[54px] px-4 flex items-center justify-between text-left cursor-pointer"
                   >
                     <div className="flex items-center gap-3.5">
-                      <span className="font-extrabold text-sm text-[#7C1FA8]">07</span>
+                      <span className="font-extrabold text-sm text-[#7C1FA8]">06</span>
                       <span className="font-bold text-sm text-[#1E1B2E]">Smart Tools & Calculators</span>
                     </div>
                     <svg className={`w-4 h-4 text-gray-500 transition-transform ${mobileToolsOpen ? 'rotate-180 text-[#7C1FA8]' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -723,21 +756,21 @@ export default function Navbar({
                   )}
                 </div>
 
-                {/* 08 Blog & Insights */}
+                {/* 07 Blog & Insights */}
                 <button
                   onClick={() => handleNav('blog')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'blog' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>08</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'blog' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>07</span>
                   <span className="font-bold text-sm">Blog & Insights</span>
                 </button>
 
-                {/* 09 Careers */}
+                {/* 08 Careers */}
                 <button
                   onClick={() => handleNav('careers')}
                   className={`w-full h-[54px] rounded-[16px] border px-4 flex items-center gap-3.5 shadow-sm transition-all duration-200 cursor-pointer text-left ${currentPage === 'careers' ? 'bg-[#7C1FA8] border-[#7C1FA8] text-white' : 'bg-white border-[#EBE3F5] text-[#1E1B2E] hover:bg-[#7C1FA8] hover:text-white'}`}
                 >
-                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>09</span>
+                  <span className={`font-extrabold text-sm ${currentPage === 'careers' ? 'text-[#F5A623]' : 'text-[#7C1FA8]'}`}>08</span>
                   <span className="font-bold text-sm">Careers</span>
                 </button>
 
