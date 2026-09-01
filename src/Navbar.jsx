@@ -79,7 +79,8 @@ export default function Navbar({
   };
 
   return (
-    <div className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]">
+    <>
+      <div className="w-full bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]">
       {/* 1. TOP CONTACT UTILITY BAR (DESKTOP ONLY) */}
       <div className="hidden sm:block bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC] w-full py-1.5 px-4 sm:px-6 lg:px-8 xl:px-12 select-none relative z-20 font-sans border-b border-purple-100/40">
         <div className="max-w-[1500px] mx-auto px-1 sm:px-2 py-0.5 flex justify-between items-center text-xs text-[#1E1B2E]">
