@@ -67,19 +67,12 @@ function AnimatedProtectionScore({ onOpenModal }) {
 
       <div className="w-[1px] bg-purple-100 self-stretch my-1"></div>
 
-      {/* Score Copy & Link */}
+      {/* Score Copy */}
       <div className="flex flex-col text-left">
         <h4 className="font-extrabold text-xs sm:text-sm text-[#1E1B2E] mb-0.5 leading-tight">You're well protected!</h4>
-        <p className="text-[10.5px] sm:text-[11px] text-[#666077] font-medium leading-tight mb-1.5 sm:mb-2">
+        <p className="text-[10.5px] sm:text-[11px] text-[#666077] font-medium leading-tight">
           Review your policies and increase coverage.
         </p>
-        <button
-          onClick={() => onOpenModal({ title: 'Your Coverage Details' })}
-          className="text-[#7C1FA8] font-bold text-xs hover:underline flex items-center gap-1 cursor-pointer w-fit"
-        >
-          <span>View My Coverage</span>
-          <span>→</span>
-        </button>
       </div>
     </div>
   );
