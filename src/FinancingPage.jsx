@@ -241,24 +241,24 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
           </div>
         </section>
 
-        {/* 4. SECTION: CLOSING CTA (Compact Horizontal Strip layout) */}
-        <section className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[24px] p-5 sm:p-6 lg:p-7 text-white shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
+        {/* 4. SECTION: CLOSING CTA (Ultra-Compact Low-Profile Strip) */}
+        <section className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[20px] px-5 sm:px-7 py-3.5 sm:py-4 text-white shadow-lg relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 relative z-10 text-left">
-            <div className="space-y-1.5 max-w-2xl">
-              <span className="bg-white/15 border border-white/20 text-purple-100 px-3.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider inline-block">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-3.5 relative z-10 text-left">
+            <div className="space-y-1 max-w-2xl">
+              <span className="bg-white/15 border border-white/20 text-purple-100 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider inline-block">
                 UNLIMITED EARNING POTENTIAL
               </span>
-              <h2 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl leading-tight text-white tracking-tight">
+              <h2 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl leading-snug text-white tracking-tight">
                 Serve More. Earn More. Unlimited Upside.
               </h2>
             </div>
             
-            <div className="shrink-0 w-full sm:w-auto text-center lg:text-right pt-1 lg:pt-0">
+            <div className="shrink-0 w-full sm:w-auto text-center lg:text-right">
               <button
                 onClick={() => setPartnerModalOpen(true)}
-                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-8 py-3.5 rounded-2xl text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
+                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-6 py-2.5 sm:py-3 rounded-xl text-xs shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5"
               >
                 <span>Start Earning Now</span>
                 <FiArrowRight className="w-4 h-4" />

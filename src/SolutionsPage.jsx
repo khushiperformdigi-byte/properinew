@@ -262,27 +262,27 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
           </div>
         </section>
 
-        {/* SECTION 4: CTA BANNER (Compact Horizontal Strip layout) */}
-        <section className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[24px] p-5 sm:p-6 lg:p-7 text-white shadow-xl relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
+        {/* SECTION 4: CTA BANNER (Ultra-Compact Low-Profile Strip) */}
+        <section className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[20px] px-5 sm:px-7 py-3.5 sm:py-4 text-white shadow-lg relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-72 h-72 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 relative z-10 text-left">
-            <div className="space-y-2 max-w-3xl">
-              <span className="bg-white/15 border border-white/20 text-purple-100 px-3.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider inline-block">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-3.5 relative z-10 text-left">
+            <div className="space-y-1 max-w-3xl">
+              <span className="bg-white/15 border border-white/20 text-purple-100 px-3 py-0.5 rounded-full text-[10px] font-extrabold uppercase tracking-wider inline-block">
                 START EARNING MORE
               </span>
-              <h2 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl leading-tight text-white tracking-tight">
+              <h2 className="font-heading font-extrabold text-lg sm:text-xl lg:text-2xl leading-snug text-white tracking-tight">
                 Increase Your Earning Potential From The Same Client
               </h2>
-              <p className="font-body font-medium text-xs sm:text-sm text-purple-100/90 leading-relaxed max-w-2xl">
+              <p className="font-body font-medium text-[11.5px] sm:text-xs text-purple-100/90 leading-normal max-w-2xl">
                 Become the only financial partner your clients need. Join PROSPERi5 and unlock 50+ products across Investments, Insurance, and Financing to build stronger, more profitable relationships.
               </p>
             </div>
             
-            <div className="shrink-0 w-full sm:w-auto text-center lg:text-right pt-1 lg:pt-0">
+            <div className="shrink-0 w-full sm:w-auto text-center lg:text-right">
               <button
                 onClick={() => setPartnerModalOpen(true)}
-                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-7 py-3.5 rounded-2xl text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
+                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-6 py-2.5 sm:py-3 rounded-xl text-xs shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5"
               >
                 <span>Become a PROSPERi5 Partner</span>
                 <span>→</span>
