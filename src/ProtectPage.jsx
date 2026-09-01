@@ -77,7 +77,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
         <div className="absolute top-0 right-1/4 w-[450px] h-[450px] bg-purple-200/40 rounded-full filter blur-[120px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-10 w-[350px] h-[350px] bg-pink-200/30 rounded-full filter blur-[100px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
           
           {/* LEFT COLUMN: Title, Subtitle, CTA & Social Proof */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
@@ -171,7 +171,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
         className="w-full relative bg-cover bg-center bg-no-repeat py-12 lg:py-16 border-b border-[#EBE3F5]"
         style={{ backgroundImage: "url('/ChatGPT Image Aug 25, 2026, 11_06_32 PM.png')" }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-12 relative z-10">
           
           {/* Left Text Block */}
           <div className="w-full lg:w-[32%] text-left">
@@ -258,7 +258,7 @@ export default function ProtectPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 6. BE PREPARED ALWAYS & HOW GETTING PROTECTED WORKS SECTION */}
       <section className="w-full bg-[#FAF8FC] pt-8 lg:pt-12 pb-6 sm:pb-8 border-t border-[#EBE3F5]">
-        <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8 lg:space-y-10">
+        <div className="w-full max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-8 lg:space-y-10">
           
           {/* PART 1: BE PREPARED, ALWAYS (Full width layout, no box card wrapper) */}
           <div className="w-full">

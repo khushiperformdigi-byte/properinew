@@ -136,7 +136,7 @@ export default function EmiCalculatorPage({ onNavigateHome, onNavigatePage }) {
         {/* Ambient Purple Soft Glow */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch relative z-10">
           
           {/* LEFT COLUMN: Badge, Title, Subtitle & 3 Feature Pills */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left space-y-4 relative py-2">
@@ -199,7 +199,7 @@ export default function EmiCalculatorPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 4. MAIN CALCULATOR CONTENT CONTAINER */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 sm:py-6 relative z-10">
+      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-5 sm:py-6 relative z-10">
 
         {/* 2-COLUMN CALCULATOR GRID */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">

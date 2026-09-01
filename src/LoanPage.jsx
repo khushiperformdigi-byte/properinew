@@ -143,7 +143,7 @@ export default function LoanPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 3. HERO SECTION */}
       <section className="bg-gradient-to-b from-[#FAF5FC] via-white to-[#F7F2FA] -mt-[76px] lg:-mt-[88px] pt-[116px] sm:pt-[126px] lg:pt-[136px] pb-12 lg:pb-16 px-4 sm:px-6 lg:px-8 border-b border-purple-100/60 select-none">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
 
           {/* Left Column: Heading & Copy */}
           <div className="lg:col-span-6 space-y-6 text-center lg:text-left">
@@ -241,7 +241,7 @@ export default function LoanPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 4. LOAN PRODUCTS GRID (WEBSITE THEME CARDS) */}
-      <section className="pt-10 lg:pt-12 pb-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="pt-10 lg:pt-12 pb-6 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto">
         <div className="text-center mb-10">
           <span className="inline-block bg-[#F3EAFB] text-[#7C1FA8] font-extrabold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-3">
             LOAN OFFERINGS
@@ -294,7 +294,7 @@ export default function LoanPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 5. INTERACTIVE EMI CALCULATOR (FULL WIDTH SECTION) */}
       <section id="calculator" className="w-full bg-gradient-to-b from-[#FAF5FC] via-[#F6EEFA] to-white pt-8 pb-12 lg:pt-10 lg:pb-14 px-4 sm:px-6 lg:px-8 border-t border-b border-purple-100/80 mt-2 mb-6">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="text-center mb-8">
             <span className="inline-block bg-white text-[#7C1FA8] font-extrabold text-xs tracking-widest uppercase px-4 py-2 rounded-full mb-2.5 border border-purple-100 shadow-2xs">
               FINANCIAL TOOL
@@ -408,7 +408,7 @@ export default function LoanPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 6. CTA BANNER */}
-      <section className="py-4 sm:py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+      <section className="py-4 sm:py-6 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto">
         <div className="bg-gradient-to-r from-[#461065] via-[#7C1FAB] to-[#5E1083] rounded-2xl py-4 sm:py-5 px-6 sm:px-8 text-white flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
           <div>
             <h2 className="text-lg sm:text-xl font-extrabold">Looking for Tailored Commercial Financing?</h2>

@@ -329,7 +329,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
             {/* Soft Ambient Background Glows */}
             <div className="absolute top-0 right-1/3 w-[400px] h-[400px] bg-purple-300/20 rounded-full filter blur-[100px] pointer-events-none"></div>
 
-            <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+            <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
               
               {/* LEFT COLUMN: Badge, Title, Subtitle, Buttons & 3 Feature Badges */}
               <div className="lg:col-span-6 flex flex-col items-start text-left">
@@ -433,7 +433,7 @@ export default function InsurancePage({ onNavigateHome, onNavigatePage }) {
           </section>
 
           {/* MAIN CONTAINER FOR PAGE CONTENT */}
-          <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-5 space-y-6">
+          <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-5 space-y-6">
 
             {/* SCREEN 2: COMPACT PHILOSOPHY SECTION */}
             <section className="bg-gradient-to-r from-[#F4ECFB] via-[#FAF5FE] to-[#F3EAFA] border border-[#E6D7F5] rounded-[22px] p-4 sm:p-5 shadow-2xs relative overflow-hidden">

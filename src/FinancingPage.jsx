@@ -195,7 +195,7 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
         {/* Ambient Curved Background Glow */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[500px] h-[500px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
           
           {/* LEFT COLUMN */}
           <div className="lg:col-span-7 flex flex-col justify-center items-start text-left relative py-1">
@@ -262,7 +262,7 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
         </div>
       </section>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
+      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-10 space-y-16">
 
         {/* 2. SECTION: PRODUCT SUITE */}
         <section className="space-y-8">

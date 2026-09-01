@@ -27,7 +27,7 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
         {/* Ambient Purple Background Glow */}
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[90px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
           
           {/* LEFT COLUMN: Rupee Badge Tag, Main Heading, Subtitle & Action CTA */}
           <div className="lg:col-span-5 flex flex-col justify-center items-start text-left py-1">
@@ -81,7 +81,7 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
 
       {/* 4. SECTION 2: LEARN AND GROW - PERSONAL FINANCE MADE SIMPLE */}
       <section id="learn-and-grow" className="py-8 lg:py-12 bg-[#FAF8FC] font-sans border-b border-purple-200/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           
           <div className="text-center max-w-2xl mx-auto mb-8">
             <span className="text-[#7C1FA8] text-xs font-extrabold uppercase tracking-widest bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/80">
@@ -195,7 +195,7 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
 
       {/* 5. SECTION 3: TOOLS TO EMPOWER YOU - CALCULATORS */}
       <section className="py-6 sm:py-8 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#FAF6FC] via-[#F5EEFA] to-white font-sans border-b border-purple-100/60">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           
           {/* Centered Header with Increased Size (No Explore All Tools button) */}
           <div className="text-center max-w-2xl mx-auto mb-6">
@@ -314,7 +314,7 @@ export default function PersonalFinancePage({ onNavigateHome, onNavigatePage }) 
       </section>
 
       {/* 6. SECTION 4: MONEY HABITS THAT MATTER */}
-      <section className="py-8 lg:py-10 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans border-b border-purple-100/60">
+      <section className="py-8 lg:py-10 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto font-sans border-b border-purple-100/60">
         <div className="text-center max-w-2xl mx-auto mb-8">
           <span className="text-[#7C1FA8] text-xs font-extrabold uppercase tracking-widest bg-purple-100/80 px-3.5 py-1 rounded-full border border-purple-200/80">
             MONEY HABITS THAT MATTER

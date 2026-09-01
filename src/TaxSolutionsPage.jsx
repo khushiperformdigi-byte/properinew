@@ -165,7 +165,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
         {/* Ambient Curved Light Purple Background Overlay on Right */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
           
           {/* LEFT COLUMN: Category Tag, Main Heading, Subtitle & Action Button */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left relative py-1">
@@ -228,7 +228,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 3. SECTION 3: HOW IT WORKS (EXACT MATCH TO REFERENCE SCREENSHOT 2) */}
       <section className="w-full bg-[#FAF5FD] py-10 lg:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EBE8EF]/60 font-sans">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
           
           {/* Left Column: Title & Decorative Squiggly Arrow */}
           <div className="lg:col-span-4 space-y-3 text-center lg:text-left">
@@ -320,7 +320,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 4. SECTION 4: CALCULATE YOUR SAVINGS (INTERACTIVE TAX CALCULATOR WITH MATCHING HEIGHT) */}
       <section className="w-full bg-[#FCE9F4] py-10 lg:py-14 px-4 sm:px-6 lg:px-8 border-b border-[#EBE8EF]/60 font-sans">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-stretch">
           
           {/* Left Content Side */}
           <div className="lg:col-span-5 flex flex-col justify-between space-y-3.5">
@@ -428,7 +428,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
 
 
       {/* 7. SECTION 6: 5 TRUST METRICS STRIP WITH GENEROUS MARGIN & PADDING */}
-      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans relative z-20">
+      <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto font-sans relative z-20">
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 sm:gap-5">
           
           <AnimatedMetric value="2L+" label="Happy Investors" />
@@ -441,7 +441,7 @@ export default function TaxSolutionsPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 8. SECTION 7: BOTTOM CTA BANNER WITH GENEROUS MARGIN & PADDING */}
-      <section className="pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
+      <section className="pb-12 sm:pb-16 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto font-sans">
         <div 
           className="rounded-[22px] sm:rounded-[28px] py-6 sm:py-8 px-6 sm:px-8 lg:px-10 shadow-xl text-white relative overflow-hidden bg-cover bg-center"
           style={{ backgroundImage: "url('/ChatGPT Image Aug 26, 2026, 09_00_05 PM.png')" }}

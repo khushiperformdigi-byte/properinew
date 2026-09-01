@@ -113,7 +113,7 @@ export default function ToolsPage({ onNavigateHome, onNavigatePage }) {
         {/* Ambient Purple Background Glow */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
           
           {/* LEFT COLUMN: Badge, Title, Subtitle, Key Highlights & 4 Feature Cards */}
           <div className="lg:col-span-6 flex flex-col justify-center items-start text-left relative py-2 space-y-4">
@@ -229,7 +229,7 @@ export default function ToolsPage({ onNavigateHome, onNavigatePage }) {
         <div className="absolute top-1/4 left-0 w-[500px] h-[500px] bg-purple-100/50 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-1/4 right-0 w-[500px] h-[500px] bg-pink-100/40 rounded-full blur-3xl pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
 
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">

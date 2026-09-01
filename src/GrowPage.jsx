@@ -125,7 +125,7 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
         <div className="absolute top-0 right-1/4 w-[400px] h-[400px] bg-purple-200/30 rounded-full filter blur-[100px] pointer-events-none"></div>
         <div className="absolute bottom-0 left-10 w-[350px] h-[350px] bg-pink-100/30 rounded-full filter blur-[90px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center relative z-10">
           
           {/* LEFT COLUMN: Main Copy, Badges & Actions */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
@@ -298,7 +298,7 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 4. INVEST YOUR WAY. GROW EVERY DAY. SECTION */}
-      <section id="invest-solutions" className="py-8 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto select-none scroll-mt-24">
+      <section id="invest-solutions" className="py-8 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto select-none scroll-mt-24">
         <div className="text-center max-w-3xl mx-auto mb-7">
           <h2 className="text-2xl sm:text-3xl font-heading font-extrabold text-[#1E1B2E] tracking-tight">
             Invest your way. Grow every day.
@@ -402,7 +402,7 @@ export default function GrowPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 4.5 WHY INVEST WITH PROSPERI5? SECTION (ENHANCED TEXT SIZE & HEIGHT) */}
-      <section className="py-12 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans select-none">
+      <section className="py-12 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto font-sans select-none">
         
         {/* Top Header & 5 Benefit Badges Row */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start mb-10">

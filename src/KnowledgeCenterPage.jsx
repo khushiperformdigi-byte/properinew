@@ -124,7 +124,7 @@ export default function KnowledgeCenterPage({ onNavigateHome, onNavigatePage }) 
         {/* Ambient Purple Background Glow */}
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[90px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
           
           {/* LEFT COLUMN: Main Heading, Subtitle & CTAs */}
           <div className="lg:col-span-6 flex flex-col items-start text-left">
@@ -489,7 +489,7 @@ export default function KnowledgeCenterPage({ onNavigateHome, onNavigatePage }) 
       </section>
 
       {/* 5. MAIN CONTENT */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 space-y-8 select-none">
+      <main className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-4 space-y-8 select-none">
 
         {/* 6. BEGINNER'S LEARNING HUB SECTION */}
         <div id="articles-section" className="py-6 sm:py-8">

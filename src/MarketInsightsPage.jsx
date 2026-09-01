@@ -138,7 +138,7 @@ export default function MarketInsightsPage({ onNavigateHome, onNavigatePage }) {
         {/* Ambient Purple Background Glow */}
         <div className="absolute top-1/2 right-1/4 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[90px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
           
           {/* Left Hero Content */}
           <div className="lg:col-span-7 flex flex-col items-start text-left">
@@ -186,7 +186,7 @@ export default function MarketInsightsPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 3. MARKET OVERVIEW (4 STANDALONE INDEX CARDS IN PURPLE THEME) */}
-      <section className="py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
+      <section className="py-6 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto font-sans">
         
         {/* Header Bar (Centered Badge) */}
         <div className="flex justify-center mb-5 sm:mb-6">
@@ -328,7 +328,7 @@ export default function MarketInsightsPage({ onNavigateHome, onNavigatePage }) {
 
       {/* 4. MARKET TRENDS & SENTIMENT (FULL WIDTH #FCE9F4 SOFT PINK BACKGROUND) */}
       <section className="w-full bg-[#FCE9F4] py-10 sm:py-12 my-6 px-4 sm:px-6 lg:px-8 font-sans">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
           
           {/* Left Column: Nifty 50 Performance Chart (Matching Reference Image 1) */}
           <div className="lg:col-span-8 bg-white border border-purple-100/90 rounded-3xl p-5 sm:p-6 shadow-md flex flex-col justify-between space-y-5">
@@ -500,7 +500,7 @@ export default function MarketInsightsPage({ onNavigateHome, onNavigatePage }) {
 
 
       {/* 6. NEWSLETTER SUBSCRIPTION BANNER (ENHANCED TYPOGRAPHY SIZE) */}
-      <section className="py-4.5 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto font-sans">
+      <section className="py-4.5 px-4 sm:px-6 lg:px-8 xl:px-12 max-w-[1500px] mx-auto font-sans">
         <div className="bg-gradient-to-r from-[#7C1FA8] via-[#6b1a91] to-[#541275] rounded-2xl sm:rounded-3xl py-4.5 px-6 sm:py-6 sm:px-8 text-white shadow-xl relative overflow-hidden">
           <div className="flex flex-col md:flex-row items-center justify-between gap-5 relative z-10">
             

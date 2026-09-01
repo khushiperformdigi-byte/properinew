@@ -315,7 +315,7 @@ export default function BlogPage({ onNavigateHome, onNavigatePage }) {
       </section>
 
       {/* 4. MAIN BLOG LISTING CONTENT */}
-      <main id="blog-grid-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+      <main id="blog-grid-section" className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 py-10 sm:py-14">
 
         {/* CATEGORY FILTER TABS & SORT / SEARCH BAR */}
         <div className="space-y-4 mb-10 pb-6 border-b border-[#EBE8EF]">

@@ -161,7 +161,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
         {/* Ambient Curved Background Glow */}
         <div className="absolute top-1/2 -right-20 -translate-y-1/2 w-[550px] h-[550px] bg-purple-200/40 rounded-full filter blur-[80px] pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center relative z-10">
           
           {/* LEFT COLUMN */}
           <div className="lg:col-span-7 flex flex-col justify-center items-start text-left relative py-1">
@@ -240,7 +240,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 2: PRODUCT OFFERING */}
       <section id="partner-product-offering" className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2.5 max-w-3xl mx-auto">
@@ -337,7 +337,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 3: BENEFITS OF JOINING PROSPERI5 */}
       <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-[#FAF8FC] border-b border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2 max-w-3xl mx-auto">
@@ -353,7 +353,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
           </div>
 
           {/* Staggered Vertical Timeline List Matching Reference Layout */}
-          <div className="max-w-7xl mx-auto relative space-y-5 sm:space-y-6">
+          <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 relative space-y-5 sm:space-y-6">
             {/* Connecting Vertical Timeline Line */}
             <div className="absolute left-[19px] sm:left-[23px] top-[24px] bottom-[24px] w-[2px] bg-purple-200/80 pointer-events-none z-0"></div>
 
@@ -396,7 +396,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 4: COMPARISON TABLE */}
       <section className="w-full pt-12 sm:pt-16 lg:pt-20 pb-10 lg:pb-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2 max-w-3xl mx-auto pt-2 sm:pt-3">
@@ -460,7 +460,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 5: HOW IT WORKS */}
       <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-[#FAF8FC] border-b border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2 max-w-3xl mx-auto">
@@ -502,7 +502,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 6: TESTIMONIALS */}
       <section className="w-full py-10 lg:py-12 px-4 sm:px-6 lg:px-8 bg-white border-b border-[#EBE8EF]">
-        <div className="max-w-7xl mx-auto space-y-8">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12 space-y-8">
           
           {/* Section Header */}
           <div className="text-center space-y-2 max-w-3xl mx-auto">
@@ -591,7 +591,7 @@ export default function PartnerB2BPage({ onNavigateHome, onNavigatePage }) {
 
       {/* SECTION 8: FINAL CTA FORM & BANNER */}
       <section className="w-full py-8 lg:py-10 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-[1500px] mx-auto px-4 sm:px-6 lg:px-8 xl:px-12">
           <div className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[24px] p-6 sm:p-8 lg:p-10 text-white shadow-xl relative overflow-hidden space-y-6">
             
             {/* Ambient Accent Glow */}
