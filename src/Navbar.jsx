@@ -79,9 +79,12 @@ export default function Navbar({
   };
 
   const isHome = currentPage === 'home' || currentPage === 'partner-b2b' || currentPage === 'partner';
+  const isBlog = currentPage === 'blog' || currentPage === 'blog-detail';
   const navBgClass = isHome 
     ? 'bg-white' 
-    : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
+    : isBlog
+      ? 'bg-transparent'
+      : 'bg-[#FAF8FC] bg-gradient-to-r from-[#FAF8FC] via-[#F5EEFC] to-[#FAF8FC]';
 
   return (
     <>
