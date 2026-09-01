@@ -205,34 +205,34 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
           </div>
         </section>
 
-        {/* 3. SECTION: FAQ */}
-        <section className="bg-white rounded-[28px] border border-purple-100 p-6 sm:p-10 lg:p-12 shadow-xs space-y-8">
-          <div className="text-center space-y-3 max-w-3xl mx-auto">
+        {/* 3. SECTION: FAQ (Un-boxed & Compact) */}
+        <section className="w-full space-y-6 py-2">
+          <div className="text-center space-y-2.5 max-w-3xl mx-auto">
             <span className="bg-[#F5EEFB] text-[#7C1FA8] text-[11px] font-extrabold px-4 py-1.5 rounded-full uppercase tracking-wider border border-purple-200/80 inline-block">
               FREQUENTLY ASKED QUESTIONS
             </span>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[36px] text-[#1E1B2E] tracking-tight">
+            <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-[34px] text-[#1E1B2E] tracking-tight">
               Questions Partners Ask About Distributing Loans
             </h2>
           </div>
 
-          <div className="max-w-4xl mx-auto space-y-3.5">
+          <div className="max-w-4xl mx-auto space-y-3">
             {faqs.map((faq, idx) => (
               <div
                 key={idx}
-                className="bg-[#FAF6FC] rounded-2xl border border-purple-100/80 overflow-hidden transition-all"
+                className="bg-[#FAF6FC] rounded-2xl border border-purple-100/90 overflow-hidden transition-all"
               >
                 <button
                   onClick={() => setOpenFaq(openFaq === idx ? null : idx)}
-                  className="w-full p-5 text-left font-extrabold text-base text-[#1E1B2E] flex justify-between items-center gap-4 hover:text-[#7C1FA8] transition-colors cursor-pointer"
+                  className="w-full p-4.5 sm:p-5 text-left font-extrabold text-sm sm:text-base text-[#1E1B2E] flex justify-between items-center gap-4 hover:text-[#7C1FA8] transition-colors cursor-pointer"
                 >
                   <span>{faq.q}</span>
-                  <span className="text-[#7C1FA8] text-xl shrink-0 font-bold">
+                  <span className="text-[#7C1FA8] text-lg shrink-0 font-bold">
                     {openFaq === idx ? <FiMinus /> : <FiPlus />}
                   </span>
                 </button>
                 {openFaq === idx && (
-                  <div className="px-5 pb-5 text-sm text-[#544F66] font-semibold leading-relaxed border-t border-purple-100/60 pt-3">
+                  <div className="px-4.5 pb-4.5 text-xs sm:text-sm text-[#544F66] font-semibold leading-relaxed border-t border-purple-100/60 pt-3">
                     {faq.a}
                   </div>
                 )}
@@ -241,25 +241,27 @@ export default function FinancingPage({ onNavigateHome, onNavigatePage }) {
           </div>
         </section>
 
-        {/* 4. SECTION: CLOSING CTA */}
-        <section className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[28px] p-8 sm:p-12 text-white shadow-xl relative overflow-hidden space-y-6">
+        {/* 4. SECTION: CLOSING CTA (Compact Horizontal Strip layout) */}
+        <section className="bg-gradient-to-r from-[#4E0C72] via-[#5E1683] to-[#6E1C98] rounded-[24px] p-5 sm:p-6 lg:p-7 text-white shadow-xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-purple-300/20 rounded-full blur-3xl pointer-events-none"></div>
 
-          <div className="max-w-3xl mx-auto text-center space-y-4 relative z-10">
-            <span className="bg-white/15 border border-white/20 text-purple-100 px-4 py-1 rounded-full text-xs font-extrabold uppercase tracking-wider inline-block">
-              UNLIMITED EARNING POTENTIAL
-            </span>
-            <h2 className="font-heading font-extrabold text-2xl sm:text-4xl lg:text-[40px] leading-tight text-white tracking-tight">
-              Serve More. Earn More. Unlimited Upside.
-            </h2>
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-5 relative z-10 text-left">
+            <div className="space-y-1.5 max-w-2xl">
+              <span className="bg-white/15 border border-white/20 text-purple-100 px-3.5 py-0.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider inline-block">
+                UNLIMITED EARNING POTENTIAL
+              </span>
+              <h2 className="font-heading font-extrabold text-xl sm:text-2xl lg:text-3xl leading-tight text-white tracking-tight">
+                Serve More. Earn More. Unlimited Upside.
+              </h2>
+            </div>
             
-            <div className="pt-4">
+            <div className="shrink-0 w-full sm:w-auto text-center lg:text-right pt-1 lg:pt-0">
               <button
                 onClick={() => setPartnerModalOpen(true)}
-                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-10 py-4.5 rounded-2xl text-sm sm:text-base shadow-lg transition-all active:scale-95 cursor-pointer inline-flex items-center gap-2.5"
+                className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-8 py-3.5 rounded-2xl text-xs sm:text-sm shadow-lg transition-all active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center gap-2"
               >
                 <span>Start Earning Now</span>
-                <FiArrowRight className="w-5 h-5" />
+                <FiArrowRight className="w-4 h-4" />
               </button>
             </div>
           </div>
