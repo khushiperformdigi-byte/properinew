@@ -347,6 +347,27 @@ export default function Navbar({
 
                   <div className="flex flex-col space-y-1 text-xs font-semibold text-[#1E1B2E]">
                     <a
+                      href={getPathForPage('grow')}
+                      onClick={(e) => { e.preventDefault(); handleNav('grow'); }}
+                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Grow
+                    </a>
+                    <a
+                      href={getPathForPage('protect')}
+                      onClick={(e) => { e.preventDefault(); handleNav('protect'); }}
+                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Protect
+                    </a>
+                    <a
+                      href={getPathForPage('borrow')}
+                      onClick={(e) => { e.preventDefault(); handleNav('borrow'); }}
+                      className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
+                    >
+                      Borrow
+                    </a>
+                    <a
                       href={getPathForPage('personal-finance')}
                       onClick={(e) => { e.preventDefault(); handleNav('personal-finance'); }}
                       className="px-2.5 py-1.5 rounded-lg hover:text-[#7C1FA8] hover:bg-purple-50/80 transition-colors block"
@@ -702,6 +723,9 @@ export default function Navbar({
                         ₹ For Investors
                       </div>
                       {[
+                        { label: 'Grow', page: 'grow' },
+                        { label: 'Protect', page: 'protect' },
+                        { label: 'Borrow', page: 'borrow' },
                         { label: 'Personal Finance', page: 'personal-finance' },
                         { label: 'Investment / Wealth', page: 'investment' },
                         { label: 'Insurance', page: 'insurance' },
