@@ -2725,9 +2725,10 @@ function App() {
                   {/* Field 3: Your ARN Number */}
                   <input
                     type="text"
+                    required
                     value={partnerForm1.arn}
                     onChange={(e) => setPartnerForm1({ ...partnerForm1, arn: e.target.value })}
-                    placeholder="ARN (Optional)"
+                    placeholder="ARN Number *"
                     style={{ fontFamily: "'Inter', sans-serif" }}
                     className="w-[294px] max-w-full h-[54px] mx-auto rounded-[27px] border border-purple-100/90 bg-[#FAF6FD] px-5 text-[14px] font-medium text-[#1E1135] placeholder-gray-400 focus:outline-none focus:border-purple-500 transition-all"
                   />
@@ -3013,9 +3014,10 @@ function App() {
                       <div>
                         <input
                           type="text"
+                          required
                           value={partnerForm2.arn}
                           onChange={(e) => setPartnerForm2({ ...partnerForm2, arn: e.target.value })}
-                          placeholder="ARN (Optional)"
+                          placeholder="ARN Number *"
                           className="w-full bg-[#F8F5FB] border border-[#E7DEEE] rounded-full px-4 py-2.5 text-xs sm:text-[13px] text-[#1E1B2E] placeholder:text-[#9A8DAA] focus:outline-none focus:ring-2 focus:ring-purple-500/40 transition-all font-sans"
                         />
                       </div>
