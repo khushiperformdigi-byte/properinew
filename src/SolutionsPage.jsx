@@ -76,17 +76,17 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
             </div>
 
             {/* Micro Trust Bullet Bar */}
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-bold text-[#544F66] pt-1">
-              <span className="flex items-center gap-1.5 text-emerald-600">
-                <FiCheck className="w-4 h-4 stroke-[3]" /> 100% Client Ownership
+            <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs font-bold text-[#1E1B2E] pt-1">
+              <span className="flex items-center gap-1.5 text-[#1E1B2E]">
+                <FiCheck className="w-4 h-4 text-[#7C1FA8] stroke-[3.5]" /> 100% Client Ownership
               </span>
               <span className="text-purple-200">•</span>
-              <span className="flex items-center gap-1.5 text-emerald-600">
-                <FiCheck className="w-4 h-4 stroke-[3]" /> Zero Empanelment Fee
+              <span className="flex items-center gap-1.5 text-[#1E1B2E]">
+                <FiCheck className="w-4 h-4 text-[#7C1FA8] stroke-[3.5]" /> Zero Empanelment Fee
               </span>
               <span className="text-purple-200">•</span>
-              <span className="flex items-center gap-1.5 text-emerald-600">
-                <FiCheck className="w-4 h-4 stroke-[3]" /> Dedicated Back-office RM
+              <span className="flex items-center gap-1.5 text-[#1E1B2E]">
+                <FiCheck className="w-4 h-4 text-[#7C1FA8] stroke-[3.5]" /> Dedicated Back-office RM
               </span>
             </div>
 
@@ -107,10 +107,10 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
         </div>
       </section>
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
 
         {/* SECTION 1: WHY MULTI-PRODUCTS? */}
-        <section className="bg-white border border-purple-100/90 rounded-[28px] p-6 sm:p-10 lg:p-12 shadow-sm relative overflow-hidden">
+        <section className="w-full space-y-8 py-2">
           <div className="max-w-4xl mx-auto text-center space-y-6">
             
             <div className="inline-block bg-[#F5EEFB] border border-purple-200/80 px-4 py-1.5 rounded-full text-[11px] font-extrabold uppercase tracking-wider text-[#7C1FA8]">
@@ -125,37 +125,69 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
               You might capture one part of a client's financial life and watch the rest walk out the door. When you hold the Investments, Insurance, and Financing conversation in a single meeting, you become indispensable, unreplaceable.
             </p>
 
-            {/* 3 Verticals Zero Leakage Pill Cards Grid */}
+            {/* 3 Verticals Zero Leakage Pill Cards Grid (Clickable Cards with Explore →) */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5 pt-4 text-left">
-              <div className="bg-[#FAF6FC] border border-purple-100 rounded-2xl p-5 space-y-2 hover:border-[#7C1FA8]/50 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                  📈
+              
+              {/* Card 1: Investments */}
+              <div 
+                onClick={() => handleNav('investment')}
+                className="bg-[#FAF6FC] border border-purple-100/90 rounded-2xl p-6 space-y-3 hover:border-[#7C1FA8] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              >
+                <div className="space-y-2.5">
+                  <div className="w-11 h-11 rounded-2xl bg-[#7C1FA8] text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
+                    📈
+                  </div>
+                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#7C1FA8] transition-colors">Investments</h4>
+                  <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
+                    Capture equity, mutual funds, AIFs &amp; fixed income wealth creation with long-term recurring trail payouts.
+                  </p>
                 </div>
-                <h4 className="font-extrabold text-base text-[#1E1B2E]">Investments</h4>
-                <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
-                  Capture equity, mutual funds, AIFs & fixed income wealth creation with long-term recurring trail payouts.
-                </p>
+                <div className="flex items-center gap-1.5 text-[#7C1FA8] font-extrabold text-xs pt-2 group-hover:translate-x-1 transition-transform">
+                  <span>Explore</span>
+                  <FiArrowRight className="w-4 h-4" />
+                </div>
               </div>
 
-              <div className="bg-[#FAF6FC] border border-purple-100 rounded-2xl p-5 space-y-2 hover:border-[#7C1FA8]/50 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-[#C81E8C] text-white flex items-center justify-center font-bold text-lg shadow-sm">
-                  🛡️
+              {/* Card 2: Insurance */}
+              <div 
+                onClick={() => handleNav('insurance')}
+                className="bg-[#FDF2F8] border border-pink-100 rounded-2xl p-6 space-y-3 hover:border-[#C81E8C] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              >
+                <div className="space-y-2.5">
+                  <div className="w-11 h-11 rounded-2xl bg-[#C81E8C] text-white flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
+                    🛡️
+                  </div>
+                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#C81E8C] transition-colors">Insurance</h4>
+                  <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
+                    Protect client family &amp; assets with health, term &amp; general policies while unlocking upfront + renewal commission.
+                  </p>
                 </div>
-                <h4 className="font-extrabold text-base text-[#1E1B2E]">Insurance</h4>
-                <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
-                  Protect client family & assets with health, term & general policies while unlocking upfront + renewal commission.
-                </p>
+                <div className="flex items-center gap-1.5 text-[#C81E8C] font-extrabold text-xs pt-2 group-hover:translate-x-1 transition-transform">
+                  <span>Explore</span>
+                  <FiArrowRight className="w-4 h-4" />
+                </div>
               </div>
 
-              <div className="bg-[#FAF6FC] border border-purple-100 rounded-2xl p-5 space-y-2 hover:border-[#7C1FA8]/50 transition-colors">
-                <div className="w-10 h-10 rounded-xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center font-bold text-lg shadow-sm">
-                  💳
+              {/* Card 3: Financing */}
+              <div 
+                onClick={() => handleNav('financing')}
+                className="bg-[#FFFBEB] border border-amber-100 rounded-2xl p-6 space-y-3 hover:border-[#F5A623] hover:shadow-lg transition-all duration-300 cursor-pointer group flex flex-col justify-between"
+              >
+                <div className="space-y-2.5">
+                  <div className="w-11 h-11 rounded-2xl bg-[#F5A623] text-[#1E1B2E] flex items-center justify-center font-bold text-xl shadow-xs group-hover:scale-110 transition-transform">
+                    💳
+                  </div>
+                  <h4 className="font-extrabold text-lg text-[#1E1B2E] group-hover:text-[#D49300] transition-colors">Financing</h4>
+                  <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
+                    Fulfill home loans, business loans &amp; overdraft needs instantly so your clients never consult outside lenders.
+                  </p>
                 </div>
-                <h4 className="font-extrabold text-base text-[#1E1B2E]">Financing</h4>
-                <p className="text-xs font-semibold text-[#544F66] leading-relaxed">
-                  Fulfill home loans, business loans & overdraft needs instantly so your clients never consult outside lenders.
-                </p>
+                <div className="flex items-center gap-1.5 text-[#D49300] font-extrabold text-xs pt-2 group-hover:translate-x-1 transition-transform">
+                  <span>Explore</span>
+                  <FiArrowRight className="w-4 h-4" />
+                </div>
               </div>
+
             </div>
 
           </div>
