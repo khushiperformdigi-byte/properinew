@@ -22,6 +22,18 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
     setModalSubmitted(true);
   };
 
+  const handlePartnerRedirect = () => {
+    if (onNavigatePage) {
+      onNavigatePage('partner', 'signup');
+    } else {
+      window.location.href = '/partner-b2b#signup';
+    }
+    setTimeout(() => {
+      const el = document.getElementById('signup') || document.getElementById('partner-journey') || document.getElementById('contact');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
+  };
+
   return (
     <div className="min-h-screen bg-[#FDFBFD] font-sans text-[#544F66] antialiased selection:bg-purple-100 selection:text-[#7C1FA8] overflow-x-hidden">
       
@@ -57,7 +69,7 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
             {/* CTAs */}
             <div className="flex flex-wrap items-center gap-4 mb-6">
               <button
-                onClick={() => setPartnerModalOpen(true)}
+                onClick={handlePartnerRedirect}
                 className="h-[52px] sm:h-[56px] px-8 sm:px-10 rounded-2xl bg-[#7C1FA8] hover:bg-[#68198f] text-white font-extrabold text-sm sm:text-base shadow-xl shadow-purple-900/20 transition-all active:scale-95 cursor-pointer flex items-center justify-center gap-2.5"
               >
                 <span>Get Started — Zero Fee</span>
@@ -281,7 +293,7 @@ export default function SolutionsPage({ onNavigatePage, onNavigateHome }) {
             
             <div className="shrink-0 w-full sm:w-auto text-center lg:text-right">
               <button
-                onClick={() => setPartnerModalOpen(true)}
+                onClick={handlePartnerRedirect}
                 className="bg-[#F5A623] hover:bg-[#D49300] text-[#1E1B2E] font-extrabold px-6 py-2.5 sm:py-3 rounded-xl text-xs shadow-md transition-all active:scale-95 cursor-pointer whitespace-nowrap inline-flex items-center gap-1.5"
               >
                 <span>Become a PROSPERi5 Partner</span>
