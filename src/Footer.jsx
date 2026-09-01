@@ -67,16 +67,18 @@ export default function Footer({ onNavigatePage }) {
               </ul>
             </div>
 
-            {/* Column 3: FOR PARTNERS */}
+            {/* Column 2: KNOWLEDGE CENTER */}
             <div className="flex flex-col gap-2">
               <h4 className="text-[#F5A623] text-xs font-bold tracking-wider uppercase mb-1">
-                FOR PARTNERS
+                KNOWLEDGE CENTER
               </h4>
               <ul className="space-y-2 text-xs sm:text-sm font-medium text-white/80">
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Partner Overview</button></li>
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Become a Partner</button></li>
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Partner Login</button></li>
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Partner Brochure</button></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Knowledge Center</a></li>
+                <li><a href={getPathForPage('blog')} onClick={(e) => { e.preventDefault(); handleNav('blog'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Blog &amp; Articles</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Market Insights</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Tax Savings</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Insurance Guides</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Wealth Strategy</a></li>
               </ul>
             </div>
 
@@ -231,14 +233,16 @@ export default function Footer({ onNavigatePage }) {
               </ul>
             </div>
 
-            {/* Column 3: FOR PARTNERS */}
+            {/* Column 3: KNOWLEDGE CENTER */}
             <div>
-              <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">FOR PARTNERS</h4>
+              <h4 className="text-[#F5A623] text-xs font-extrabold tracking-wider uppercase mb-2">KNOWLEDGE CENTER</h4>
               <ul className="space-y-1 text-xs sm:text-[13px] text-white/90 font-semibold">
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Partner Overview</button></li>
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Become a Partner</button></li>
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Partner Login</button></li>
-                <li><button onClick={() => handleNav('partner')} className="hover:text-white transition-colors cursor-pointer text-left">Partner Brochure</button></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Knowledge Center</a></li>
+                <li><a href={getPathForPage('blog')} onClick={(e) => { e.preventDefault(); handleNav('blog'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Blog &amp; Articles</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Market Insights</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Tax Savings</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Insurance Guides</a></li>
+                <li><a href={getPathForPage('knowledge')} onClick={(e) => { e.preventDefault(); handleNav('knowledge'); }} className="hover:text-white transition-colors cursor-pointer text-left block">Wealth Strategy</a></li>
               </ul>
             </div>
 
